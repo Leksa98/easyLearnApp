@@ -18,6 +18,7 @@
 		A84B2D3C24AA5ECF0022F029 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A84B2D3B24AA5ECF0022F029 /* Assets.xcassets */; };
 		A84B2D3E24AB39570022F029 /* WordSetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84B2D3D24AB39570022F029 /* WordSetTableViewController.swift */; };
 		A84B2D4024AB4BD00022F029 /* WordSetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84B2D3F24AB4BD00022F029 /* WordSetTableViewCell.swift */; };
+		A8FFB4D124B3393E00CCCE43 /* WordSetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FFB4D024B3393E00CCCE43 /* WordSetModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		A84B2D3B24AA5ECF0022F029 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A84B2D3D24AB39570022F029 /* WordSetTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetTableViewController.swift; sourceTree = "<group>"; };
 		A84B2D3F24AB4BD00022F029 /* WordSetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetTableViewCell.swift; sourceTree = "<group>"; };
+		A8FFB4D024B3393E00CCCE43 /* WordSetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 				A81FF5F624AA429F007068F9 /* TabBarController.swift */,
 				A84B2D3D24AB39570022F029 /* WordSetTableViewController.swift */,
 				A84B2D3F24AB4BD00022F029 /* WordSetTableViewCell.swift */,
+				A8FFB4D024B3393E00CCCE43 /* WordSetModel.swift */,
 			);
 			path = EasyLearnApp;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				A84B2D4024AB4BD00022F029 /* WordSetTableViewCell.swift in Sources */,
 				A81FF5CE24AA3D27007068F9 /* EasyLearnApp.xcdatamodeld in Sources */,
 				A81FF5F724AA429F007068F9 /* TabBarController.swift in Sources */,
+				A8FFB4D124B3393E00CCCE43 /* WordSetModel.swift in Sources */,
 				A81FF5C624AA3D27007068F9 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

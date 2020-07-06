@@ -8,38 +8,55 @@
 
 import UIKit
 
-class WordSetTableViewController: UITableViewController {
+final class WordSetTableViewController: UITableViewController {
+    
+    // MARK: - Properties
+    
+    private var studySet: [WordSetModel] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .white
-        navigationItem.title = "My sets"
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.register(WordSetTableViewCell.self, forCellReuseIdentifier: "wordSetCell")
-        
+        loadData()
+        configureTableView()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
+    // MARK: - Configurations
+    
+    private func configureTableView() {
+        view.backgroundColor = .white
+        navigationItem.title = "My sets"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        tableView.register(WordSetTableViewCell.self, forCellReuseIdentifier: "wordSetCell")
+        navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    private func loadData() {
+        studySet = [WordSetModel(name: "Animals", progress: 0.2), WordSetModel(name: "House", progress: 0.4), WordSetModel(name: "Holidays", progress: 0.6), WordSetModel(name: "Food", progress: 0.7), WordSetModel(name: "School", progress: 1.0)]
+    }
     
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return studySet.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "wordSetCell", for: indexPath) as? WordSetTableViewCell {
+            cell.viewModel = studySet[indexPath.row]
             return cell
         }
         return UITableViewCell()
