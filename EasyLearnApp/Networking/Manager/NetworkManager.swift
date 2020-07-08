@@ -35,7 +35,7 @@ struct NetworkManager {
         }
     }
     
-    func translateWord(word: String, completion: @escaping (_ translation: String?, _ error: String?) -> ()) {
+    func translateWord(word: String, completion: @escaping (_ translation: TranslationModel?, _ error: String?) -> ()) {
         router.request(.translate(word: word)) { data, response, error in
             if error != nil {
                 completion(nil, "error")
@@ -51,7 +51,7 @@ struct NetworkManager {
                     }
                     do {
                         //let apiResponse = try JSONDecoder().decode(String.self, from: responseData)
-                        let apiResponse = String(data: responseData, encoding: .utf8)
+                        let apiResponse = try JSONDecoder().decode(TranslationModel.self, from: responseData)
                         completion(apiResponse, nil)
                     } catch {
                         completion(nil, NetworkResponse.unableToDecode.rawValue)

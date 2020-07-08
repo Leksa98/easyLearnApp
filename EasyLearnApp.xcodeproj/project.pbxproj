@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A8101D9324B5EF2D00FE4F60 /* TranslationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8101D9224B5EF2D00FE4F60 /* TranslationModel.swift */; };
 		A81FF5C424AA3D27007068F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81FF5C324AA3D27007068F9 /* AppDelegate.swift */; };
 		A81FF5C624AA3D27007068F9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81FF5C524AA3D27007068F9 /* SceneDelegate.swift */; };
 		A81FF5C824AA3D27007068F9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81FF5C724AA3D27007068F9 /* ViewController.swift */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A8101D9224B5EF2D00FE4F60 /* TranslationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationModel.swift; sourceTree = "<group>"; };
 		A81FF5C024AA3D27007068F9 /* EasyLearnApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyLearnApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A81FF5C324AA3D27007068F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A81FF5C524AA3D27007068F9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 		A8ABBCB524B5B209008081FB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A8101D9224B5EF2D00FE4F60 /* TranslationModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 				A81FF5F724AA429F007068F9 /* TabBarController.swift in Sources */,
 				A8ABBCAD24B50B84008081FB /* JSONParameterEncoder.swift in Sources */,
 				A8FFB4D124B3393E00CCCE43 /* WordSetModel.swift in Sources */,
+				A8101D9324B5EF2D00FE4F60 /* TranslationModel.swift in Sources */,
 				A81FF5C624AA3D27007068F9 /* SceneDelegate.swift in Sources */,
 				A8ABBCAF24B50BEE008081FB /* NetworkRouter.swift in Sources */,
 			);
