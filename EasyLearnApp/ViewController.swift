@@ -12,8 +12,6 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //let translation = RequestService()
-        //translation.getTranslate(word: "dog")
         let networkManager = NetworkManager()
         networkManager.translateWord(word: "phone") { translation, error in
         if let error = error {
