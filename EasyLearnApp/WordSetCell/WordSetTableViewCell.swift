@@ -62,7 +62,7 @@ final class WordSetTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        //self.window?.rootViewController?.present(WordSetViewController(), animated: true, completion: nil)
         // Configure the view for the selected state
     }
     

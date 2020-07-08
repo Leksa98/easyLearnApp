@@ -12,9 +12,18 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        //let translation = RequestService()
+        //translation.getTranslate(word: "dog")
+        let networkManager = NetworkManager()
+        networkManager.translateWord(word: "cat") { translation, error in
+        if let error = error {
+            print(error)
+        }
+        if let translation = translation {
+            print(translation)
+        }
+            
+        }
     }
-
-
 }
 
