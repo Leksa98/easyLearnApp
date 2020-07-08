@@ -13,23 +13,30 @@ struct NetworkManager {
     
     public enum NetworkResponse: String {
         case success
-        case authenticationError = "You are not logged in."
-        case badRequest = "Bad request"
+        case invalidKey = "Invalid API key"
+        case blockedKey = "This API key has been blocked"
+        case exceededDailyLimit = "Exceeded the daily limit on the number of requests"
+        case textSizeExceeded = "The text size exceeds the maximum"
+        case lansuageNotSupported = "The specified translation direction is not supported"
         case failed = "Request failed"
-        case noData = "Request was without data to decode."
+        case noData = "Response returned with no data to decode."
         case unableToDecode = "Unable to decode data."
     }
     
     fileprivate func handleNetworkRequest(_ response: HTTPURLResponse) -> Result<String> {
         switch response.statusCode {
-        case 200...299:
+        case 200:
             return .success
-        case 400:
-            return .failure(NetworkResponse.badRequest.rawValue)
         case 401:
-            return .failure(NetworkResponse.authenticationError.rawValue)
-        case 404:
-            return .failure(NetworkResponse.noData.rawValue)
+            return .failure(NetworkResponse.invalidKey.rawValue)
+        case 402:
+            return .failure(NetworkResponse.blockedKey.rawValue)
+        case 403:
+            return .failure(NetworkResponse.exceededDailyLimit.rawValue)
+        case 413:
+            return .failure(NetworkResponse.textSizeExceeded.rawValue)
+        case 501:
+            return .failure(NetworkResponse.lansuageNotSupported.rawValue)
         default:
             return .failure(NetworkResponse.failed.rawValue)
         }
@@ -38,7 +45,7 @@ struct NetworkManager {
     func translateWord(word: String, completion: @escaping (_ translation: TranslationModel?, _ error: String?) -> ()) {
         router.request(.translate(word: word)) { data, response, error in
             if error != nil {
-                completion(nil, "error")
+                completion(nil, "Error")
             }
             
             if let response = response as? HTTPURLResponse {
@@ -50,7 +57,6 @@ struct NetworkManager {
                         return
                     }
                     do {
-                        //let apiResponse = try JSONDecoder().decode(String.self, from: responseData)
                         let apiResponse = try JSONDecoder().decode(TranslationModel.self, from: responseData)
                         completion(apiResponse, nil)
                     } catch {
