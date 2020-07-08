@@ -6,4 +6,8 @@
 //  Copyright © 2020 Alexandra Gertsenshtein. All rights reserved.
 //
 
-import Foundation
+public typealias HTTPHeaders = [String:String]
+
+public enum HTTPTask {
+    case requestParametersAndHeaders(bodyParameters: Parameters?, urlParameters: Parameters?, additionHeaders: HTTPHeaders?)
+}
