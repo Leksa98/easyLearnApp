@@ -12,10 +12,12 @@ final class WordSetModel {
     
     private let name: String
     private let progress: Float
+    private let emoji: String
     
-    init(name: String, progress: Float) {
+    init(name: String, progress: Float, emoji: String) {
         self.name = name
         self.progress = progress
+        self.emoji = emoji
     }
     
     var nameValue: String {
@@ -24,5 +26,9 @@ final class WordSetModel {
     
     var progressValue: Float {
         return progress
+    }
+    
+    var emojiValue: String {
+        return emoji
     }
 }

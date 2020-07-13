@@ -37,7 +37,7 @@ final class WordSetTableViewController: UITableViewController {
     }
     
     private func loadData() {
-        studySet = [WordSetModel(name: "Animals", progress: 0.2), WordSetModel(name: "House", progress: 0.4), WordSetModel(name: "Holidays", progress: 0.6), WordSetModel(name: "Food", progress: 0.7), WordSetModel(name: "School", progress: 1.0)]
+        studySet = [WordSetModel(name: "Animals", progress: 0.2, emoji: "🐳"), WordSetModel(name: "House", progress: 0.4, emoji: "🏡"), WordSetModel(name: "Holidays", progress: 0.6, emoji: "🏄🏖"), WordSetModel(name: "Food", progress: 0.7,emoji: "🥗🍔🍰"), WordSetModel(name: "School", progress: 1.0, emoji: "📚")]
     }
     
     // MARK: - Table view data source

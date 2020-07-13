@@ -12,13 +12,13 @@ final class WordSetTableViewCell: UITableViewCell {
     
     // MARK: - Properties
     
-    var setTitle: UILabel! = {
+    private var setTitle: UILabel! = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 20)
         return label
     }()
     
-    var progressBar: UIProgressView! = {
+    private var progressBar: UIProgressView! = {
         let progress = UIProgressView()
         progress.transform = progress.transform.scaledBy(x: 1, y: 6)
         progress.layer.cornerRadius = 10
@@ -26,6 +26,12 @@ final class WordSetTableViewCell: UITableViewCell {
         progress.layer.sublayers![1].cornerRadius = 10
         progress.subviews[1].clipsToBounds = true
         return progress
+    }()
+    
+    private var emojiLabel: UILabel! = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 45)
+        return label
     }()
     
     var viewModel: WordSetModel? {
@@ -43,15 +49,20 @@ final class WordSetTableViewCell: UITableViewCell {
         self.accessoryType = .disclosureIndicator
         addSubview(setTitle)
         addSubview(progressBar)
+        addSubview(emojiLabel)
         setTitle.translatesAutoresizingMaskIntoConstraints = false
         progressBar.translatesAutoresizingMaskIntoConstraints = false
+        emojiLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            setTitle.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
+            emojiLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
+            emojiLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            setTitle.leadingAnchor.constraint(equalTo: emojiLabel.trailingAnchor, constant: 10),
+            setTitle.centerYAnchor.constraint(equalTo: emojiLabel.centerYAnchor),
             setTitle.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25),
             setTitle.topAnchor.constraint(equalTo: topAnchor, constant: 10),
             progressBar.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
             progressBar.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -70),
-            progressBar.topAnchor.constraint(equalTo: setTitle.bottomAnchor, constant: 20),
+            progressBar.topAnchor.constraint(equalTo: emojiLabel.bottomAnchor, constant: 20),
             progressBar.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20)
         ])
     }
@@ -70,6 +81,7 @@ final class WordSetTableViewCell: UITableViewCell {
     
     private func updateContent(with viewModel: WordSetModel) {
         setTitle.text = viewModel.nameValue
+        emojiLabel.text = viewModel.emojiValue
         progressBar.progress = viewModel.progressValue
         switch viewModel.progressValue {
         case 0..<0.25:
