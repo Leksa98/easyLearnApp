@@ -8,6 +8,11 @@
 
 import Foundation
 
+public enum Result<String> {
+    case success
+    case failure(String)
+}
+
 struct NetworkManager {
     private let router = Router<TranslateWordApi>()
     
@@ -42,7 +47,7 @@ struct NetworkManager {
         }
     }
     
-    func translateWord(word: String, completion: @escaping (_ translation: TranslationModel?, _ error: String?) -> ()) {
+    func translateWord(word: String, completion: @escaping (_ translation: [String]?, _ error: String?) -> ()) {
         router.request(.translate(word: word)) { data, response, error in
             if error != nil {
                 completion(nil, "Error")
@@ -58,7 +63,8 @@ struct NetworkManager {
                     }
                     do {
                         let apiResponse = try JSONDecoder().decode(TranslationModel.self, from: responseData)
-                        completion(apiResponse, nil)
+                        let translationMeanings = TranslationMeaningsParser()
+                        completion(translationMeanings.getWordMeaning(translation: apiResponse), nil)
                     } catch {
                         completion(nil, NetworkResponse.unableToDecode.rawValue)
                     }
@@ -72,9 +78,3 @@ struct NetworkManager {
 
 
 }
-
-public enum Result<String> {
-    case success
-    case failure(String)
-}
-

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A8101D9324B5EF2D00FE4F60 /* TranslationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8101D9224B5EF2D00FE4F60 /* TranslationModel.swift */; };
+		A81162A324BC9777002B4D8B /* TranslationMeaningsParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81162A224BC9777002B4D8B /* TranslationMeaningsParser.swift */; };
 		A81FF5C424AA3D27007068F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81FF5C324AA3D27007068F9 /* AppDelegate.swift */; };
 		A81FF5C624AA3D27007068F9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81FF5C524AA3D27007068F9 /* SceneDelegate.swift */; };
 		A81FF5C824AA3D27007068F9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81FF5C724AA3D27007068F9 /* ViewController.swift */; };
@@ -51,6 +52,7 @@
 
 /* Begin PBXFileReference section */
 		A8101D9224B5EF2D00FE4F60 /* TranslationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationModel.swift; sourceTree = "<group>"; };
+		A81162A224BC9777002B4D8B /* TranslationMeaningsParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationMeaningsParser.swift; sourceTree = "<group>"; };
 		A81FF5C024AA3D27007068F9 /* EasyLearnApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyLearnApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A81FF5C324AA3D27007068F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A81FF5C524AA3D27007068F9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -106,6 +108,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A81162A124BC9698002B4D8B /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				A81162A224BC9777002B4D8B /* TranslationMeaningsParser.swift */,
+			);
+			path = Parser;
+			sourceTree = "<group>";
+		};
 		A81FF5B724AA3D27007068F9 = {
 			isa = PBXGroup;
 			children = (
@@ -211,6 +221,7 @@
 		A8FFB4D224B368F800CCCE43 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				A81162A124BC9698002B4D8B /* Parser */,
 				A8ABBCB624B5B262008081FB /* Manager */,
 				A8ABBCB524B5B209008081FB /* Model */,
 				A8ABBCB224B51494008081FB /* EndPoint */,
@@ -373,6 +384,7 @@
 				A84B2D4024AB4BD00022F029 /* WordSetTableViewCell.swift in Sources */,
 				A81FF5CE24AA3D27007068F9 /* EasyLearnApp.xcdatamodeld in Sources */,
 				A81FF5F724AA429F007068F9 /* TabBarController.swift in Sources */,
+				A81162A324BC9777002B4D8B /* TranslationMeaningsParser.swift in Sources */,
 				A8ABBCAD24B50B84008081FB /* JSONParameterEncoder.swift in Sources */,
 				A8FFB4D124B3393E00CCCE43 /* WordSetModel.swift in Sources */,
 				A8101D9324B5EF2D00FE4F60 /* TranslationModel.swift in Sources */,

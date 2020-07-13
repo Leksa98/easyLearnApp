@@ -12,15 +12,15 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         let networkManager = NetworkManager()
-        networkManager.translateWord(word: "phone") { translation, error in
+        networkManager.translateWord(word: "school") { translation, error in
         if let error = error {
             print(error)
         }
         if let translation = translation {
             print(translation)
         }
-            
         }
     }
 }

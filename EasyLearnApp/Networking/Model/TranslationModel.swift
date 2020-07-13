@@ -24,7 +24,7 @@ struct Def: Codable {
 
 // MARK: - Tr
 struct Tr: Codable {
-    let text: String
+    let text: String //!!!!
     let pos: String
     let gen: String?
     let syn: [Syn]?
