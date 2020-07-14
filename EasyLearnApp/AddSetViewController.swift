@@ -19,7 +19,7 @@ final class AddSetViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        newSetNameAlert()
+        //newSetNameAlert()
     }
     
     private func newSetNameAlert() {
@@ -51,17 +51,21 @@ final class AddSetViewController: UIViewController {
         self.present(addNameAlertController, animated: true, completion: nil)
     }
     
-    // private func addWord() {
-    //     let networkManager = NetworkManager()
-    //     networkManager.translateWord(word: "school") { translation, error in
-    //     if let error = error {
-    //         print(error)
-    //     }
-    //     if let translation = translation {
-    //         print(translation)
-    //     }
-    //     }
-    // }
+    /*private func addWord() {
+        let networkManager = NetworkManager()
+        networkManager.translateWord(word: "school") { translation, error in
+        if let error = error {
+            print(error)
+        }
+        if let translation = translation {
+            print(translation)
+        }
+        }
+        let dataHandler = DataHandling()
+        dataHandler.addWordSetIntoCoreData(name: "Animals", emoji: "🐶")
+        dataHandler.addWordtoSet(name: "Animals", word: "Dog", translation: "Hund")
+        dataHandler.deleteWordSet(name: "Animals")
+    }*/
 }
 
 
