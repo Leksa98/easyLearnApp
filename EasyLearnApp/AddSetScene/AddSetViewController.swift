@@ -12,14 +12,32 @@ final class AddSetViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Add new set"
+        title = "Add new set"
         view.backgroundColor = .white
         navigationController?.navigationBar.prefersLargeTitles = true
-        self.dismissKey()
+        dismissKey()
+        setAddButton()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         //newSetNameAlert()
+    }
+    
+    private func setAddButton() {
+        let addWordButton = ButtonWithRoundCorners(title: "Add word")
+        addWordButton.addTarget(self, action: #selector(addWordButtonTapped), for: .touchUpInside)
+        view.addSubview(addWordButton)
+        addWordButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            addWordButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
+            addWordButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
+            addWordButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 750),
+            addWordButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100)
+        ])
+    }
+    
+    @objc private func addWordButtonTapped() {
+        present(AddWordViewController(), animated: true, completion: nil)
     }
     
     private func newSetNameAlert() {

@@ -7,6 +7,7 @@
 //
 
 
+/// HTTP Method types
 public enum HTTPMethod: String {
     case get = "GET"
 }

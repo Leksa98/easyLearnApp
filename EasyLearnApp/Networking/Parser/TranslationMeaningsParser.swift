@@ -10,7 +10,20 @@ import Foundation
 
 class TranslationMeaningsParser {
     
-    func getWordMeaning(translation: TranslationModel) -> [String]? {
+    private let networkManager = NetworkManager()
+    
+    func getWordMeaning(word: String, completion: @escaping (_ translation: [String]?, _ error: String?) -> ()) {
+        networkManager.translateWord(word: word) { apiResponse, error in
+            if let error = error {
+                completion(nil, error)
+            }
+            if let apiResponse = apiResponse {
+                completion(self.getTranslation(translation: apiResponse), nil)
+            }
+        }
+    }
+    
+    func getTranslation(translation: TranslationModel) -> [String]? {
         var meanings: [String]? = []
         for def in translation.def {
             for tr in def.tr {
