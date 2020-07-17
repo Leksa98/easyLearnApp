@@ -10,22 +10,30 @@ import UIKit
 
 class AddWordViewController: UIViewController {
     
+    // MARK: - Properties
+    
     private var wordSearchController: UISearchController! = nil
     var translations: [String] = []
     private var tableView =  UITableView()
     private var searchBar = UISearchBar()
+    private var addTranslationButton = ButtonWithRoundCorners(title: "Add")
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(cgColor: CGColor(srgbRed: 0.83, green: 1, blue: 0.96, alpha: 1))
+        view.backgroundColor = UIColor(cgColor: CGColor(srgbRed: 249.0/255.0, green: 248.0/255.0, blue: 241.0/255.0, alpha: 1))
         configureSearchBar()
         configureTableView()
+        configureAddTranslationButton()
         dismissKey()
     }
     
     override func viewDidLayoutSubviews() {
         searchBar.setPlaceholderTextColorTo(color: UIColor(cgColor: CGColor(srgbRed:0.53, green: 0.85, blue: 0.75, alpha: 1)))
     }
+    
+    // MARK: - Configuration
     
     private func configureSearchBar() {
         searchBar.delegate = self
@@ -54,7 +62,6 @@ class AddWordViewController: UIViewController {
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor)
         ])
         tableView.delegate = self
@@ -63,7 +70,22 @@ class AddWordViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor(cgColor: CGColor(srgbRed: 0.83, green: 1, blue: 0.96, alpha: 1))
     }
+    
+    private func configureAddTranslationButton() {
+        view.addSubview(addTranslationButton)
+        addTranslationButton.backgroundColor = UIColor(cgColor: CGColor(srgbRed:0.53, green: 0.85, blue: 0.75, alpha: 1))
+        addTranslationButton.titleLabel?.textColor = UIColor(cgColor: CGColor(srgbRed: 0.83, green: 1, blue: 0.96, alpha: 1))
+        addTranslationButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            addTranslationButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+            addTranslationButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+            addTranslationButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50),
+            addTranslationButton.heightAnchor.constraint(equalToConstant: 50),
+            addTranslationButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 25),
+        ])
+    }
 }
+
 
 // MARK: - UITableViewDelegate & UITableViewDataSource
 extension AddWordViewController: UITableViewDelegate, UITableViewDataSource {
@@ -83,7 +105,12 @@ extension AddWordViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return UITableViewCell()
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(translations[indexPath.row])
+    }
 }
+
 
 // MARK: - UISearchBarDelegate
 extension AddWordViewController: UISearchBarDelegate {
@@ -129,6 +156,7 @@ extension AddWordViewController: UISearchBarDelegate {
         tableView.reloadData()
     }
 }
+
 
 extension UISearchBar {
     func setPlaceholderTextColorTo(color: UIColor) {

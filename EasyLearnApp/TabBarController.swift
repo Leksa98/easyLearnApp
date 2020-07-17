@@ -13,7 +13,8 @@ final class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tabBar.barTintColor = .white
+        tabBar.barTintColor = UIColor(cgColor: CGColor(srgbRed: 233.0/255.0, green: 241.0/255.0, blue: 247.0/255.0, alpha: 1))
+        tabBar.layer.borderWidth = 0.2
         let firstViewController = UINavigationController()
         firstViewController.pushViewController(WordSetTableViewController(), animated: false)
         firstViewController.tabBarItem = UITabBarItem(title: "Sets", image: UIImage(named: "file"), tag: 0)
