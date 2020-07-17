@@ -33,6 +33,9 @@
 		A8ABBCB124B50CAD008081FB /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8ABBCB024B50CAD008081FB /* Router.swift */; };
 		A8ABBCB424B51501008081FB /* TranslateWordApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8ABBCB324B51501008081FB /* TranslateWordApi.swift */; };
 		A8ABBCB824B5B2B1008081FB /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8ABBCB724B5B2B1008081FB /* NetworkManager.swift */; };
+		A8F0D57924C249440004C609 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F0D57824C249440004C609 /* ViewControllerExtension.swift */; };
+		A8F0D57B24C249880004C609 /* TextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F0D57A24C249880004C609 /* TextFieldExtension.swift */; };
+		A8F0D57D24C249CB0004C609 /* SearchBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F0D57C24C249CB0004C609 /* SearchBarExtension.swift */; };
 		A8FFB4D124B3393E00CCCE43 /* WordSetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FFB4D024B3393E00CCCE43 /* WordSetModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -86,6 +89,9 @@
 		A8ABBCB024B50CAD008081FB /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		A8ABBCB324B51501008081FB /* TranslateWordApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateWordApi.swift; sourceTree = "<group>"; };
 		A8ABBCB724B5B2B1008081FB /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		A8F0D57824C249440004C609 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
+		A8F0D57A24C249880004C609 /* TextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExtension.swift; sourceTree = "<group>"; };
+		A8F0D57C24C249CB0004C609 /* SearchBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarExtension.swift; sourceTree = "<group>"; };
 		A8FFB4D024B3393E00CCCE43 /* WordSetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -157,6 +163,7 @@
 				A8AA51DF24C03D790047B084 /* WordSetScene */,
 				A8AA51DC24C03C5C0047B084 /* AddSetScene */,
 				A8AA51DB24C03C1C0047B084 /* AddWordScene */,
+				A8F0D57724C249000004C609 /* Extensions */,
 			);
 			path = EasyLearnApp;
 			sourceTree = "<group>";
@@ -266,6 +273,16 @@
 				A8ABBCB724B5B2B1008081FB /* NetworkManager.swift */,
 			);
 			path = Manager;
+			sourceTree = "<group>";
+		};
+		A8F0D57724C249000004C609 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A8F0D57824C249440004C609 /* ViewControllerExtension.swift */,
+				A8F0D57A24C249880004C609 /* TextFieldExtension.swift */,
+				A8F0D57C24C249CB0004C609 /* SearchBarExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		A8FFB4D224B368F800CCCE43 /* Networking */ = {
@@ -413,11 +430,13 @@
 				A8ABBCA624B505DB008081FB /* HTTPTask.swift in Sources */,
 				A84B2D3E24AB39570022F029 /* WordSetTableViewController.swift in Sources */,
 				A8ABBCA924B507EF008081FB /*  ParameterEncoding.swift in Sources */,
+				A8F0D57924C249440004C609 /* ViewControllerExtension.swift in Sources */,
 				A8ABBCB824B5B2B1008081FB /* NetworkManager.swift in Sources */,
 				A81FF5C824AA3D27007068F9 /* AddSetViewController.swift in Sources */,
 				A8ABBCA324B5043A008081FB /* EndPointType.swift in Sources */,
 				A81FF5C424AA3D27007068F9 /* AppDelegate.swift in Sources */,
 				A8ABBCB124B50CAD008081FB /* Router.swift in Sources */,
+				A8F0D57B24C249880004C609 /* TextFieldExtension.swift in Sources */,
 				A82EEA7A24B3C01B00C35D90 /* WordSetViewController.swift in Sources */,
 				A82EEA7E24B4814000C35D90 /* HTTPMethod.swift in Sources */,
 				A8ABBCB424B51501008081FB /* TranslateWordApi.swift in Sources */,
@@ -431,6 +450,7 @@
 				A8ABBCAD24B50B84008081FB /* JSONParameterEncoder.swift in Sources */,
 				A8FFB4D124B3393E00CCCE43 /* WordSetModel.swift in Sources */,
 				A8101D9324B5EF2D00FE4F60 /* TranslationModel.swift in Sources */,
+				A8F0D57D24C249CB0004C609 /* SearchBarExtension.swift in Sources */,
 				A80D8C7E24C09D260056F7D9 /* AddWordTableViewCell.swift in Sources */,
 				A81FF5C624AA3D27007068F9 /* SceneDelegate.swift in Sources */,
 				A8ABBCAF24B50BEE008081FB /* NetworkRouter.swift in Sources */,

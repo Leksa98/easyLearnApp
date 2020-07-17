@@ -65,8 +65,8 @@ final class AddSetViewController: UIViewController {
         NSLayoutConstraint.activate([
             addWordButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             addWordButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            addWordButton.topAnchor.constraint(equalTo: wordSetView.bottomAnchor, constant: 20),
-            addWordButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
+            addWordButton.topAnchor.constraint(equalTo: wordSetView.bottomAnchor, constant: 10),
+            addWordButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
         ])
     }
     
@@ -92,7 +92,7 @@ final class AddSetViewController: UIViewController {
         NSLayoutConstraint.activate([
             emojiView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             emojiView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            emojiView.topAnchor.constraint(equalTo: nameView.bottomAnchor, constant: 20),
+            emojiView.topAnchor.constraint(equalTo: nameView.bottomAnchor, constant: 10),
             emojiView.heightAnchor.constraint(equalToConstant: 100),
             emojiLabel.leadingAnchor.constraint(equalTo: emojiView.leadingAnchor, constant: 15),
             emojiLabel.trailingAnchor.constraint(equalTo: emojiView.trailingAnchor, constant: -15),
@@ -128,7 +128,7 @@ final class AddSetViewController: UIViewController {
         NSLayoutConstraint.activate([
             nameView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             nameView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            nameView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            nameView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             nameView.heightAnchor.constraint(equalToConstant: 100),
             nameLabel.leadingAnchor.constraint(equalTo: nameView.leadingAnchor, constant: 15),
             nameLabel.trailingAnchor.constraint(equalTo: nameView.trailingAnchor, constant: -15),
@@ -162,7 +162,7 @@ final class AddSetViewController: UIViewController {
         NSLayoutConstraint.activate([
             wordSetView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             wordSetView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            wordSetView.topAnchor.constraint(equalTo: emojiView.bottomAnchor, constant: 20),
+            wordSetView.topAnchor.constraint(equalTo: emojiView.bottomAnchor, constant: 10),
             tableLabel.leadingAnchor.constraint(equalTo: wordSetView.leadingAnchor, constant: 15),
             tableLabel.trailingAnchor.constraint(equalTo: wordSetView.trailingAnchor, constant: -15),
             tableLabel.topAnchor.constraint(equalTo: wordSetView.topAnchor, constant: 15),
@@ -197,30 +197,5 @@ extension AddSetViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
         return UITableViewCell()
-    }
-    
-    
-}
-
-
-extension UIViewController {
-    func dismissKey() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-}
-
-
-extension UITextField {
-    open override var textInputMode: UITextInputMode? {
-        if self.placeholder == "Set Emoji" {
-            return UITextInputMode.activeInputModes.filter { $0.primaryLanguage == "emoji" }.first ?? super.textInputMode
-        }
-        return UITextInputMode.activeInputModes.filter { $0.primaryLanguage == NSLocale.current.languageCode }.first ?? super.textInputMode
     }
 }

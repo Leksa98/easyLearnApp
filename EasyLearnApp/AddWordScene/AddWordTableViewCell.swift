@@ -9,12 +9,7 @@
 import UIKit
 
 final class AddWordTableViewCell: UITableViewCell {
-    /*
-     "TimesNewRomanPS-ItalicMT"
-     - "TimesNewRomanPS-BoldItalicMT"
-     - "TimesNewRomanPS-BoldMT"
-     - "TimesNewRomanPSMT"
-     */
+   
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 18)

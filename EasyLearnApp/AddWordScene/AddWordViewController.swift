@@ -156,14 +156,3 @@ extension AddWordViewController: UISearchBarDelegate {
         tableView.reloadData()
     }
 }
-
-
-extension UISearchBar {
-    func setPlaceholderTextColorTo(color: UIColor) {
-        let textFieldInsideSearchBar = self.value(forKey: "searchField") as? UITextField
-        textFieldInsideSearchBar?.textColor = color
-        textFieldInsideSearchBar?.font = .boldSystemFont(ofSize: 20)
-        let textFieldInsideSearchBarLabel = textFieldInsideSearchBar!.value(forKey: "placeholderLabel") as? UILabel
-        textFieldInsideSearchBarLabel?.textColor = color
-    }
-}
