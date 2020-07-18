@@ -36,6 +36,7 @@
 		A8F0D57924C249440004C609 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F0D57824C249440004C609 /* ViewControllerExtension.swift */; };
 		A8F0D57B24C249880004C609 /* TextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F0D57A24C249880004C609 /* TextFieldExtension.swift */; };
 		A8F0D57D24C249CB0004C609 /* SearchBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F0D57C24C249CB0004C609 /* SearchBarExtension.swift */; };
+		A8F0D57F24C38B8E0004C609 /* EnterInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F0D57E24C38B8E0004C609 /* EnterInfoView.swift */; };
 		A8FFB4D124B3393E00CCCE43 /* WordSetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FFB4D024B3393E00CCCE43 /* WordSetModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -92,6 +93,7 @@
 		A8F0D57824C249440004C609 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
 		A8F0D57A24C249880004C609 /* TextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExtension.swift; sourceTree = "<group>"; };
 		A8F0D57C24C249CB0004C609 /* SearchBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarExtension.swift; sourceTree = "<group>"; };
+		A8F0D57E24C38B8E0004C609 /* EnterInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterInfoView.swift; sourceTree = "<group>"; };
 		A8FFB4D024B3393E00CCCE43 /* WordSetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -199,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				A81FF5C724AA3D27007068F9 /* AddSetViewController.swift */,
+				A8F0D57E24C38B8E0004C609 /* EnterInfoView.swift */,
 			);
 			path = AddSetScene;
 			sourceTree = "<group>";
@@ -454,6 +457,7 @@
 				A80D8C7E24C09D260056F7D9 /* AddWordTableViewCell.swift in Sources */,
 				A81FF5C624AA3D27007068F9 /* SceneDelegate.swift in Sources */,
 				A8ABBCAF24B50BEE008081FB /* NetworkRouter.swift in Sources */,
+				A8F0D57F24C38B8E0004C609 /* EnterInfoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
