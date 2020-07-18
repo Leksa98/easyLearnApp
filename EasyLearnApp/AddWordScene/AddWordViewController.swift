@@ -10,10 +10,17 @@ import UIKit
 
 class AddWordViewController: UIViewController {
     
+    // MARK: - Constants
+    
+    private enum Locals {
+        static let backgroundColor = UIColor(cgColor: CGColor(srgbRed: 249.0/255.0, green: 248.0/255.0, blue: 241.0/255.0, alpha: 1))
+        static let buttonColor = UIColor(cgColor: CGColor(srgbRed: 118.0/255.0, green: 93.0/255.0, blue: 152.0/255.0, alpha: 1))
+    }
+    
     // MARK: - Properties
     
     private var wordSearchController: UISearchController! = nil
-    var translations: [String] = []
+    private var translations: [String] = []
     private var tableView =  UITableView()
     private var searchBar = UISearchBar()
     private var addTranslationButton = ButtonWithRoundCorners(title: "Add")
@@ -22,7 +29,7 @@ class AddWordViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(cgColor: CGColor(srgbRed: 249.0/255.0, green: 248.0/255.0, blue: 241.0/255.0, alpha: 1))
+        view.backgroundColor = Locals.backgroundColor
         configureSearchBar()
         configureTableView()
         configureAddTranslationButton()
@@ -30,7 +37,7 @@ class AddWordViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        searchBar.setPlaceholderTextColorTo(color: UIColor(cgColor: CGColor(srgbRed:0.53, green: 0.85, blue: 0.75, alpha: 1)))
+        searchBar.setPlaceholderTextColorTo(color: Locals.buttonColor)
     }
     
     // MARK: - Configuration
@@ -39,20 +46,18 @@ class AddWordViewController: UIViewController {
         searchBar.delegate = self
         navigationItem.titleView = searchBar
         view.addSubview(searchBar)
-        
         searchBar.clipsToBounds = true
-        searchBar.layer.cornerRadius = 15
         searchBar.searchBarStyle = UISearchBar.Style.prominent
         searchBar.placeholder = "Type word..."
         searchBar.sizeToFit()
-        searchBar.barTintColor = UIColor(cgColor: CGColor(srgbRed:0.53, green: 0.85, blue: 0.75, alpha: 1))
-        searchBar.searchTextField.backgroundColor = UIColor(cgColor: CGColor(srgbRed: 0.83, green: 1, blue: 0.96, alpha: 1))
-        searchBar.searchTextField.leftView?.tintColor = UIColor(cgColor: CGColor(srgbRed:0.53, green: 0.85, blue: 0.75, alpha: 1))
+        searchBar.barTintColor = Locals.buttonColor
+        searchBar.searchTextField.backgroundColor = Locals.backgroundColor
+        searchBar.searchTextField.leftView?.tintColor = Locals.buttonColor
         searchBar.setShowsCancelButton(true, animated: true)
         searchBar.showsCancelButton = true
         if let cancelButton = searchBar.value(forKey: "cancelButton") as? UIButton {
-            cancelButton.setTitleColor(UIColor(cgColor: CGColor(srgbRed: 0.83, green: 1, blue: 0.96, alpha: 1)), for: .normal)
-            cancelButton.titleLabel?.font = .boldSystemFont(ofSize: 16)
+            cancelButton.setTitleColor(Locals.backgroundColor, for: .normal)
+            cancelButton.titleLabel?.font = .systemFont(ofSize: 16)
         }
     }
     
@@ -68,20 +73,18 @@ class AddWordViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(AddWordTableViewCell.self, forCellReuseIdentifier: "addWordTableViewCell")
         tableView.separatorStyle = .none
-        tableView.backgroundColor = UIColor(cgColor: CGColor(srgbRed: 0.83, green: 1, blue: 0.96, alpha: 1))
+        tableView.backgroundColor = Locals.backgroundColor
     }
     
     private func configureAddTranslationButton() {
         view.addSubview(addTranslationButton)
-        addTranslationButton.backgroundColor = UIColor(cgColor: CGColor(srgbRed:0.53, green: 0.85, blue: 0.75, alpha: 1))
-        addTranslationButton.titleLabel?.textColor = UIColor(cgColor: CGColor(srgbRed: 0.83, green: 1, blue: 0.96, alpha: 1))
+        addTranslationButton.backgroundColor = Locals.buttonColor
         addTranslationButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            addTranslationButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-            addTranslationButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
-            addTranslationButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50),
-            addTranslationButton.heightAnchor.constraint(equalToConstant: 50),
-            addTranslationButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 25),
+            addTranslationButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            addTranslationButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            addTranslationButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
+            addTranslationButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 10),
         ])
     }
 }
@@ -101,6 +104,7 @@ extension AddWordViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "addWordTableViewCell", for: indexPath) as? AddWordTableViewCell {
             cell.viewModel = translations[indexPath.row]
+            cell.backgroundColor = Locals.backgroundColor
             return cell
         }
         return UITableViewCell()
