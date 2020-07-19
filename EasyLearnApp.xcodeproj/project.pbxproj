@@ -37,6 +37,7 @@
 		A8F0D57B24C249880004C609 /* TextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F0D57A24C249880004C609 /* TextFieldExtension.swift */; };
 		A8F0D57D24C249CB0004C609 /* SearchBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F0D57C24C249CB0004C609 /* SearchBarExtension.swift */; };
 		A8F0D57F24C38B8E0004C609 /* EnterInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F0D57E24C38B8E0004C609 /* EnterInfoView.swift */; };
+		A8F0D58124C477430004C609 /* AddWordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F0D58024C477430004C609 /* AddWordInteractor.swift */; };
 		A8FFB4D124B3393E00CCCE43 /* WordSetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FFB4D024B3393E00CCCE43 /* WordSetModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +95,7 @@
 		A8F0D57A24C249880004C609 /* TextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExtension.swift; sourceTree = "<group>"; };
 		A8F0D57C24C249CB0004C609 /* SearchBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarExtension.swift; sourceTree = "<group>"; };
 		A8F0D57E24C38B8E0004C609 /* EnterInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterInfoView.swift; sourceTree = "<group>"; };
+		A8F0D58024C477430004C609 /* AddWordInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWordInteractor.swift; sourceTree = "<group>"; };
 		A8FFB4D024B3393E00CCCE43 /* WordSetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -193,6 +195,7 @@
 			children = (
 				A8AA51D924BF419D0047B084 /* AddWordViewController.swift */,
 				A80D8C7D24C09D260056F7D9 /* AddWordTableViewCell.swift */,
+				A8F0D58024C477430004C609 /* AddWordInteractor.swift */,
 			);
 			path = AddWordScene;
 			sourceTree = "<group>";
@@ -431,6 +434,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8ABBCA624B505DB008081FB /* HTTPTask.swift in Sources */,
+				A8F0D58124C477430004C609 /* AddWordInteractor.swift in Sources */,
 				A84B2D3E24AB39570022F029 /* WordSetTableViewController.swift in Sources */,
 				A8ABBCA924B507EF008081FB /*  ParameterEncoding.swift in Sources */,
 				A8F0D57924C249440004C609 /* ViewControllerExtension.swift in Sources */,

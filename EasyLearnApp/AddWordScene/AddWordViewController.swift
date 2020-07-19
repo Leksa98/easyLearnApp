@@ -7,7 +7,11 @@
 //
 
 import UIKit
+import Foundation
 
+protocol Update {
+    func update(trans: [String])
+}
 class AddWordViewController: UIViewController {
     
     // MARK: - Constants
@@ -24,6 +28,7 @@ class AddWordViewController: UIViewController {
     private var tableView =  UITableView()
     private var searchBar = UISearchBar()
     private var addTranslationButton = ButtonWithRoundCorners(title: "Add")
+    private var pendingRequestWorkItem: DispatchWorkItem?
     
     // MARK: - Lifecycle
     
@@ -120,28 +125,40 @@ extension AddWordViewController: UITableViewDelegate, UITableViewDataSource {
 extension AddWordViewController: UISearchBarDelegate {
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange textSearched: String) {
         guard let text = searchBar.text else {
             return
         }
-        let translationMeaningsParser = TranslationMeaningsParser()
+        let presenter = AddWordInteractor()
+        presenter.showTranslations(word: text)
+        /*let translationMeaningsParser = TranslationMeaningsParser()
         translationMeaningsParser.getWordMeaning(word: text) { translation, error in
-        if let error = error {
-            print(error)
+            if let error = error {
+                print(error)
+            }
+            if let translation = translation {
+                self.update(trans: translation)
+            }
+        }*/
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
         }
-        if let translation = translation {
-            print(translation)
-            self.translations = translation
-        }
-        }
-        tableView.reloadData()
+    }
+    
+    func update(trans: [String]) {
+        translations = trans
+        print(translations)
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
         self.dismissKeyboard()
     }
     
@@ -157,6 +174,8 @@ extension AddWordViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         self.translations = []
-        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 }
