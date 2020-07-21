@@ -23,6 +23,7 @@
 		A84B2D3E24AB39570022F029 /* WordSetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84B2D3D24AB39570022F029 /* WordSetTableViewController.swift */; };
 		A84B2D4024AB4BD00022F029 /* WordSetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84B2D3F24AB4BD00022F029 /* WordSetTableViewCell.swift */; };
 		A85A0A2B24BDA3C30044CFBA /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85A0A2A24BDA3C30044CFBA /* DataHandler.swift */; };
+		A8A736BE24C5F38900F7482E /* NetworkManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A736BD24C5F38900F7482E /* NetworkManagerTest.swift */; };
 		A8AA51DA24BF419D0047B084 /* AddWordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AA51D924BF419D0047B084 /* AddWordViewController.swift */; };
 		A8ABBCA324B5043A008081FB /* EndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8ABBCA224B5043A008081FB /* EndPointType.swift */; };
 		A8ABBCA624B505DB008081FB /* HTTPTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8ABBCA524B505DB008081FB /* HTTPTask.swift */; };
@@ -38,6 +39,7 @@
 		A8F0D57D24C249CB0004C609 /* SearchBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F0D57C24C249CB0004C609 /* SearchBarExtension.swift */; };
 		A8F0D57F24C38B8E0004C609 /* EnterInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F0D57E24C38B8E0004C609 /* EnterInfoView.swift */; };
 		A8F0D58124C477430004C609 /* AddWordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F0D58024C477430004C609 /* AddWordInteractor.swift */; };
+		A8F0D58D24C5E1F40004C609 /* TranslationMeaningsParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F0D58C24C5E1F40004C609 /* TranslationMeaningsParserTests.swift */; };
 		A8FFB4D124B3393E00CCCE43 /* WordSetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FFB4D024B3393E00CCCE43 /* WordSetModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +83,7 @@
 		A84B2D3D24AB39570022F029 /* WordSetTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetTableViewController.swift; sourceTree = "<group>"; };
 		A84B2D3F24AB4BD00022F029 /* WordSetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetTableViewCell.swift; sourceTree = "<group>"; };
 		A85A0A2A24BDA3C30044CFBA /* DataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
+		A8A736BD24C5F38900F7482E /* NetworkManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTest.swift; sourceTree = "<group>"; };
 		A8AA51D924BF419D0047B084 /* AddWordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWordViewController.swift; sourceTree = "<group>"; };
 		A8ABBCA224B5043A008081FB /* EndPointType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPointType.swift; sourceTree = "<group>"; };
 		A8ABBCA524B505DB008081FB /* HTTPTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPTask.swift; sourceTree = "<group>"; };
@@ -96,6 +99,7 @@
 		A8F0D57C24C249CB0004C609 /* SearchBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarExtension.swift; sourceTree = "<group>"; };
 		A8F0D57E24C38B8E0004C609 /* EnterInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterInfoView.swift; sourceTree = "<group>"; };
 		A8F0D58024C477430004C609 /* AddWordInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWordInteractor.swift; sourceTree = "<group>"; };
+		A8F0D58C24C5E1F40004C609 /* TranslationMeaningsParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationMeaningsParserTests.swift; sourceTree = "<group>"; };
 		A8FFB4D024B3393E00CCCE43 /* WordSetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -175,6 +179,8 @@
 		A81FF5DC24AA3D2A007068F9 /* EasyLearnAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				A8A736BD24C5F38900F7482E /* NetworkManagerTest.swift */,
+				A8F0D58C24C5E1F40004C609 /* TranslationMeaningsParserTests.swift */,
 				A81FF5DD24AA3D2A007068F9 /* EasyLearnAppTests.swift */,
 				A81FF5DF24AA3D2A007068F9 /* Info.plist */,
 			);
@@ -469,6 +475,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8A736BE24C5F38900F7482E /* NetworkManagerTest.swift in Sources */,
+				A8F0D58D24C5E1F40004C609 /* TranslationMeaningsParserTests.swift in Sources */,
 				A81FF5DE24AA3D2A007068F9 /* EasyLearnAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

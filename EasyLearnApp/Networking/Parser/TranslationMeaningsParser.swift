@@ -23,7 +23,7 @@ class TranslationMeaningsParser {
         }
     }
     
-    func getTranslation(translation: TranslationModel) -> [String]? {
+    private func getTranslation(translation: TranslationModel) -> [String]? {
         var meanings: [String]? = []
         for def in translation.def {
             for tr in def.tr {
