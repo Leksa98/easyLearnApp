@@ -24,6 +24,12 @@ class EnterInfoView: UIView {
     private var infoLabel: UILabel!
     private var enterInfoTextField: UITextField!
     
+    public var enteredInfo: String? {
+        get {
+            return enterInfoTextField.text
+        }
+    }
+    
     // MARK: - Initialization
     
     init(label: String, textField: String) {
@@ -76,5 +82,9 @@ class EnterInfoView: UIView {
              enterInfoTextField.topAnchor.constraint(equalTo: infoLabel.bottomAnchor, constant: 10),
              enterInfoTextField.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15)
         ])
+    }
+    
+    public func emptyEnteredInfo() {
+        enterInfoTextField.text = nil
     }
 }

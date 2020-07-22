@@ -55,8 +55,27 @@ final class AddSetViewController: UIViewController, AddSetDataStore {
     private func configureView() {
         title = "Add new set"
         view.backgroundColor = Locals.backgroundColor
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: nil)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveButtonTapped))
         navigationItem.rightBarButtonItem?.tintColor = Locals.buttonColor
+    }
+    
+    @objc private func saveButtonTapped() {
+        print(1)
+        if let setName = nameView.enteredInfo, !setName.isEmpty,
+            let setEmoji = emojiView.enteredInfo, !setEmoji.isEmpty, !addedWords.isEmpty {
+            let dataHandler = DataHandler()
+            dataHandler.addWordSetIntoCoreData(name: setName, emoji: setEmoji)
+            addedWords.forEach { word in
+                dataHandler.addWordtoSet(name: setName, word: word.word, translation: word.translation)
+            }
+            let savedAlert = UIAlertController(title: "Saved", message: "Set \(setName) \(setEmoji) was saved!", preferredStyle: .alert)
+            savedAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(savedAlert, animated: true) {
+                self.addedWords = []
+                self.nameView.emptyEnteredInfo()
+                self.emojiView.emptyEnteredInfo()
+            }
+        }
     }
     
     private func setAddButton() {
