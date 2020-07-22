@@ -8,10 +8,15 @@
 
 import UIKit
 
+protocol ShowWordSets {
+    func showWordSets(sets: [WordSetModel])
+}
+
 final class WordSetTableViewController: UITableViewController {
     
     // MARK: - Properties
     
+    var interactor: FetchingStudySets?
     private var studySet: [WordSetModel] = [] {
         didSet {
             tableView.reloadData()
@@ -22,6 +27,11 @@ final class WordSetTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let interactor = WordSetTableInteractor()
+        let presenter = WordSetTablePresenter()
+        self.interactor = interactor
+        interactor.presenter = presenter
+        presenter.viewController = self
         loadData()
         configureTableView()
     }
@@ -41,14 +51,7 @@ final class WordSetTableViewController: UITableViewController {
     }
     
     private func loadData() {
-        let dataHandler = DataHandler()
-        let sets = dataHandler.fetchAllWordSetRecord()
-        studySet = []
-        if let sets = sets {
-            sets.forEach { set in
-                self.studySet.append(WordSetModel(name: set.name!, emoji: set.emoji!))
-            }
-        }
+        interactor?.fetchStudySets()
     }
     
     // MARK: - Table view data source
@@ -74,5 +77,12 @@ final class WordSetTableViewController: UITableViewController {
         let presenter: WordSetPresentationLogic = WordSetViewController()
         navigationController?.pushViewController(presenter as! UIViewController, animated: true)
         presenter.presentWordSet(wordSet: studySet[indexPath.row])
+    }
+}
+
+
+extension WordSetTableViewController: ShowWordSets {
+    func showWordSets(sets: [WordSetModel]) {
+        self.studySet = sets
     }
 }
