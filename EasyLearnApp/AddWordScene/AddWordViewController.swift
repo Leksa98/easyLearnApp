@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-protocol UpdateTranslations {
+protocol UpdateTranslations: class {
     func updateTranslations(trans: [String])
 }
 

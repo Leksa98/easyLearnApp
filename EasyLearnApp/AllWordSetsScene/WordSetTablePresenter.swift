@@ -14,7 +14,7 @@ protocol PresentSets {
 
 final class WordSetTablePresenter: PresentSets {
     
-    var viewController: ShowWordSets?
+    weak var viewController: ShowWordSets?
     
     func presentSets(sets: [WordSet]) {
         var studySet: [WordSetModel] = []

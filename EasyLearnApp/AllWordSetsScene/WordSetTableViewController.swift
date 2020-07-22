@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol ShowWordSets {
+protocol ShowWordSets: class {
     func showWordSets(sets: [WordSetModel])
 }
 

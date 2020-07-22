@@ -10,9 +10,23 @@ import UIKit
 
 final class AddSetTableViewCell: AddWordTableViewCell {
     
+    private enum Locals {
+        static let backgroundColor = UIColor(cgColor: CGColor(srgbRed: 233.0/255.0, green: 241.0/255.0, blue: 247.0/255.0, alpha: 1))
+    }
+    
+    override var viewModel: Any? {
+        didSet {
+            if let viewModel = viewModel {
+                if let viewModel = viewModel as? AddSetModel {
+                    self.updateContent(label: viewModel.word + " - " + viewModel.translation)
+                }
+            }
+        }
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = UIColor(cgColor: CGColor(srgbRed: 233.0/255.0, green: 241.0/255.0, blue: 247.0/255.0, alpha: 1))
+        backgroundColor = Locals.backgroundColor
     }
     
     required init?(coder: NSCoder) {

@@ -14,7 +14,6 @@ protocol AddWordRoutingLogic {
 
 final class AddWordRouter: AddWordRoutingLogic {
     
-    
     func routeToAddSetView(source: AddWordViewController, destination: AddSetViewController) {
         passData(source: source.addWord, destination: destination)
         source.dismiss(animated: true, completion: nil)

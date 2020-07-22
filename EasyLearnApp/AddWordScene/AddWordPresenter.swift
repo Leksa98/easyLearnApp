@@ -14,7 +14,7 @@ protocol PresentTranslations {
 
 final class AddWordPresenter: PresentTranslations {
     
-    var viewController: UpdateTranslations?
+    weak var viewController: UpdateTranslations?
     
     func presentTranslations(trans: [String]) {
         viewController?.updateTranslations(trans: trans)

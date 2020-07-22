@@ -163,7 +163,7 @@ extension AddSetViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: Locals.cellId, for: indexPath) as? AddWordTableViewCell {
-            cell.viewModel = addedWords[indexPath.row].word + " - " + addedWords[indexPath.row].translation
+            cell.viewModel = addedWords[indexPath.row]
             return cell
         }
         return UITableViewCell()
