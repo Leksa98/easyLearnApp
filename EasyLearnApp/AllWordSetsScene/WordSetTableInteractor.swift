@@ -10,6 +10,7 @@ import Foundation
 
 protocol FetchingStudySets {
     func fetchStudySets()
+    func deletefromCoreData(setName: String)
 }
 
 final class WordSetTableInteractor: FetchingStudySets {
@@ -22,5 +23,10 @@ final class WordSetTableInteractor: FetchingStudySets {
             return
         }
         presenter?.presentSets(sets: sets)
+    }
+    
+    func deletefromCoreData(setName: String) {
+        let dataHandler = DataHandler()
+        dataHandler.deleteWordSet(name: setName)
     }
 }

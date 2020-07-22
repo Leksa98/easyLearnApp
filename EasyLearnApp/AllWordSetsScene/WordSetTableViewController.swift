@@ -78,6 +78,14 @@ final class WordSetTableViewController: UITableViewController {
         navigationController?.pushViewController(presenter as! UIViewController, animated: true)
         presenter.presentWordSet(wordSet: studySet[indexPath.row])
     }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let setName = studySet[indexPath.row]
+            studySet.remove(at: indexPath.row)
+            interactor?.deletefromCoreData(setName: setName.nameValue)
+        }
+    }
 }
 
 
