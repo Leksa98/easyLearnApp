@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class AddWordTableViewCell: UITableViewCell {
+class AddWordTableViewCell: UITableViewCell {
    
     private var titleLabel: UILabel = {
         let label = UILabel()
@@ -37,7 +37,7 @@ final class AddWordTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = UIColor(cgColor: CGColor(srgbRed: 233.0/255.0, green: 241.0/255.0, blue: 247.0/255.0, alpha: 1))
+        backgroundColor = UIColor(cgColor: CGColor(srgbRed: 249.0/255.0, green: 248.0/255.0, blue: 241.0/255.0, alpha: 1))
         addSubview(containerView)
         containerView.layer.masksToBounds = true
         containerView.translatesAutoresizingMaskIntoConstraints = false
