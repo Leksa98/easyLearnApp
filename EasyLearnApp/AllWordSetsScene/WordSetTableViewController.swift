@@ -26,6 +26,10 @@ final class WordSetTableViewController: UITableViewController {
         configureTableView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        loadData()
+    }
+    
     // MARK: - Configurations
     
     private func configureTableView() {
@@ -37,7 +41,14 @@ final class WordSetTableViewController: UITableViewController {
     }
     
     private func loadData() {
-        studySet = [WordSetModel(name: "Animals", progress: 0.2, emoji: "🐳"), WordSetModel(name: "House", progress: 0.4, emoji: "🏡"), WordSetModel(name: "Holidays", progress: 0.6, emoji: "🏄🏖"), WordSetModel(name: "Food", progress: 0.7,emoji: "🥗🍔🍰"), WordSetModel(name: "School", progress: 1.0, emoji: "📚")]
+        let dataHandler = DataHandler()
+        let sets = dataHandler.fetchAllWordSetRecord()
+        studySet = []
+        if let sets = sets {
+            sets.forEach { set in
+                self.studySet.append(WordSetModel(name: set.name!, emoji: set.emoji!))
+            }
+        }
     }
     
     // MARK: - Table view data source

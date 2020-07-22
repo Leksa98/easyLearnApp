@@ -60,7 +60,6 @@ final class AddSetViewController: UIViewController, AddSetDataStore {
     }
     
     @objc private func saveButtonTapped() {
-        print(1)
         if let setName = nameView.enteredInfo, !setName.isEmpty,
             let setEmoji = emojiView.enteredInfo, !setEmoji.isEmpty, !addedWords.isEmpty {
             let dataHandler = DataHandler()
