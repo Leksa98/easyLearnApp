@@ -8,8 +8,18 @@
 
 import UIKit
 
-final class AddSetViewController: UIViewController {
+protocol AddSetDataStore {
+    var addedWords: [AddSetModel] { get set }
+}
+
+final class AddSetViewController: UIViewController, AddSetDataStore {
     
+    var addedWords: [AddSetModel] = [] {
+        didSet {
+            addedWordTableView.reloadData()
+        }
+    }
+
     // MARK: - Constants
     
     private enum Locals {
@@ -17,6 +27,7 @@ final class AddSetViewController: UIViewController {
         static let buttonColor = UIColor(cgColor: CGColor(srgbRed: 118.0/255.0, green: 93.0/255.0, blue: 152.0/255.0, alpha: 1))
         static let borderColor = UIColor(cgColor: CGColor(srgbRed: 84.0/255.0, green: 66.0/255.0, blue: 107.0/255.0, alpha: 1)).cgColor
         static let viewColor = UIColor(cgColor: CGColor(srgbRed: 233.0/255.0, green: 241.0/255.0, blue: 247.0/255.0, alpha: 1))
+        static let cellId = "addSetTableViewCell"
     }
     
     // MARK: - Properties
@@ -44,8 +55,26 @@ final class AddSetViewController: UIViewController {
     private func configureView() {
         title = "Add new set"
         view.backgroundColor = Locals.backgroundColor
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: nil)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveButtonTapped))
         navigationItem.rightBarButtonItem?.tintColor = Locals.buttonColor
+    }
+    
+    @objc private func saveButtonTapped() {
+        if let setName = nameView.enteredInfo, !setName.isEmpty,
+            let setEmoji = emojiView.enteredInfo, !setEmoji.isEmpty, !addedWords.isEmpty {
+            let dataHandler = DataHandler()
+            dataHandler.addWordSetIntoCoreData(name: setName, emoji: setEmoji)
+            addedWords.forEach { word in
+                dataHandler.addWordtoSet(name: setName, word: word.word, translation: word.translation)
+            }
+            let savedAlert = UIAlertController(title: "Saved", message: "Set \(setName) \(setEmoji) was saved!", preferredStyle: .alert)
+            savedAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(savedAlert, animated: true) {
+                self.addedWords = []
+                self.nameView.emptyEnteredInfo()
+                self.emojiView.emptyEnteredInfo()
+            }
+        }
     }
     
     private func setAddButton() {
@@ -97,7 +126,7 @@ final class AddSetViewController: UIViewController {
         addedWordTableView.backgroundColor = Locals.viewColor
         addedWordTableView.delegate = self
         addedWordTableView.dataSource = self
-        addedWordTableView.register(AddWordTableViewCell.self, forCellReuseIdentifier: "addWordTableViewCell")
+        addedWordTableView.register(AddSetTableViewCell.self, forCellReuseIdentifier: Locals.cellId)
         addedWordTableView.separatorStyle = .none
         wordSetView.translatesAutoresizingMaskIntoConstraints = false
         addedWordTableView.translatesAutoresizingMaskIntoConstraints = false
@@ -119,8 +148,6 @@ final class AddSetViewController: UIViewController {
     @objc private func addWordButtonTapped() {
         present(AddWordViewController(), animated: true, completion: nil)
     }
-    
-    private var data = ["Word 1", "Word 2", "Word 3", "Word 4", "Word 5"]
 }
 
 
@@ -131,12 +158,12 @@ extension AddSetViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        return addedWords.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "addWordTableViewCell", for: indexPath) as? AddWordTableViewCell {
-            cell.viewModel = data[indexPath.row]
+        if let cell = tableView.dequeueReusableCell(withIdentifier: Locals.cellId, for: indexPath) as? AddWordTableViewCell {
+            cell.viewModel = addedWords[indexPath.row]
             return cell
         }
         return UITableViewCell()

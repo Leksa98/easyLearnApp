@@ -117,6 +117,28 @@ final class DataHandler : NSObject {
         return nil
     }
     
+    
+    func fetchAllWordSetRecord() -> [WordSet]? {
+        guard  let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return nil
+        }
+        let viewContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "WordSet")
+        do {
+            let wordSet = try viewContext.fetch(fetchRequest)
+            var resultSet: [WordSet]? = []
+            for set in wordSet {
+                if let set = set as? WordSet {
+                    resultSet?.append(set)
+                }
+            }
+            return resultSet
+        } catch let error as NSError {
+            print("not fetch==\(error),\(error.userInfo)")
+        }
+        return nil
+    }
+    
     /// Deleting WordSet with the specific name
     /// - Parameter name: Name of the WordSet to delete
     func deleteWordSet(name: String) {

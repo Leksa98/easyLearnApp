@@ -9,31 +9,57 @@
 import UIKit
 import Foundation
 
-protocol Update {
-    func update(trans: [String])
+protocol UpdateTranslations: class {
+    func updateTranslations(trans: [String])
 }
-class AddWordViewController: UIViewController {
+
+protocol AddWordDataStore {
+    var addWord: AddSetModel { get set }
+}
+
+final class AddWordViewController: UIViewController, UpdateTranslations, AddWordDataStore {
     
     // MARK: - Constants
     
     private enum Locals {
         static let backgroundColor = UIColor(cgColor: CGColor(srgbRed: 249.0/255.0, green: 248.0/255.0, blue: 241.0/255.0, alpha: 1))
         static let buttonColor = UIColor(cgColor: CGColor(srgbRed: 118.0/255.0, green: 93.0/255.0, blue: 152.0/255.0, alpha: 1))
+        static let cellId = "addWordTableViewCell"
     }
     
     // MARK: - Properties
     
     private var wordSearchController: UISearchController! = nil
-    private var translations: [String] = []
+    private var translations: [String] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                if let text = self.searchBar.text {
+                    self.addWord.word = text
+                }
+            }
+        }
+    }
     private var tableView =  UITableView()
     private var searchBar = UISearchBar()
     private var addTranslationButton = ButtonWithRoundCorners(title: "Add")
-    private var pendingRequestWorkItem: DispatchWorkItem?
+    var interactor: FetchWordTranslations?
+    var router: AddWordRoutingLogic?
+    var addWord = AddSetModel(word: "", translation: "")
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let interactor = AddWordInteractor()
+        let presenter = AddWordPresenter()
+        let router = AddWordRouter()
+        self.interactor = interactor
+        self.router = router
+        interactor.presenter = presenter
+        presenter.viewController = self
+        
         view.backgroundColor = Locals.backgroundColor
         configureSearchBar()
         configureTableView()
@@ -53,7 +79,7 @@ class AddWordViewController: UIViewController {
         view.addSubview(searchBar)
         searchBar.clipsToBounds = true
         searchBar.searchBarStyle = UISearchBar.Style.prominent
-        searchBar.placeholder = "Type word..."
+        searchBar.placeholder = "Type word in english..."
         searchBar.sizeToFit()
         searchBar.barTintColor = Locals.buttonColor
         searchBar.searchTextField.backgroundColor = Locals.backgroundColor
@@ -76,7 +102,7 @@ class AddWordViewController: UIViewController {
         ])
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(AddWordTableViewCell.self, forCellReuseIdentifier: "addWordTableViewCell")
+        tableView.register(AddWordTableViewCell.self, forCellReuseIdentifier: Locals.cellId)
         tableView.separatorStyle = .none
         tableView.backgroundColor = Locals.backgroundColor
     }
@@ -85,12 +111,19 @@ class AddWordViewController: UIViewController {
         view.addSubview(addTranslationButton)
         addTranslationButton.backgroundColor = Locals.buttonColor
         addTranslationButton.translatesAutoresizingMaskIntoConstraints = false
+        addTranslationButton.addTarget(self, action: #selector(closeView), for: .touchUpInside)
         NSLayoutConstraint.activate([
             addTranslationButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             addTranslationButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             addTranslationButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
             addTranslationButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 10),
         ])
+    }
+    
+    @objc private func closeView() {
+        if !addWord.word.isEmpty && !addWord.translation.isEmpty {
+            router?.routeToAddSetView(source: self, destination: presentingViewController?.children[1].children.last as! AddSetViewController)
+        }
     }
 }
 
@@ -107,16 +140,15 @@ extension AddWordViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "addWordTableViewCell", for: indexPath) as? AddWordTableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: Locals.cellId, for: indexPath) as? AddWordTableViewCell {
             cell.viewModel = translations[indexPath.row]
-            cell.backgroundColor = Locals.backgroundColor
             return cell
         }
         return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(translations[indexPath.row])
+        addWord.translation = translations[indexPath.row]
     }
 }
 
@@ -124,42 +156,19 @@ extension AddWordViewController: UITableViewDelegate, UITableViewDataSource {
 // MARK: - UISearchBarDelegate
 extension AddWordViewController: UISearchBarDelegate {
     
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-    }
-    
     func searchBar(_ searchBar: UISearchBar, textDidChange textSearched: String) {
         guard let text = searchBar.text else {
             return
         }
-        let presenter = AddWordInteractor()
-        presenter.showTranslations(word: text)
-        /*let translationMeaningsParser = TranslationMeaningsParser()
-        translationMeaningsParser.getWordMeaning(word: text) { translation, error in
-            if let error = error {
-                print(error)
-            }
-            if let translation = translation {
-                self.update(trans: translation)
-            }
-        }*/
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+        interactor?.fetchWordTranslations(word: text)
     }
     
-    func update(trans: [String]) {
+    func updateTranslations(trans: [String]) {
         translations = trans
-        print(translations)
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-        self.dismissKeyboard()
+        dismissKeyboard()
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -173,9 +182,6 @@ extension AddWordViewController: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
-        self.translations = []
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+        translations = []
     }
 }

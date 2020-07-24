@@ -14,7 +14,7 @@ final class WordSetModel {
     private let progress: Float
     private let emoji: String
     
-    init(name: String, progress: Float, emoji: String) {
+    init(name: String, emoji: String, progress: Float = 0) {
         self.name = name
         self.progress = progress
         self.emoji = emoji

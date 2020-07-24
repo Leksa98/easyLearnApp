@@ -8,21 +8,22 @@
 
 import UIKit
 
-protocol AddWordInput {
-    func showTranslations(word: String)
+protocol FetchWordTranslations {
+    func fetchWordTranslations(word: String)
 }
 
-class AddWordInteractor: AddWordInput {
+class AddWordInteractor: FetchWordTranslations {
     
-    func showTranslations(word: String) {
-        let viewController = AddWordViewController()
+    var presenter: PresentTranslations?
+    
+    func fetchWordTranslations(word: String) {
         let translationMeaningsParser = TranslationMeaningsParser()
         translationMeaningsParser.getWordMeaning(word: word) { translation, error in
             if let error = error {
                 print(error)
             }
             if let translation = translation {
-                viewController.update(trans: translation)
+                self.presenter?.presentTranslations(trans: translation)
             }
         }
     }

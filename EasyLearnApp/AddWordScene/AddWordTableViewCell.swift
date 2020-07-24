@@ -8,8 +8,17 @@
 
 import UIKit
 
-final class AddWordTableViewCell: UITableViewCell {
+class AddWordTableViewCell: UITableViewCell {
    
+    // MARK: - Constants
+    
+    private enum Locals {
+        static let backgroundColor = UIColor(cgColor: CGColor(srgbRed: 249.0/255.0, green: 248.0/255.0, blue: 241.0/255.0, alpha: 1))
+        static let selectedBackgroundColor = UIColor(cgColor: CGColor(srgbRed: 202.0/255.0, green: 192.0/255.0, blue: 216.0/255.0, alpha: 1))
+        static let cornerRadius = CGFloat(15)
+        static let containerViewBackgroundColor = UIColor(cgColor: CGColor(srgbRed: 181.0/255.0, green: 166.0/255.0, blue: 201.0/255.0, alpha: 1))
+    }
+    
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 18)
@@ -19,31 +28,30 @@ final class AddWordTableViewCell: UITableViewCell {
     
     private var containerView: UIView = {
         let containerView = UIView()
-        containerView.layer.cornerRadius = 15
-        containerView.layer.shadowOpacity = 1
-        containerView.layer.shadowRadius = 2
-        containerView.layer.shadowOffset = CGSize(width: 3, height: 3)
-        containerView.backgroundColor = UIColor(cgColor: CGColor(srgbRed: 181.0/255.0, green: 166.0/255.0, blue: 201.0/255.0, alpha: 1))
+        containerView.layer.cornerRadius = Locals.cornerRadius
+        containerView.backgroundColor = Locals.containerViewBackgroundColor
         return containerView
     }()
     
-    var viewModel: String? {
+    var viewModel: Any? {
         didSet {
             if let viewModel = viewModel {
-                updateContent(label: viewModel)
+                if let viewModel = viewModel as? String {
+                    updateContent(label: viewModel)
+                }
             }
         }
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = UIColor(cgColor: CGColor(srgbRed: 233.0/255.0, green: 241.0/255.0, blue: 247.0/255.0, alpha: 1))
+        backgroundColor = Locals.backgroundColor
         addSubview(containerView)
         containerView.layer.masksToBounds = true
         containerView.translatesAutoresizingMaskIntoConstraints = false
         let bgColorView = UIView()
-        bgColorView.layer.cornerRadius = 15
-        bgColorView.backgroundColor = UIColor(cgColor: CGColor(srgbRed: 202.0/255.0, green: 192.0/255.0, blue: 216.0/255.0, alpha: 1))
+        bgColorView.layer.cornerRadius = Locals.cornerRadius
+        bgColorView.backgroundColor = Locals.selectedBackgroundColor
         selectedBackgroundView = bgColorView
         addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false

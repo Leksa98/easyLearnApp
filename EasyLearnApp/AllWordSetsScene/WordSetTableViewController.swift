@@ -8,10 +8,15 @@
 
 import UIKit
 
+protocol ShowWordSets: class {
+    func showWordSets(sets: [WordSetModel])
+}
+
 final class WordSetTableViewController: UITableViewController {
     
     // MARK: - Properties
     
+    var interactor: FetchingStudySets?
     private var studySet: [WordSetModel] = [] {
         didSet {
             tableView.reloadData()
@@ -22,8 +27,17 @@ final class WordSetTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let interactor = WordSetTableInteractor()
+        let presenter = WordSetTablePresenter()
+        self.interactor = interactor
+        interactor.presenter = presenter
+        presenter.viewController = self
         loadData()
         configureTableView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        loadData()
     }
     
     // MARK: - Configurations
@@ -37,7 +51,7 @@ final class WordSetTableViewController: UITableViewController {
     }
     
     private func loadData() {
-        studySet = [WordSetModel(name: "Animals", progress: 0.2, emoji: "🐳"), WordSetModel(name: "House", progress: 0.4, emoji: "🏡"), WordSetModel(name: "Holidays", progress: 0.6, emoji: "🏄🏖"), WordSetModel(name: "Food", progress: 0.7,emoji: "🥗🍔🍰"), WordSetModel(name: "School", progress: 1.0, emoji: "📚")]
+        interactor?.fetchStudySets()
     }
     
     // MARK: - Table view data source
@@ -63,5 +77,20 @@ final class WordSetTableViewController: UITableViewController {
         let presenter: WordSetPresentationLogic = WordSetViewController()
         navigationController?.pushViewController(presenter as! UIViewController, animated: true)
         presenter.presentWordSet(wordSet: studySet[indexPath.row])
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let setName = studySet[indexPath.row]
+            studySet.remove(at: indexPath.row)
+            interactor?.deletefromCoreData(setName: setName.nameValue)
+        }
+    }
+}
+
+
+extension WordSetTableViewController: ShowWordSets {
+    func showWordSets(sets: [WordSetModel]) {
+        self.studySet = sets
     }
 }
