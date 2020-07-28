@@ -12,7 +12,7 @@ protocol WordListTablePresentationLogic {
     func showWordList(setName: String)
 }
 
-final class WordListTableViewController: UIViewController {
+final class WordListTableViewController: UIViewController, AddWordToSetDataStore {
     
     enum Locals {
         static let cellId = "WordListCellId"
@@ -26,7 +26,7 @@ final class WordListTableViewController: UIViewController {
                 wordArray = []
                 translationArray = []
                 for item in wordDictionary {
-                    words.append(WordModel(word: item.key, translation: item.value))
+                    wordsInSet.append(WordModel(word: item.key, translation: item.value))
                 }
                 tableView.reloadData()
             }
@@ -34,7 +34,7 @@ final class WordListTableViewController: UIViewController {
     }
     private var wordArray: [String] = []
     private var translationArray: [String] = []
-    private var words: [WordModel] = [] {
+    var wordsInSet: [WordModel] = [] {
         didSet {
             tableView.reloadData()
         }
@@ -46,10 +46,16 @@ final class WordListTableViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = Locals.backgroundColor
         title = "List"
-        navigationItem.rightBarButtonItem = self.editButtonItem
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
         configureTable()
         let interactor = WordSetListInteractor()
         self.interactor = interactor
+    }
+    
+    @objc private func addTapped() {
+        let vc = AddWordViewController()
+        vc.delegete = self
+        present(vc, animated: true, completion: nil)
     }
     
     private func configureTable() {
@@ -67,17 +73,24 @@ final class WordListTableViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.backgroundColor = Locals.backgroundColor
     }
+    
+    func addWordToArray(word: WordModel) {
+        wordsInSet.append(word)
+        if let setName = setName {
+            interactor?.addWordToSet(setName: setName, word: word)
+        }
+    }
 }
 
 
 extension WordListTableViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return words.count
+        return wordsInSet.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: Locals.cellId, for: indexPath) as? WordListTableViewCell {
-            cell.viewModel = words[indexPath.row]
+            cell.viewModel = wordsInSet[indexPath.row]
             return cell
         }
         return UITableViewCell()
@@ -85,8 +98,8 @@ extension WordListTableViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let word = words[indexPath.row]
-            words.remove(at: indexPath.row)
+            let word = wordsInSet[indexPath.row]
+            wordsInSet.remove(at: indexPath.row)
             if let setName = setName {
                 interactor?.deleteWordFromSet(set: setName, word: word.word)
             }

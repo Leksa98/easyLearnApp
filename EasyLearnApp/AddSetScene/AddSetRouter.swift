@@ -9,7 +9,7 @@
 import Foundation
 
 protocol AddSetDataPassing {
-    var dataSource: AddSetDataStore? { get }
+    var dataSource: AddWordToSetDataStore? { get }
 }
 
 final class AddSetRouter {

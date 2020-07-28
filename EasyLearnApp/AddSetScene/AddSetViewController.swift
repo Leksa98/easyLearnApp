@@ -8,11 +8,11 @@
 
 import UIKit
 
-protocol AddSetDataStore {
-    var addedWords: [WordModel] { get set }
+protocol AddWordToSetDataStore {
+    func addWordToArray(word: WordModel)
 }
 
-final class AddSetViewController: UIViewController, AddSetDataStore {
+final class AddSetViewController: UIViewController, AddWordToSetDataStore {
 
     // MARK: - Constants
     
@@ -144,7 +144,13 @@ final class AddSetViewController: UIViewController, AddSetDataStore {
     }
     
     @objc private func addWordButtonTapped() {
-        present(AddWordViewController(), animated: true, completion: nil)
+        let vc = AddWordViewController()
+        vc.delegete = self
+        present(vc, animated: true, completion: nil)
+    }
+    
+    func addWordToArray(word: WordModel) {
+        addedWords.append(word)
     }
 }
 
