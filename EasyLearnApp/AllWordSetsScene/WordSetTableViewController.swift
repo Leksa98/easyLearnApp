@@ -14,9 +14,13 @@ protocol ShowWordSets: class {
 
 final class WordSetTableViewController: UITableViewController {
     
+    enum Locals {
+        static let backgroundColor = UIColor(cgColor: CGColor(srgbRed: 249.0/255.0, green: 248.0/255.0, blue: 241.0/255.0, alpha: 1))
+    }
+    
     // MARK: - Properties
     
-    var interactor: FetchingStudySets?
+    var interactor: WordSetTableBussinesLogic?
     private var studySet: [WordSetModel] = [] {
         didSet {
             tableView.reloadData()
@@ -43,11 +47,12 @@ final class WordSetTableViewController: UITableViewController {
     // MARK: - Configurations
     
     private func configureTableView() {
-        view.backgroundColor = .white
+        view.backgroundColor = Locals.backgroundColor
         navigationItem.title = "My sets"
         navigationController?.navigationBar.prefersLargeTitles = true
         tableView.register(WordSetTableViewCell.self, forCellReuseIdentifier: "wordSetCell")
         navigationItem.rightBarButtonItem = self.editButtonItem
+        tableView.separatorStyle = .none
     }
     
     private func loadData() {

@@ -13,8 +13,10 @@ final class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tabBar.tintColor = UIColor(cgColor: CGColor(srgbRed: 118.0/255.0, green: 93.0/255.0, blue: 152.0/255.0, alpha: 1))
         tabBar.barTintColor = UIColor(cgColor: CGColor(srgbRed: 233.0/255.0, green: 241.0/255.0, blue: 247.0/255.0, alpha: 1))
         tabBar.layer.borderWidth = 0.2
+        
         let firstViewController = UINavigationController()
         firstViewController.pushViewController(WordSetTableViewController(), animated: false)
         firstViewController.tabBarItem = UITabBarItem(title: "Sets", image: UIImage(named: "file"), tag: 0)
@@ -30,8 +32,8 @@ final class TabBarController: UITabBarController {
         let forthViewController = UINavigationController()
         forthViewController.view.backgroundColor = .green
         forthViewController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "gear"), tag: 2)
+        
         let tabBarList = [firstViewController, secondViewController, thirdViewController, forthViewController]
         viewControllers = tabBarList
-        
     }
 }

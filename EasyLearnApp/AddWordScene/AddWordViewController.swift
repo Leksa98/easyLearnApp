@@ -14,7 +14,7 @@ protocol UpdateTranslations: class {
 }
 
 protocol AddWordDataStore {
-    var addWord: AddSetModel { get set }
+    var addWord: WordModel { get set }
 }
 
 final class AddWordViewController: UIViewController, UpdateTranslations, AddWordDataStore {
@@ -45,7 +45,7 @@ final class AddWordViewController: UIViewController, UpdateTranslations, AddWord
     private var addTranslationButton = ButtonWithRoundCorners(title: "Add")
     var interactor: FetchWordTranslations?
     var router: AddWordRoutingLogic?
-    var addWord = AddSetModel(word: "", translation: "")
+    var addWord = WordModel(word: "", translation: "")
     
     // MARK: - Lifecycle
     

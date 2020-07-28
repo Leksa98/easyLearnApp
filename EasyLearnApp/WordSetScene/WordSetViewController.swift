@@ -13,8 +13,11 @@ protocol WordSetPresentationLogic {
     func presentWordSet(wordSet: WordSetModel)
 }
 
-
 final class WordSetViewController: UIViewController {
+    
+    enum Locals {
+        static let backgroundColor = UIColor(cgColor: CGColor(srgbRed: 249.0/255.0, green: 248.0/255.0, blue: 241.0/255.0, alpha: 1))
+    }
     
     // MARK: - Properties
     
@@ -28,7 +31,7 @@ final class WordSetViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = Locals.backgroundColor
         setButtons()
     }
     
@@ -36,21 +39,28 @@ final class WordSetViewController: UIViewController {
     
     private func setButtons() {
         stackButton.addArrangedSubview(listButton)
+        listButton.addTarget(self, action: #selector(listButtonTapped), for: .touchUpInside)
         stackButton.addArrangedSubview(cardsButton)
         stackButton.addArrangedSubview(learnButton)
         stackButton.addArrangedSubview(statisticsButton)
         stackButton.axis = .vertical
         stackButton.distribution = .fillEqually
         stackButton.alignment = .fill
-        stackButton.spacing = 40
+        stackButton.spacing = 30
         view.addSubview(stackButton)
         stackButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             stackButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
             stackButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
-            stackButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 350),
-            stackButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -150)
+            stackButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100)
         ])
+    }
+    
+    @objc private func listButtonTapped() {
+        let presenter: WordListTablePresentationLogic?
+        presenter = WordListTableViewController()
+        navigationController?.pushViewController(presenter as! UIViewController, animated: false)
+        presenter?.showWordList(setName: title!)
     }
 }
 
@@ -60,22 +70,5 @@ extension WordSetViewController: WordSetPresentationLogic {
     
     func presentWordSet(wordSet: WordSetModel) {
         self.title = wordSet.nameValue
-    }
-}
-
-
-final class ButtonWithRoundCorners: UIButton {
-    
-    init(title: String) {
-        super.init(frame: .zero)
-        setTitle(title, for: .normal)
-        layer.cornerRadius = 15
-        backgroundColor = .systemBlue
-        titleLabel?.font = .boldSystemFont(ofSize: 20)
-        
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

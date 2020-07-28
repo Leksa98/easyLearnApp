@@ -9,16 +9,10 @@
 import UIKit
 
 protocol AddSetDataStore {
-    var addedWords: [AddSetModel] { get set }
+    var addedWords: [WordModel] { get set }
 }
 
 final class AddSetViewController: UIViewController, AddSetDataStore {
-    
-    var addedWords: [AddSetModel] = [] {
-        didSet {
-            addedWordTableView.reloadData()
-        }
-    }
 
     // MARK: - Constants
     
@@ -37,6 +31,11 @@ final class AddSetViewController: UIViewController, AddSetDataStore {
     private var emojiView = EnterInfoView(label: "Set Emoji", textField: "Enter set emoji")
     private var wordSetView = UIView()
     private var addedWordTableView = UITableView()
+    var addedWords: [WordModel] = [] {
+        didSet {
+            addedWordTableView.reloadData()
+        }
+    }
     
     // MARK: - Lifecycle
 
@@ -80,7 +79,6 @@ final class AddSetViewController: UIViewController, AddSetDataStore {
     private func setAddButton() {
         addWordButton.addTarget(self, action: #selector(addWordButtonTapped), for: .touchUpInside)
         view.addSubview(addWordButton)
-        addWordButton.backgroundColor = Locals.buttonColor
         addWordButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             addWordButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
@@ -150,7 +148,7 @@ final class AddSetViewController: UIViewController, AddSetDataStore {
     }
 }
 
-
+// MARK: - UITableViewDelegate & UITableViewDataSource
 extension AddSetViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {

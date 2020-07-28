@@ -8,12 +8,12 @@
 
 import Foundation
 
-protocol FetchingStudySets {
+protocol WordSetTableBussinesLogic {
     func fetchStudySets()
     func deletefromCoreData(setName: String)
 }
 
-final class WordSetTableInteractor: FetchingStudySets {
+final class WordSetTableInteractor: WordSetTableBussinesLogic {
     
     var presenter: PresentSets?
     

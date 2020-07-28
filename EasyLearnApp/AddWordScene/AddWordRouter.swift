@@ -19,7 +19,7 @@ final class AddWordRouter: AddWordRoutingLogic {
         source.dismiss(animated: true, completion: nil)
     }
     
-    private func passData(source: AddSetModel, destination: AddSetViewController) {
+    private func passData(source: WordModel, destination: AddSetViewController) {
         destination.addedWords.append(source)
         print(destination.addedWords)
     }
