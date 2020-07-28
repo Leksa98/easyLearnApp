@@ -8,17 +8,11 @@
 
 import UIKit
 
-protocol AddSetDataStore {
-    var addedWords: [AddSetModel] { get set }
+protocol AddWordToSetDataStore {
+    func addWordToArray(word: WordModel)
 }
 
-final class AddSetViewController: UIViewController, AddSetDataStore {
-    
-    var addedWords: [AddSetModel] = [] {
-        didSet {
-            addedWordTableView.reloadData()
-        }
-    }
+final class AddSetViewController: UIViewController, AddWordToSetDataStore {
 
     // MARK: - Constants
     
@@ -37,6 +31,11 @@ final class AddSetViewController: UIViewController, AddSetDataStore {
     private var emojiView = EnterInfoView(label: "Set Emoji", textField: "Enter set emoji")
     private var wordSetView = UIView()
     private var addedWordTableView = UITableView()
+    private var addedWords: [WordModel] = [] {
+        didSet {
+            addedWordTableView.reloadData()
+        }
+    }
     
     // MARK: - Lifecycle
 
@@ -80,7 +79,6 @@ final class AddSetViewController: UIViewController, AddSetDataStore {
     private func setAddButton() {
         addWordButton.addTarget(self, action: #selector(addWordButtonTapped), for: .touchUpInside)
         view.addSubview(addWordButton)
-        addWordButton.backgroundColor = Locals.buttonColor
         addWordButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             addWordButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
@@ -146,11 +144,17 @@ final class AddSetViewController: UIViewController, AddSetDataStore {
     }
     
     @objc private func addWordButtonTapped() {
-        present(AddWordViewController(), animated: true, completion: nil)
+        let vc = AddWordViewController()
+        vc.delegete = self
+        present(vc, animated: true, completion: nil)
+    }
+    
+    func addWordToArray(word: WordModel) {
+        addedWords.append(word)
     }
 }
 
-
+// MARK: - UITableViewDelegate & UITableViewDataSource
 extension AddSetViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {

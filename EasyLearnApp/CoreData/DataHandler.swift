@@ -160,4 +160,30 @@ final class DataHandler : NSObject {
         }
         saveContext()
     }
+    
+    func deleteWordfromSet(name: String, wordValue: String) {
+           guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+               return
+           }
+           let viewContext = appDelegate.persistentContainer.viewContext
+           let fetchRequestUser = NSFetchRequest<NSManagedObject>(entityName: "WordSet")
+           do {
+               let wordSets = try viewContext.fetch(fetchRequestUser)
+               for wordSet in wordSets {
+                   if let wordSet = wordSet as? WordSet, wordSet.name == name {
+                    if let words = wordSet.withWord {
+                        for word in words {
+                            if let word = word as? Word, word.word == wordValue {
+                                viewContext.delete(word)
+                                print("Deleted \(String(describing: word.word))")
+                            }
+                        }
+                    }
+                   }
+               }
+           } catch let error as NSError {
+                  print("not deleted==\(error),\(error.userInfo)")
+           }
+           saveContext()
+       }
 }

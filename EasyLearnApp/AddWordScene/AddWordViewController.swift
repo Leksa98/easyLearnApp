@@ -14,7 +14,7 @@ protocol UpdateTranslations: class {
 }
 
 protocol AddWordDataStore {
-    var addWord: AddSetModel { get set }
+    var addWord: WordModel { get set }
 }
 
 final class AddWordViewController: UIViewController, UpdateTranslations, AddWordDataStore {
@@ -45,13 +45,13 @@ final class AddWordViewController: UIViewController, UpdateTranslations, AddWord
     private var addTranslationButton = ButtonWithRoundCorners(title: "Add")
     var interactor: FetchWordTranslations?
     var router: AddWordRoutingLogic?
-    var addWord = AddSetModel(word: "", translation: "")
+    var addWord = WordModel(word: "", translation: "")
+    var delegete: AddWordToSetDataStore?
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let interactor = AddWordInteractor()
         let presenter = AddWordPresenter()
         let router = AddWordRouter()
@@ -121,8 +121,8 @@ final class AddWordViewController: UIViewController, UpdateTranslations, AddWord
     }
     
     @objc private func closeView() {
-        if !addWord.word.isEmpty && !addWord.translation.isEmpty {
-            router?.routeToAddSetView(source: self, destination: presentingViewController?.children[1].children.last as! AddSetViewController)
+        if !addWord.word.isEmpty && !addWord.translation.isEmpty, let delegate = delegete {
+            router?.routeToAddSetView(source: self, destination: delegate)
         }
     }
 }

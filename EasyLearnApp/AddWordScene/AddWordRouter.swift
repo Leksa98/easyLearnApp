@@ -9,19 +9,18 @@
 import Foundation
 
 protocol AddWordRoutingLogic {
-    func routeToAddSetView(source: AddWordViewController, destination: AddSetViewController)
+    func routeToAddSetView(source: AddWordViewController, destination: AddWordToSetDataStore)
 }
 
 final class AddWordRouter: AddWordRoutingLogic {
     
-    func routeToAddSetView(source: AddWordViewController, destination: AddSetViewController) {
+    func routeToAddSetView(source: AddWordViewController, destination: AddWordToSetDataStore) {
         passData(source: source.addWord, destination: destination)
         source.dismiss(animated: true, completion: nil)
     }
     
-    private func passData(source: AddSetModel, destination: AddSetViewController) {
-        destination.addedWords.append(source)
-        print(destination.addedWords)
+    private func passData(source: WordModel, destination: AddWordToSetDataStore) {
+        destination.addWordToArray(word: source)
     }
     
 }

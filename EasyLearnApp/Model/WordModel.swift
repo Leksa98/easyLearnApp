@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class AddSetModel {
+final class WordModel {
     var word: String
     var translation: String
     
