@@ -31,7 +31,7 @@ final class AddSetViewController: UIViewController, AddWordToSetDataStore {
     private var emojiView = EnterInfoView(label: "Set Emoji", textField: "Enter set emoji")
     private var wordSetView = UIView()
     private var addedWordTableView = UITableView()
-    var addedWords: [WordModel] = [] {
+    private var addedWords: [WordModel] = [] {
         didSet {
             addedWordTableView.reloadData()
         }

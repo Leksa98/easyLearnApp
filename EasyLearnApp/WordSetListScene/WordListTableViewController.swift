@@ -38,7 +38,7 @@ final class WordListTableViewController: UIViewController, AddWordToSetDataStore
     }
     private var wordArray: [String] = []
     private var translationArray: [String] = []
-    var wordsInSet: [WordModel] = [] {
+    private var wordsInSet: [WordModel] = [] {
         didSet {
             tableView.reloadData()
         }
