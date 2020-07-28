@@ -14,10 +14,14 @@ protocol WordListTablePresentationLogic {
 
 final class WordListTableViewController: UIViewController, AddWordToSetDataStore {
     
+    // MARK: - Constants
+    
     enum Locals {
         static let cellId = "WordListCellId"
         static let backgroundColor = UIColor(cgColor: CGColor(srgbRed: 249.0/255.0, green: 248.0/255.0, blue: 241.0/255.0, alpha: 1))
     }
+    
+    // MARK: - Properties
 
     private var tableView =  UITableView()
     private var wordDictionary: [String: String]? {
@@ -42,6 +46,8 @@ final class WordListTableViewController: UIViewController, AddWordToSetDataStore
     private var setName: String?
     private var interactor: WordSetListBusinessLogic?
     
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Locals.backgroundColor
@@ -51,6 +57,8 @@ final class WordListTableViewController: UIViewController, AddWordToSetDataStore
         let interactor = WordSetListInteractor()
         self.interactor = interactor
     }
+    
+    // MARK: - Configuration
     
     @objc private func addTapped() {
         let vc = AddWordViewController()
@@ -82,7 +90,7 @@ final class WordListTableViewController: UIViewController, AddWordToSetDataStore
     }
 }
 
-
+// MARK: - UITableViewDelegate & UITableViewDataSource
 extension WordListTableViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return wordsInSet.count
@@ -107,7 +115,7 @@ extension WordListTableViewController: UITableViewDelegate, UITableViewDataSourc
     }
 }
 
-
+//MARK: - WordListTablePresentationLogic
 extension WordListTableViewController: WordListTablePresentationLogic {
     func showWordList(setName: String) {
         let dataHandler = DataHandler()
