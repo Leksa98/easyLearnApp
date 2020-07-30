@@ -19,6 +19,7 @@ final class WordSetCardsViewController: UIViewController {
     
     enum Locals {
         static let backgroundColor = UIColor(cgColor: CGColor(srgbRed: 249.0/255.0, green: 248.0/255.0, blue: 241.0/255.0, alpha: 1))
+        static let buttonColor = UIColor(cgColor: CGColor(srgbRed: 118.0/255.0, green: 93.0/255.0, blue: 152.0/255.0, alpha: 1))
         static let cellID = "WordSetCardsCellId"
         static let cellSize = CGSize(width: 300, height: 300)
         static let lineSpacing = CGFloat(100)
@@ -30,6 +31,7 @@ final class WordSetCardsViewController: UIViewController {
     
     private var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     private var nextCard = UIButton()
+    private var prevCard = UIButton()
     private var setName: String?
     private var wordSetArray: [WordModel] = [] {
         didSet {
@@ -54,6 +56,7 @@ final class WordSetCardsViewController: UIViewController {
             flowLayout.scrollDirection = .horizontal
         }
         configureNextCardButton()
+        configurePrevCardButton()
     }
     
     // MARK: - Configuration
@@ -70,8 +73,11 @@ final class WordSetCardsViewController: UIViewController {
     }
     
     private func configureNextCardButton() {
-        nextCard = UIButton()
-        nextCard.backgroundColor = .systemBlue
+        nextCard.setTitle("Next", for: .normal)
+        nextCard.layer.cornerRadius = 15
+        nextCard.tintColor = .white
+        nextCard.titleLabel?.font = .boldSystemFont(ofSize: 18)
+        nextCard.backgroundColor = Locals.buttonColor
         nextCard.addTarget(self, action: #selector(nextCardButtonTapped), for: .touchUpInside)
         view.addSubview(nextCard)
         nextCard.translatesAutoresizingMaskIntoConstraints = false
@@ -79,12 +85,33 @@ final class WordSetCardsViewController: UIViewController {
             nextCard.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 10),
             nextCard.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             nextCard.heightAnchor.constraint(equalToConstant: 30),
-            nextCard.widthAnchor.constraint(equalToConstant: 30)
+            nextCard.widthAnchor.constraint(equalToConstant: 100)
+        ])
+    }
+    
+    private func configurePrevCardButton() {
+        prevCard.setTitle("Previous", for: .normal)
+        prevCard.layer.cornerRadius = 15
+        prevCard.tintColor = .white
+        prevCard.titleLabel?.font = .boldSystemFont(ofSize: 18)
+        prevCard.backgroundColor = Locals.buttonColor
+        prevCard.addTarget(self, action: #selector(prevCardButtonTapped), for: .touchUpInside)
+        view.addSubview(prevCard)
+        prevCard.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            prevCard.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 10),
+            prevCard.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            prevCard.heightAnchor.constraint(equalToConstant: 30),
+            prevCard.widthAnchor.constraint(equalToConstant: 100)
         ])
     }
     
     @objc private func nextCardButtonTapped() {
         collectionView.contentOffset.x += collectionView.frame.size.width + 80
+    }
+    
+    @objc private func prevCardButtonTapped() {
+        collectionView.contentOffset.x -= collectionView.frame.size.width + 80
     }
 }
 

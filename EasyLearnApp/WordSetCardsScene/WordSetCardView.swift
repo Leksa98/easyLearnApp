@@ -50,7 +50,7 @@ class WordSetCardView: UIView {
     // MARK: - Public
     
     func setTextLabel(text: String) {
-        label.text = text
+        label.text = text.capitalizingFirstLetter()
     }
     
 }
