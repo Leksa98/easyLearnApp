@@ -107,14 +107,19 @@ final class WordSetCardsViewController: UIViewController {
     }
     
     @objc private func nextCardButtonTapped() {
-        UIView.animate(withDuration: 0.5) {
-            self.collectionView.contentOffset.x += self.collectionView.frame.size.width + 80
+        let scrollCollectionViewWidth = wordSetArray.count * (Int(collectionView.frame.size.width) + 80)
+        if  Int(collectionView.contentOffset.x + collectionView.frame.size.width) + 80 < scrollCollectionViewWidth {
+            UIView.animate(withDuration: 0.5) {
+                self.collectionView.contentOffset.x += self.collectionView.frame.size.width + 80
+            }
         }
     }
-    
+
     @objc private func prevCardButtonTapped() {
-        UIView.animate(withDuration: 0.5) {
-            self.collectionView.contentOffset.x -= self.collectionView.frame.size.width + 80
+        if collectionView.contentOffset.x - (collectionView.frame.size.width + 80) >= 0 {
+            UIView.animate(withDuration: 0.5) {
+                self.collectionView.contentOffset.x -= self.collectionView.frame.size.width + 80
+            }
         }
     }
 }
