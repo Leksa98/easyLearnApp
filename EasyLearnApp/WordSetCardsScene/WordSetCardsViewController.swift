@@ -20,6 +20,8 @@ final class WordSetCardsViewController: UIViewController {
     enum Locals {
         static let backgroundColor = UIColor(cgColor: CGColor(srgbRed: 249.0/255.0, green: 248.0/255.0, blue: 241.0/255.0, alpha: 1))
         static let buttonColor = UIColor(cgColor: CGColor(srgbRed: 118.0/255.0, green: 93.0/255.0, blue: 152.0/255.0, alpha: 1))
+        static let viewColor = UIColor(cgColor: CGColor(srgbRed: 233.0/255.0, green: 241.0/255.0, blue: 247.0/255.0, alpha: 1))
+        static let borderColor = UIColor(cgColor: CGColor(srgbRed: 84.0/255.0, green: 66.0/255.0, blue: 107.0/255.0, alpha: 1)).cgColor
         static let cellID = "WordSetCardsCellId"
         static let cellSize = CGSize(width: 300, height: 300)
         static let lineSpacing = CGFloat(100)
@@ -75,34 +77,38 @@ final class WordSetCardsViewController: UIViewController {
     private func configureNextCardButton() {
         nextCardButton.setTitle("Next", for: .normal)
         nextCardButton.layer.cornerRadius = 15
-        nextCardButton.tintColor = .white
-        nextCardButton.titleLabel?.font = .boldSystemFont(ofSize: 18)
-        nextCardButton.backgroundColor = Locals.buttonColor
+        nextCardButton.layer.borderWidth = 2
+        nextCardButton.layer.borderColor = Locals.borderColor
+        nextCardButton.setTitleColor(.black, for: .normal)
+        nextCardButton.titleLabel?.font = .boldSystemFont(ofSize: 20)
+        nextCardButton.backgroundColor = Locals.viewColor
         nextCardButton.addTarget(self, action: #selector(nextCardButtonTapped), for: .touchUpInside)
         view.addSubview(nextCardButton)
         nextCardButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             nextCardButton.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 10),
-            nextCardButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            nextCardButton.heightAnchor.constraint(equalToConstant: 30),
-            nextCardButton.widthAnchor.constraint(equalToConstant: 100)
+            nextCardButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            nextCardButton.heightAnchor.constraint(equalToConstant: 35),
+            nextCardButton.widthAnchor.constraint(equalToConstant: 165)
         ])
     }
     
     private func configurePrevCardButton() {
         prevCardButton.setTitle("Previous", for: .normal)
         prevCardButton.layer.cornerRadius = 15
-        prevCardButton.tintColor = .white
-        prevCardButton.titleLabel?.font = .boldSystemFont(ofSize: 18)
-        prevCardButton.backgroundColor = Locals.buttonColor
+        prevCardButton.layer.borderWidth = 2
+        prevCardButton.layer.borderColor = Locals.borderColor
+        prevCardButton.setTitleColor(.black, for: .normal)
+        prevCardButton.titleLabel?.font = .boldSystemFont(ofSize: 20)
+        prevCardButton.backgroundColor = Locals.viewColor
         prevCardButton.addTarget(self, action: #selector(prevCardButtonTapped), for: .touchUpInside)
         view.addSubview(prevCardButton)
         prevCardButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             prevCardButton.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 10),
-            prevCardButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            prevCardButton.heightAnchor.constraint(equalToConstant: 30),
-            prevCardButton.widthAnchor.constraint(equalToConstant: 100)
+            prevCardButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            prevCardButton.heightAnchor.constraint(equalToConstant: 35),
+            prevCardButton.widthAnchor.constraint(equalToConstant: 165)
         ])
         prevCardButton.isHidden = true
     }
@@ -157,7 +163,7 @@ extension WordSetCardsViewController: UICollectionViewDataSource {
 extension WordSetCardsViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.size.width - 20 , height: collectionView.frame.size.width)
+        return CGSize(width: collectionView.frame.size.width - 20, height: collectionView.frame.size.width - 20)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
