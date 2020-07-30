@@ -16,6 +16,7 @@ final class WordSetTableViewController: UITableViewController {
     
     enum Locals {
         static let backgroundColor = UIColor(cgColor: CGColor(srgbRed: 249.0/255.0, green: 248.0/255.0, blue: 241.0/255.0, alpha: 1))
+        static let buttonColor = UIColor(cgColor: CGColor(srgbRed: 118.0/255.0, green: 93.0/255.0, blue: 152.0/255.0, alpha: 1))
     }
     
     // MARK: - Properties
@@ -52,6 +53,7 @@ final class WordSetTableViewController: UITableViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         tableView.register(WordSetTableViewCell.self, forCellReuseIdentifier: "wordSetCell")
         navigationItem.rightBarButtonItem = self.editButtonItem
+        navigationController?.navigationBar.tintColor = Locals.buttonColor
         tableView.separatorStyle = .none
     }
     

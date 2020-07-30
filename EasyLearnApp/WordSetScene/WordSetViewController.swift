@@ -41,6 +41,7 @@ final class WordSetViewController: UIViewController {
         stackButton.addArrangedSubview(listButton)
         listButton.addTarget(self, action: #selector(listButtonTapped), for: .touchUpInside)
         stackButton.addArrangedSubview(cardsButton)
+        cardsButton.addTarget(self, action: #selector(cardsButtonTapped), for: .touchUpInside)
         stackButton.addArrangedSubview(learnButton)
         stackButton.addArrangedSubview(statisticsButton)
         stackButton.axis = .vertical
@@ -57,10 +58,19 @@ final class WordSetViewController: UIViewController {
     }
     
     @objc private func listButtonTapped() {
-        let presenter: WordListTablePresentationLogic?
-        presenter = WordListTableViewController()
-        navigationController?.pushViewController(presenter as! UIViewController, animated: false)
-        presenter?.showWordList(setName: title!)
+        let delegete: WordListTablePresentationLogic?
+        delegete = WordListTableViewController()
+        navigationController?.pushViewController(delegete as! UIViewController, animated: false)
+        delegete?.showWordList(setName: title!)
+    }
+    
+    @objc private func cardsButtonTapped() {
+        let delegete: WordSetCardsShow?
+        delegete = WordSetCardsViewController()
+        navigationController?.pushViewController(delegete as! UIViewController, animated: false)
+        if let title = title {
+            delegete?.loadSetName(name: title)
+        }
     }
 }
 
