@@ -30,8 +30,8 @@ final class WordSetCardsViewController: UIViewController {
     // MARK: - Property
     
     private var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-    private var nextCard = UIButton()
-    private var prevCard = UIButton()
+    private var nextCardButton = UIButton()
+    private var prevCardButton = UIButton()
     private var setName: String?
     private var wordSetArray: [WordModel] = [] {
         didSet {
@@ -73,53 +73,64 @@ final class WordSetCardsViewController: UIViewController {
     }
     
     private func configureNextCardButton() {
-        nextCard.setTitle("Next", for: .normal)
-        nextCard.layer.cornerRadius = 15
-        nextCard.tintColor = .white
-        nextCard.titleLabel?.font = .boldSystemFont(ofSize: 18)
-        nextCard.backgroundColor = Locals.buttonColor
-        nextCard.addTarget(self, action: #selector(nextCardButtonTapped), for: .touchUpInside)
-        view.addSubview(nextCard)
-        nextCard.translatesAutoresizingMaskIntoConstraints = false
+        nextCardButton.setTitle("Next", for: .normal)
+        nextCardButton.layer.cornerRadius = 15
+        nextCardButton.tintColor = .white
+        nextCardButton.titleLabel?.font = .boldSystemFont(ofSize: 18)
+        nextCardButton.backgroundColor = Locals.buttonColor
+        nextCardButton.addTarget(self, action: #selector(nextCardButtonTapped), for: .touchUpInside)
+        view.addSubview(nextCardButton)
+        nextCardButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            nextCard.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 10),
-            nextCard.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            nextCard.heightAnchor.constraint(equalToConstant: 30),
-            nextCard.widthAnchor.constraint(equalToConstant: 100)
+            nextCardButton.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 10),
+            nextCardButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            nextCardButton.heightAnchor.constraint(equalToConstant: 30),
+            nextCardButton.widthAnchor.constraint(equalToConstant: 100)
         ])
     }
     
     private func configurePrevCardButton() {
-        prevCard.setTitle("Previous", for: .normal)
-        prevCard.layer.cornerRadius = 15
-        prevCard.tintColor = .white
-        prevCard.titleLabel?.font = .boldSystemFont(ofSize: 18)
-        prevCard.backgroundColor = Locals.buttonColor
-        prevCard.addTarget(self, action: #selector(prevCardButtonTapped), for: .touchUpInside)
-        view.addSubview(prevCard)
-        prevCard.translatesAutoresizingMaskIntoConstraints = false
+        prevCardButton.setTitle("Previous", for: .normal)
+        prevCardButton.layer.cornerRadius = 15
+        prevCardButton.tintColor = .white
+        prevCardButton.titleLabel?.font = .boldSystemFont(ofSize: 18)
+        prevCardButton.backgroundColor = Locals.buttonColor
+        prevCardButton.addTarget(self, action: #selector(prevCardButtonTapped), for: .touchUpInside)
+        view.addSubview(prevCardButton)
+        prevCardButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            prevCard.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 10),
-            prevCard.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            prevCard.heightAnchor.constraint(equalToConstant: 30),
-            prevCard.widthAnchor.constraint(equalToConstant: 100)
+            prevCardButton.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 10),
+            prevCardButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            prevCardButton.heightAnchor.constraint(equalToConstant: 30),
+            prevCardButton.widthAnchor.constraint(equalToConstant: 100)
         ])
+        prevCardButton.isHidden = true
     }
     
     @objc private func nextCardButtonTapped() {
+        prevCardButton.isHidden = false
         let scrollCollectionViewWidth = wordSetArray.count * (Int(collectionView.frame.size.width) + 80)
+        
         if  Int(collectionView.contentOffset.x + collectionView.frame.size.width) + 80 < scrollCollectionViewWidth {
             UIView.animate(withDuration: 0.5) {
                 self.collectionView.contentOffset.x += self.collectionView.frame.size.width + 80
             }
         }
+        
+        if Int(collectionView.contentOffset.x + collectionView.frame.size.width) + 80 == scrollCollectionViewWidth {
+            nextCardButton.isHidden = true
+        }
     }
 
     @objc private func prevCardButtonTapped() {
+        nextCardButton.isHidden = false
         if collectionView.contentOffset.x - (collectionView.frame.size.width + 80) >= 0 {
             UIView.animate(withDuration: 0.5) {
                 self.collectionView.contentOffset.x -= self.collectionView.frame.size.width + 80
             }
+        }
+        if collectionView.contentOffset.x == 0 {
+            prevCardButton.isHidden = true
         }
     }
 }
