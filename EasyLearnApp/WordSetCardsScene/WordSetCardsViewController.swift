@@ -107,11 +107,15 @@ final class WordSetCardsViewController: UIViewController {
     }
     
     @objc private func nextCardButtonTapped() {
-        collectionView.contentOffset.x += collectionView.frame.size.width + 80
+        UIView.animate(withDuration: 0.5) {
+            self.collectionView.contentOffset.x += self.collectionView.frame.size.width + 80
+        }
     }
     
     @objc private func prevCardButtonTapped() {
-        collectionView.contentOffset.x -= collectionView.frame.size.width + 80
+        UIView.animate(withDuration: 0.5) {
+            self.collectionView.contentOffset.x -= self.collectionView.frame.size.width + 80
+        }
     }
 }
 

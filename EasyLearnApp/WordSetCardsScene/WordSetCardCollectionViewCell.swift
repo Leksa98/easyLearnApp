@@ -72,7 +72,7 @@ class WordSetCardCollectionViewCell: UICollectionViewCell {
     
     func flipCardAnimation() {
         let transitionOptions = UIView.AnimationOptions.transitionFlipFromLeft
-        UIView.transition(with: self.contentView, duration: 0.8, options: transitionOptions, animations: {
+        UIView.transition(with: self.contentView, duration: 0.5, options: transitionOptions, animations: {
             
             switch self.isFrontText {
             case true:
