@@ -95,19 +95,38 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
     }
     
     @objc private func checkButtonTapped() {
+        if let currentCellIndexPath = getCurrentCellIndexPath(), let cell = collectionView.cellForItem(at: currentCellIndexPath) as? WordSetLearnCollectionViewCell {
+            if cell.checkExercise() {
+                cell.showAnimation(correctAnswer: true) { finished in
+                    self.scrollCollectionViewToNextExercise()
+                }
+            } else {
+                cell.showAnimation(correctAnswer: false)
+            }
+        }
+    }
+    
+    private func scrollCollectionViewToNextExercise() {
         let scrollCollectionViewWidth = wordsToLearn.count * (Int(collectionView.frame.size.width) + 80)
         if  Int(collectionView.contentOffset.x + collectionView.frame.size.width) + 80 < scrollCollectionViewWidth {
-            UIView.animate(withDuration: 0.5) {
+            UIView.animate(withDuration: 0.6) {
                 self.collectionView.contentOffset.x += self.collectionView.frame.size.width + 80
             }
         }
     }
+    
+    private func getCurrentCellIndexPath() -> IndexPath? {
+        let visibleRect = CGRect(origin: collectionView.contentOffset, size: collectionView.bounds.size)
+        let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
+        let visibleIndexPath = collectionView.indexPathForItem(at: visiblePoint)
+        return visibleIndexPath
+    }
 }
 
-// MARK: - UICollectionViewDelegate
+// MARK: - UICollectionViewDelegate protocol
 extension WordSetLearnViewController: UICollectionViewDelegate { }
 
-// MARK: - UICollectionViewDataSource
+// MARK: - UICollectionViewDataSource protocol
 extension WordSetLearnViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return wordsToLearn.count
@@ -123,7 +142,7 @@ extension WordSetLearnViewController: UICollectionViewDataSource {
     
 }
 
-// MARK: - UICollectionViewDelegateFlowLayout
+// MARK: - UICollectionViewDelegateFlowLayout protocol
 extension WordSetLearnViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.size.width - 20, height: collectionView.frame.size.width / 2.0)
@@ -138,7 +157,7 @@ extension WordSetLearnViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-// MARK: - WordSetLearnShow
+// MARK: - WordSetLearnShow protocol
 extension WordSetLearnViewController: WordSetLearnShow {
     func showWords(words: [WordModel]) {
         wordsToLearn = words
