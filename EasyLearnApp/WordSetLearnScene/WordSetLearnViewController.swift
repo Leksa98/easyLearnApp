@@ -33,6 +33,9 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
     
     private var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     private var checkButton = ButtonWithRoundCorners(title: "Check")
+    private var helpButton = ButtonWithRoundCorners(title: "Don't know")
+    private var buttonStackView = UIStackView()
+    
     var wordsToLearn: [WordModel] = [] {
         didSet {
             collectionView.reloadData()
@@ -45,12 +48,12 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationItem.setHidesBackButton(true, animated: true)
         title = "Learn"
         view.backgroundColor = Locals.backgroundColor
         
         configureCollectionView()
-        configureCheckButton()
+        configureButtonStackView()
         
         let interactor = WordSetLearnInteractor()
         self.interactor = interactor
@@ -65,6 +68,7 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
     // MARK: - Configuration
     
     private func configureCollectionView() {
+        collectionView.isScrollEnabled = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(collectionView)
         NSLayoutConstraint.activate([
@@ -82,15 +86,23 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
         }
     }
     
-    private func configureCheckButton() {
-        view.addSubview(checkButton)
+    private func configureButtonStackView() {
+        buttonStackView.addArrangedSubview(helpButton)
+        helpButton.addTarget(self, action: #selector(helpButtonTapped), for: .touchUpInside)
+        buttonStackView.addArrangedSubview(checkButton)
         checkButton.addTarget(self, action: #selector(checkButtonTapped), for: .touchUpInside)
+        buttonStackView.axis = .horizontal
+        buttonStackView.spacing = 10
+        buttonStackView.distribution = .fillEqually
+        view.addSubview(buttonStackView)
+        buttonStackView.translatesAutoresizingMaskIntoConstraints = false
         checkButton.translatesAutoresizingMaskIntoConstraints = false
+        helpButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            checkButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            checkButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-            checkButton.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 10),
-            checkButton.heightAnchor.constraint(equalToConstant: 40)
+            buttonStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            buttonStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            buttonStackView.topAnchor.constraint(equalTo: collectionView.bottomAnchor),
+            buttonStackView.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
     
@@ -106,12 +118,24 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
         }
     }
     
+    @objc private func helpButtonTapped() {
+        if let currentCellIndexPath = getCurrentCellIndexPath(), let cell = collectionView.cellForItem(at: currentCellIndexPath) as? WordSetLearnCollectionViewCell {
+            cell.showHelpAnimation()
+        }
+    }
+    
     private func scrollCollectionViewToNextExercise() {
         let scrollCollectionViewWidth = wordsToLearn.count * (Int(collectionView.frame.size.width) + 80)
         if  Int(collectionView.contentOffset.x + collectionView.frame.size.width) + 80 < scrollCollectionViewWidth {
             UIView.animate(withDuration: 0.6) {
                 self.collectionView.contentOffset.x += self.collectionView.frame.size.width + 80
             }
+        } else {
+            let finishedExerciseAlert = UIAlertController(title: "Congratulations 🎉🎉🎉", message: "You've just finished exercise!", preferredStyle: .alert)
+            finishedExerciseAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                self.navigationController?.popViewController(animated: true)
+            }))
+            present(finishedExerciseAlert, animated: true)
         }
     }
     

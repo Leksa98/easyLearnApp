@@ -64,6 +64,7 @@ final class WordSetCardsViewController: UIViewController {
     // MARK: - Configuration
     
     private func configureCollectionView() {
+        collectionView.isScrollEnabled = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(collectionView)
         NSLayoutConstraint.activate([

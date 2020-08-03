@@ -20,6 +20,9 @@ final class WordSetLearnPresentor: WordSetLearnResentationLogic {
         for item in wordSet {
             resultArray.append(WordModel(word: item.key, translation: item.value))
         }
+        resultArray.sort {
+            $0.word < $1.word
+        }
         viewController?.showWords(words: resultArray)
     }
 }

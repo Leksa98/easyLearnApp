@@ -15,7 +15,7 @@ class WordSetLearnCollectionViewCell: UICollectionViewCell {
     private enum Locals {
         static let backgroundColor = UIColor(cgColor: CGColor(srgbRed: 249.0/255.0, green: 248.0/255.0, blue: 241.0/255.0, alpha: 1))
         static let borderColor = UIColor(cgColor: CGColor(srgbRed: 84.0/255.0, green: 66.0/255.0, blue: 107.0/255.0, alpha: 1)).cgColor
-        static let correctAnswerColor = UIColor(cgColor: CGColor(srgbRed: 127.0/255.0, green: 199.0/255.0, blue: 130.0/255.0, alpha: 1)).cgColor
+        static let correctAnswerColor = UIColor(cgColor: CGColor(srgbRed: 85.0/255.0, green: 180.0/255.0, blue: 88.0/255.0, alpha: 1)).cgColor
         static let wrongAnswerColor = UIColor(cgColor: CGColor(srgbRed: 206.0/255.0, green: 80.0/255.0, blue: 80.0/255.0, alpha: 1)).cgColor
     }
     
@@ -75,7 +75,7 @@ class WordSetLearnCollectionViewCell: UICollectionViewCell {
             lineView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             lineView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             lineView.topAnchor.constraint(equalTo: inputTextField.bottomAnchor, constant: 5),
-            lineView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -25)
+            lineView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -40)
         ])
         
         addSubview(resultExerciseLabel)
@@ -84,7 +84,6 @@ class WordSetLearnCollectionViewCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             resultExerciseLabel.topAnchor.constraint(equalTo: lineView.topAnchor, constant: 5),
             resultExerciseLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            
         ])
     }
     
@@ -141,5 +140,12 @@ class WordSetLearnCollectionViewCell: UICollectionViewCell {
                 }
             }
         }
+    }
+    
+    func showHelpAnimation() {
+        UIView.transition(with: resultExerciseLabel, duration: 0.5, options: .transitionCrossDissolve, animations: {[weak self] in
+            self?.resultExerciseLabel.text = self?.viewModel?.translation
+            self?.resultExerciseLabel.textColor = UIColor(cgColor: Locals.wrongAnswerColor)
+            }, completion: nil)
     }
 }
