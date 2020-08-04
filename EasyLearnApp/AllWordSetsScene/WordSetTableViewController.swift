@@ -43,6 +43,7 @@ final class WordSetTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         loadData()
+        tabBarController?.tabBar.isHidden = false
     }
     
     // MARK: - Configurations
