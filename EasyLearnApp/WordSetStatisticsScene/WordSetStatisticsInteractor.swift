@@ -18,6 +18,7 @@ final class WordSetStatisticsInteractor: WordSetStatisticsBusinessLogic {
     
     func fetchWords(setName: String) {
         let dataHandler = DataHandler()
-        presenter?.prepareForPresent(wordDictionary: dataHandler.fetchWords(from: setName))
+        let wordArray = dataHandler.fetchWords(from: setName)
+        presenter?.prepareForPresent(wordDictionary: wordArray)
     }
 }

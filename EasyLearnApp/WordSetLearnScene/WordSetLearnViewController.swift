@@ -109,18 +109,35 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
     
     @objc private func checkButtonTapped() {
         if let currentCellIndexPath = getCurrentCellIndexPath(), let cell = collectionView.cellForItem(at: currentCellIndexPath) as? WordSetLearnCollectionViewCell {
-            if cell.checkExercise() {
-                cell.showAnimation(correctAnswer: true) { finished in
-                    self.scrollCollectionViewToNextExercise()
+            if cell.isWrongWordTyped() {
+                if cell.checkExercise() {
+                    cell.showAnimation(correctAnswer: true) { finished in
+                        self.scrollCollectionViewToNextExercise()
+                    }
                 }
             } else {
-                cell.showAnimation(correctAnswer: false)
+                if cell.checkExercise() {
+                    if let studyWord = cell.viewModel?.word {
+                        interactor?.editWordProgress(word: studyWord, progressChange: 0.1)
+                    }
+                    cell.showAnimation(correctAnswer: true) { finished in
+                        self.scrollCollectionViewToNextExercise()
+                    }
+                } else {
+                    if let studyWord = cell.viewModel?.word {
+                        interactor?.editWordProgress(word: studyWord, progressChange: -0.1)
+                    }
+                    cell.showAnimation(correctAnswer: false)
+                }
             }
         }
     }
     
     @objc private func helpButtonTapped() {
         if let currentCellIndexPath = getCurrentCellIndexPath(), let cell = collectionView.cellForItem(at: currentCellIndexPath) as? WordSetLearnCollectionViewCell {
+            if let studyWord = cell.viewModel?.word {
+                interactor?.editWordProgress(word: studyWord, progressChange: -0.1)
+            }
             cell.showHelpAnimation()
         }
     }

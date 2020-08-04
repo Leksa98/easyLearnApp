@@ -148,4 +148,11 @@ class WordSetLearnCollectionViewCell: UICollectionViewCell {
             self?.resultExerciseLabel.textColor = UIColor(cgColor: Locals.wrongAnswerColor)
             }, completion: nil)
     }
+    
+    func isWrongWordTyped() -> Bool {
+        if resultExerciseLabel.text == "Wrong" ||  resultExerciseLabel.text == viewModel?.translation {
+            return true
+        }
+        return false
+    }
 }

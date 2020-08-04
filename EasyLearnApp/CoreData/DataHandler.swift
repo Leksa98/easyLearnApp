@@ -119,6 +119,27 @@ final class DataHandler : NSObject {
         return nil
     }
     
+    func updateWordProgress(word: String, progressChange: Double) {
+        guard  let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let viewContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Word")
+        do {
+            let words = try viewContext.fetch(fetchRequest)
+            for currentWord in words {
+                if let currentWord = currentWord as? Word, currentWord.word == word  {
+                    if (currentWord.progress + progressChange >= 0.0) && (currentWord.progress + progressChange <= 1.0) {
+                        currentWord.progress += progressChange
+                    }
+                }
+            }
+        } catch let error as NSError {
+            print("not fetch==\(error),\(error.userInfo)")
+        }
+        saveContext()
+    }
+    
     
     func fetchAllWordSetRecord() -> [WordSet]? {
         guard  let appDelegate = UIApplication.shared.delegate as? AppDelegate else {

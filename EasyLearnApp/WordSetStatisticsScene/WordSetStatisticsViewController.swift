@@ -94,7 +94,7 @@ extension WordSetStatisticsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: Locals.cellId, for: indexPath) as? WordListTableViewCell {
-            cell.viewModel = WordModel(word: "Word", translation: "Translation")
+            cell.viewModel = sections[indexPath.section].wordsValue[indexPath.row]
             return cell
         }
         return UITableViewCell()
