@@ -140,6 +140,32 @@ final class DataHandler : NSObject {
         saveContext()
     }
     
+    private func setOverallSetProgress(setName: String) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let viewContext = appDelegate.persistentContainer.viewContext
+        let fetchRequestUser = NSFetchRequest<NSManagedObject>(entityName: "WordSet")
+        do {
+            let wordSets = try viewContext.fetch(fetchRequestUser)
+            for wordSet in wordSets {
+                if let wordSet = wordSet as? WordSet, wordSet.name == setName {
+                    if let words = wordSet.withWord {
+                        var sumProgress: Float = 0
+                        for word in words {
+                            if let word = word as? Word {
+                                sumProgress += Float(word.progress)
+                            }
+                        }
+                        wordSet.progress = Double(sumProgress / Float(words.count))
+                    }
+                }
+            }
+        } catch let error as NSError {
+               print("not deleted==\(error),\(error.userInfo)")
+        }
+        saveContext()
+    }
     
     func fetchAllWordSetRecord() -> [WordSet]? {
         guard  let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -151,7 +177,8 @@ final class DataHandler : NSObject {
             let wordSet = try viewContext.fetch(fetchRequest)
             var resultSet: [WordSet]? = []
             for set in wordSet {
-                if let set = set as? WordSet {
+                if let set = set as? WordSet, let setName = set.name {
+                    setOverallSetProgress(setName: setName)
                     resultSet?.append(set)
                 }
             }

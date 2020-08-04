@@ -8,15 +8,18 @@
 
 import UIKit
 
-protocol ShowWordSets: class {
+protocol AllWordSetTableShow: class {
     func showWordSets(sets: [WordSetModel])
 }
 
 final class WordSetTableViewController: UITableViewController {
     
+    // MARK: - Constants
+    
     enum Locals {
         static let backgroundColor = UIColor(cgColor: CGColor(srgbRed: 249.0/255.0, green: 248.0/255.0, blue: 241.0/255.0, alpha: 1))
         static let buttonColor = UIColor(cgColor: CGColor(srgbRed: 118.0/255.0, green: 93.0/255.0, blue: 152.0/255.0, alpha: 1))
+        static let cellId = "wordSetCell"
     }
     
     // MARK: - Properties
@@ -52,7 +55,7 @@ final class WordSetTableViewController: UITableViewController {
         view.backgroundColor = Locals.backgroundColor
         navigationItem.title = "My sets"
         navigationController?.navigationBar.prefersLargeTitles = true
-        tableView.register(WordSetTableViewCell.self, forCellReuseIdentifier: "wordSetCell")
+        tableView.register(WordSetTableViewCell.self, forCellReuseIdentifier: Locals.cellId)
         navigationItem.rightBarButtonItem = self.editButtonItem
         navigationController?.navigationBar.tintColor = Locals.buttonColor
         tableView.separatorStyle = .none
@@ -73,7 +76,7 @@ final class WordSetTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "wordSetCell", for: indexPath) as? WordSetTableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: Locals.cellId, for: indexPath) as? WordSetTableViewCell {
             cell.viewModel = studySet[indexPath.row]
             return cell
         }
@@ -96,8 +99,8 @@ final class WordSetTableViewController: UITableViewController {
     }
 }
 
-
-extension WordSetTableViewController: ShowWordSets {
+// MARK: - AllWordSetTableShow protocol
+extension WordSetTableViewController: AllWordSetTableShow {
     func showWordSets(sets: [WordSetModel]) {
         self.studySet = sets
     }
