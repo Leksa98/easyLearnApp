@@ -47,6 +47,8 @@ final class WordSetCardsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.setHidesBackButton(true, animated: true)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(dismissViewController))
         title = "Cards"
         view.backgroundColor = Locals.backgroundColor
         configureCollectionView()
@@ -139,6 +141,10 @@ final class WordSetCardsViewController: UIViewController {
         if collectionView.contentOffset.x == 0 {
             prevCardButton.isHidden = true
         }
+    }
+    
+    @objc private func dismissViewController() {
+        navigationController?.popViewController(animated: true)
     }
 }
 

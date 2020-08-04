@@ -9,18 +9,14 @@
 import Foundation
 
 protocol WordSetLearnResentationLogic {
-    func prepareForPresent(wordSet: [String : String])
+    func prepareForPresent(wordSet: [WordModel])
 }
 
 final class WordSetLearnPresentor: WordSetLearnResentationLogic {
     weak var viewController: WordSetLearnShow?
     
-    func prepareForPresent(wordSet: [String : String]) {
-        var resultArray: [WordModel] = []
-        for item in wordSet {
-            resultArray.append(WordModel(word: item.key, translation: item.value))
-        }
-        resultArray.sort {
+    func prepareForPresent(wordSet: [WordModel]) {
+        let resultArray = wordSet.sorted {
             $0.word < $1.word
         }
         viewController?.showWords(words: resultArray)

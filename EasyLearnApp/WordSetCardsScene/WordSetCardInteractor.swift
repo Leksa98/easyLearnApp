@@ -18,6 +18,6 @@ final class WordSetCardInteractor: WordSetCardBusinessLogic {
     
     func fetchWordSet(setName: String) {
         let dataHandler = DataHandler()
-        presenter?.prepareForPresent(wordsDictionary: dataHandler.fetchWords(from: setName))
+        presenter?.prepareForPresent(wordsArray: dataHandler.fetchWords(from: setName))
     }
 }

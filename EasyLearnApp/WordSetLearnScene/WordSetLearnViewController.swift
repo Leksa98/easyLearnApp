@@ -49,6 +49,7 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.setHidesBackButton(true, animated: true)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(dismissViewController))
         title = "Learn"
         view.backgroundColor = Locals.backgroundColor
         
@@ -144,6 +145,10 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
         let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
         let visibleIndexPath = collectionView.indexPathForItem(at: visiblePoint)
         return visibleIndexPath
+    }
+    
+    @objc private func dismissViewController() {
+        navigationController?.popViewController(animated: true)
     }
 }
 

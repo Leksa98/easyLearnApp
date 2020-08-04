@@ -40,6 +40,7 @@ final class DataHandler : NSObject {
         let wordSet = WordSet(context: viewContext)
         wordSet.name = name
         wordSet.emoji = emoji
+        wordSet.progress = 0.0
         wordSet.withWord = NSSet()
         print("WordSet with name \(String(describing: wordSet.name)) added")
         saveContext()
@@ -58,6 +59,7 @@ final class DataHandler : NSObject {
         let newWord = Word(context: viewContext)
         newWord.word = word
         newWord.translation = translation
+        newWord.progress = 0.0
         print("Word \(String(describing: newWord.word)) with translation \(String(describing: newWord.translation)) added")
         saveContext()
         return newWord
@@ -80,18 +82,18 @@ final class DataHandler : NSObject {
     /// Fetching words from the specific WordSet
     /// - Parameter setWithName: Name of the WordSet
     /// - Returns: Word Dictionary with words and their translations
-    func fetchWords(from setWithName: String) -> [String: String]  {
-        var wordDict: [String: String] = [:]
+    func fetchWords(from setWithName: String) -> [WordModel]  {
+        var wordArray: [WordModel] = []
         if let wordSet = fetchWordSetRecord(with: setWithName) {
             if let setWithWords = wordSet.withWord {
                 for (_,word) in setWithWords.allObjects.enumerated() {
                     if let word = word as? Word, let wordValue = word.word, let wordTranslation = word.translation {
-                        wordDict[wordValue] = wordTranslation
+                        wordArray.append(WordModel(word: wordValue, translation: wordTranslation, progress: word.progress))
                     }
                 }
             }
         }
-        return wordDict
+        return wordArray
     }
     
     /// Fetching Word Set with the specific name

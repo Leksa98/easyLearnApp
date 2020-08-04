@@ -24,9 +24,10 @@ final class WordListTableViewController: UIViewController, AddWordToSetDataStore
     // MARK: - Properties
 
     private var tableView =  UITableView()
-    private var wordDictionary: [String: String]? {
+    /*private var wordDictionary: [WordModel]? {
         didSet {
             if let wordDictionary = wordDictionary {
+                
                 wordArray = []
                 translationArray = []
                 for item in wordDictionary {
@@ -35,7 +36,7 @@ final class WordListTableViewController: UIViewController, AddWordToSetDataStore
                 tableView.reloadData()
             }
         }
-    }
+    }*/
     private var wordArray: [String] = []
     private var translationArray: [String] = []
     private var wordsInSet: [WordModel] = [] {
@@ -120,6 +121,6 @@ extension WordListTableViewController: WordListTablePresentationLogic {
     func showWordList(setName: String) {
         let dataHandler = DataHandler()
         self.setName = setName
-        wordDictionary = dataHandler.fetchWords(from: setName)
+        wordsInSet = dataHandler.fetchWords(from: setName)
     }
 }
