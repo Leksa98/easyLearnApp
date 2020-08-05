@@ -41,13 +41,18 @@ class WordSetLearnCollectionViewCell: UICollectionViewCell {
         backgroundColor = Locals.backgroundColor
         
         addSubview(wordLabel)
-        wordLabel.font = .boldSystemFont(ofSize: 40)
+        wordLabel.font = .boldSystemFont(ofSize: 28)
         wordLabel.textColor = .black
+        
+        wordLabel.numberOfLines = 0
+        wordLabel.lineBreakMode = .byWordWrapping
         wordLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             wordLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            wordLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
+            wordLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            wordLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
         ])
+        wordLabel.sizeToFit()
         
         addSubview(inputTextField)
         inputTextField.layer.cornerRadius = 5
@@ -79,12 +84,16 @@ class WordSetLearnCollectionViewCell: UICollectionViewCell {
         ])
         
         addSubview(resultExerciseLabel)
-        resultExerciseLabel.font = .boldSystemFont(ofSize: 25)
+        resultExerciseLabel.numberOfLines = 0
+        resultExerciseLabel.lineBreakMode = .byWordWrapping
+        resultExerciseLabel.font = .boldSystemFont(ofSize: 24)
         resultExerciseLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             resultExerciseLabel.topAnchor.constraint(equalTo: lineView.topAnchor, constant: 5),
-            resultExerciseLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            resultExerciseLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            resultExerciseLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
         ])
+        resultExerciseLabel.sizeToFit()
     }
     
     required init?(coder: NSCoder) {
@@ -103,7 +112,11 @@ class WordSetLearnCollectionViewCell: UICollectionViewCell {
     // MARK: - Public
     
     func updateContent(value: WordModel) {
-        wordLabel.text = value.word.capitalizingFirstLetter()
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = NSTextAlignment.center
+        paragraphStyle.hyphenationFactor = 1.0
+        let attributedTitle =  NSAttributedString(string: value.word.capitalizingFirstLetter(), attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
+        wordLabel.attributedText = attributedTitle
     }
     
     func checkExercise() -> Bool {
@@ -117,23 +130,27 @@ class WordSetLearnCollectionViewCell: UICollectionViewCell {
     }
     
     func showAnimation(correctAnswer: Bool, completion: ((Bool) -> Void)? = nil) {
-        var backgroundColor: CGColor
+        var borderColor: CGColor
         var textForResultExerciseLabel: String
         switch correctAnswer {
         case true:
-            backgroundColor = Locals.correctAnswerColor
+            borderColor = Locals.correctAnswerColor
             resultExerciseLabel.textColor = UIColor(cgColor: Locals.correctAnswerColor)
             textForResultExerciseLabel = "Correct"
         case false:
-            backgroundColor = Locals.wrongAnswerColor
+            borderColor = Locals.wrongAnswerColor
             resultExerciseLabel.textColor = UIColor(cgColor: Locals.wrongAnswerColor)
             textForResultExerciseLabel = "Wrong"
         }
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: { [weak self] in
-            self?.inputTextField.layer.borderColor = backgroundColor
+            self?.inputTextField.layer.borderColor = borderColor
         }) { finished in
             UIView.transition(with: self.resultExerciseLabel, duration: 0.5, options: .transitionCrossDissolve, animations: {[weak self] in
-                self?.resultExerciseLabel.text = textForResultExerciseLabel
+                let paragraphStyle = NSMutableParagraphStyle()
+                paragraphStyle.alignment = NSTextAlignment.center
+                paragraphStyle.hyphenationFactor = 1.0
+                let attributedTitle =  NSAttributedString(string: textForResultExerciseLabel, attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
+                self?.resultExerciseLabel.attributedText = attributedTitle
             }) { finished in
                 if let completion = completion {
                     completion(finished)
@@ -144,8 +161,14 @@ class WordSetLearnCollectionViewCell: UICollectionViewCell {
     
     func showHelpAnimation() {
         UIView.transition(with: resultExerciseLabel, duration: 0.5, options: .transitionCrossDissolve, animations: {[weak self] in
-            self?.resultExerciseLabel.text = self?.viewModel?.translation
-            self?.resultExerciseLabel.textColor = UIColor(cgColor: Locals.wrongAnswerColor)
+            if let translation = self?.viewModel?.translation {
+                let paragraphStyle = NSMutableParagraphStyle()
+                paragraphStyle.alignment = NSTextAlignment.center
+                paragraphStyle.hyphenationFactor = 1.0
+                self?.resultExerciseLabel.textColor = UIColor(cgColor: Locals.wrongAnswerColor)
+                let attributedTitle =  NSAttributedString(string: translation, attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
+                self?.resultExerciseLabel.attributedText = attributedTitle
+            }
             }, completion: nil)
     }
     

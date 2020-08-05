@@ -21,6 +21,8 @@ class AddWordTableViewCell: UITableViewCell {
     
     private var titleLabel: UILabel = {
         let label = UILabel()
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
         label.font = .systemFont(ofSize: 18)
         label.textColor = .black
         return label
