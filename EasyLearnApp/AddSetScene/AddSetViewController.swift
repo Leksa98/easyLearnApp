@@ -41,6 +41,7 @@ final class AddSetViewController: UIViewController, AddWordToSetDataStore {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tabBarController?.tabBar.isHidden = true
         configureView()
         dismissKey()
         configureNameView()
