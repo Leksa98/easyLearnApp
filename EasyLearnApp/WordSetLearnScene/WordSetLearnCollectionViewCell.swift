@@ -103,7 +103,7 @@ class WordSetLearnCollectionViewCell: UICollectionViewCell {
     // MARK: - Public
     
     func updateContent(value: WordModel) {
-        wordLabel.text = value.word
+        wordLabel.text = value.word.capitalizingFirstLetter()
     }
     
     func checkExercise() -> Bool {

@@ -128,8 +128,9 @@ final class DataHandler : NSObject {
         do {
             let words = try viewContext.fetch(fetchRequest)
             for currentWord in words {
-                if let currentWord = currentWord as? Word, currentWord.word == word  {
-                    if (currentWord.progress + progressChange >= 0.0) && (currentWord.progress + progressChange <= 1.0) {
+                if let currentWord = currentWord as? Word,
+                    (currentWord.word?.trimmingCharacters(in: .whitespacesAndNewlines).capitalized == word.capitalized || currentWord.translation?.trimmingCharacters(in: .whitespacesAndNewlines).capitalized == word.capitalized)   {
+                    if (currentWord.progress + progressChange >= 0.0) && (currentWord.progress <= 1.0) {
                         currentWord.progress += progressChange
                     }
                 }

@@ -15,7 +15,6 @@ protocol WordSetStatisticsPresentationLogic {
 final class WordSetStatisticsPresentor: WordSetStatisticsPresentationLogic {
     
     weak var viewController: WordSetStatisticsShow?
-    private var nameSections = ["Know well🏆", "In progress🚀", "Don't know‼️"]
     private var sections = [WordStatisticsSection(name: "Know well🏆", words: []),
                             WordStatisticsSection(name: "In progress🚀", words: []),
                             WordStatisticsSection(name: "Don't know‼️", words: [])]
@@ -25,11 +24,11 @@ final class WordSetStatisticsPresentor: WordSetStatisticsPresentationLogic {
         for (index,item) in sections.enumerated() {
             switch index {
             case 2:
-                wordsForSection = wordDictionary.filter{ $0.progress == 0.0 }
+                wordsForSection = wordDictionary.filter{ $0.progress <= 0.0 }
             case 1:
                 wordsForSection = wordDictionary.filter{ $0.progress > 0.0 && $0.progress < 1.0 }
             case 0:
-                wordsForSection = wordDictionary.filter{ $0.progress == 1.0 }
+                wordsForSection = wordDictionary.filter{ $0.progress >= 1.0 }
             default:
                 print("Error in WordSetStatisticsPresentor")
             }

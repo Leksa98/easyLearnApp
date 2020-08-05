@@ -36,6 +36,12 @@ final class WordSetCardsViewController: UIViewController {
     private var prevCardButton = UIButton()
     private var setName: String?
     private var wordSetArray: [WordModel] = [] {
+        willSet {
+            if newValue.count == 1 {
+                nextCardButton.isHidden = true
+                prevCardButton.isHidden = true
+            }
+        }
         didSet {
             collectionView.reloadData()
         }
