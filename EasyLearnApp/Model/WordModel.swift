@@ -11,9 +11,11 @@ import Foundation
 final class WordModel {
     var word: String
     var translation: String
+    var progress: Double
     
-    init(word: String, translation: String) {
+    init(word: String, translation: String, progress: Double = 0.0) {
         self.word = word
         self.translation = translation
+        self.progress = progress
     }
 }

@@ -14,12 +14,14 @@ protocol PresentSets {
 
 final class WordSetTablePresenter: PresentSets {
     
-    weak var viewController: ShowWordSets?
+    weak var viewController: AllWordSetTableShow?
     
     func presentSets(sets: [WordSet]) {
         var studySet: [WordSetModel] = []
         sets.forEach { set in
-            studySet.append(WordSetModel(name: set.name!, emoji: set.emoji!))
+            if let setName = set.name, let setEmoji = set.emoji {
+                studySet.append(WordSetModel(name: setName, emoji: setEmoji, progress: Float(set.progress)))
+            }
         }
         viewController?.showWordSets(sets: studySet)
     }

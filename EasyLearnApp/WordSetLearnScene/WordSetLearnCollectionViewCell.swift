@@ -103,7 +103,7 @@ class WordSetLearnCollectionViewCell: UICollectionViewCell {
     // MARK: - Public
     
     func updateContent(value: WordModel) {
-        wordLabel.text = value.word
+        wordLabel.text = value.word.capitalizingFirstLetter()
     }
     
     func checkExercise() -> Bool {
@@ -147,5 +147,12 @@ class WordSetLearnCollectionViewCell: UICollectionViewCell {
             self?.resultExerciseLabel.text = self?.viewModel?.translation
             self?.resultExerciseLabel.textColor = UIColor(cgColor: Locals.wrongAnswerColor)
             }, completion: nil)
+    }
+    
+    func isWrongWordTyped() -> Bool {
+        if resultExerciseLabel.text == "Wrong" ||  resultExerciseLabel.text == viewModel?.translation {
+            return true
+        }
+        return false
     }
 }

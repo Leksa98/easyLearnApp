@@ -36,6 +36,12 @@ final class WordSetCardsViewController: UIViewController {
     private var prevCardButton = UIButton()
     private var setName: String?
     private var wordSetArray: [WordModel] = [] {
+        willSet {
+            if newValue.count == 1 {
+                nextCardButton.isHidden = true
+                prevCardButton.isHidden = true
+            }
+        }
         didSet {
             collectionView.reloadData()
         }
@@ -47,6 +53,8 @@ final class WordSetCardsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.setHidesBackButton(true, animated: true)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(dismissViewController))
         title = "Cards"
         view.backgroundColor = Locals.backgroundColor
         configureCollectionView()
@@ -139,6 +147,10 @@ final class WordSetCardsViewController: UIViewController {
         if collectionView.contentOffset.x == 0 {
             prevCardButton.isHidden = true
         }
+    }
+    
+    @objc private func dismissViewController() {
+        navigationController?.popViewController(animated: true)
     }
 }
 

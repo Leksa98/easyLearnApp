@@ -49,6 +49,7 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.setHidesBackButton(true, animated: true)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(dismissViewController))
         title = "Learn"
         view.backgroundColor = Locals.backgroundColor
         
@@ -108,18 +109,35 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
     
     @objc private func checkButtonTapped() {
         if let currentCellIndexPath = getCurrentCellIndexPath(), let cell = collectionView.cellForItem(at: currentCellIndexPath) as? WordSetLearnCollectionViewCell {
-            if cell.checkExercise() {
-                cell.showAnimation(correctAnswer: true) { finished in
-                    self.scrollCollectionViewToNextExercise()
+            if cell.isWrongWordTyped() {
+                if cell.checkExercise() {
+                    cell.showAnimation(correctAnswer: true) { finished in
+                        self.scrollCollectionViewToNextExercise()
+                    }
                 }
             } else {
-                cell.showAnimation(correctAnswer: false)
+                if cell.checkExercise() {
+                    if let studyWord = cell.viewModel?.word {
+                        interactor?.editWordProgress(word: studyWord, progressChange: 0.1)
+                    }
+                    cell.showAnimation(correctAnswer: true) { finished in
+                        self.scrollCollectionViewToNextExercise()
+                    }
+                } else {
+                    if let studyWord = cell.viewModel?.word {
+                        interactor?.editWordProgress(word: studyWord, progressChange: -0.1)
+                    }
+                    cell.showAnimation(correctAnswer: false)
+                }
             }
         }
     }
     
     @objc private func helpButtonTapped() {
         if let currentCellIndexPath = getCurrentCellIndexPath(), let cell = collectionView.cellForItem(at: currentCellIndexPath) as? WordSetLearnCollectionViewCell {
+            if let studyWord = cell.viewModel?.word {
+                interactor?.editWordProgress(word: studyWord, progressChange: -0.1)
+            }
             cell.showHelpAnimation()
         }
     }
@@ -144,6 +162,10 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
         let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
         let visibleIndexPath = collectionView.indexPathForItem(at: visiblePoint)
         return visibleIndexPath
+    }
+    
+    @objc private func dismissViewController() {
+        navigationController?.popViewController(animated: true)
     }
 }
 

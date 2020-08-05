@@ -9,18 +9,14 @@
 import Foundation
 
 protocol WordSetCardPresentationLogic {
-    func prepareForPresent(wordsDictionary: [String: String])
+    func prepareForPresent(wordsArray: [WordModel])
 }
 
 final class WordSetCardPresenter: WordSetCardPresentationLogic {
     
     weak var viewController: WordSetCardsShow?
     
-    func prepareForPresent(wordsDictionary: [String : String]) {
-        var wordsArray: [WordModel] = []
-        for item in wordsDictionary {
-            wordsArray.append(WordModel(word: item.key, translation: item.value))
-        }
+    func prepareForPresent(wordsArray: [WordModel]) {
         viewController?.loadWordSetCards(words: wordsArray)
     }
 }
