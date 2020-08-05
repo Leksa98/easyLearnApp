@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class WordSetTableViewCell: UITableViewCell {
+class WordSetTableViewCell: UITableViewCell {
     
     enum Locals {
         static let backgroundColor = UIColor(cgColor: CGColor(srgbRed: 249.0/255.0, green: 248.0/255.0, blue: 241.0/255.0, alpha: 1))
@@ -78,6 +78,10 @@ final class WordSetTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    func hideProgressBar() {
+        progressBar.isHidden = true
     }
     
     // MARK: - Private

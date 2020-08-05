@@ -23,6 +23,8 @@ final class NewWordSetViewController: UIViewController {
     private let addNewSetButton = ButtonWithRoundCorners(title: "Add new set")
     private let buttonStackView = UIStackView()
     
+     // MARK: - Life cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,11 +56,13 @@ final class NewWordSetViewController: UIViewController {
         tabBarController?.tabBar.isHidden = false
     }
     
+    // MARK: - Button actions
+    
     @objc private func addNewSetButtonTapped() {
         navigationController?.pushViewController(AddSetViewController(), animated: false)
     }
     
     @objc private func defaultSetButtonTapped() {
-        navigationController?.pushViewController(AddSetViewController(), animated: false)
+        navigationController?.pushViewController(DefaultWordSetViewController(), animated: false)
     }
 }
