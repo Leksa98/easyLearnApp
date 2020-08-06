@@ -63,6 +63,7 @@
 		A8B2144524D9822100A3CF7F /* WordStatisticsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2144424D9822100A3CF7F /* WordStatisticsSection.swift */; };
 		A8B5221F24DB24B4008F02C7 /* DefaultWordSetListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B5221E24DB24B4008F02C7 /* DefaultWordSetListViewController.swift */; };
 		A8B5222424DC064D008F02C7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B5222324DC064D008F02C7 /* SettingsViewController.swift */; };
+		A8B5222624DC0DA3008F02C7 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B5222524DC0DA3008F02C7 /* SettingsTableViewCell.swift */; };
 		A8F0D57924C249440004C609 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F0D57824C249440004C609 /* ViewControllerExtension.swift */; };
 		A8F0D57B24C249880004C609 /* TextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F0D57A24C249880004C609 /* TextFieldExtension.swift */; };
 		A8F0D57D24C249CB0004C609 /* SearchBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F0D57C24C249CB0004C609 /* SearchBarExtension.swift */; };
@@ -156,6 +157,7 @@
 		A8B2144424D9822100A3CF7F /* WordStatisticsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordStatisticsSection.swift; sourceTree = "<group>"; };
 		A8B5221E24DB24B4008F02C7 /* DefaultWordSetListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWordSetListViewController.swift; sourceTree = "<group>"; };
 		A8B5222324DC064D008F02C7 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		A8B5222524DC0DA3008F02C7 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		A8F0D57824C249440004C609 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
 		A8F0D57A24C249880004C609 /* TextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExtension.swift; sourceTree = "<group>"; };
 		A8F0D57C24C249CB0004C609 /* SearchBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarExtension.swift; sourceTree = "<group>"; };
@@ -461,6 +463,7 @@
 			isa = PBXGroup;
 			children = (
 				A8B5222324DC064D008F02C7 /* SettingsViewController.swift */,
+				A8B5222524DC0DA3008F02C7 /* SettingsTableViewCell.swift */,
 			);
 			path = SettingsScene;
 			sourceTree = "<group>";
@@ -629,6 +632,7 @@
 				A804C92224D1AFC5007E2524 /* WordSetCardsViewController.swift in Sources */,
 				A81FF5C824AA3D27007068F9 /* AddSetViewController.swift in Sources */,
 				A8ABBCA324B5043A008081FB /* EndPointType.swift in Sources */,
+				A8B5222624DC0DA3008F02C7 /* SettingsTableViewCell.swift in Sources */,
 				A81FF5C424AA3D27007068F9 /* AppDelegate.swift in Sources */,
 				A88B1A1124D7EA17008ADA7F /* WordSetLearnInteractor.swift in Sources */,
 				A8ABBCB124B50CAD008081FB /* Router.swift in Sources */,
