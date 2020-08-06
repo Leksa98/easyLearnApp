@@ -64,6 +64,9 @@
 		A8B5221F24DB24B4008F02C7 /* DefaultWordSetListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B5221E24DB24B4008F02C7 /* DefaultWordSetListViewController.swift */; };
 		A8B5222424DC064D008F02C7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B5222324DC064D008F02C7 /* SettingsViewController.swift */; };
 		A8B5222624DC0DA3008F02C7 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B5222524DC0DA3008F02C7 /* SettingsTableViewCell.swift */; };
+		A8B5222924DC1212008F02C7 /* ChooseLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B5222824DC1212008F02C7 /* ChooseLanguageViewController.swift */; };
+		A8B5222B24DC1CC2008F02C7 /* ChooseLanguageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B5222A24DC1CC2008F02C7 /* ChooseLanguageTableViewCell.swift */; };
+		A8B5222D24DC2451008F02C7 /* ChooseLanguageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B5222C24DC2451008F02C7 /* ChooseLanguageModel.swift */; };
 		A8F0D57924C249440004C609 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F0D57824C249440004C609 /* ViewControllerExtension.swift */; };
 		A8F0D57B24C249880004C609 /* TextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F0D57A24C249880004C609 /* TextFieldExtension.swift */; };
 		A8F0D57D24C249CB0004C609 /* SearchBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F0D57C24C249CB0004C609 /* SearchBarExtension.swift */; };
@@ -158,6 +161,9 @@
 		A8B5221E24DB24B4008F02C7 /* DefaultWordSetListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWordSetListViewController.swift; sourceTree = "<group>"; };
 		A8B5222324DC064D008F02C7 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A8B5222524DC0DA3008F02C7 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		A8B5222824DC1212008F02C7 /* ChooseLanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseLanguageViewController.swift; sourceTree = "<group>"; };
+		A8B5222A24DC1CC2008F02C7 /* ChooseLanguageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseLanguageTableViewCell.swift; sourceTree = "<group>"; };
+		A8B5222C24DC2451008F02C7 /* ChooseLanguageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseLanguageModel.swift; sourceTree = "<group>"; };
 		A8F0D57824C249440004C609 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
 		A8F0D57A24C249880004C609 /* TextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExtension.swift; sourceTree = "<group>"; };
 		A8F0D57C24C249CB0004C609 /* SearchBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarExtension.swift; sourceTree = "<group>"; };
@@ -288,6 +294,7 @@
 				A8AA51DC24C03C5C0047B084 /* AddSetScene */,
 				A8AA51DB24C03C1C0047B084 /* AddWordScene */,
 				A8B5222224DC0620008F02C7 /* SettingsScene */,
+				A8B5222724DC11E4008F02C7 /* ChooseLanguageScene */,
 				A8F0D57724C249000004C609 /* Extensions */,
 			);
 			path = EasyLearnApp;
@@ -468,6 +475,16 @@
 			path = SettingsScene;
 			sourceTree = "<group>";
 		};
+		A8B5222724DC11E4008F02C7 /* ChooseLanguageScene */ = {
+			isa = PBXGroup;
+			children = (
+				A8B5222824DC1212008F02C7 /* ChooseLanguageViewController.swift */,
+				A8B5222A24DC1CC2008F02C7 /* ChooseLanguageTableViewCell.swift */,
+				A8B5222C24DC2451008F02C7 /* ChooseLanguageModel.swift */,
+			);
+			path = ChooseLanguageScene;
+			sourceTree = "<group>";
+		};
 		A8F0D57724C249000004C609 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -626,6 +643,7 @@
 				A8F0D58124C477430004C609 /* AddWordInteractor.swift in Sources */,
 				A84B2D3E24AB39570022F029 /* WordSetTableViewController.swift in Sources */,
 				A8ABBCA924B507EF008081FB /*  ParameterEncoding.swift in Sources */,
+				A8B5222924DC1212008F02C7 /* ChooseLanguageViewController.swift in Sources */,
 				A8F0D57924C249440004C609 /* ViewControllerExtension.swift in Sources */,
 				A88B1A0624D1F672008ADA7F /* WordSetCardInteractor.swift in Sources */,
 				A8ABBCB824B5B2B1008081FB /* NetworkManager.swift in Sources */,
@@ -634,6 +652,7 @@
 				A8ABBCA324B5043A008081FB /* EndPointType.swift in Sources */,
 				A8B5222624DC0DA3008F02C7 /* SettingsTableViewCell.swift in Sources */,
 				A81FF5C424AA3D27007068F9 /* AppDelegate.swift in Sources */,
+				A8B5222D24DC2451008F02C7 /* ChooseLanguageModel.swift in Sources */,
 				A88B1A1124D7EA17008ADA7F /* WordSetLearnInteractor.swift in Sources */,
 				A8ABBCB124B50CAD008081FB /* Router.swift in Sources */,
 				A8580B1324DAF0070099B00F /* DefaultWordSetModel.swift in Sources */,
@@ -661,6 +680,7 @@
 				A8B5221F24DB24B4008F02C7 /* DefaultWordSetListViewController.swift in Sources */,
 				A8580B1924DAF6D70099B00F /* NewWordSetViewController.swift in Sources */,
 				A8F0D58724C4AA790004C609 /* AddWordRouter.swift in Sources */,
+				A8B5222B24DC1CC2008F02C7 /* ChooseLanguageTableViewCell.swift in Sources */,
 				A81FF5CE24AA3D27007068F9 /* EasyLearnApp.xcdatamodeld in Sources */,
 				A81FF5F724AA429F007068F9 /* TabBarController.swift in Sources */,
 				A88B1A0F24D2FB40008ADA7F /* WordSetLearnCollectionViewCell.swift in Sources */,

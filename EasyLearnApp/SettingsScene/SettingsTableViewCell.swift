@@ -29,7 +29,7 @@ final class SettingsTableViewCell: UITableViewCell {
         selectionStyle = .none
         
         addSubview(label)
-        label.text = "Language"
+        label.text = "Learning language"
         label.font = .systemFont(ofSize: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

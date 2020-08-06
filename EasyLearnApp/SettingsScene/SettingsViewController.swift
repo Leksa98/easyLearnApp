@@ -33,6 +33,10 @@ final class SettingsViewController: UIViewController {
         setupTableView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
     // MARK: - Setup UI elements
     
     private func setupTableView() {
@@ -54,7 +58,7 @@ final class SettingsViewController: UIViewController {
 // MARK: - UITableViewDelegate protocol
 extension SettingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        navigationController?.pushViewController(ChooseLanguageViewController(), animated: false)
     }
 }
 
