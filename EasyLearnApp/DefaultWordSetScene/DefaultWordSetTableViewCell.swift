@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DefaultWordSetTableViewCell: WordSetTableViewCell {
+final class DefaultWordSetTableViewCell: WordSetTableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

@@ -38,7 +38,7 @@ final class NewWordSetViewController: UIViewController {
         buttonStackView.addArrangedSubview(addNewSetButton)
         buttonStackView.axis = .vertical
         buttonStackView.distribution = .fillEqually
-        buttonStackView.spacing = 20
+        buttonStackView.spacing = 40
         buttonStackView.translatesAutoresizingMaskIntoConstraints = false
         defaultSetButton.translatesAutoresizingMaskIntoConstraints = false
         addNewSetButton.translatesAutoresizingMaskIntoConstraints = false
