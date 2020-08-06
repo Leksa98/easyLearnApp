@@ -21,6 +21,7 @@ final class ChooseLanguageViewController: UIViewController {
     // MARK: - Properties
     
     private var tableView = UITableView()
+    private var selectedCell: IndexPath?
     private var languages: [ChooseLanguageModel] = [] {
         didSet {
             tableView.reloadData()
@@ -53,7 +54,7 @@ final class ChooseLanguageViewController: UIViewController {
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
-       tableView.tableFooterView = UIView()
+        tableView.tableFooterView = UIView()
     }
     
     private func loadLanguages() {
@@ -70,13 +71,16 @@ final class ChooseLanguageViewController: UIViewController {
 // MARK: - UITableViewDelegate protocol
 extension ChooseLanguageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? ChooseLanguageTableViewCell {
             cell.accessoryType = .none
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? ChooseLanguageTableViewCell {
+            if let selectedCell = selectedCell {
+                tableView.cellForRow(at: selectedCell)?.accessoryType = .none
+            }
             cell.tintColor = Locals.checkmarkColor
             cell.accessoryType = .checkmark
             let userDefaults = UserDefaults.standard
@@ -94,9 +98,24 @@ extension ChooseLanguageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: Locals.cellId, for: indexPath) as? ChooseLanguageTableViewCell {
             cell.viewModel = languages[indexPath.row]
+            cell.tintColor = Locals.checkmarkColor
+            let userDefaults = UserDefaults.standard
+            
+            let lang = userDefaults.object(forKey: "lang")
+            switch lang as? String {
+            case languages[indexPath.row].codeValue:
+                selectedCell = indexPath
+                cell.accessoryType = .checkmark
+            case nil:
+                if languages[indexPath.row].codeValue == "en" {
+                    selectedCell = indexPath
+                    cell.accessoryType = .checkmark
+                }
+            default:
+                cell.accessoryType = .none
+            }
             return cell
         }
         return UITableViewCell()
     }
-    
 }

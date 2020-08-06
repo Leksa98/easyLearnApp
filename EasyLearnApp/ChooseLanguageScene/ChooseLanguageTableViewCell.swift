@@ -13,6 +13,7 @@ final class ChooseLanguageTableViewCell: UITableViewCell {
     
     enum Locals {
         static let backgroundColor = UIColor(cgColor: CGColor(srgbRed: 249.0/255.0, green: 248.0/255.0, blue: 241.0/255.0, alpha: 1))
+        static let checkmarkColor = UIColor(cgColor: CGColor(srgbRed: 118.0/255.0, green: 93.0/255.0, blue: 152.0/255.0, alpha: 1))
     }
     
     // MARK: - Properties
@@ -55,7 +56,7 @@ final class ChooseLanguageTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func updateContent(viewModel: ChooseLanguageModel) {
+    private func updateContent(viewModel: ChooseLanguageModel) {
         languageLabel.text = viewModel.languageValue
         flagLabel.text = viewModel.flagValue
     }
