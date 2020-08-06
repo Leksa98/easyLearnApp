@@ -14,7 +14,8 @@ public enum Result<String> {
 }
 
 class NetworkManager {
-    private let router = Router<TranslateWordApi>()
+    private let translationRouter = Router<TranslateWordApi>()
+    private let defaultSetsRouter = Router<DefaultWordSetModelApi>()
     
     public enum NetworkResponse: String {
         case success
@@ -49,7 +50,7 @@ class NetworkManager {
     
     
     func translateWord(word: String, completion: @escaping (_ translation: TranslationModel?, _ error: String?) -> ()) {
-        router.request(.translate(word: word)) { data, response, error in
+        translationRouter.request(.translate(word: word)) { data, response, error in
             if error != nil {
                 completion(nil, "Error")
             }
@@ -72,9 +73,33 @@ class NetworkManager {
                     completion(nil, NetworkFailureError)
                 }
             }
-            
         }
     }
-
-
+    
+    func fetchDefaultWordSets(completion: @escaping (_ translation: DefaultWordSetModel?, _ error: String?) -> ()) {
+        defaultSetsRouter.request(.fetchDefaultWordSet) { data, response, error in
+            if error != nil {
+                completion(nil, "Error")
+            }
+            
+            if let response = response as? HTTPURLResponse {
+                let result = self.handleNetworkRequest(response)
+                switch result {
+                case .success:
+                    guard let responseData = data else {
+                        completion(nil, NetworkResponse.noData.rawValue)
+                        return
+                    }
+                    do {
+                        let apiResponse = try JSONDecoder().decode(DefaultWordSetModel.self, from: responseData)
+                        completion(apiResponse, nil)
+                    } catch {
+                        completion(nil, NetworkResponse.unableToDecode.rawValue)
+                    }
+                case .failure(let NetworkFailureError):
+                    completion(nil, NetworkFailureError)
+                }
+            }
+        }
+    }
 }

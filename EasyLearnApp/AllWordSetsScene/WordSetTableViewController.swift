@@ -24,7 +24,7 @@ final class WordSetTableViewController: UITableViewController {
     
     // MARK: - Properties
     
-    var interactor: WordSetTableBussinesLogic?
+    var interactor: WordSetTableBusinessLogic?
     private var studySet: [WordSetModel] = [] {
         didSet {
             tableView.reloadData()

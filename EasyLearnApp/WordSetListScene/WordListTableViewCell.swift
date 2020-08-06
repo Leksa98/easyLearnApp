@@ -14,7 +14,7 @@ final class WordListTableViewCell: AddWordTableViewCell {
         didSet {
             if let viewModel = viewModel {
                 if let viewModel = viewModel as? WordModel {
-                    self.updateContent(label: viewModel.word + " - " + viewModel.translation)
+                    self.updateContent(label: viewModel.word.capitalizingFirstLetter() + " - " + viewModel.translation.capitalizingFirstLetter())
                 }
             }
         }
@@ -22,6 +22,7 @@ final class WordListTableViewCell: AddWordTableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
     }
     
     required init?(coder: NSCoder) {

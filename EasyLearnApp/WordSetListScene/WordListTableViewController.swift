@@ -24,19 +24,6 @@ final class WordListTableViewController: UIViewController, AddWordToSetDataStore
     // MARK: - Properties
 
     private var tableView =  UITableView()
-    /*private var wordDictionary: [WordModel]? {
-        didSet {
-            if let wordDictionary = wordDictionary {
-                
-                wordArray = []
-                translationArray = []
-                for item in wordDictionary {
-                    wordsInSet.append(WordModel(word: item.key, translation: item.value))
-                }
-                tableView.reloadData()
-            }
-        }
-    }*/
     private var wordArray: [String] = []
     private var translationArray: [String] = []
     private var wordsInSet: [WordModel] = [] {

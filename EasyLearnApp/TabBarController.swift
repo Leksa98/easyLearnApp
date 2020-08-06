@@ -22,7 +22,7 @@ final class TabBarController: UITabBarController {
         firstViewController.tabBarItem = UITabBarItem(title: "Sets", image: UIImage(named: "file"), tag: 0)
         
         let secondViewController = UINavigationController()
-        secondViewController.pushViewController(AddSetViewController(), animated: false)
+        secondViewController.pushViewController(NewWordSetViewController(), animated: false)
         secondViewController.tabBarItem = UITabBarItem(title: "Add set", image: UIImage(named: "plus-sign"), tag: 1)
         
         let thirdViewController = UINavigationController()

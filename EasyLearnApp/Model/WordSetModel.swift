@@ -10,15 +10,12 @@ import Foundation
 
 final class WordSetModel {
     
+    // MARK: - Properties
+    
     private let name: String
     private let progress: Float
     private let emoji: String
-    
-    init(name: String, emoji: String, progress: Float = 0) {
-        self.name = name
-        self.progress = progress
-        self.emoji = emoji
-    }
+    private var words: [WordModel] = []
     
     var nameValue: String {
         return name
@@ -30,5 +27,21 @@ final class WordSetModel {
     
     var emojiValue: String {
         return emoji
+    }
+    
+    var wordsValue: [WordModel] {
+        return words
+    }
+    
+    // MARK: - Initialization
+    
+    init(name: String, emoji: String, progress: Float = 0) {
+        self.name = name
+        self.progress = progress
+        self.emoji = emoji
+    }
+    
+    func addWord(newWord: WordModel) {
+        words.append(newWord)
     }
 }
