@@ -20,7 +20,6 @@ class Router<EndPoint: EndPointType> {
         do {
             let request = try self.buildRequest(from: route)
             task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
-                print(request)
                 completion(data, response, error)
             })
         } catch {
