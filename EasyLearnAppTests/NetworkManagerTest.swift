@@ -42,6 +42,9 @@ class NetworkManagerTest: XCTestCase {
     func testUnableDecodeInput() {
         var result = ""
         let expectation = self.expectation(description: "Request")
+        let userDefaults = UserDefaults.standard
+        let prevLang = (userDefaults.object(forKey: "lang") as? String) ?? "en"
+        userDefaults.set("en", forKey: "lang")
         sut.translateWord(word: "wr") { apiResponse, error in
             if let error = error {
                 result = error
@@ -53,11 +56,15 @@ class NetworkManagerTest: XCTestCase {
         }
         waitForExpectations(timeout: 5, handler: nil)
         XCTAssertEqual("Unable to decode data.", result)
+        userDefaults.set(prevLang, forKey: "lang")
     }
     
     func testInput() {
         var result: TranslationModel?
         let expectation = self.expectation(description: "Request")
+        let userDefaults = UserDefaults.standard
+        let prevLang = (userDefaults.object(forKey: "lang") as? String) ?? "en"
+        userDefaults.set("en", forKey: "lang")
         sut.translateWord(word: "computer") { apiResponse, error in
             if error != nil {
                 result = nil
@@ -69,6 +76,7 @@ class NetworkManagerTest: XCTestCase {
         }
         waitForExpectations(timeout: 5, handler: nil)
         XCTAssertNotNil(result)
+        userDefaults.set(prevLang, forKey: "lang")
     }
 
 }

@@ -20,8 +20,7 @@ public struct URLParameterEncoder: ParameterEncoder {
             urlComponents.queryItems = [URLQueryItem]()
             
         for (key, value) in parameters {
-            urlComponents.queryItems?.append(URLQueryItem(name: key,
-                                                          value:"\(value)".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)))
+            urlComponents.queryItems?.append(URLQueryItem(name: key, value:"\(value)"))
             }
             urlRequest.url = urlComponents.url
         }
