@@ -32,7 +32,7 @@ extension TranslateWordApi: EndPointType {
     }
     
     var headers: HTTPHeaders? {
-        return ["Content-Type": "application/json"]
+        return ["Content-Type": "application/json; charset=utf-8"]
     }
     
     var bodyParameters: Parameters? {
