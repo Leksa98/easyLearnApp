@@ -8,8 +8,8 @@
 
 import UIKit
 
-protocol WordListTablePresentationLogic {
-    func showWordList(setName: String)
+protocol WordListTablePresentationLogic: class {
+    func showWordList(words: [WordModel])
 }
 
 final class WordListTableViewController: UIViewController, AddWordToSetDataStore {
@@ -32,7 +32,7 @@ final class WordListTableViewController: UIViewController, AddWordToSetDataStore
         }
     }
     private var setName: String?
-    private var interactor: WordSetListBusinessLogic?
+    var interactor: WordSetListBusinessLogic?
     
     // MARK: - Lifecycle
     
@@ -42,8 +42,6 @@ final class WordListTableViewController: UIViewController, AddWordToSetDataStore
         title = "List"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
         configureTable()
-        let interactor = WordSetListInteractor()
-        self.interactor = interactor
     }
     
     // MARK: - Configuration
@@ -105,9 +103,7 @@ extension WordListTableViewController: UITableViewDelegate, UITableViewDataSourc
 
 //MARK: - WordListTablePresentationLogic
 extension WordListTableViewController: WordListTablePresentationLogic {
-    func showWordList(setName: String) {
-        let dataHandler = DataHandler()
-        self.setName = setName
-        wordsInSet = dataHandler.fetchWords(from: setName)
+    func showWordList(words: [WordModel]) {
+        wordsInSet = words
     }
 }

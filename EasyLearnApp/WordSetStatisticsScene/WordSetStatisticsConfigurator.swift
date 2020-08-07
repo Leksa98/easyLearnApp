@@ -10,13 +10,14 @@ import UIKit
 
 final class WordSetStatisticsConfigurator {
     
-    static func assembly() -> WordSetStatisticsViewController {
+    static func assembly(setTitle: String) -> WordSetStatisticsViewController {
         
         let viewController = WordSetStatisticsViewController()
         let presenter = WordSetStatisticsPresentor()
         let interactor = WordSetStatisticsInteractor()
         
         viewController.interactor = interactor
+        viewController.setTitle = setTitle
         interactor.presenter = presenter
         presenter.viewController = viewController
         

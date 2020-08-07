@@ -20,5 +20,6 @@ final class WordSetTableRouter: WordSetTableRouterLogic {
         let vc = WordSetViewController()
         vc.title = title
         navigationController?.pushViewController(vc, animated: true)
+        WordSetConfigurator.assembly(viewController: vc)
     }
 }

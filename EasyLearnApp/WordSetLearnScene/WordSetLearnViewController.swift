@@ -52,13 +52,8 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(dismissViewController))
         title = "Learn"
         view.backgroundColor = Locals.backgroundColor
-        
         configureCollectionView()
         configureButtonStackView()
-        
-        if let setName = setName {
-            interactor?.fetchWords(setName: setName)
-        }
     }
     
     // MARK: - Configuration

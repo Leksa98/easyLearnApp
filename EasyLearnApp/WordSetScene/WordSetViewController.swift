@@ -8,12 +8,9 @@
 
 import UIKit
 
-
-protocol WordSetPresentationLogic {
-    func presentWordSet(wordSet: WordSetModel)
-}
-
 final class WordSetViewController: UIViewController {
+    
+    // MARK: - Constants
     
     enum Locals {
         static let backgroundColor = UIColor(cgColor: CGColor(srgbRed: 249.0/255.0, green: 248.0/255.0, blue: 241.0/255.0, alpha: 1))
@@ -26,6 +23,7 @@ final class WordSetViewController: UIViewController {
     private let learnButton = ButtonWithRoundCorners(title: "Learn")
     private let statisticsButton = ButtonWithRoundCorners(title: "Statistics")
     private let stackButton = UIStackView()
+    var router: WordSetRouterLogic?
     
     // MARK: - Lifecycle
     
@@ -61,45 +59,26 @@ final class WordSetViewController: UIViewController {
     }
     
     @objc private func listButtonTapped() {
-        let delegete: WordListTablePresentationLogic?
-        delegete = WordListTableViewController()
-        navigationController?.pushViewController(delegete as! UIViewController, animated: false)
-        delegete?.showWordList(setName: title!)
+       if let title = title {
+            router?.routeToWordSetList(with: title)
+        }
     }
     
     @objc private func cardsButtonTapped() {
-        let delegete: WordSetCardsShow?
-        delegete = WordSetCardsConfigurator.assembly()
-        navigationController?.pushViewController(delegete as! UIViewController, animated: false)
         if let title = title {
-            delegete?.loadSetName(name: title)
+            router?.routeToWordSetCards(with: title)
         }
     }
     
     @objc private func learnButtonTapped() {
-        var delegate: WordSetLearnDataSource?
-        delegate = WordSetLearnConfigurator.assembly()
         if let title = title {
-            delegate?.setName = title
+            router?.routeToWordSetLearn(with: title)
         }
-        navigationController?.pushViewController(delegate as! UIViewController, animated: false)
     }
     
     @objc private func statisticsButtonTapped() {
-        var delegete: WordSetStatisticsDataSource?
-        delegete = WordSetStatisticsConfigurator.assembly()
         if let title = title {
-            delegete?.setTitle = title
+            router?.routeToWordSetStatistics(with: title)
         }
-        navigationController?.pushViewController(delegete as! UIViewController, animated: false)
-    }
-}
-
-
-// MARK: - WordSetPresentationLogic
-extension WordSetViewController: WordSetPresentationLogic {
-    
-    func presentWordSet(wordSet: WordSetModel) {
-        self.title = wordSet.nameValue
     }
 }
