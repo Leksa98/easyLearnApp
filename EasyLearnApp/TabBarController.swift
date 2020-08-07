@@ -41,11 +41,12 @@ final class TabBarController: UITabBarController {
         wordOfDayViewController.view.backgroundColor = .orange
         wordOfDayViewController.tabBarItem = UITabBarItem(title: "Word of the day", image: UIImage(named: "calendar"), tag: 2)
         
-        let settingsViewController = UINavigationController()
-        settingsViewController.pushViewController(SettingsViewController(), animated: false)
-        settingsViewController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "gear"), tag: 3)
+        let settingsViewController = SettingsViewController()
+        let settingsNavigationController = UINavigationController(rootViewController: settingsViewController)
+        SettingsConfigurator.assembly(viewController: settingsViewController)
+        settingsNavigationController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "gear"), tag: 3)
         
-        let tabBarList = [wordSetsNavigationController, newWordSetNavigationController, wordOfDayViewController, settingsViewController]
+        let tabBarList = [wordSetsNavigationController, newWordSetNavigationController, wordOfDayViewController, settingsNavigationController]
         viewControllers = tabBarList
     }
 }

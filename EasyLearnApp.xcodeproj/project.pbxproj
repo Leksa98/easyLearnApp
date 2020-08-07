@@ -89,6 +89,8 @@
 		A8BF983824DD8DEC00755F7E /* AddSetInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BF983724DD8DEC00755F7E /* AddSetInteractor.swift */; };
 		A8BF983A24DD901300755F7E /* AddSetConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BF983924DD901300755F7E /* AddSetConfiguration.swift */; };
 		A8BF983C24DD922F00755F7E /* AddSetRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BF983B24DD922F00755F7E /* AddSetRouter.swift */; };
+		A8BF983E24DD94C000755F7E /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BF983D24DD94C000755F7E /* SettingsRouter.swift */; };
+		A8BF984024DD94D000755F7E /* SettingsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BF983F24DD94D000755F7E /* SettingsConfigurator.swift */; };
 		A8F0D57924C249440004C609 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F0D57824C249440004C609 /* ViewControllerExtension.swift */; };
 		A8F0D57B24C249880004C609 /* TextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F0D57A24C249880004C609 /* TextFieldExtension.swift */; };
 		A8F0D57D24C249CB0004C609 /* SearchBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F0D57C24C249CB0004C609 /* SearchBarExtension.swift */; };
@@ -208,6 +210,8 @@
 		A8BF983724DD8DEC00755F7E /* AddSetInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSetInteractor.swift; sourceTree = "<group>"; };
 		A8BF983924DD901300755F7E /* AddSetConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSetConfiguration.swift; sourceTree = "<group>"; };
 		A8BF983B24DD922F00755F7E /* AddSetRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSetRouter.swift; sourceTree = "<group>"; };
+		A8BF983D24DD94C000755F7E /* SettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
+		A8BF983F24DD94D000755F7E /* SettingsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsConfigurator.swift; sourceTree = "<group>"; };
 		A8F0D57824C249440004C609 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
 		A8F0D57A24C249880004C609 /* TextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExtension.swift; sourceTree = "<group>"; };
 		A8F0D57C24C249CB0004C609 /* SearchBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarExtension.swift; sourceTree = "<group>"; };
@@ -537,6 +541,8 @@
 			children = (
 				A8B5222324DC064D008F02C7 /* SettingsViewController.swift */,
 				A8B5222524DC0DA3008F02C7 /* SettingsTableViewCell.swift */,
+				A8BF983D24DD94C000755F7E /* SettingsRouter.swift */,
+				A8BF983F24DD94D000755F7E /* SettingsConfigurator.swift */,
 			);
 			path = SettingsScene;
 			sourceTree = "<group>";
@@ -706,6 +712,7 @@
 			files = (
 				A8ABBCA624B505DB008081FB /* HTTPTask.swift in Sources */,
 				A88B1A0224D1D543008ADA7F /* WordSetCardCollectionViewCell.swift in Sources */,
+				A8BF983E24DD94C000755F7E /* SettingsRouter.swift in Sources */,
 				A8F0D58124C477430004C609 /* AddWordInteractor.swift in Sources */,
 				A84B2D3E24AB39570022F029 /* WordSetTableViewController.swift in Sources */,
 				A8ABBCA924B507EF008081FB /*  ParameterEncoding.swift in Sources */,
@@ -728,6 +735,7 @@
 				A8580B1524DAF20D0099B00F /* DefaultWordSetModelApi.swift in Sources */,
 				A8185FFD24CB069300F93FD3 /* WordListTableViewController.swift in Sources */,
 				A8F0D57B24C249880004C609 /* TextFieldExtension.swift in Sources */,
+				A8BF984024DD94D000755F7E /* SettingsConfigurator.swift in Sources */,
 				A8BF981224DD4A7A00755F7E /* AllWordSetsConfigurator.swift in Sources */,
 				A88B1A1324D7EA28008ADA7F /* WordSetLearnPresentor.swift in Sources */,
 				A8B2143F24D9641100A3CF7F /* WordSetStatisticsViewController.swift in Sources */,

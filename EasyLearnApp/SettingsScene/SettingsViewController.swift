@@ -21,6 +21,7 @@ final class SettingsViewController: UIViewController {
     // MARK: - Properties
     
     private let tableView = UITableView(frame: .zero, style: .grouped)
+    var router: SettingsRouterLogic?
     
     // MARK: - Life cycle
     
@@ -58,7 +59,7 @@ final class SettingsViewController: UIViewController {
 // MARK: - UITableViewDelegate protocol
 extension SettingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        navigationController?.pushViewController(ChooseLanguageViewController(), animated: false)
+        router?.routeToChooseLanguageScene()
     }
 }
 
