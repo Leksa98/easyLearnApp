@@ -12,6 +12,10 @@ protocol DefaultWordSetListDataSource: class {
     func presentWordSet(name: String, emoji: String, words: [WordModel])
 }
 
+protocol DefaultWordSetListSaveNotification: class {
+    func showSaveAlert(name: String, emoji: String)
+}
+
 final class DefaultWordSetListViewController: UIViewController {
     
     // MARK: - Constants
@@ -31,6 +35,7 @@ final class DefaultWordSetListViewController: UIViewController {
             tableView.reloadData()
         }
     }
+    var interactor: DefaultWordSetListBusinessLogic?
     
     // MARK: - Life cycle
     
@@ -61,12 +66,8 @@ final class DefaultWordSetListViewController: UIViewController {
     }
     
     @objc private func downloadButtonTapped() {
-        let dataHandler = DataHandler()
         if let name = setName, let emoji = setEmoji {
-            dataHandler.addWordSetIntoCoreData(name: name, emoji: emoji)
-            for word in words {
-                dataHandler.addWordtoSet(name: name, word: word.word, translation: word.translation)
-            }
+            interactor?.downloadWordSet(name: name, emoji: emoji, words: words)
         }
     }
 }
@@ -93,5 +94,13 @@ extension DefaultWordSetListViewController: DefaultWordSetListDataSource {
         self.words = words
         self.setName = name
         self.setEmoji = emoji
+    }
+}
+
+extension DefaultWordSetListViewController: DefaultWordSetListSaveNotification {
+    func showSaveAlert(name: String, emoji: String) {
+        let savedAlert = UIAlertController(title: "Saved", message: "Set \(name) \(emoji) was saved!", preferredStyle: .alert)
+        savedAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(savedAlert, animated: true, completion: nil)
     }
 }
