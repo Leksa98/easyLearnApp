@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol ChooseLanguageShowTableView: class {
+    func loadDataInTableView(languages: [ChooseLanguageModel])
+}
+
 final class ChooseLanguageViewController: UIViewController {
     
     // MARK: - Constants
@@ -27,6 +31,7 @@ final class ChooseLanguageViewController: UIViewController {
             tableView.reloadData()
         }
     }
+    var interactor: ChooseLanguageBusinessLogic?
     
     // MARK: - Life cycle
     
@@ -36,7 +41,7 @@ final class ChooseLanguageViewController: UIViewController {
         title = "Learning language"
         navigationController?.navigationBar.prefersLargeTitles = false
         setupTableView()
-        loadLanguages()
+        interactor?.loadLanguages()
     }
     
     // MARK: - Setup UI elements
@@ -55,16 +60,6 @@ final class ChooseLanguageViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
         tableView.tableFooterView = UIView()
-    }
-    
-    private func loadLanguages() {
-        languages = [ChooseLanguageModel(language: "English", flag: "🇬🇧", code: "en"),
-                     ChooseLanguageModel(language: "German", flag: "🇩🇪", code: "de"),
-                     ChooseLanguageModel(language: "French", flag: "🇫🇷", code: "fr"),
-                     ChooseLanguageModel(language: "Spanish", flag: "🇪🇸", code: "es"),
-                     ChooseLanguageModel(language: "Italian", flag: "🇮🇹", code: "it"),
-                     ChooseLanguageModel(language: "Polish", flag: "🇵🇱", code: "pl"),
-                     ChooseLanguageModel(language: "Turkish", flag: "🇹🇷", code: "tr")]
     }
 }
 
@@ -117,5 +112,12 @@ extension ChooseLanguageViewController: UITableViewDataSource {
             return cell
         }
         return UITableViewCell()
+    }
+}
+
+// MARK: - ChooseLanguageShowTableView protocol
+extension ChooseLanguageViewController: ChooseLanguageShowTableView {
+    func loadDataInTableView(languages: [ChooseLanguageModel]) {
+        self.languages = languages
     }
 }

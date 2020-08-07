@@ -19,6 +19,6 @@ final class SettingsRouter: SettingsRouterLogic {
     weak var navigationController: UINavigationController?
     
     func routeToChooseLanguageScene() {
-        navigationController?.pushViewController(ChooseLanguageViewController(), animated: false)
+        navigationController?.pushViewController(ChooseLanguageConfigurator.assembly(), animated: false)
     }
 }
