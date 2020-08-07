@@ -49,7 +49,7 @@ final class WordListTableViewController: UIViewController, AddWordToSetDataStore
     // MARK: - Configuration
     
     @objc private func addTapped() {
-        let vc = AddWordViewController()
+        let vc = AddWordConfigurator.assembly()
         vc.delegete = self
         present(vc, animated: true, completion: nil)
     }

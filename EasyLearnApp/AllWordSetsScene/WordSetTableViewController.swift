@@ -35,11 +35,6 @@ final class WordSetTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let interactor = WordSetTableInteractor()
-        let presenter = WordSetTablePresenter()
-        self.interactor = interactor
-        interactor.presenter = presenter
-        presenter.viewController = self
         loadData()
         configureTableView()
     }

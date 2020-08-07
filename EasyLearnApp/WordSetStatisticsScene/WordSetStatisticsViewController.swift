@@ -44,14 +44,8 @@ final class WordSetStatisticsViewController: UIViewController, WordSetStatistics
         view.backgroundColor = Locals.backgroundColor
         title = Locals.title
         configureTableView()
-        
-        let interactor = WordSetStatisticsInteractor()
-        self.interactor = interactor
-        let presenter = WordSetStatisticsPresentor()
-        interactor.presenter = presenter
-        presenter.viewController = self
         if let setTitle = setTitle {
-            interactor.fetchWords(setName: setTitle)
+            interactor?.fetchWords(setName: setTitle)
         }
     }
     

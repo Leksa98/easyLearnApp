@@ -28,7 +28,7 @@ final class TabBarController: UITabBarController {
         tabBar.layer.borderWidth = Locals.tabBarBorderWidth
         
         let wordSetsViewController = UINavigationController()
-        wordSetsViewController.pushViewController(WordSetTableViewController(), animated: false)
+        wordSetsViewController.pushViewController(AllWordSetsConfigurator.assembly(), animated: false)
         wordSetsViewController.tabBarItem = UITabBarItem(title: "Sets", image: UIImage(named: "file"), tag: 0)
         
         let newWordSetViewController = UINavigationController()
@@ -41,7 +41,7 @@ final class TabBarController: UITabBarController {
         
         let settingsViewController = UINavigationController()
         settingsViewController.pushViewController(SettingsViewController(), animated: false)
-        settingsViewController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "gear"), tag: 2)
+        settingsViewController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "gear"), tag: 3)
         
         let tabBarList = [wordSetsViewController, newWordSetViewController, wordOfDayViewController, settingsViewController]
         viewControllers = tabBarList

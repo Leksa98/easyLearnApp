@@ -197,12 +197,7 @@ extension WordSetCardsViewController: UICollectionViewDelegateFlowLayout {
 extension WordSetCardsViewController: WordSetCardsShow {
     func loadSetName(name: String) {
         setName = name
-        let interactor = WordSetCardInteractor()
-        self.interactor = interactor
-        let presenter = WordSetCardPresenter()
-        interactor.presenter = presenter
-        presenter.viewController = self
-        interactor.fetchWordSet(setName: name)
+        interactor?.fetchWordSet(setName: name)
     }
     
     func loadWordSetCards(words: [WordModel]) {

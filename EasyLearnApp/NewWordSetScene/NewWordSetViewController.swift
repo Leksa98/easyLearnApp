@@ -63,6 +63,6 @@ final class NewWordSetViewController: UIViewController {
     }
     
     @objc private func defaultSetButtonTapped() {
-        navigationController?.pushViewController(DefaultWordSetViewController(), animated: false)
+        navigationController?.pushViewController(DefaultWordSetConfigurator.assembly(), animated: false)
     }
 }

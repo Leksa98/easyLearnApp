@@ -69,7 +69,7 @@ final class WordSetViewController: UIViewController {
     
     @objc private func cardsButtonTapped() {
         let delegete: WordSetCardsShow?
-        delegete = WordSetCardsViewController()
+        delegete = WordSetCardsConfigurator.assembly()
         navigationController?.pushViewController(delegete as! UIViewController, animated: false)
         if let title = title {
             delegete?.loadSetName(name: title)
@@ -78,7 +78,7 @@ final class WordSetViewController: UIViewController {
     
     @objc private func learnButtonTapped() {
         var delegate: WordSetLearnDataSource?
-        delegate = WordSetLearnViewController()
+        delegate = WordSetLearnConfigurator.assembly()
         if let title = title {
             delegate?.setName = title
         }
@@ -87,7 +87,7 @@ final class WordSetViewController: UIViewController {
     
     @objc private func statisticsButtonTapped() {
         var delegete: WordSetStatisticsDataSource?
-        delegete = WordSetStatisticsViewController()
+        delegete = WordSetStatisticsConfigurator.assembly()
         if let title = title {
             delegete?.setTitle = title
         }

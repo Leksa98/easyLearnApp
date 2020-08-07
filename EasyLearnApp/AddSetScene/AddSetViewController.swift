@@ -145,7 +145,7 @@ final class AddSetViewController: UIViewController, AddWordToSetDataStore {
     }
     
     @objc private func addWordButtonTapped() {
-        let vc = AddWordViewController()
+        let vc = AddWordConfigurator.assembly()
         vc.delegete = self
         present(vc, animated: true, completion: nil)
     }

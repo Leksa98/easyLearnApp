@@ -56,13 +56,8 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
         configureCollectionView()
         configureButtonStackView()
         
-        let interactor = WordSetLearnInteractor()
-        self.interactor = interactor
-        let presentor = WordSetLearnPresentor()
-        interactor.presenter = presentor
-        presentor.viewController = self
         if let setName = setName {
-            interactor.fetchWords(setName: setName)
+            interactor?.fetchWords(setName: setName)
         }
     }
     

@@ -41,13 +41,7 @@ final class DefaultWordSetViewController: UIViewController {
         view.backgroundColor = Locals.backgroundColor
         tabBarController?.tabBar.isHidden = true
         configureTableView()
-        
-        let interactor = DefaultWordSetInteractor()
-        self.interactor = interactor
-        let presenter = DefaultWordSetPresenter()
-        interactor.presenter = presenter
-        presenter.viewController = self
-        interactor.fetchDefaultSet()
+        interactor?.fetchDefaultSet()
     }
     
     private func configureTableView() {

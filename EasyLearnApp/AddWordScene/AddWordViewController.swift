@@ -52,14 +52,6 @@ final class AddWordViewController: UIViewController, UpdateTranslations, AddWord
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let interactor = AddWordInteractor()
-        let presenter = AddWordPresenter()
-        let router = AddWordRouter()
-        self.interactor = interactor
-        self.router = router
-        interactor.presenter = presenter
-        presenter.viewController = self
-        
         view.backgroundColor = Locals.backgroundColor
         configureSearchBar()
         configureTableView()
