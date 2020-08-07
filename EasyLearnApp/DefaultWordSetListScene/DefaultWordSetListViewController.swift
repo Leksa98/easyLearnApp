@@ -72,8 +72,10 @@ final class DefaultWordSetListViewController: UIViewController {
     }
 }
 
+// MARK: - UITableViewDelegate protocol
 extension DefaultWordSetListViewController: UITableViewDelegate { }
 
+// MARK: - UITableViewDataSource protocol
 extension DefaultWordSetListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -89,6 +91,7 @@ extension DefaultWordSetListViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - DefaultWordSetListDataSource protocol
 extension DefaultWordSetListViewController: DefaultWordSetListDataSource {
     func presentWordSet(name: String, emoji: String, words: [WordModel]) {
         self.words = words
@@ -97,6 +100,7 @@ extension DefaultWordSetListViewController: DefaultWordSetListDataSource {
     }
 }
 
+// MARK: - DefaultWordSetListSaveNotification protocol
 extension DefaultWordSetListViewController: DefaultWordSetListSaveNotification {
     func showSaveAlert(name: String, emoji: String) {
         let savedAlert = UIAlertController(title: "Saved", message: "Set \(name) \(emoji) was saved!", preferredStyle: .alert)
