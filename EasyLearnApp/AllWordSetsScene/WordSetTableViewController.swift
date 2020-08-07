@@ -25,6 +25,7 @@ final class WordSetTableViewController: UITableViewController {
     // MARK: - Properties
     
     var interactor: WordSetTableBusinessLogic?
+    var router: WordSetTableRouterLogic?
     private var studySet: [WordSetModel] = [] {
         didSet {
             tableView.reloadData()
@@ -80,9 +81,7 @@ final class WordSetTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let presenter: WordSetPresentationLogic = WordSetViewController()
-        navigationController?.pushViewController(presenter as! UIViewController, animated: true)
-        presenter.presentWordSet(wordSet: studySet[indexPath.row])
+        router?.routeToWordSetDetails(with: studySet[indexPath.row].nameValue)
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
