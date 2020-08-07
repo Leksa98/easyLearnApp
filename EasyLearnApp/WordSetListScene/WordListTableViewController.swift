@@ -12,7 +12,7 @@ protocol WordListTablePresentationLogic: class {
     func showWordList(words: [WordModel])
 }
 
-final class WordListTableViewController: UIViewController, AddWordToSetDataStore {
+final class WordListTableViewController: UIViewController {
     
     // MARK: - Constants
     
@@ -33,6 +33,7 @@ final class WordListTableViewController: UIViewController, AddWordToSetDataStore
     }
     private var setName: String?
     var interactor: WordSetListBusinessLogic?
+    var router: WordListTableRouterLogic?
     
     // MARK: - Lifecycle
     
@@ -47,9 +48,7 @@ final class WordListTableViewController: UIViewController, AddWordToSetDataStore
     // MARK: - Configuration
     
     @objc private func addTapped() {
-        let vc = AddWordConfigurator.assembly()
-        vc.delegete = self
-        present(vc, animated: true, completion: nil)
+        router?.routeToAddWordScene(viewController: self)
     }
     
     private func configureTable() {
@@ -66,13 +65,6 @@ final class WordListTableViewController: UIViewController, AddWordToSetDataStore
         tableView.dataSource = self
         tableView.separatorStyle = .none
         tableView.backgroundColor = Locals.backgroundColor
-    }
-    
-    func addWordToArray(word: WordModel) {
-        wordsInSet.append(word)
-        if let setName = setName {
-            interactor?.addWordToSet(setName: setName, word: word)
-        }
     }
 }
 
@@ -101,9 +93,19 @@ extension WordListTableViewController: UITableViewDelegate, UITableViewDataSourc
     }
 }
 
-//MARK: - WordListTablePresentationLogic
+//MARK: - WordListTablePresentationLogic protocol
 extension WordListTableViewController: WordListTablePresentationLogic {
     func showWordList(words: [WordModel]) {
         wordsInSet = words
+    }
+}
+
+//MARK: - AddWordToSetDataStore protocol
+extension WordListTableViewController: AddWordToSetDataStore {
+    func addWordToArray(word: WordModel) {
+        wordsInSet.append(word)
+        if let setName = setName {
+            interactor?.addWordToSet(setName: setName, word: word)
+        }
     }
 }
