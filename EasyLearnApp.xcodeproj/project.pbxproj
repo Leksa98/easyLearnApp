@@ -60,7 +60,7 @@
 		A8B2143F24D9641100A3CF7F /* WordSetStatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2143E24D9641100A3CF7F /* WordSetStatisticsViewController.swift */; };
 		A8B2144124D97CE900A3CF7F /* WordSetStatisticsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2144024D97CE900A3CF7F /* WordSetStatisticsInteractor.swift */; };
 		A8B2144324D97CF600A3CF7F /* WordSetStatisticsPresentor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2144224D97CF600A3CF7F /* WordSetStatisticsPresentor.swift */; };
-		A8B2144524D9822100A3CF7F /* WordStatisticsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2144424D9822100A3CF7F /* WordStatisticsSection.swift */; };
+		A8B2144524D9822100A3CF7F /* WordStatisticsSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2144424D9822100A3CF7F /* WordStatisticsSectionModel.swift */; };
 		A8B5221F24DB24B4008F02C7 /* DefaultWordSetListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B5221E24DB24B4008F02C7 /* DefaultWordSetListViewController.swift */; };
 		A8B5222424DC064D008F02C7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B5222324DC064D008F02C7 /* SettingsViewController.swift */; };
 		A8B5222624DC0DA3008F02C7 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B5222524DC0DA3008F02C7 /* SettingsTableViewCell.swift */; };
@@ -169,7 +169,7 @@
 		A8B2143E24D9641100A3CF7F /* WordSetStatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetStatisticsViewController.swift; sourceTree = "<group>"; };
 		A8B2144024D97CE900A3CF7F /* WordSetStatisticsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetStatisticsInteractor.swift; sourceTree = "<group>"; };
 		A8B2144224D97CF600A3CF7F /* WordSetStatisticsPresentor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetStatisticsPresentor.swift; sourceTree = "<group>"; };
-		A8B2144424D9822100A3CF7F /* WordStatisticsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordStatisticsSection.swift; sourceTree = "<group>"; };
+		A8B2144424D9822100A3CF7F /* WordStatisticsSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordStatisticsSectionModel.swift; sourceTree = "<group>"; };
 		A8B5221E24DB24B4008F02C7 /* DefaultWordSetListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWordSetListViewController.swift; sourceTree = "<group>"; };
 		A8B5222324DC064D008F02C7 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A8B5222524DC0DA3008F02C7 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
@@ -488,7 +488,7 @@
 				A8B2143E24D9641100A3CF7F /* WordSetStatisticsViewController.swift */,
 				A8B2144024D97CE900A3CF7F /* WordSetStatisticsInteractor.swift */,
 				A8B2144224D97CF600A3CF7F /* WordSetStatisticsPresentor.swift */,
-				A8B2144424D9822100A3CF7F /* WordStatisticsSection.swift */,
+				A8B2144424D9822100A3CF7F /* WordStatisticsSectionModel.swift */,
 				A8BF981724DD4EBD00755F7E /* WordSetStatisticsConfigurator.swift */,
 			);
 			path = WordSetStatisticsScene;
@@ -713,7 +713,7 @@
 				A8580B2124DB16AF0099B00F /* DefaultWordSetPresenter.swift in Sources */,
 				A8BF982024DD5E6E00755F7E /* WordSetRouter.swift in Sources */,
 				A8ABBCAB24B509B0008081FB /* URLParameterEncoder.swift in Sources */,
-				A8B2144524D9822100A3CF7F /* WordStatisticsSection.swift in Sources */,
+				A8B2144524D9822100A3CF7F /* WordStatisticsSectionModel.swift in Sources */,
 				A88B1A0D24D2F1D6008ADA7F /* WordSetLearnViewController.swift in Sources */,
 				A85A0A2B24BDA3C30044CFBA /* DataHandler.swift in Sources */,
 				A84B2D4024AB4BD00022F029 /* WordSetTableViewCell.swift in Sources */,

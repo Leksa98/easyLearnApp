@@ -13,7 +13,7 @@ protocol WordSetStatisticsDataSource {
 }
 
 protocol WordSetStatisticsShow: class {
-    func showStatistics(sections: [WordStatisticsSection])
+    func showStatistics(sections: [WordStatisticsSectionModel])
 }
 
 final class WordSetStatisticsViewController: UIViewController, WordSetStatisticsDataSource {
@@ -29,7 +29,7 @@ final class WordSetStatisticsViewController: UIViewController, WordSetStatistics
     // MARK: - Properties
     
     private var tableView = UITableView(frame: .zero, style: .grouped)
-    private var sections: [WordStatisticsSection] = [] {
+    private var sections: [WordStatisticsSectionModel] = [] {
         didSet {
             tableView.reloadData()
         }
@@ -97,7 +97,7 @@ extension WordSetStatisticsViewController: UITableViewDataSource {
 
 // MARK: - WordSetStatisticsShow protocol
 extension WordSetStatisticsViewController: WordSetStatisticsShow {
-    func showStatistics(sections: [WordStatisticsSection]) {
+    func showStatistics(sections: [WordStatisticsSectionModel]) {
         self.sections = sections
     }
 }

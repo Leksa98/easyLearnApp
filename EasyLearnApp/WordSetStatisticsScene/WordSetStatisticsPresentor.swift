@@ -15,9 +15,9 @@ protocol WordSetStatisticsPresentationLogic {
 final class WordSetStatisticsPresentor: WordSetStatisticsPresentationLogic {
     
     weak var viewController: WordSetStatisticsShow?
-    private var sections = [WordStatisticsSection(name: "Know well🏆", words: []),
-                            WordStatisticsSection(name: "In progress🚀", words: []),
-                            WordStatisticsSection(name: "Don't know‼️", words: [])]
+    private var sections = [WordStatisticsSectionModel(name: "Know well🏆", words: []),
+                            WordStatisticsSectionModel(name: "In progress🚀", words: []),
+                            WordStatisticsSectionModel(name: "Don't know‼️", words: [])]
     
     func prepareForPresent(wordDictionary: [WordModel]) {
         var wordsForSection: [WordModel] = []
