@@ -12,7 +12,11 @@ protocol AddWordToSetDataStore {
     func addWordToArray(word: WordModel)
 }
 
-final class AddSetViewController: UIViewController, AddWordToSetDataStore {
+protocol AddSetSavedNotification: class {
+    func showSavedAlert(name: String, emoji: String)
+}
+
+final class AddSetViewController: UIViewController {
 
     // MARK: - Constants
     
@@ -36,6 +40,8 @@ final class AddSetViewController: UIViewController, AddWordToSetDataStore {
             addedWordTableView.reloadData()
         }
     }
+    var interactor: AddSetBusinessLogic?
+    var router: AddSetRouterLogic?
     
     // MARK: - Lifecycle
 
@@ -50,31 +56,13 @@ final class AddSetViewController: UIViewController, AddWordToSetDataStore {
         setAddButton()
     }
     
-    // MARK: - Configuration
+    // MARK: - Setup UI elements
     
     private func configureView() {
         title = "Add new set"
         view.backgroundColor = Locals.backgroundColor
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveButtonTapped))
         navigationItem.rightBarButtonItem?.tintColor = Locals.buttonColor
-    }
-    
-    @objc private func saveButtonTapped() {
-        if let setName = nameView.enteredInfo, !setName.isEmpty,
-            let setEmoji = emojiView.enteredInfo, !setEmoji.isEmpty, !addedWords.isEmpty {
-            let dataHandler = DataHandler()
-            dataHandler.addWordSetIntoCoreData(name: setName, emoji: setEmoji)
-            addedWords.forEach { word in
-                dataHandler.addWordtoSet(name: setName, word: word.word, translation: word.translation)
-            }
-            let savedAlert = UIAlertController(title: "Saved", message: "Set \(setName) \(setEmoji) was saved!", preferredStyle: .alert)
-            savedAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(savedAlert, animated: true) {
-                self.addedWords = []
-                self.nameView.emptyEnteredInfo()
-                self.emojiView.emptyEnteredInfo()
-            }
-        }
     }
     
     private func setAddButton() {
@@ -144,19 +132,25 @@ final class AddSetViewController: UIViewController, AddWordToSetDataStore {
         ])
     }
     
+    // MARK: - Button actions
+    
     @objc private func addWordButtonTapped() {
-        let vc = AddWordConfigurator.assembly()
-        vc.delegete = self
-        present(vc, animated: true, completion: nil)
+        router?.routeToAddWordScene(viewController: self)
     }
     
-    func addWordToArray(word: WordModel) {
-        addedWords.append(word)
+    @objc private func saveButtonTapped() {
+        if let setName = nameView.enteredInfo, !setName.isEmpty,
+            let setEmoji = emojiView.enteredInfo, !setEmoji.isEmpty, !addedWords.isEmpty {
+            interactor?.saveWordSetInCoreData(name: setName, emoji: setEmoji, words: addedWords)
+        }
     }
 }
 
-// MARK: - UITableViewDelegate & UITableViewDataSource
-extension AddSetViewController: UITableViewDelegate, UITableViewDataSource {
+// MARK: - UITableViewDelegate protocol
+extension AddSetViewController: UITableViewDelegate { }
+
+// MARK: - UITableViewDataSource protocol
+extension AddSetViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -172,5 +166,25 @@ extension AddSetViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
         return UITableViewCell()
+    }
+}
+
+// MARK: - AddWordToSetDataStore protocol
+extension AddSetViewController: AddWordToSetDataStore {
+    func addWordToArray(word: WordModel) {
+        addedWords.append(word)
+    }
+}
+
+// MARK: - AddSetSavedNotification protocol
+extension AddSetViewController: AddSetSavedNotification {
+    func showSavedAlert(name: String, emoji: String) {
+        let savedAlert = UIAlertController(title: "Saved", message: "Set \(name) \(emoji) was saved!", preferredStyle: .alert)
+        savedAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(savedAlert, animated: true) {
+            self.addedWords = []
+            self.nameView.emptyEnteredInfo()
+            self.emojiView.emptyEnteredInfo()
+        }
     }
 }

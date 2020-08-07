@@ -24,6 +24,8 @@ final class NewWordSetRouter: NewWordSetRouterLogic {
     }
     
     func routeToAddSetScene() {
-        navigationController?.pushViewController(AddSetViewController(), animated: false)
+        let vc = AddSetViewController()
+        navigationController?.pushViewController(vc, animated: false)
+        AddSetConfiguration.assembly(viewController: vc)
     }
 }
