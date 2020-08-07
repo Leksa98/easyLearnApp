@@ -79,6 +79,8 @@
 		A8BF982424DD6B3D00755F7E /* WordSetListConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BF982324DD6B3D00755F7E /* WordSetListConfigurator.swift */; };
 		A8BF982624DD6D1700755F7E /* WordSetListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BF982524DD6D1700755F7E /* WordSetListPresenter.swift */; };
 		A8BF982824DD6F8A00755F7E /* WordListTableRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BF982724DD6F8A00755F7E /* WordListTableRouter.swift */; };
+		A8BF982A24DD74D100755F7E /* NewWordSetRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BF982924DD74D100755F7E /* NewWordSetRouter.swift */; };
+		A8BF982C24DD75A900755F7E /* NewWordSetConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BF982B24DD75A900755F7E /* NewWordSetConfiguration.swift */; };
 		A8F0D57924C249440004C609 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F0D57824C249440004C609 /* ViewControllerExtension.swift */; };
 		A8F0D57B24C249880004C609 /* TextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F0D57A24C249880004C609 /* TextFieldExtension.swift */; };
 		A8F0D57D24C249CB0004C609 /* SearchBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F0D57C24C249CB0004C609 /* SearchBarExtension.swift */; };
@@ -188,6 +190,8 @@
 		A8BF982324DD6B3D00755F7E /* WordSetListConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetListConfigurator.swift; sourceTree = "<group>"; };
 		A8BF982524DD6D1700755F7E /* WordSetListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetListPresenter.swift; sourceTree = "<group>"; };
 		A8BF982724DD6F8A00755F7E /* WordListTableRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListTableRouter.swift; sourceTree = "<group>"; };
+		A8BF982924DD74D100755F7E /* NewWordSetRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWordSetRouter.swift; sourceTree = "<group>"; };
+		A8BF982B24DD75A900755F7E /* NewWordSetConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWordSetConfiguration.swift; sourceTree = "<group>"; };
 		A8F0D57824C249440004C609 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
 		A8F0D57A24C249880004C609 /* TextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExtension.swift; sourceTree = "<group>"; };
 		A8F0D57C24C249CB0004C609 /* SearchBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarExtension.swift; sourceTree = "<group>"; };
@@ -352,6 +356,8 @@
 			isa = PBXGroup;
 			children = (
 				A8580B1824DAF6D70099B00F /* NewWordSetViewController.swift */,
+				A8BF982924DD74D100755F7E /* NewWordSetRouter.swift */,
+				A8BF982B24DD75A900755F7E /* NewWordSetConfiguration.swift */,
 			);
 			path = NewWordSetScene;
 			sourceTree = "<group>";
@@ -692,6 +698,7 @@
 				A88B1A1124D7EA17008ADA7F /* WordSetLearnInteractor.swift in Sources */,
 				A8ABBCB124B50CAD008081FB /* Router.swift in Sources */,
 				A8580B1324DAF0070099B00F /* DefaultWordSetModel.swift in Sources */,
+				A8BF982C24DD75A900755F7E /* NewWordSetConfiguration.swift in Sources */,
 				A8BF981A24DD502400755F7E /* DefaultWordSetConfigurator.swift in Sources */,
 				A8F0D58524C4A3FC0004C609 /* AddSetTableViewCell.swift in Sources */,
 				A8580B1524DAF20D0099B00F /* DefaultWordSetModelApi.swift in Sources */,
@@ -744,6 +751,7 @@
 				A80D8C7E24C09D260056F7D9 /* AddWordTableViewCell.swift in Sources */,
 				A8BF981E24DD56A400755F7E /* WordSetTableRouter.swift in Sources */,
 				A81FF5C624AA3D27007068F9 /* SceneDelegate.swift in Sources */,
+				A8BF982A24DD74D100755F7E /* NewWordSetRouter.swift in Sources */,
 				A8580B1F24DB161C0099B00F /* DefaultWordSetInteractor.swift in Sources */,
 				A87EDF2324C8769C00D4F9CC /* WordSetTableInteractor.swift in Sources */,
 				A8ABBCAF24B50BEE008081FB /* NetworkRouter.swift in Sources */,

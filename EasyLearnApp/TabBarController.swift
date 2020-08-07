@@ -32,9 +32,10 @@ final class TabBarController: UITabBarController {
         AllWordSetsConfigurator.assembly(viewController: wordSetsViewController)
         wordSetsNavigationController.tabBarItem = UITabBarItem(title: "Sets", image: UIImage(named: "file"), tag: 0)
         
-        let newWordSetViewController = UINavigationController()
-        newWordSetViewController.pushViewController(NewWordSetViewController(), animated: false)
-        newWordSetViewController.tabBarItem = UITabBarItem(title: "Add set", image: UIImage(named: "plus-sign"), tag: 1)
+        let newWordSetViewController = NewWordSetViewController()
+        let newWordSetNavigationController = UINavigationController(rootViewController: newWordSetViewController)
+        NewWordSetConfiguration.assembly(viewController: newWordSetViewController)
+        newWordSetNavigationController.tabBarItem = UITabBarItem(title: "Add set", image: UIImage(named: "plus-sign"), tag: 1)
         
         let wordOfDayViewController = UINavigationController()
         wordOfDayViewController.view.backgroundColor = .orange
@@ -44,7 +45,7 @@ final class TabBarController: UITabBarController {
         settingsViewController.pushViewController(SettingsViewController(), animated: false)
         settingsViewController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "gear"), tag: 3)
         
-        let tabBarList = [wordSetsNavigationController, newWordSetViewController, wordOfDayViewController, settingsViewController]
+        let tabBarList = [wordSetsNavigationController, newWordSetNavigationController, wordOfDayViewController, settingsViewController]
         viewControllers = tabBarList
     }
 }
