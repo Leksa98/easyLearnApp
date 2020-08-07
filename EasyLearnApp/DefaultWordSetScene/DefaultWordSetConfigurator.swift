@@ -10,16 +10,16 @@ import UIKit
 
 final class DefaultWordSetConfigurator {
     
-    static func assembly() -> DefaultWordSetViewController {
+    static func assembly(viewController: DefaultWordSetViewController) {
         
-        let viewController = DefaultWordSetViewController()
         let presenter = DefaultWordSetPresenter()
         let interactor = DefaultWordSetInteractor()
+        let router = DefaultWordSetRouter()
         
         viewController.interactor = interactor
+        viewController.router = router
+        router.navigationController = viewController.navigationController
         interactor.presenter = presenter
         presenter.viewController = viewController
-        
-        return viewController
     }
 }

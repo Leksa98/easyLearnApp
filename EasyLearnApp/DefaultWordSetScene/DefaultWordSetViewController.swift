@@ -32,6 +32,7 @@ final class DefaultWordSetViewController: UIViewController {
         }
     }
     var interactor: DefaultWordSetBusinessLogic?
+    var router: DefaultWordSetRouterLogic?
     
     // MARK: - Life cycle
     
@@ -65,12 +66,10 @@ final class DefaultWordSetViewController: UIViewController {
 extension DefaultWordSetViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let delegete: DefaultWordSetListDataSource = DefaultWordSetListViewController()
         let words = defaultSets[indexPath.row].wordsValue
         let name = defaultSets[indexPath.row].nameValue
         let emoji = defaultSets[indexPath.row].emojiValue
-        navigationController?.pushViewController(delegete as! UIViewController, animated: true)
-        delegete.presentWordSet(name: name, emoji: emoji, words: words)
+        router?.routeToDefaultWordSetList(name: name, emoji: emoji, words: words)
     }
 }
 
@@ -102,4 +101,3 @@ extension DefaultWordSetViewController : DefaultWordSetShowLogic {
         defaultSets = sets
     }
 }
-

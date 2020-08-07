@@ -18,7 +18,9 @@ final class NewWordSetRouter: NewWordSetRouterLogic {
     weak var navigationController: UINavigationController?
     
     func routeToDefaultWordSetScene() {
-        navigationController?.pushViewController(DefaultWordSetConfigurator.assembly(), animated: false)
+        let vc = DefaultWordSetViewController()
+        navigationController?.pushViewController(vc, animated: false)
+        DefaultWordSetConfigurator.assembly(viewController: vc)
     }
     
     func routeToAddSetScene() {
