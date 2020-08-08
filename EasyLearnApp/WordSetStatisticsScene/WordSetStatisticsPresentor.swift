@@ -9,7 +9,7 @@
 import Foundation
 
 protocol WordSetStatisticsPresentationLogic {
-    func prepareForPresent(wordDictionary: [WordModel])
+    func prepareForPresent(response: WordSetStatisticsModel.FetchWordSet.Response)
 }
 
 final class WordSetStatisticsPresentor: WordSetStatisticsPresentationLogic {
@@ -19,16 +19,16 @@ final class WordSetStatisticsPresentor: WordSetStatisticsPresentationLogic {
                             WordStatisticsSectionModel(name: "In progress🚀", words: []),
                             WordStatisticsSectionModel(name: "Don't know‼️", words: [])]
     
-    func prepareForPresent(wordDictionary: [WordModel]) {
+    func prepareForPresent(response: WordSetStatisticsModel.FetchWordSet.Response) {
         var wordsForSection: [WordModel] = []
         for (index,item) in sections.enumerated() {
             switch index {
             case 2:
-                wordsForSection = wordDictionary.filter{ $0.progress <= 0.0 }
+                wordsForSection = response.wordsArray.filter{ $0.progress <= 0.0 }
             case 1:
-                wordsForSection = wordDictionary.filter{ $0.progress > 0.0 && $0.progress < 1.0 }
+                wordsForSection = response.wordsArray.filter{ $0.progress > 0.0 && $0.progress < 1.0 }
             case 0:
-                wordsForSection = wordDictionary.filter{ $0.progress >= 1.0 }
+                wordsForSection = response.wordsArray.filter{ $0.progress >= 1.0 }
             default:
                 print("Error in WordSetStatisticsPresentor")
             }
@@ -36,6 +36,6 @@ final class WordSetStatisticsPresentor: WordSetStatisticsPresentationLogic {
                 item.appendWord(word: word)
             }
         }
-        viewController?.showStatistics(sections: sections)
+        viewController?.showStatistics(viewModel: WordSetStatisticsModel.FetchWordSet.ViewModel(sections: sections))
     }
 }

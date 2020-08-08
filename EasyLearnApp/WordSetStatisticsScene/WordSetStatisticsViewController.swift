@@ -13,7 +13,7 @@ protocol WordSetStatisticsDataSource {
 }
 
 protocol WordSetStatisticsShow: class {
-    func showStatistics(sections: [WordStatisticsSectionModel])
+    func showStatistics(viewModel: WordSetStatisticsModel.FetchWordSet.ViewModel)
 }
 
 final class WordSetStatisticsViewController: UIViewController, WordSetStatisticsDataSource {
@@ -45,7 +45,7 @@ final class WordSetStatisticsViewController: UIViewController, WordSetStatistics
         title = Locals.title
         configureTableView()
         if let setTitle = setTitle {
-            interactor?.fetchWords(setName: setTitle)
+            interactor?.fetchWords(request: WordSetStatisticsModel.FetchWordSet.Request(setName: setTitle))
         }
     }
     
@@ -97,7 +97,7 @@ extension WordSetStatisticsViewController: UITableViewDataSource {
 
 // MARK: - WordSetStatisticsShow protocol
 extension WordSetStatisticsViewController: WordSetStatisticsShow {
-    func showStatistics(sections: [WordStatisticsSectionModel]) {
-        self.sections = sections
+    func showStatistics(viewModel: WordSetStatisticsModel.FetchWordSet.ViewModel) {
+        self.sections = viewModel.sections
     }
 }
