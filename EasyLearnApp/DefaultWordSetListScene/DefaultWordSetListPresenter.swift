@@ -9,14 +9,14 @@
 import Foundation
 
 protocol DefaultWordSetListPresentationLogic {
-    func prepareForPresent(name: String, emoji: String)
+    func prepareForPresent(response: DefaultWordSetListModel.DownloadWordSet.Response)
 }
 
 final class DefaultWordSetListPresenter: DefaultWordSetListPresentationLogic {
     
     weak var viewController: DefaultWordSetListSaveNotification?
     
-    func prepareForPresent(name: String, emoji: String) {
-        viewController?.showSaveAlert(name: name, emoji: emoji)
+    func prepareForPresent(response: DefaultWordSetListModel.DownloadWordSet.Response) {
+        viewController?.showSaveAlert(viewModel: DefaultWordSetListModel.DownloadWordSet.ViewModel(name: response.name, emoji: response.emoji))
     }
 }

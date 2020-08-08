@@ -13,7 +13,7 @@ protocol DefaultWordSetListDataSource: class {
 }
 
 protocol DefaultWordSetListSaveNotification: class {
-    func showSaveAlert(name: String, emoji: String)
+    func showSaveAlert(viewModel: DefaultWordSetListModel.DownloadWordSet.ViewModel)
 }
 
 final class DefaultWordSetListViewController: UIViewController {
@@ -67,7 +67,7 @@ final class DefaultWordSetListViewController: UIViewController {
     
     @objc private func downloadButtonTapped() {
         if let name = setName, let emoji = setEmoji {
-            interactor?.downloadWordSet(name: name, emoji: emoji, words: words)
+            interactor?.downloadWordSet(request: DefaultWordSetListModel.DownloadWordSet.Request(name: name, emoji: emoji, words: words))
         }
     }
 }
@@ -102,8 +102,8 @@ extension DefaultWordSetListViewController: DefaultWordSetListDataSource {
 
 // MARK: - DefaultWordSetListSaveNotification protocol
 extension DefaultWordSetListViewController: DefaultWordSetListSaveNotification {
-    func showSaveAlert(name: String, emoji: String) {
-        let savedAlert = UIAlertController(title: "Saved", message: "Set \(name) \(emoji) was saved!", preferredStyle: .alert)
+    func showSaveAlert(viewModel: DefaultWordSetListModel.DownloadWordSet.ViewModel) {
+        let savedAlert = UIAlertController(title: "Saved", message: "Set \(viewModel.name) \(viewModel.emoji) was saved!", preferredStyle: .alert)
         savedAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(savedAlert, animated: true, completion: nil)
     }

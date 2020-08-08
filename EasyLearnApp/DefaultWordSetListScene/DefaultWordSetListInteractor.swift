@@ -9,19 +9,19 @@
 import Foundation
 
 protocol DefaultWordSetListBusinessLogic {
-    func downloadWordSet(name: String, emoji: String, words: [WordModel])
+    func downloadWordSet(request: DefaultWordSetListModel.DownloadWordSet.Request)
 }
 
 final class DefaultWordSetListInteractor: DefaultWordSetListBusinessLogic {
     
     var presenter: DefaultWordSetListPresentationLogic?
     
-    func downloadWordSet(name: String, emoji: String, words: [WordModel]) {
+    func downloadWordSet(request: DefaultWordSetListModel.DownloadWordSet.Request) {
         let dataHandler = DataHandler()
-        dataHandler.addWordSetIntoCoreData(name: name, emoji: emoji)
-        for word in words {
-            dataHandler.addWordtoSet(name: name, word: word.word, translation: word.translation)
+        dataHandler.addWordSetIntoCoreData(name: request.name, emoji: request.emoji)
+        for word in request.words {
+            dataHandler.addWordtoSet(name: request.name, word: word.word, translation: word.translation)
         }
-        presenter?.prepareForPresent(name: name, emoji: emoji)
+        presenter?.prepareForPresent(response: DefaultWordSetListModel.DownloadWordSet.Response(name: request.name, emoji: request.emoji))
     }
 }
