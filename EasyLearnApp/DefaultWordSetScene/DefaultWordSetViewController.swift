@@ -9,7 +9,7 @@
 import UIKit
 
 protocol DefaultWordSetShowLogic: class {
-    func showDefaultSets(sets: [WordSetModel])
+    func showDefaultSets(viewModel: DefaultWordSetModel.FetchDefaultSets.ViewModel)
 }
 
 final class DefaultWordSetViewController: UIViewController {
@@ -42,7 +42,7 @@ final class DefaultWordSetViewController: UIViewController {
         view.backgroundColor = Locals.backgroundColor
         tabBarController?.tabBar.isHidden = true
         configureTableView()
-        interactor?.fetchDefaultSet()
+        interactor?.fetchDefaultSet(request: DefaultWordSetModel.FetchDefaultSets.Request())
     }
     
     private func configureTableView() {
@@ -97,7 +97,7 @@ extension DefaultWordSetViewController: UITableViewDataSource {
 }
 
 extension DefaultWordSetViewController : DefaultWordSetShowLogic {
-    func showDefaultSets(sets: [WordSetModel]) {
-        defaultSets = sets
+    func showDefaultSets(viewModel: DefaultWordSetModel.FetchDefaultSets.ViewModel) {
+        defaultSets = viewModel.sets
     }
 }

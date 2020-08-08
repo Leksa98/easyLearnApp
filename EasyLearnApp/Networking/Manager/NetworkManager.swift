@@ -76,7 +76,7 @@ class NetworkManager {
         }
     }
     
-    func fetchDefaultWordSets(completion: @escaping (_ translation: DefaultWordSetModel?, _ error: String?) -> ()) {
+    func fetchDefaultWordSets(completion: @escaping (_ translation: DefaultWordSet?, _ error: String?) -> ()) {
         defaultSetsRouter.request(.fetchDefaultWordSet) { data, response, error in
             if error != nil {
                 completion(nil, "Error")
@@ -91,7 +91,7 @@ class NetworkManager {
                         return
                     }
                     do {
-                        let apiResponse = try JSONDecoder().decode(DefaultWordSetModel.self, from: responseData)
+                        let apiResponse = try JSONDecoder().decode(DefaultWordSet.self, from: responseData)
                         completion(apiResponse, nil)
                     } catch {
                         completion(nil, NetworkResponse.unableToDecode.rawValue)
