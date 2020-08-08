@@ -8,11 +8,11 @@
 
 import UIKit
 
-final class WordSetCardsConfigurator {
+final class WordSetCardConfigurator {
     
-    static func assembly() -> WordSetCardsViewController {
+    static func assembly() -> WordSetCardViewController {
         
-        let viewController = WordSetCardsViewController()
+        let viewController = WordSetCardViewController()
         let presenter = WordSetCardPresenter()
         let interactor = WordSetCardInteractor()
         

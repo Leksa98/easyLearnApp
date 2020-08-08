@@ -28,9 +28,9 @@ final class WordSetRouter: WordSetRouterLogic {
     }
     
     func routeToWordSetCards(with title: String) {
-        let vc = WordSetCardsConfigurator.assembly()
+        let vc = WordSetCardConfigurator.assembly()
         vc.title = title
-        vc.interactor?.fetchWordSet(setName: title)
+        vc.interactor?.fetchWordSet(request: WordSetCardModel.FetchWordSet.Request(setName: title))
         navigationController?.pushViewController(vc, animated: true)
     }
     

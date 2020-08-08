@@ -9,11 +9,10 @@
 import UIKit
 
 protocol WordSetCardsShow: class {
-    func loadWordSetCards(words: [WordModel])
-    func loadSetName(name: String)
+    func loadWordSetCards(viewModel: WordSetCardModel.FetchWordSet.ViewModel)
 }
 
-final class WordSetCardsViewController: UIViewController {
+final class WordSetCardViewController: UIViewController {
     
     // MARK: - Constants
     
@@ -157,10 +156,10 @@ final class WordSetCardsViewController: UIViewController {
 }
 
 // MARK: - UICollectionViewDelegate protocol
-extension WordSetCardsViewController: UICollectionViewDelegate { }
+extension WordSetCardViewController: UICollectionViewDelegate { }
 
 // MARK: - UICollectionViewDataSource protocol
-extension WordSetCardsViewController: UICollectionViewDataSource {
+extension WordSetCardViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return wordSetArray.count
@@ -176,7 +175,7 @@ extension WordSetCardsViewController: UICollectionViewDataSource {
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout protocol
-extension WordSetCardsViewController: UICollectionViewDelegateFlowLayout {
+extension WordSetCardViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.size.width - 20, height: collectionView.frame.size.width - 20)
@@ -198,15 +197,10 @@ extension WordSetCardsViewController: UICollectionViewDelegateFlowLayout {
 }
 
 // MARK: - WordSetCardsShow protocol
-extension WordSetCardsViewController: WordSetCardsShow {
+extension WordSetCardViewController: WordSetCardsShow {
     
-    func loadSetName(name: String) {
-        setName = name
-        interactor?.fetchWordSet(setName: name)
-    }
-    
-    func loadWordSetCards(words: [WordModel]) {
-        wordSetArray = words
+    func loadWordSetCards(viewModel: WordSetCardModel.FetchWordSet.ViewModel) {
+        wordSetArray = viewModel.wordsArray
     }
 }
 
