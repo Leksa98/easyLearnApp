@@ -12,7 +12,7 @@ protocol AllWordSetTableShow: class {
     func showWordSets(sets: [WordSetModel])
 }
 
-final class WordSetTableViewController: UITableViewController {
+final class AllWordSetTableViewController: UITableViewController {
     
     // MARK: - Constants
     
@@ -24,8 +24,8 @@ final class WordSetTableViewController: UITableViewController {
     
     // MARK: - Properties
     
-    var interactor: WordSetTableBusinessLogic?
-    var router: WordSetTableRouterLogic?
+    var interactor: AllWordSetTableBusinessLogic?
+    var router: AllWordSetTableRouterLogic?
     private var studySet: [WordSetModel] = [] {
         didSet {
             tableView.reloadData()
@@ -36,29 +36,25 @@ final class WordSetTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadData()
         configureTableView()
+        interactor?.fetchStudySets()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        loadData()
+        interactor?.fetchStudySets()
         tabBarController?.tabBar.isHidden = false
     }
     
-    // MARK: - Configurations
+    // MARK: - Setup UI elements
     
     private func configureTableView() {
         view.backgroundColor = Locals.backgroundColor
         navigationItem.title = "My sets"
         navigationController?.navigationBar.prefersLargeTitles = true
-        tableView.register(WordSetTableViewCell.self, forCellReuseIdentifier: Locals.cellId)
+        tableView.register(AllWordSetTableViewCell.self, forCellReuseIdentifier: Locals.cellId)
         navigationItem.rightBarButtonItem = self.editButtonItem
         navigationController?.navigationBar.tintColor = Locals.buttonColor
         tableView.separatorStyle = .none
-    }
-    
-    private func loadData() {
-        interactor?.fetchStudySets()
     }
     
     // MARK: - Table view data source
@@ -72,7 +68,7 @@ final class WordSetTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: Locals.cellId, for: indexPath) as? WordSetTableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: Locals.cellId, for: indexPath) as? AllWordSetTableViewCell {
             cell.viewModel = studySet[indexPath.row]
             return cell
         }
@@ -94,7 +90,7 @@ final class WordSetTableViewController: UITableViewController {
 }
 
 // MARK: - AllWordSetTableShow protocol
-extension WordSetTableViewController: AllWordSetTableShow {
+extension AllWordSetTableViewController: AllWordSetTableShow {
     func showWordSets(sets: [WordSetModel]) {
         self.studySet = sets
     }

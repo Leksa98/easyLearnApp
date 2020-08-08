@@ -69,7 +69,7 @@ final class WordSetCardsViewController: UIViewController {
         configurePrevCardButton()
     }
     
-    // MARK: - Configuration
+    // MARK: - Setup UI elements
     
     private func configureCollectionView() {
         collectionView.isScrollEnabled = false
@@ -122,6 +122,8 @@ final class WordSetCardsViewController: UIViewController {
         prevCardButton.isHidden = true
     }
     
+    // MARK: - Button actions
+    
     @objc private func nextCardButtonTapped() {
         prevCardButton.isHidden = false
         let scrollCollectionViewWidth = wordSetArray.count * (Int(collectionView.frame.size.width) + 80)
@@ -154,11 +156,12 @@ final class WordSetCardsViewController: UIViewController {
     }
 }
 
-// MARK: - UICollectionViewDelegate
+// MARK: - UICollectionViewDelegate protocol
 extension WordSetCardsViewController: UICollectionViewDelegate { }
 
-// MARK: - UICollectionViewDataSource
+// MARK: - UICollectionViewDataSource protocol
 extension WordSetCardsViewController: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return wordSetArray.count
     }
@@ -172,7 +175,7 @@ extension WordSetCardsViewController: UICollectionViewDataSource {
     }
 }
 
-// MARK: - UICollectionViewDelegateFlowLayout
+// MARK: - UICollectionViewDelegateFlowLayout protocol
 extension WordSetCardsViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -194,7 +197,9 @@ extension WordSetCardsViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+// MARK: - WordSetCardsShow protocol
 extension WordSetCardsViewController: WordSetCardsShow {
+    
     func loadSetName(name: String) {
         setName = name
         interactor?.fetchWordSet(setName: name)

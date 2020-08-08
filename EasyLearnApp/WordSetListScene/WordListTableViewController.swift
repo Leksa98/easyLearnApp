@@ -45,11 +45,7 @@ final class WordListTableViewController: UIViewController {
         configureTable()
     }
     
-    // MARK: - Configuration
-    
-    @objc private func addTapped() {
-        router?.routeToAddWordScene(viewController: self)
-    }
+    // MARK: - Setup UI elements
     
     private func configureTable() {
         view.addSubview(tableView)
@@ -65,6 +61,12 @@ final class WordListTableViewController: UIViewController {
         tableView.dataSource = self
         tableView.separatorStyle = .none
         tableView.backgroundColor = Locals.backgroundColor
+    }
+    
+    // MARK: - Button actions
+    
+    @objc private func addTapped() {
+        router?.routeToAddWordScene(viewController: self)
     }
 }
 

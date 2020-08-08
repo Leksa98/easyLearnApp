@@ -10,11 +10,11 @@ import UIKit
 
 final class AllWordSetsConfigurator {
     
-    static func assembly(viewController: WordSetTableViewController) {
+    static func assembly(viewController: AllWordSetTableViewController) {
         
-        let presenter = WordSetTablePresenter()
-        let interactor = WordSetTableInteractor()
-        let router = WordSetTableRouter()
+        let presenter = AllWordSetTablePresenter()
+        let interactor = AllWordSetTableInteractor()
+        let router = AllWordSetTableRouter()
         
         viewController.interactor = interactor
         interactor.presenter = presenter

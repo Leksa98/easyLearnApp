@@ -56,7 +56,7 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
         configureButtonStackView()
     }
     
-    // MARK: - Configuration
+    // MARK: - Setup UI elements
     
     private func configureCollectionView() {
         collectionView.isScrollEnabled = false
@@ -97,6 +97,8 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
         ])
     }
     
+    // MARK: - Button actions
+    
     @objc private func checkButtonTapped() {
         if let currentCellIndexPath = getCurrentCellIndexPath(), let cell = collectionView.cellForItem(at: currentCellIndexPath) as? WordSetLearnCollectionViewCell {
             if cell.isWrongWordTyped() {
@@ -132,6 +134,8 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
         }
     }
     
+    // MARK: - Scrolling Collection View
+    
     private func scrollCollectionViewToNextExercise() {
         let scrollCollectionViewWidth = wordsToLearn.count * (Int(collectionView.frame.size.width) + 80)
         if  Int(collectionView.contentOffset.x + collectionView.frame.size.width) + 80 < scrollCollectionViewWidth {
@@ -141,7 +145,7 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
         } else {
             let finishedExerciseAlert = UIAlertController(title: "Congratulations 🎉🎉🎉", message: "You've just finished exercise!", preferredStyle: .alert)
             finishedExerciseAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-                self.navigationController?.popViewController(animated: true)
+                self.dismissViewController()
             }))
             present(finishedExerciseAlert, animated: true)
         }

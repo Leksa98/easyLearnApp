@@ -34,7 +34,7 @@ final class WordSetViewController: UIViewController {
         setButtons()
     }
     
-    // MARK: - Configurations
+    // MARK: - Setup UI elements
     
     private func setButtons() {
         stackButton.addArrangedSubview(listButton)
@@ -57,6 +57,8 @@ final class WordSetViewController: UIViewController {
             stackButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100)
         ])
     }
+    
+    // MARK: - Button actions
     
     @objc private func listButtonTapped() {
        if let title = title {

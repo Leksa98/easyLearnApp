@@ -27,7 +27,7 @@ final class TabBarController: UITabBarController {
         tabBar.barTintColor = Locals.tabBarBackgroundColor
         tabBar.layer.borderWidth = Locals.tabBarBorderWidth
         
-        let wordSetsViewController = WordSetTableViewController()
+        let wordSetsViewController = AllWordSetTableViewController()
         let wordSetsNavigationController = UINavigationController(rootViewController: wordSetsViewController)
         AllWordSetsConfigurator.assembly(viewController: wordSetsViewController)
         wordSetsNavigationController.tabBarItem = UITabBarItem(title: "Sets", image: UIImage(named: "file"), tag: 0)

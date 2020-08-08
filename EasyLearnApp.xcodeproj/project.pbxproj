@@ -25,8 +25,8 @@
 		A82EEA7A24B3C01B00C35D90 /* WordSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82EEA7924B3C01B00C35D90 /* WordSetViewController.swift */; };
 		A82EEA7E24B4814000C35D90 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82EEA7D24B4814000C35D90 /* HTTPMethod.swift */; };
 		A84B2D3C24AA5ECF0022F029 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A84B2D3B24AA5ECF0022F029 /* Assets.xcassets */; };
-		A84B2D3E24AB39570022F029 /* WordSetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84B2D3D24AB39570022F029 /* WordSetTableViewController.swift */; };
-		A84B2D4024AB4BD00022F029 /* WordSetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84B2D3F24AB4BD00022F029 /* WordSetTableViewCell.swift */; };
+		A84B2D3E24AB39570022F029 /* AllWordSetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84B2D3D24AB39570022F029 /* AllWordSetTableViewController.swift */; };
+		A84B2D4024AB4BD00022F029 /* AllWordSetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84B2D3F24AB4BD00022F029 /* AllWordSetTableViewCell.swift */; };
 		A8580B1324DAF0070099B00F /* DefaultWordSetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8580B1224DAF0070099B00F /* DefaultWordSetModel.swift */; };
 		A8580B1524DAF20D0099B00F /* DefaultWordSetModelApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8580B1424DAF20D0099B00F /* DefaultWordSetModelApi.swift */; };
 		A8580B1924DAF6D70099B00F /* NewWordSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8580B1824DAF6D70099B00F /* NewWordSetViewController.swift */; };
@@ -35,8 +35,8 @@
 		A8580B1F24DB161C0099B00F /* DefaultWordSetInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8580B1E24DB161C0099B00F /* DefaultWordSetInteractor.swift */; };
 		A8580B2124DB16AF0099B00F /* DefaultWordSetPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8580B2024DB16AF0099B00F /* DefaultWordSetPresenter.swift */; };
 		A85A0A2B24BDA3C30044CFBA /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85A0A2A24BDA3C30044CFBA /* DataHandler.swift */; };
-		A87EDF2324C8769C00D4F9CC /* WordSetTableInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87EDF2224C8769C00D4F9CC /* WordSetTableInteractor.swift */; };
-		A87EDF2524C876B800D4F9CC /* WordSetTablePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87EDF2424C876B800D4F9CC /* WordSetTablePresenter.swift */; };
+		A87EDF2324C8769C00D4F9CC /* AllWordSetTableInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87EDF2224C8769C00D4F9CC /* AllWordSetTableInteractor.swift */; };
+		A87EDF2524C876B800D4F9CC /* AllWordSetTablePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87EDF2424C876B800D4F9CC /* AllWordSetTablePresenter.swift */; };
 		A88B1A0224D1D543008ADA7F /* WordSetCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88B1A0124D1D543008ADA7F /* WordSetCardCollectionViewCell.swift */; };
 		A88B1A0424D1E090008ADA7F /* WordSetCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88B1A0324D1E090008ADA7F /* WordSetCardView.swift */; };
 		A88B1A0624D1F672008ADA7F /* WordSetCardInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88B1A0524D1F672008ADA7F /* WordSetCardInteractor.swift */; };
@@ -73,7 +73,7 @@
 		A8BF981824DD4EBD00755F7E /* WordSetStatisticsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BF981724DD4EBD00755F7E /* WordSetStatisticsConfigurator.swift */; };
 		A8BF981A24DD502400755F7E /* DefaultWordSetConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BF981924DD502400755F7E /* DefaultWordSetConfigurator.swift */; };
 		A8BF981C24DD50F700755F7E /* AddWordConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BF981B24DD50F700755F7E /* AddWordConfigurator.swift */; };
-		A8BF981E24DD56A400755F7E /* WordSetTableRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BF981D24DD56A400755F7E /* WordSetTableRouter.swift */; };
+		A8BF981E24DD56A400755F7E /* AllWordSetTableRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BF981D24DD56A400755F7E /* AllWordSetTableRouter.swift */; };
 		A8BF982024DD5E6E00755F7E /* WordSetRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BF981F24DD5E6E00755F7E /* WordSetRouter.swift */; };
 		A8BF982224DD605F00755F7E /* WordSetConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BF982124DD605F00755F7E /* WordSetConfigurator.swift */; };
 		A8BF982424DD6B3D00755F7E /* WordSetListConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BF982324DD6B3D00755F7E /* WordSetListConfigurator.swift */; };
@@ -149,8 +149,8 @@
 		A82EEA7924B3C01B00C35D90 /* WordSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetViewController.swift; sourceTree = "<group>"; };
 		A82EEA7D24B4814000C35D90 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		A84B2D3B24AA5ECF0022F029 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A84B2D3D24AB39570022F029 /* WordSetTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetTableViewController.swift; sourceTree = "<group>"; };
-		A84B2D3F24AB4BD00022F029 /* WordSetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetTableViewCell.swift; sourceTree = "<group>"; };
+		A84B2D3D24AB39570022F029 /* AllWordSetTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllWordSetTableViewController.swift; sourceTree = "<group>"; };
+		A84B2D3F24AB4BD00022F029 /* AllWordSetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllWordSetTableViewCell.swift; sourceTree = "<group>"; };
 		A8580B1224DAF0070099B00F /* DefaultWordSetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWordSetModel.swift; sourceTree = "<group>"; };
 		A8580B1424DAF20D0099B00F /* DefaultWordSetModelApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWordSetModelApi.swift; sourceTree = "<group>"; };
 		A8580B1824DAF6D70099B00F /* NewWordSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWordSetViewController.swift; sourceTree = "<group>"; };
@@ -159,8 +159,8 @@
 		A8580B1E24DB161C0099B00F /* DefaultWordSetInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWordSetInteractor.swift; sourceTree = "<group>"; };
 		A8580B2024DB16AF0099B00F /* DefaultWordSetPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWordSetPresenter.swift; sourceTree = "<group>"; };
 		A85A0A2A24BDA3C30044CFBA /* DataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
-		A87EDF2224C8769C00D4F9CC /* WordSetTableInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetTableInteractor.swift; sourceTree = "<group>"; };
-		A87EDF2424C876B800D4F9CC /* WordSetTablePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetTablePresenter.swift; sourceTree = "<group>"; };
+		A87EDF2224C8769C00D4F9CC /* AllWordSetTableInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllWordSetTableInteractor.swift; sourceTree = "<group>"; };
+		A87EDF2424C876B800D4F9CC /* AllWordSetTablePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllWordSetTablePresenter.swift; sourceTree = "<group>"; };
 		A88B1A0124D1D543008ADA7F /* WordSetCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		A88B1A0324D1E090008ADA7F /* WordSetCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetCardView.swift; sourceTree = "<group>"; };
 		A88B1A0524D1F672008ADA7F /* WordSetCardInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetCardInteractor.swift; sourceTree = "<group>"; };
@@ -197,7 +197,7 @@
 		A8BF981724DD4EBD00755F7E /* WordSetStatisticsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetStatisticsConfigurator.swift; sourceTree = "<group>"; };
 		A8BF981924DD502400755F7E /* DefaultWordSetConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWordSetConfigurator.swift; sourceTree = "<group>"; };
 		A8BF981B24DD50F700755F7E /* AddWordConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWordConfigurator.swift; sourceTree = "<group>"; };
-		A8BF981D24DD56A400755F7E /* WordSetTableRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetTableRouter.swift; sourceTree = "<group>"; };
+		A8BF981D24DD56A400755F7E /* AllWordSetTableRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllWordSetTableRouter.swift; sourceTree = "<group>"; };
 		A8BF981F24DD5E6E00755F7E /* WordSetRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetRouter.swift; sourceTree = "<group>"; };
 		A8BF982124DD605F00755F7E /* WordSetConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetConfigurator.swift; sourceTree = "<group>"; };
 		A8BF982324DD6B3D00755F7E /* WordSetListConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetListConfigurator.swift; sourceTree = "<group>"; };
@@ -443,12 +443,12 @@
 		A8AA51DD24C03C9D0047B084 /* AllWordSetsScene */ = {
 			isa = PBXGroup;
 			children = (
-				A84B2D3D24AB39570022F029 /* WordSetTableViewController.swift */,
-				A84B2D3F24AB4BD00022F029 /* WordSetTableViewCell.swift */,
-				A87EDF2224C8769C00D4F9CC /* WordSetTableInteractor.swift */,
-				A87EDF2424C876B800D4F9CC /* WordSetTablePresenter.swift */,
+				A84B2D3D24AB39570022F029 /* AllWordSetTableViewController.swift */,
+				A84B2D3F24AB4BD00022F029 /* AllWordSetTableViewCell.swift */,
+				A87EDF2224C8769C00D4F9CC /* AllWordSetTableInteractor.swift */,
+				A87EDF2424C876B800D4F9CC /* AllWordSetTablePresenter.swift */,
 				A8BF981124DD4A7A00755F7E /* AllWordSetsConfigurator.swift */,
-				A8BF981D24DD56A400755F7E /* WordSetTableRouter.swift */,
+				A8BF981D24DD56A400755F7E /* AllWordSetTableRouter.swift */,
 			);
 			path = AllWordSetsScene;
 			sourceTree = "<group>";
@@ -723,7 +723,7 @@
 				A88B1A0224D1D543008ADA7F /* WordSetCardCollectionViewCell.swift in Sources */,
 				A8BF983E24DD94C000755F7E /* SettingsRouter.swift in Sources */,
 				A8F0D58124C477430004C609 /* AddWordInteractor.swift in Sources */,
-				A84B2D3E24AB39570022F029 /* WordSetTableViewController.swift in Sources */,
+				A84B2D3E24AB39570022F029 /* AllWordSetTableViewController.swift in Sources */,
 				A8ABBCA924B507EF008081FB /*  ParameterEncoding.swift in Sources */,
 				A8B5222924DC1212008F02C7 /* ChooseLanguageViewController.swift in Sources */,
 				A8F0D57924C249440004C609 /* ViewControllerExtension.swift in Sources */,
@@ -767,7 +767,7 @@
 				A88B1A0D24D2F1D6008ADA7F /* WordSetLearnViewController.swift in Sources */,
 				A85A0A2B24BDA3C30044CFBA /* DataHandler.swift in Sources */,
 				A8BF983424DD833300755F7E /* DefaultWordSetListConfiguration.swift in Sources */,
-				A84B2D4024AB4BD00022F029 /* WordSetTableViewCell.swift in Sources */,
+				A84B2D4024AB4BD00022F029 /* AllWordSetTableViewCell.swift in Sources */,
 				A8F0D58B24C4CFDD0004C609 /* WordModel.swift in Sources */,
 				A8B5221F24DB24B4008F02C7 /* DefaultWordSetListViewController.swift in Sources */,
 				A8BF981424DD4CC400755F7E /* WordSetCardsConfigurator.swift in Sources */,
@@ -787,7 +787,7 @@
 				A8BF983824DD8DEC00755F7E /* AddSetInteractor.swift in Sources */,
 				A81162A324BC9777002B4D8B /* TranslationMeaningsParser.swift in Sources */,
 				A8ABBCAD24B50B84008081FB /* JSONParameterEncoder.swift in Sources */,
-				A87EDF2524C876B800D4F9CC /* WordSetTablePresenter.swift in Sources */,
+				A87EDF2524C876B800D4F9CC /* AllWordSetTablePresenter.swift in Sources */,
 				A8FFB4D124B3393E00CCCE43 /* WordSetModel.swift in Sources */,
 				A8185FFA24CAFE7000F93FD3 /* ButtonWithRoundCorners.swift in Sources */,
 				A8B2144124D97CE900A3CF7F /* WordSetStatisticsInteractor.swift in Sources */,
@@ -800,11 +800,11 @@
 				A8BF983224DD823D00755F7E /* DefaultWordSetListPresenter.swift in Sources */,
 				A8BF984224DD971700755F7E /* ChooseLanguageInteractor.swift in Sources */,
 				A80D8C7E24C09D260056F7D9 /* AddWordTableViewCell.swift in Sources */,
-				A8BF981E24DD56A400755F7E /* WordSetTableRouter.swift in Sources */,
+				A8BF981E24DD56A400755F7E /* AllWordSetTableRouter.swift in Sources */,
 				A81FF5C624AA3D27007068F9 /* SceneDelegate.swift in Sources */,
 				A8BF982A24DD74D100755F7E /* NewWordSetRouter.swift in Sources */,
 				A8580B1F24DB161C0099B00F /* DefaultWordSetInteractor.swift in Sources */,
-				A87EDF2324C8769C00D4F9CC /* WordSetTableInteractor.swift in Sources */,
+				A87EDF2324C8769C00D4F9CC /* AllWordSetTableInteractor.swift in Sources */,
 				A8ABBCAF24B50BEE008081FB /* NetworkRouter.swift in Sources */,
 				A8B2144324D97CF600A3CF7F /* WordSetStatisticsPresentor.swift in Sources */,
 				A804C92024D076C8007E2524 /* WordSetListInteractor.swift in Sources */,

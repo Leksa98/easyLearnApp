@@ -8,11 +8,11 @@
 
 import Foundation
 
-protocol PresentSets {
+protocol AllWordSetTablePresentationLogic {
     func presentSets(sets: [WordSet])
 }
 
-final class WordSetTablePresenter: PresentSets {
+final class AllWordSetTablePresenter: AllWordSetTablePresentationLogic {
     
     weak var viewController: AllWordSetTableShow?
     

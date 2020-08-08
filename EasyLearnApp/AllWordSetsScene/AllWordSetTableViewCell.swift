@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WordSetTableViewCell: UITableViewCell {
+class AllWordSetTableViewCell: UITableViewCell {
     
     enum Locals {
         static let backgroundColor = UIColor(cgColor: CGColor(srgbRed: 249.0/255.0, green: 248.0/255.0, blue: 241.0/255.0, alpha: 1))

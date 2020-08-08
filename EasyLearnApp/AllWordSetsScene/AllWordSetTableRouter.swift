@@ -8,12 +8,13 @@
 
 import UIKit
 
-protocol WordSetTableRouterLogic {
+protocol AllWordSetTableRouterLogic {
     var navigationController: UINavigationController? { get }
     func routeToWordSetDetails(with title: String)
 }
 
-final class WordSetTableRouter: WordSetTableRouterLogic {
+final class AllWordSetTableRouter: AllWordSetTableRouterLogic {
+    
     weak var navigationController: UINavigationController?
     
     func routeToWordSetDetails(with title: String) {
