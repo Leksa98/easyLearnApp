@@ -9,7 +9,7 @@
 import UIKit
 
 protocol WordSetLearnShow: class {
-    func showWords(words: [WordModel])
+    func showWords(viewModel: WordSetLearnModel.FetchWordSet.ViewModel)
 }
 
 protocol WordSetLearnDataSource {
@@ -110,14 +110,14 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
             } else {
                 if cell.checkExercise() {
                     if let studyWord = cell.viewModel?.word {
-                        interactor?.editWordProgress(word: studyWord, progressChange: 0.1)
+                        interactor?.editWordProgress(request: WordSetLearnModel.EditWordProgress.Request(word: studyWord, progressChange: 0.1))
                     }
                     cell.showAnimation(correctAnswer: true) { finished in
                         self.scrollCollectionViewToNextExercise()
                     }
                 } else {
                     if let studyWord = cell.viewModel?.word {
-                        interactor?.editWordProgress(word: studyWord, progressChange: -0.1)
+                        interactor?.editWordProgress(request: WordSetLearnModel.EditWordProgress.Request(word: studyWord, progressChange: -0.1))
                     }
                     cell.showAnimation(correctAnswer: false)
                 }
@@ -128,7 +128,7 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
     @objc private func helpButtonTapped() {
         if let currentCellIndexPath = getCurrentCellIndexPath(), let cell = collectionView.cellForItem(at: currentCellIndexPath) as? WordSetLearnCollectionViewCell {
             if let studyWord = cell.viewModel?.word {
-                interactor?.editWordProgress(word: studyWord, progressChange: -0.1)
+                interactor?.editWordProgress(request: WordSetLearnModel.EditWordProgress.Request(word: studyWord, progressChange: -0.1))
             }
             cell.showHelpAnimation()
         }
@@ -199,7 +199,7 @@ extension WordSetLearnViewController: UICollectionViewDelegateFlowLayout {
 
 // MARK: - WordSetLearnShow protocol
 extension WordSetLearnViewController: WordSetLearnShow {
-    func showWords(words: [WordModel]) {
-        wordsToLearn = words
+    func showWords(viewModel: WordSetLearnModel.FetchWordSet.ViewModel) {
+        wordsToLearn = viewModel.wordsArray
     }
 }

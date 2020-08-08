@@ -37,7 +37,7 @@ final class WordSetRouter: WordSetRouterLogic {
     func routeToWordSetLearn(with title: String) {
         let vc = WordSetLearnConfigurator.assembly()
         vc.title = title
-        vc.interactor?.fetchWords(setName: title)
+        vc.interactor?.fetchWords(request: WordSetLearnModel.FetchWordSet.Request(setName: title))
         navigationController?.pushViewController(vc, animated: true)
     }
     

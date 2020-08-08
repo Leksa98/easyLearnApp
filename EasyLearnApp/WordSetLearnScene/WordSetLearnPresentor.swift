@@ -9,27 +9,27 @@
 import Foundation
 
 protocol WordSetLearnResentationLogic {
-    func prepareForPresent(wordSet: [WordModel])
+    func prepareForPresent(response: WordSetLearnModel.FetchWordSet.Response)
 }
 
 final class WordSetLearnPresentor: WordSetLearnResentationLogic {
     weak var viewController: WordSetLearnShow?
     
-    func prepareForPresent(wordSet: [WordModel]) {
-        var resultArray = wordSet.filter { $0.progress < 1.0 }
+    func prepareForPresent(response: WordSetLearnModel.FetchWordSet.Response) {
+        var resultArray = response.wordsArray.filter { $0.progress < 1.0 }
         if resultArray.isEmpty {
-            resultArray = wordSet
+            resultArray = response.wordsArray
         }
-        wordSet.forEach { word in
+        response.wordsArray.forEach { word in
             resultArray.append(WordModel(word: word.translation, translation: word.word, progress: word.progress))
         }
-        wordSet.forEach { word in
+        response.wordsArray.forEach { word in
             if word.progress < 0.5 {
                 resultArray.append(word)
                 resultArray.append(WordModel(word: word.translation, translation: word.word, progress: word.progress))
             }
         }
         resultArray.shuffle()
-        viewController?.showWords(words: resultArray)
+        viewController?.showWords(viewModel: WordSetLearnModel.FetchWordSet.ViewModel(wordsArray: resultArray))
     }
 }
