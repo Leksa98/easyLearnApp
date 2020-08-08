@@ -13,7 +13,7 @@ protocol AddWordToSetDataStore {
 }
 
 protocol AddSetSavedNotification: class {
-    func showSavedAlert(name: String, emoji: String)
+    func showSavedAlert(viewModel: AddSetModel.SaveWordSet.ViewModel)
 }
 
 final class AddSetViewController: UIViewController {
@@ -141,7 +141,7 @@ final class AddSetViewController: UIViewController {
     @objc private func saveButtonTapped() {
         if let setName = nameView.enteredInfo, !setName.isEmpty,
             let setEmoji = emojiView.enteredInfo, !setEmoji.isEmpty, !addedWords.isEmpty {
-            interactor?.saveWordSetInCoreData(name: setName, emoji: setEmoji, words: addedWords)
+            interactor?.saveWordSetInCoreData(request: AddSetModel.SaveWordSet.Request(name: setName, emoji: setEmoji, words: addedWords))
         }
     }
 }
@@ -178,8 +178,8 @@ extension AddSetViewController: AddWordToSetDataStore {
 
 // MARK: - AddSetSavedNotification protocol
 extension AddSetViewController: AddSetSavedNotification {
-    func showSavedAlert(name: String, emoji: String) {
-        let savedAlert = UIAlertController(title: "Saved", message: "Set \(name) \(emoji) was saved!", preferredStyle: .alert)
+    func showSavedAlert(viewModel: AddSetModel.SaveWordSet.ViewModel) {
+        let savedAlert = UIAlertController(title: "Saved", message: "Set \(viewModel.name) \(viewModel.emoji) was saved!", preferredStyle: .alert)
         savedAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(savedAlert, animated: true) {
             self.addedWords = []

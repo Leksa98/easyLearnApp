@@ -9,14 +9,14 @@
 import Foundation
 
 protocol AddSetPresentationLogic {
-    func prepareForPresent(name: String, emoji: String)
+    func prepareForPresent(response: AddSetModel.SaveWordSet.Response)
 }
 
 final class AddSetPresenter: AddSetPresentationLogic {
     
     weak var viewController: AddSetSavedNotification?
     
-    func prepareForPresent(name: String, emoji: String) {
-        viewController?.showSavedAlert(name: name, emoji: emoji)
+    func prepareForPresent(response: AddSetModel.SaveWordSet.Response) {
+        viewController?.showSavedAlert(viewModel: AddSetModel.SaveWordSet.ViewModel(name: response.name, emoji: response.emoji))
     }
 }
