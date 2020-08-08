@@ -9,7 +9,7 @@
 import UIKit
 
 protocol WordListTablePresentationLogic: class {
-    func showWordList(words: [WordModel])
+    func showWordList(viewModel: WordSetListModel.FetchWordSet.ViewModel)
 }
 
 final class WordListTableViewController: UIViewController {
@@ -31,7 +31,7 @@ final class WordListTableViewController: UIViewController {
             tableView.reloadData()
         }
     }
-    private var setName: String?
+    var setName: String?
     var interactor: WordSetListBusinessLogic?
     var router: WordListTableRouterLogic?
     
@@ -86,10 +86,10 @@ extension WordListTableViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let word = wordsInSet[indexPath.row]
+            let word = wordsInSet[indexPath.row].word
             wordsInSet.remove(at: indexPath.row)
             if let setName = setName {
-                interactor?.deleteWordFromSet(set: setName, word: word.word)
+                interactor?.deleteWordFromSet(request: WordSetListModel.DeleteWordFromSet.Request(set: setName, word: word))
             }
         }
     }
@@ -97,8 +97,8 @@ extension WordListTableViewController: UITableViewDelegate, UITableViewDataSourc
 
 //MARK: - WordListTablePresentationLogic protocol
 extension WordListTableViewController: WordListTablePresentationLogic {
-    func showWordList(words: [WordModel]) {
-        wordsInSet = words
+    func showWordList(viewModel: WordSetListModel.FetchWordSet.ViewModel) {
+        wordsInSet = viewModel.words
     }
 }
 
@@ -107,7 +107,7 @@ extension WordListTableViewController: AddWordToSetDataStore {
     func addWordToArray(word: WordModel) {
         wordsInSet.append(word)
         if let setName = setName {
-            interactor?.addWordToSet(setName: setName, word: word)
+            interactor?.addWordToSet(request: WordSetListModel.AddWordToSet.Request(setName: setName, word: word))
         }
     }
 }

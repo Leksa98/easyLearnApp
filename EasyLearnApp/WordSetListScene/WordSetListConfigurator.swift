@@ -9,11 +9,12 @@
 import UIKit
 
 final class WordSetListConfigurator {
-    static func assembly(viewController: WordListTableViewController) {
+    static func assembly(viewController: WordListTableViewController, setTitle: String) {
         let interactor = WordSetListInteractor()
         let presenter = WordSetListPresenter()
         let router = WordListTableRouter()
         viewController.interactor = interactor
+        viewController.setName = setTitle
         viewController.router = router
         router.navigationController = viewController.navigationController
         interactor.presenter = presenter
