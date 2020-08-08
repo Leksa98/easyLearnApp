@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class AllWordSetsConfigurator {
+final class AllWordSetTableConfigurator {
     
     static func assembly(viewController: AllWordSetTableViewController) {
         

@@ -29,7 +29,7 @@ final class TabBarController: UITabBarController {
         
         let wordSetsViewController = AllWordSetTableViewController()
         let wordSetsNavigationController = UINavigationController(rootViewController: wordSetsViewController)
-        AllWordSetsConfigurator.assembly(viewController: wordSetsViewController)
+        AllWordSetTableConfigurator.assembly(viewController: wordSetsViewController)
         wordSetsNavigationController.tabBarItem = UITabBarItem(title: "Sets", image: UIImage(named: "file"), tag: 0)
         
         let newWordSetViewController = NewWordSetViewController()
