@@ -8,12 +8,12 @@
 
 import UIKit
 
-protocol WordListTableRouterLogic {
+protocol WordSetListRouterLogic {
     var navigationController: UINavigationController? { get }
     func routeToAddWordScene(viewController: UIViewController)
 }
 
-final class WordListTableRouter: WordListTableRouterLogic {
+final class WordSetListRouter: WordSetListRouterLogic {
     weak var navigationController: UINavigationController?
     
     func routeToAddWordScene(viewController: UIViewController) {

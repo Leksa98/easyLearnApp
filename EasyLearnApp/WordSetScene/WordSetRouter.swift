@@ -21,7 +21,7 @@ final class WordSetRouter: WordSetRouterLogic {
     weak var navigationController: UINavigationController?
     
     func routeToWordSetList(with title: String) {
-        let vc = WordListTableViewController()
+        let vc = WordListViewController()
         WordSetListConfigurator.assembly(viewController: vc, setTitle: title)
         vc.interactor?.fetchWordSet(request: WordSetListModel.FetchWordSet.Request(setName: title))
         navigationController?.pushViewController(vc, animated: true)

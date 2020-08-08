@@ -12,7 +12,7 @@ protocol WordListTablePresentationLogic: class {
     func showWordList(viewModel: WordSetListModel.FetchWordSet.ViewModel)
 }
 
-final class WordListTableViewController: UIViewController {
+final class WordListViewController: UIViewController {
     
     // MARK: - Constants
     
@@ -33,7 +33,7 @@ final class WordListTableViewController: UIViewController {
     }
     var setName: String?
     var interactor: WordSetListBusinessLogic?
-    var router: WordListTableRouterLogic?
+    var router: WordSetListRouterLogic?
     
     // MARK: - Lifecycle
     
@@ -71,7 +71,7 @@ final class WordListTableViewController: UIViewController {
 }
 
 // MARK: - UITableViewDelegate & UITableViewDataSource
-extension WordListTableViewController: UITableViewDelegate, UITableViewDataSource {
+extension WordListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return wordsInSet.count
     }
@@ -96,14 +96,14 @@ extension WordListTableViewController: UITableViewDelegate, UITableViewDataSourc
 }
 
 //MARK: - WordListTablePresentationLogic protocol
-extension WordListTableViewController: WordListTablePresentationLogic {
+extension WordListViewController: WordListTablePresentationLogic {
     func showWordList(viewModel: WordSetListModel.FetchWordSet.ViewModel) {
         wordsInSet = viewModel.words
     }
 }
 
 //MARK: - AddWordToSetDataStore protocol
-extension WordListTableViewController: AddWordToSetDataStore {
+extension WordListViewController: AddWordToSetDataStore {
     func addWordToArray(word: WordModel) {
         wordsInSet.append(word)
         if let setName = setName {
