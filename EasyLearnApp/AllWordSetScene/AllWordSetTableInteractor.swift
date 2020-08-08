@@ -9,24 +9,24 @@
 import Foundation
 
 protocol AllWordSetTableBusinessLogic {
-    func fetchStudySets()
-    func deletefromCoreData(setName: String)
+    func fetchStudySets(request: AllWordSetTableModel.FetchStudySets.Request)
+    func deletefromCoreData(request: AllWordSetTableModel.DeleteSet.Request)
 }
 
 final class AllWordSetTableInteractor: AllWordSetTableBusinessLogic {
     
     var presenter: AllWordSetTablePresentationLogic?
     
-    func fetchStudySets() {
+    func fetchStudySets(request: AllWordSetTableModel.FetchStudySets.Request) {
         let dataHandler = DataHandler()
         guard let sets = dataHandler.fetchAllWordSetRecord() else {
             return
         }
-        presenter?.presentSets(sets: sets)
+        presenter?.presentSets(response: AllWordSetTableModel.FetchStudySets.Response(studySets: sets))
     }
     
-    func deletefromCoreData(setName: String) {
+    func deletefromCoreData(request: AllWordSetTableModel.DeleteSet.Request) {
         let dataHandler = DataHandler()
-        dataHandler.deleteWordSet(name: setName)
+        dataHandler.deleteWordSet(name: request.setName)
     }
 }

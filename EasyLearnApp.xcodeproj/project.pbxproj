@@ -94,6 +94,7 @@
 		A8BF984224DD971700755F7E /* ChooseLanguageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BF984124DD971700755F7E /* ChooseLanguageInteractor.swift */; };
 		A8BF984424DD972900755F7E /* ChooseLanguagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BF984324DD972900755F7E /* ChooseLanguagePresenter.swift */; };
 		A8BF984624DD98D900755F7E /* ChooseLanguageConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BF984524DD98D900755F7E /* ChooseLanguageConfigurator.swift */; };
+		A8BF984824DEFAA900755F7E /* AllWordSetTableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BF984724DEFAA900755F7E /* AllWordSetTableModel.swift */; };
 		A8F0D57924C249440004C609 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F0D57824C249440004C609 /* ViewControllerExtension.swift */; };
 		A8F0D57B24C249880004C609 /* TextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F0D57A24C249880004C609 /* TextFieldExtension.swift */; };
 		A8F0D57D24C249CB0004C609 /* SearchBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F0D57C24C249CB0004C609 /* SearchBarExtension.swift */; };
@@ -218,6 +219,7 @@
 		A8BF984124DD971700755F7E /* ChooseLanguageInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseLanguageInteractor.swift; sourceTree = "<group>"; };
 		A8BF984324DD972900755F7E /* ChooseLanguagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseLanguagePresenter.swift; sourceTree = "<group>"; };
 		A8BF984524DD98D900755F7E /* ChooseLanguageConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseLanguageConfigurator.swift; sourceTree = "<group>"; };
+		A8BF984724DEFAA900755F7E /* AllWordSetTableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllWordSetTableModel.swift; sourceTree = "<group>"; };
 		A8F0D57824C249440004C609 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
 		A8F0D57A24C249880004C609 /* TextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExtension.swift; sourceTree = "<group>"; };
 		A8F0D57C24C249CB0004C609 /* SearchBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarExtension.swift; sourceTree = "<group>"; };
@@ -449,6 +451,7 @@
 				A87EDF2424C876B800D4F9CC /* AllWordSetTablePresenter.swift */,
 				A8BF981124DD4A7A00755F7E /* AllWordSetTableConfigurator.swift */,
 				A8BF981D24DD56A400755F7E /* AllWordSetTableRouter.swift */,
+				A8BF984724DEFAA900755F7E /* AllWordSetTableModel.swift */,
 			);
 			path = AllWordSetScene;
 			sourceTree = "<group>";
@@ -798,6 +801,7 @@
 				A8BF982224DD605F00755F7E /* WordSetConfigurator.swift in Sources */,
 				A88B1A0A24D2ACC2008ADA7F /* String+.swift in Sources */,
 				A8BF983224DD823D00755F7E /* DefaultWordSetListPresenter.swift in Sources */,
+				A8BF984824DEFAA900755F7E /* AllWordSetTableModel.swift in Sources */,
 				A8BF984224DD971700755F7E /* ChooseLanguageInteractor.swift in Sources */,
 				A80D8C7E24C09D260056F7D9 /* AddWordTableViewCell.swift in Sources */,
 				A8BF981E24DD56A400755F7E /* AllWordSetTableRouter.swift in Sources */,

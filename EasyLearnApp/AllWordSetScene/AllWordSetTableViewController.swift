@@ -9,7 +9,7 @@
 import UIKit
 
 protocol AllWordSetTableShow: class {
-    func showWordSets(sets: [WordSetModel])
+    func showWordSets(viewModel: AllWordSetTableModel.FetchStudySets.ViewModel)
 }
 
 final class AllWordSetTableViewController: UITableViewController {
@@ -37,11 +37,11 @@ final class AllWordSetTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
-        interactor?.fetchStudySets()
+        interactor?.fetchStudySets(request: AllWordSetTableModel.FetchStudySets.Request())
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        interactor?.fetchStudySets()
+        interactor?.fetchStudySets(request: AllWordSetTableModel.FetchStudySets.Request())
         tabBarController?.tabBar.isHidden = false
     }
     
@@ -84,14 +84,14 @@ final class AllWordSetTableViewController: UITableViewController {
         if editingStyle == .delete {
             let setName = studySet[indexPath.row]
             studySet.remove(at: indexPath.row)
-            interactor?.deletefromCoreData(setName: setName.nameValue)
+            interactor?.deletefromCoreData(request: AllWordSetTableModel.DeleteSet.Request(setName: setName.nameValue))
         }
     }
 }
 
 // MARK: - AllWordSetTableShow protocol
 extension AllWordSetTableViewController: AllWordSetTableShow {
-    func showWordSets(sets: [WordSetModel]) {
-        self.studySet = sets
+    func showWordSets(viewModel: AllWordSetTableModel.FetchStudySets.ViewModel) {
+        self.studySet = viewModel.studySets
     }
 }

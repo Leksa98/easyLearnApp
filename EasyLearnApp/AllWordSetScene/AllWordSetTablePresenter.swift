@@ -9,20 +9,20 @@
 import Foundation
 
 protocol AllWordSetTablePresentationLogic {
-    func presentSets(sets: [WordSet])
+    func presentSets(response: AllWordSetTableModel.FetchStudySets.Response)
 }
 
 final class AllWordSetTablePresenter: AllWordSetTablePresentationLogic {
     
     weak var viewController: AllWordSetTableShow?
     
-    func presentSets(sets: [WordSet]) {
+    func presentSets(response: AllWordSetTableModel.FetchStudySets.Response) {
         var studySet: [WordSetModel] = []
-        sets.forEach { set in
+        response.studySets.forEach { set in
             if let setName = set.name, let setEmoji = set.emoji {
                 studySet.append(WordSetModel(name: setName, emoji: setEmoji, progress: Float(set.progress)))
             }
         }
-        viewController?.showWordSets(sets: studySet)
+        viewController?.showWordSets(viewModel: AllWordSetTableModel.FetchStudySets.ViewModel(studySets: studySet))
     }
 }
