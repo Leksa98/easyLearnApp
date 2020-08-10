@@ -9,14 +9,14 @@
 import Foundation
 
 protocol PresentTranslations {
-    func presentTranslations(trans: [String])
+    func presentTranslations(response: AddWordModel.WordTranslations.Response)
 }
 
 final class AddWordPresenter: PresentTranslations {
     
     weak var viewController: UpdateTranslations?
     
-    func presentTranslations(trans: [String]) {
-        viewController?.updateTranslations(trans: trans)
+    func presentTranslations(response: AddWordModel.WordTranslations.Response) {
+        viewController?.updateTranslations(viewModel: AddWordModel.WordTranslations.ViewModel(translations: response.translations))
     }
 }

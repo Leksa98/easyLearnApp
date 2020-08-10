@@ -10,14 +10,14 @@ import UIKit
 import Foundation
 
 protocol UpdateTranslations: class {
-    func updateTranslations(trans: [String])
+    func updateTranslations(viewModel: AddWordModel.WordTranslations.ViewModel)
 }
 
 protocol AddWordDataStore {
     var addWord: WordModel { get set }
 }
 
-final class AddWordViewController: UIViewController, UpdateTranslations, AddWordDataStore {
+final class AddWordViewController: UIViewController, AddWordDataStore {
     
     // MARK: - Constants
     
@@ -119,14 +119,20 @@ final class AddWordViewController: UIViewController, UpdateTranslations, AddWord
     }
 }
 
+// MARK: - UITableViewDelegate protocol
+extension AddWordViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        addWord.translation = translations[indexPath.row]
+    }
+}
 
-// MARK: - UITableViewDelegate & UITableViewDataSource
-extension AddWordViewController: UITableViewDelegate, UITableViewDataSource {
-
+// MARK: - UITableViewDataSource protocol
+extension AddWordViewController: UITableViewDataSource {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return translations.count
     }
@@ -138,25 +144,17 @@ extension AddWordViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return UITableViewCell()
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        addWord.translation = translations[indexPath.row]
-    }
 }
 
 
-// MARK: - UISearchBarDelegate
+// MARK: - UISearchBarDelegate protocol
 extension AddWordViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange textSearched: String) {
         guard let text = searchBar.text else {
             return
         }
-        interactor?.fetchWordTranslations(word: text)
-    }
-    
-    func updateTranslations(trans: [String]) {
-        translations = trans
+        interactor?.fetchWordTranslations(request: AddWordModel.WordTranslations.Request(word: text))
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -175,5 +173,12 @@ extension AddWordViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         translations = []
+    }
+}
+
+// MARK: - UpdateTranslations protocol
+extension AddWordViewController: UpdateTranslations {
+    func updateTranslations(viewModel: AddWordModel.WordTranslations.ViewModel) {
+        translations = viewModel.translations
     }
 }
