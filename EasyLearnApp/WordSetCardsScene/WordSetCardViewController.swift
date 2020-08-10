@@ -52,11 +52,11 @@ final class WordSetCardViewController: UIViewController {
         navigationItem.setHidesBackButton(true, animated: true)
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(dismissViewController))
         title = "Cards"
-        view.backgroundColor = UIColor.backgroundColor
+        view.backgroundColor = .white
         configureCollectionView()
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.backgroundColor = UIColor.backgroundColor
+        collectionView.backgroundColor = .white
         collectionView.register(WordSetCardCollectionViewCell.self, forCellWithReuseIdentifier: Locals.cellID)
         if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.scrollDirection = .horizontal
@@ -82,11 +82,9 @@ final class WordSetCardViewController: UIViewController {
     private func configureNextCardButton() {
         nextCardButton.setTitle("Next", for: .normal)
         nextCardButton.layer.cornerRadius = 15
-        nextCardButton.layer.borderWidth = 2
-        nextCardButton.layer.borderColor = UIColor.customDarkPurple.cgColor
-        nextCardButton.setTitleColor(.black, for: .normal)
+        nextCardButton.setTitleColor(.white, for: .normal)
         nextCardButton.titleLabel?.font = .boldSystemFont(ofSize: 20)
-        nextCardButton.backgroundColor = UIColor.customLightBlue
+        nextCardButton.backgroundColor = UIColor.blueSapphire
         nextCardButton.addTarget(self, action: #selector(nextCardButtonTapped), for: .touchUpInside)
         view.addSubview(nextCardButton)
         nextCardButton.translatesAutoresizingMaskIntoConstraints = false
@@ -101,11 +99,9 @@ final class WordSetCardViewController: UIViewController {
     private func configurePrevCardButton() {
         prevCardButton.setTitle("Previous", for: .normal)
         prevCardButton.layer.cornerRadius = 15
-        prevCardButton.layer.borderWidth = 2
-        prevCardButton.layer.borderColor = UIColor.customDarkPurple.cgColor
-        prevCardButton.setTitleColor(.black, for: .normal)
+        prevCardButton.setTitleColor(.white, for: .normal)
         prevCardButton.titleLabel?.font = .boldSystemFont(ofSize: 20)
-        prevCardButton.backgroundColor = UIColor.customLightBlue
+        prevCardButton.backgroundColor = UIColor.blueSapphire
         prevCardButton.addTarget(self, action: #selector(prevCardButtonTapped), for: .touchUpInside)
         view.addSubview(prevCardButton)
         prevCardButton.translatesAutoresizingMaskIntoConstraints = false

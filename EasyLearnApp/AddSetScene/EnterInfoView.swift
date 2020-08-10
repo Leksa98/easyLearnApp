@@ -37,9 +37,7 @@ class EnterInfoView: UIView {
     // MARK: - Configuration
     
     private func configureView() {
-        backgroundColor = UIColor.customLightBlue
-        layer.borderWidth = 2
-        layer.borderColor = UIColor.customDarkPurple.cgColor
+        backgroundColor = UIColor.white
         layer.cornerRadius = 15
     }
     
@@ -59,10 +57,9 @@ class EnterInfoView: UIView {
     private func configureInfoTextField(textField: String) {
         enterInfoTextField = UITextField()
         addSubview(enterInfoTextField)
-        enterInfoTextField.attributedPlaceholder = NSAttributedString(string: textField, attributes: [NSAttributedString.Key.foregroundColor: UIColor.placeholderColor, NSAttributedString.Key.font: UIFont.italicSystemFont(ofSize: 18)])
-        enterInfoTextField.font = .systemFont(ofSize: 18)
-        enterInfoTextField.backgroundColor = UIColor.textFieldColor
-        enterInfoTextField.textColor = .black
+        enterInfoTextField.attributedPlaceholder = NSAttributedString(string: textField, attributes: [NSAttributedString.Key.foregroundColor: UIColor.blueSapphire, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)])
+        enterInfoTextField.backgroundColor = UIColor.lightCyan
+        enterInfoTextField.textColor = .blueSapphire
         enterInfoTextField.layer.cornerRadius = 6.0
         enterInfoTextField.layer.masksToBounds = true
         enterInfoTextField.borderStyle = .roundedRect

@@ -19,13 +19,15 @@ class WordSetCardView: UIView {
     // MARK: - Property
     
     private var label = UILabel()
+    private var image = UIImageView()
     
     // MARK: - Initialization
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        addSubview(image)
         configureLabel()
-        backgroundColor = UIColor.customPurple
+        backgroundColor = UIColor.persianGreen
         layer.cornerRadius = Locals.cornerRadius
     }
     

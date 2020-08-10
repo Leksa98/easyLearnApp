@@ -22,8 +22,8 @@ final class NewWordSetViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.backgroundColor
-        navigationController?.navigationBar.tintColor = UIColor.customPurple
+        view.backgroundColor = .white
+        navigationController?.navigationBar.tintColor = UIColor.blueSapphire
         title = "Add word set"
         navigationController?.navigationBar.prefersLargeTitles = true
         

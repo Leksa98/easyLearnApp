@@ -24,7 +24,7 @@ final class WordSetViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBarController?.tabBar.isHidden = true
-        view.backgroundColor = UIColor.backgroundColor
+        view.backgroundColor = .white
         setButtons()
     }
     

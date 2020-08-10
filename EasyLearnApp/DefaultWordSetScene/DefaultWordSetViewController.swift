@@ -38,7 +38,7 @@ final class DefaultWordSetViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Default sets"
-        view.backgroundColor = UIColor.backgroundColor
+        view.backgroundColor = .white
         tabBarController?.tabBar.isHidden = true
         configureTableView()
         interactor?.fetchDefaultSet(request: DefaultWordSetModel.FetchDefaultSets.Request())
@@ -46,7 +46,7 @@ final class DefaultWordSetViewController: UIViewController {
     
     private func configureTableView() {
         view.addSubview(tableView)
-        tableView.backgroundColor = UIColor.backgroundColor
+        tableView.backgroundColor = .white
         tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self

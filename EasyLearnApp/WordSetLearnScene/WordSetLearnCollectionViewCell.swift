@@ -29,7 +29,7 @@ class WordSetLearnCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor.backgroundColor
+        backgroundColor = .white
         
         addSubview(wordLabel)
         wordLabel.font = .boldSystemFont(ofSize: 28)
@@ -48,7 +48,7 @@ class WordSetLearnCollectionViewCell: UICollectionViewCell {
         addSubview(inputTextField)
         inputTextField.layer.cornerRadius = 5
         inputTextField.layer.borderWidth = 3
-        inputTextField.layer.borderColor = UIColor.backgroundColor.cgColor
+        inputTextField.layer.borderColor = UIColor.white.cgColor
         inputTextField.placeholder = "Type translation here"
         let paddingView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 20))
         inputTextField.leftView = paddingView
@@ -64,7 +64,7 @@ class WordSetLearnCollectionViewCell: UICollectionViewCell {
         ])
         
         addSubview(lineView)
-        lineView.backgroundColor = UIColor.customDarkPurple
+        lineView.backgroundColor = UIColor.blueSapphire
         lineView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             lineView.heightAnchor.constraint(equalToConstant: 2),
@@ -96,7 +96,7 @@ class WordSetLearnCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         inputTextField.text = ""
-        inputTextField.layer.borderColor = UIColor.backgroundColor.cgColor
+        inputTextField.layer.borderColor = UIColor.white.cgColor
         resultExerciseLabel.text = ""
     }
     

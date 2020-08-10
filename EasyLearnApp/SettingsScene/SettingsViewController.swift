@@ -25,10 +25,10 @@ final class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.backgroundColor
+        view.backgroundColor = .white
         title = "Settings"
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.tintColor = UIColor.customPurple
+        navigationController?.navigationBar.tintColor = UIColor.blueSapphire
         setupTableView()
     }
     
@@ -40,7 +40,7 @@ final class SettingsViewController: UIViewController {
     
     private func setupTableView() {
         view.addSubview(tableView)
-        tableView.backgroundColor = UIColor.backgroundColor
+        tableView.backgroundColor = .white
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(SettingsTableViewCell.self, forCellReuseIdentifier: Locals.chooseLanguageCellId)

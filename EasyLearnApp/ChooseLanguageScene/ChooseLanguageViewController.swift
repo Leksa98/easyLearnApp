@@ -35,7 +35,7 @@ final class ChooseLanguageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.backgroundColor
+        view.backgroundColor = .white
         title = "Learning language"
         navigationController?.navigationBar.prefersLargeTitles = false
         setupTableView()
@@ -46,7 +46,7 @@ final class ChooseLanguageViewController: UIViewController {
     
     private func setupTableView() {
         view.addSubview(tableView)
-        tableView.backgroundColor = UIColor.backgroundColor
+        tableView.backgroundColor = .white
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(ChooseLanguageTableViewCell.self, forCellReuseIdentifier: Locals.cellId)
@@ -74,7 +74,6 @@ extension ChooseLanguageViewController: UITableViewDelegate {
             if let selectedCell = selectedCell {
                 tableView.cellForRow(at: selectedCell)?.accessoryType = .none
             }
-            cell.tintColor = UIColor.customPurple
             cell.accessoryType = .checkmark
             let userDefaults = UserDefaults.standard
             userDefaults.set(cell.viewModel?.codeValue, forKey: "lang")
@@ -91,7 +90,6 @@ extension ChooseLanguageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: Locals.cellId, for: indexPath) as? ChooseLanguageTableViewCell {
             cell.viewModel = languages[indexPath.row]
-            cell.tintColor = UIColor.customPurple
             let userDefaults = UserDefaults.standard
             
             let lang = userDefaults.object(forKey: "lang")

@@ -46,8 +46,8 @@ class AllWordSetTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.accessoryType = .disclosureIndicator
-        backgroundColor = UIColor.backgroundColor
+        accessoryType = .disclosureIndicator
+        backgroundColor = .white
         addSubview(setTitle)
         addSubview(progressBar)
         addSubview(emojiLabel)

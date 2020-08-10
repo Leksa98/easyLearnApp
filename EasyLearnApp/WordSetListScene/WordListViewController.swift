@@ -38,7 +38,7 @@ final class WordListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.backgroundColor
+        view.backgroundColor = .white
         title = "List"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
         configureTable()
@@ -59,7 +59,7 @@ final class WordListViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
-        tableView.backgroundColor = UIColor.backgroundColor
+        tableView.backgroundColor = .white
     }
     
     // MARK: - Button actions

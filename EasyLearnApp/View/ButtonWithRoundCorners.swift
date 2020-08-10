@@ -15,8 +15,8 @@ final class ButtonWithRoundCorners: UIButton {
     init(title: String) {
         super.init(frame: .zero)
         setTitle(title, for: .normal)
-        layer.cornerRadius = 15
-        backgroundColor = UIColor.customPurple
+        layer.cornerRadius = 10
+        backgroundColor = UIColor.blueSapphire
         titleLabel?.font = .boldSystemFont(ofSize: 20)
         
     }

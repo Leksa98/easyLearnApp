@@ -51,7 +51,7 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
         navigationItem.setHidesBackButton(true, animated: true)
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(dismissViewController))
         title = "Learn"
-        view.backgroundColor = UIColor.backgroundColor
+        view.backgroundColor = .white
         configureCollectionView()
         configureButtonStackView()
     }
@@ -70,7 +70,7 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
         ])
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.backgroundColor = UIColor.backgroundColor
+        collectionView.backgroundColor = .white
         collectionView.register(WordSetLearnCollectionViewCell.self, forCellWithReuseIdentifier: Locals.cellId)
         if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.scrollDirection = .horizontal

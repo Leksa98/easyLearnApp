@@ -13,7 +13,7 @@ class AddWordTableViewCell: UITableViewCell {
     // MARK: - Constants
     
     private enum Locals {
-        static let cornerRadius = CGFloat(15)
+        static let cornerRadius = CGFloat(6)
     }
     
     // MARK: - Properties
@@ -23,14 +23,14 @@ class AddWordTableViewCell: UITableViewCell {
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         label.font = .systemFont(ofSize: 18)
-        label.textColor = .black
+        label.textColor = .white
         return label
     }()
     
     private var containerView: UIView = {
         let containerView = UIView()
         containerView.layer.cornerRadius = Locals.cornerRadius
-        containerView.backgroundColor = UIColor.containerViewBackgroundColor
+        containerView.backgroundColor = UIColor.metallicSeaweed
         return containerView
     }()
     
@@ -48,13 +48,13 @@ class AddWordTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = UIColor.backgroundColor
+        backgroundColor = .white
         addSubview(containerView)
         containerView.layer.masksToBounds = true
         containerView.translatesAutoresizingMaskIntoConstraints = false
         let bgColorView = UIView()
         bgColorView.layer.cornerRadius = Locals.cornerRadius
-        bgColorView.backgroundColor = UIColor.selectedBackgroundColor
+        bgColorView.backgroundColor = UIColor.persianGreen
         selectedBackgroundView = bgColorView
         addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false

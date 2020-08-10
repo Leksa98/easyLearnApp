@@ -40,7 +40,7 @@ final class WordSetStatisticsViewController: UIViewController, WordSetStatistics
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.backgroundColor
+        view.backgroundColor = .white
         title = Locals.title
         configureTableView()
         if let setTitle = setTitle {
@@ -51,7 +51,7 @@ final class WordSetStatisticsViewController: UIViewController, WordSetStatistics
     // MARK: - Configuration
     
     private func configureTableView() {
-        tableView.backgroundColor = UIColor.backgroundColor
+        tableView.backgroundColor = .white
         tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self

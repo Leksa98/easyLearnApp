@@ -42,7 +42,7 @@ final class DefaultWordSetListViewController: UIViewController {
         super.viewDidLoad()
         title = "Word list"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Download", style: .plain, target: self, action: #selector(downloadButtonTapped))
-        view.backgroundColor = UIColor.backgroundColor
+        view.backgroundColor = .white
         configureTableView()
     }
     
@@ -50,7 +50,7 @@ final class DefaultWordSetListViewController: UIViewController {
     
     private func configureTableView() {
         view.addSubview(tableView)
-        tableView.backgroundColor = UIColor.backgroundColor
+        tableView.backgroundColor = .white
         tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self

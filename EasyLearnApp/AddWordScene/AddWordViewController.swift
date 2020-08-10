@@ -50,7 +50,7 @@ final class AddWordViewController: UIViewController, AddWordDataStore {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.backgroundColor
+        view.backgroundColor = .white
         configureSearchBar()
         configureTableView()
         configureAddTranslationButton()
@@ -58,7 +58,7 @@ final class AddWordViewController: UIViewController, AddWordDataStore {
     }
     
     override func viewDidLayoutSubviews() {
-        searchBar.setPlaceholderTextColorTo(color: UIColor.customPurple)
+        searchBar.setPlaceholderTextColorTo(color: UIColor.metallicSeaweed)
     }
     
     // MARK: - Configuration
@@ -71,13 +71,13 @@ final class AddWordViewController: UIViewController, AddWordDataStore {
         searchBar.searchBarStyle = UISearchBar.Style.prominent
         searchBar.placeholder = "Type word in english..."
         searchBar.sizeToFit()
-        searchBar.barTintColor = UIColor.customPurple
-        searchBar.searchTextField.backgroundColor = UIColor.backgroundColor
-        searchBar.searchTextField.leftView?.tintColor = UIColor.customPurple
+        searchBar.barTintColor = UIColor.metallicSeaweed
+        searchBar.searchTextField.backgroundColor = .white
+        searchBar.searchTextField.leftView?.tintColor = UIColor.metallicSeaweed
         searchBar.setShowsCancelButton(true, animated: true)
         searchBar.showsCancelButton = true
         if let cancelButton = searchBar.value(forKey: "cancelButton") as? UIButton {
-            cancelButton.setTitleColor(UIColor.backgroundColor, for: .normal)
+            cancelButton.setTitleColor(.white, for: .normal)
             cancelButton.titleLabel?.font = .systemFont(ofSize: 16)
         }
     }
@@ -94,12 +94,11 @@ final class AddWordViewController: UIViewController, AddWordDataStore {
         tableView.dataSource = self
         tableView.register(AddWordTableViewCell.self, forCellReuseIdentifier: Locals.cellId)
         tableView.separatorStyle = .none
-        tableView.backgroundColor = UIColor.backgroundColor
+        tableView.backgroundColor = .white
     }
     
     private func configureAddTranslationButton() {
         view.addSubview(addTranslationButton)
-        addTranslationButton.backgroundColor = UIColor.customPurple
         addTranslationButton.translatesAutoresizingMaskIntoConstraints = false
         addTranslationButton.addTarget(self, action: #selector(closeView), for: .touchUpInside)
         NSLayoutConstraint.activate([

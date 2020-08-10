@@ -56,9 +56,9 @@ final class AddSetViewController: UIViewController {
     
     private func configureView() {
         title = "Add new set"
-        view.backgroundColor = UIColor.backgroundColor
+        view.backgroundColor = UIColor.white
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveButtonTapped))
-        navigationItem.rightBarButtonItem?.tintColor = UIColor.customPurple
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.blueSapphire
     }
     
     private func setAddButton() {
@@ -77,8 +77,8 @@ final class AddSetViewController: UIViewController {
         view.addSubview(emojiView)
         emojiView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            emojiView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            emojiView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            emojiView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            emojiView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             emojiView.topAnchor.constraint(equalTo: nameView.bottomAnchor, constant: 10),
             emojiView.heightAnchor.constraint(equalToConstant: 100)
         ])
@@ -88,8 +88,8 @@ final class AddSetViewController: UIViewController {
         view.addSubview(nameView)
         nameView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            nameView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            nameView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            nameView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            nameView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             nameView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             nameView.heightAnchor.constraint(equalToConstant: 100)
         ])
@@ -97,16 +97,14 @@ final class AddSetViewController: UIViewController {
     
     private func configuteTableView() {
         view.addSubview(wordSetView)
-        wordSetView.backgroundColor = UIColor.customLightBlue
-        wordSetView.layer.borderWidth = 2
-        wordSetView.layer.borderColor = UIColor.customDarkPurple.cgColor
+        wordSetView.backgroundColor = UIColor.white
         wordSetView.layer.cornerRadius = 15
         wordSetView.addSubview(addedWordTableView)
         let tableLabel = UILabel()
         tableLabel.text = "Added words"
         tableLabel.font = .boldSystemFont(ofSize: 20)
         wordSetView.addSubview(tableLabel)
-        addedWordTableView.backgroundColor = UIColor.customLightBlue
+        addedWordTableView.backgroundColor = UIColor.white
         addedWordTableView.delegate = self
         addedWordTableView.dataSource = self
         addedWordTableView.register(AddSetTableViewCell.self, forCellReuseIdentifier: Locals.cellId)
@@ -115,8 +113,8 @@ final class AddSetViewController: UIViewController {
         addedWordTableView.translatesAutoresizingMaskIntoConstraints = false
         tableLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            wordSetView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            wordSetView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            wordSetView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            wordSetView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             wordSetView.topAnchor.constraint(equalTo: emojiView.bottomAnchor, constant: 10),
             tableLabel.leadingAnchor.constraint(equalTo: wordSetView.leadingAnchor, constant: 15),
             tableLabel.trailingAnchor.constraint(equalTo: wordSetView.trailingAnchor, constant: -15),

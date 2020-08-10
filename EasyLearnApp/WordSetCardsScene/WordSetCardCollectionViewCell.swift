@@ -23,6 +23,7 @@ class WordSetCardCollectionViewCell: UICollectionViewCell {
     
     private var frontText: String?
     private var backText: String?
+    private let gradient = CAGradientLayer()
     
     private var isFrontText = true
     

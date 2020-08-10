@@ -46,12 +46,12 @@ final class AllWordSetTableViewController: UITableViewController {
     // MARK: - Setup UI elements
     
     private func configureTableView() {
-        view.backgroundColor = UIColor.backgroundColor
+        view.backgroundColor = .white
         navigationItem.title = "My sets"
         navigationController?.navigationBar.prefersLargeTitles = true
         tableView.register(AllWordSetTableViewCell.self, forCellReuseIdentifier: Locals.cellId)
         navigationItem.rightBarButtonItem = self.editButtonItem
-        navigationController?.navigationBar.tintColor = UIColor.customPurple
+        navigationController?.navigationBar.tintColor = UIColor.blueSapphire
         tableView.separatorStyle = .none
     }
     
