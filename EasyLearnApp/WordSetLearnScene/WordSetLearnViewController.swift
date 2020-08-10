@@ -42,6 +42,7 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
         }
     }
     var interactor: WordSetLearnBusinessLogic?
+    var router: WordSetCardRouterLogic?
     var setName: String?
     
     // MARK: - Lifecycle

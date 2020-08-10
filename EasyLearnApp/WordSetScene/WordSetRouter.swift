@@ -36,10 +36,11 @@ final class WordSetRouter: WordSetRouterLogic {
     }
     
     func routeToWordSetLearn(with title: String) {
-        let vc = WordSetLearnConfigurator.assembly()
+        let vc = WordSetLearnViewController()
+        navigationController?.pushViewController(vc, animated: true)
+        WordSetLearnConfigurator.assembly(viewController: vc)
         vc.title = title
         vc.interactor?.fetchWords(request: WordSetLearnModel.FetchWordSet.Request(setName: title))
-        navigationController?.pushViewController(vc, animated: true)
     }
     
     func routeToWordSetStatistics(with title: String) {

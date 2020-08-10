@@ -10,16 +10,16 @@ import UIKit
 
 final class WordSetLearnConfigurator {
     
-    static func assembly() -> WordSetLearnViewController {
+    static func assembly(viewController: WordSetLearnViewController) {
         
-        let viewController = WordSetLearnViewController()
         let presenter = WordSetLearnPresentor()
         let interactor = WordSetLearnInteractor()
+        let router = WordSetCardRouter()
         
         viewController.interactor = interactor
+        viewController.router = router
+        router.navigationController = viewController.navigationController
         interactor.presenter = presenter
         presenter.viewController = viewController
-        
-        return viewController
     }
 }
