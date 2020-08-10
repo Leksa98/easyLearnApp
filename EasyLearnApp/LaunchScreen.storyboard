@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="fT6-DG-jSg">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Learn words" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WkS-Hn-s7o">
+                                <rect key="frame" x="0.0" y="535" width="414" height="67"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="56"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="study" translatesAutoresizingMaskIntoConstraints="NO" id="8u2-FB-ZdB">
+                                <rect key="frame" x="80" y="286" width="254" height="229"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="8u2-FB-ZdB" firstAttribute="centerX" secondItem="WkS-Hn-s7o" secondAttribute="centerX" id="AlA-7c-crV"/>
+                            <constraint firstItem="WkS-Hn-s7o" firstAttribute="top" secondItem="8u2-FB-ZdB" secondAttribute="bottom" constant="20" id="J76-UZ-m1B"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="bottom" secondItem="WkS-Hn-s7o" secondAttribute="bottom" constant="260" id="Uaw-Ro-YEc"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="8u2-FB-ZdB" secondAttribute="trailing" constant="80" id="act-2v-kWd"/>
+                            <constraint firstItem="fT6-DG-jSg" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="alL-tn-gkc"/>
+                            <constraint firstItem="fT6-DG-jSg" firstAttribute="trailing" secondItem="Bcu-3y-fUS" secondAttribute="trailing" id="cdw-ou-OqR"/>
+                            <constraint firstAttribute="bottom" secondItem="fT6-DG-jSg" secondAttribute="bottom" id="dPb-sA-8sR"/>
+                            <constraint firstItem="fT6-DG-jSg" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="gP0-Mn-PoQ"/>
+                            <constraint firstItem="8u2-FB-ZdB" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="80" id="gu5-Qd-xVg"/>
+                            <constraint firstItem="WkS-Hn-s7o" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="rYy-NU-HE5"/>
+                            <constraint firstItem="8u2-FB-ZdB" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" constant="242" id="t94-y8-3zy"/>
+                            <constraint firstItem="WkS-Hn-s7o" firstAttribute="trailing" secondItem="Bcu-3y-fUS" secondAttribute="trailing" id="zPF-1y-lWa"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52.173913043478265" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="background" width="1124" height="2248"/>
+        <image name="study" width="387" height="241"/>
+    </resources>
+</document>
