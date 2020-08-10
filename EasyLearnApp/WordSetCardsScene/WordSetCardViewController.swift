@@ -46,6 +46,7 @@ final class WordSetCardViewController: UIViewController {
         }
     }
     var interactor: WordSetCardBusinessLogic?
+    var router: WordSetCardRouterLogic?
     
     
     // MARK: - Life cycle
@@ -151,7 +152,7 @@ final class WordSetCardViewController: UIViewController {
     }
     
     @objc private func dismissViewController() {
-        navigationController?.popViewController(animated: true)
+        router?.routeBack()
     }
 }
 
@@ -203,4 +204,3 @@ extension WordSetCardViewController: WordSetCardsShow {
         wordSetArray = viewModel.wordsArray
     }
 }
-

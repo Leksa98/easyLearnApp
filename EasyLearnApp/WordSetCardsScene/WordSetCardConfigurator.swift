@@ -10,17 +10,17 @@ import UIKit
 
 final class WordSetCardConfigurator {
     
-    static func assembly() -> WordSetCardViewController {
+    static func assembly(viewController: WordSetCardViewController) {
         
-        let viewController = WordSetCardViewController()
         let presenter = WordSetCardPresenter()
         let interactor = WordSetCardInteractor()
+        let router = WordSetCardRouter()
         
         viewController.interactor = interactor
+        viewController.router = router
+        router.navigationController = viewController.navigationController
         interactor.presenter = presenter
         presenter.viewController = viewController
-        
-        return viewController
     }
 }
 

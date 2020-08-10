@@ -28,10 +28,11 @@ final class WordSetRouter: WordSetRouterLogic {
     }
     
     func routeToWordSetCards(with title: String) {
-        let vc = WordSetCardConfigurator.assembly()
+        let vc = WordSetCardViewController()
+        navigationController?.pushViewController(vc, animated: true)
+        WordSetCardConfigurator.assembly(viewController: vc)
         vc.title = title
         vc.interactor?.fetchWordSet(request: WordSetCardModel.FetchWordSet.Request(setName: title))
-        navigationController?.pushViewController(vc, animated: true)
     }
     
     func routeToWordSetLearn(with title: String) {
