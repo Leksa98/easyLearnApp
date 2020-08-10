@@ -21,7 +21,6 @@ final class DefaultWordSetListViewController: UIViewController {
     // MARK: - Constants
     
     private enum Locals {
-        static let backgroundColor = UIColor(cgColor: CGColor(srgbRed: 249.0/255.0, green: 248.0/255.0, blue: 241.0/255.0, alpha: 1))
         static let cellId = "DefaultWordSetListCellId"
     }
     
@@ -43,7 +42,7 @@ final class DefaultWordSetListViewController: UIViewController {
         super.viewDidLoad()
         title = "Word list"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Download", style: .plain, target: self, action: #selector(downloadButtonTapped))
-        view.backgroundColor = Locals.backgroundColor
+        view.backgroundColor = UIColor.backgroundColor
         configureTableView()
     }
     
@@ -51,7 +50,7 @@ final class DefaultWordSetListViewController: UIViewController {
     
     private func configureTableView() {
         view.addSubview(tableView)
-        tableView.backgroundColor = Locals.backgroundColor
+        tableView.backgroundColor = UIColor.backgroundColor
         tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self

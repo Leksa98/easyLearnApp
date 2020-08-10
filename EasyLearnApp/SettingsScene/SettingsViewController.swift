@@ -13,8 +13,6 @@ final class SettingsViewController: UIViewController {
     // MARK: - Constants
     
     enum Locals {
-        static let backgroundColor = UIColor(cgColor: CGColor(srgbRed: 249.0/255.0, green: 248.0/255.0, blue: 241.0/255.0, alpha: 1))
-        static let navigationBarColor = UIColor(cgColor: CGColor(srgbRed: 118.0/255.0, green: 93.0/255.0, blue: 152.0/255.0, alpha: 1))
         static let chooseLanguageCellId = "chooseLanguageCellId"
     }
     
@@ -27,10 +25,10 @@ final class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Locals.backgroundColor
+        view.backgroundColor = UIColor.backgroundColor
         title = "Settings"
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.tintColor = Locals.navigationBarColor
+        navigationController?.navigationBar.tintColor = UIColor.customPurple
         setupTableView()
     }
     
@@ -42,7 +40,7 @@ final class SettingsViewController: UIViewController {
     
     private func setupTableView() {
         view.addSubview(tableView)
-        tableView.backgroundColor = Locals.backgroundColor
+        tableView.backgroundColor = UIColor.backgroundColor
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(SettingsTableViewCell.self, forCellReuseIdentifier: Locals.chooseLanguageCellId)

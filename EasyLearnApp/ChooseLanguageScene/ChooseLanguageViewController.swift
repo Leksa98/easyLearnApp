@@ -17,8 +17,6 @@ final class ChooseLanguageViewController: UIViewController {
     // MARK: - Constants
     
     enum Locals {
-        static let backgroundColor = UIColor(cgColor: CGColor(srgbRed: 249.0/255.0, green: 248.0/255.0, blue: 241.0/255.0, alpha: 1))
-        static let checkmarkColor = UIColor(cgColor: CGColor(srgbRed: 118.0/255.0, green: 93.0/255.0, blue: 152.0/255.0, alpha: 1))
         static let cellId = "ChooseLanguageCellId"
     }
     
@@ -37,7 +35,7 @@ final class ChooseLanguageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Locals.backgroundColor
+        view.backgroundColor = UIColor.backgroundColor
         title = "Learning language"
         navigationController?.navigationBar.prefersLargeTitles = false
         setupTableView()
@@ -48,7 +46,7 @@ final class ChooseLanguageViewController: UIViewController {
     
     private func setupTableView() {
         view.addSubview(tableView)
-        tableView.backgroundColor = Locals.backgroundColor
+        tableView.backgroundColor = UIColor.backgroundColor
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(ChooseLanguageTableViewCell.self, forCellReuseIdentifier: Locals.cellId)
@@ -76,7 +74,7 @@ extension ChooseLanguageViewController: UITableViewDelegate {
             if let selectedCell = selectedCell {
                 tableView.cellForRow(at: selectedCell)?.accessoryType = .none
             }
-            cell.tintColor = Locals.checkmarkColor
+            cell.tintColor = UIColor.customPurple
             cell.accessoryType = .checkmark
             let userDefaults = UserDefaults.standard
             userDefaults.set(cell.viewModel?.codeValue, forKey: "lang")
@@ -93,7 +91,7 @@ extension ChooseLanguageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: Locals.cellId, for: indexPath) as? ChooseLanguageTableViewCell {
             cell.viewModel = languages[indexPath.row]
-            cell.tintColor = Locals.checkmarkColor
+            cell.tintColor = UIColor.customPurple
             let userDefaults = UserDefaults.standard
             
             let lang = userDefaults.object(forKey: "lang")

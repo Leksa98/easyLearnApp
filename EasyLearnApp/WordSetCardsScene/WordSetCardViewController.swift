@@ -17,10 +17,6 @@ final class WordSetCardViewController: UIViewController {
     // MARK: - Constants
     
     enum Locals {
-        static let backgroundColor = UIColor(cgColor: CGColor(srgbRed: 249.0/255.0, green: 248.0/255.0, blue: 241.0/255.0, alpha: 1))
-        static let buttonColor = UIColor(cgColor: CGColor(srgbRed: 118.0/255.0, green: 93.0/255.0, blue: 152.0/255.0, alpha: 1))
-        static let viewColor = UIColor(cgColor: CGColor(srgbRed: 233.0/255.0, green: 241.0/255.0, blue: 247.0/255.0, alpha: 1))
-        static let borderColor = UIColor(cgColor: CGColor(srgbRed: 84.0/255.0, green: 66.0/255.0, blue: 107.0/255.0, alpha: 1)).cgColor
         static let cellID = "WordSetCardsCellId"
         static let cellSize = CGSize(width: 300, height: 300)
         static let lineSpacing = CGFloat(100)
@@ -56,11 +52,11 @@ final class WordSetCardViewController: UIViewController {
         navigationItem.setHidesBackButton(true, animated: true)
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(dismissViewController))
         title = "Cards"
-        view.backgroundColor = Locals.backgroundColor
+        view.backgroundColor = UIColor.backgroundColor
         configureCollectionView()
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.backgroundColor = Locals.backgroundColor
+        collectionView.backgroundColor = UIColor.backgroundColor
         collectionView.register(WordSetCardCollectionViewCell.self, forCellWithReuseIdentifier: Locals.cellID)
         if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.scrollDirection = .horizontal
@@ -87,10 +83,10 @@ final class WordSetCardViewController: UIViewController {
         nextCardButton.setTitle("Next", for: .normal)
         nextCardButton.layer.cornerRadius = 15
         nextCardButton.layer.borderWidth = 2
-        nextCardButton.layer.borderColor = Locals.borderColor
+        nextCardButton.layer.borderColor = UIColor.customDarkPurple.cgColor
         nextCardButton.setTitleColor(.black, for: .normal)
         nextCardButton.titleLabel?.font = .boldSystemFont(ofSize: 20)
-        nextCardButton.backgroundColor = Locals.viewColor
+        nextCardButton.backgroundColor = UIColor.customLightBlue
         nextCardButton.addTarget(self, action: #selector(nextCardButtonTapped), for: .touchUpInside)
         view.addSubview(nextCardButton)
         nextCardButton.translatesAutoresizingMaskIntoConstraints = false
@@ -106,10 +102,10 @@ final class WordSetCardViewController: UIViewController {
         prevCardButton.setTitle("Previous", for: .normal)
         prevCardButton.layer.cornerRadius = 15
         prevCardButton.layer.borderWidth = 2
-        prevCardButton.layer.borderColor = Locals.borderColor
+        prevCardButton.layer.borderColor = UIColor.customDarkPurple.cgColor
         prevCardButton.setTitleColor(.black, for: .normal)
         prevCardButton.titleLabel?.font = .boldSystemFont(ofSize: 20)
-        prevCardButton.backgroundColor = Locals.viewColor
+        prevCardButton.backgroundColor = UIColor.customLightBlue
         prevCardButton.addTarget(self, action: #selector(prevCardButtonTapped), for: .touchUpInside)
         view.addSubview(prevCardButton)
         prevCardButton.translatesAutoresizingMaskIntoConstraints = false

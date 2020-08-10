@@ -13,7 +13,6 @@ class WordSetCardView: UIView {
     // MARK: - Constants
     
     private enum Locals {
-        static let buttonColor = UIColor(cgColor: CGColor(srgbRed: 118.0/255.0, green: 93.0/255.0, blue: 152.0/255.0, alpha: 1))
         static let cornerRadius = CGFloat(40)
     }
     
@@ -26,7 +25,7 @@ class WordSetCardView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureLabel()
-        backgroundColor = Locals.buttonColor
+        backgroundColor = UIColor.customPurple
         layer.cornerRadius = Locals.cornerRadius
     }
     

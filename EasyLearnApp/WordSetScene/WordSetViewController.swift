@@ -10,12 +10,6 @@ import UIKit
 
 final class WordSetViewController: UIViewController {
     
-    // MARK: - Constants
-    
-    enum Locals {
-        static let backgroundColor = UIColor(cgColor: CGColor(srgbRed: 249.0/255.0, green: 248.0/255.0, blue: 241.0/255.0, alpha: 1))
-    }
-    
     // MARK: - Properties
     
     private let listButton = ButtonWithRoundCorners(title: "List")
@@ -30,7 +24,7 @@ final class WordSetViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBarController?.tabBar.isHidden = true
-        view.backgroundColor = Locals.backgroundColor
+        view.backgroundColor = UIColor.backgroundColor
         setButtons()
     }
     

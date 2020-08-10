@@ -17,8 +17,6 @@ final class AllWordSetTableViewController: UITableViewController {
     // MARK: - Constants
     
     enum Locals {
-        static let backgroundColor = UIColor(cgColor: CGColor(srgbRed: 249.0/255.0, green: 248.0/255.0, blue: 241.0/255.0, alpha: 1))
-        static let buttonColor = UIColor(cgColor: CGColor(srgbRed: 118.0/255.0, green: 93.0/255.0, blue: 152.0/255.0, alpha: 1))
         static let cellId = "wordSetCell"
     }
     
@@ -48,12 +46,12 @@ final class AllWordSetTableViewController: UITableViewController {
     // MARK: - Setup UI elements
     
     private func configureTableView() {
-        view.backgroundColor = Locals.backgroundColor
+        view.backgroundColor = UIColor.backgroundColor
         navigationItem.title = "My sets"
         navigationController?.navigationBar.prefersLargeTitles = true
         tableView.register(AllWordSetTableViewCell.self, forCellReuseIdentifier: Locals.cellId)
         navigationItem.rightBarButtonItem = self.editButtonItem
-        navigationController?.navigationBar.tintColor = Locals.buttonColor
+        navigationController?.navigationBar.tintColor = UIColor.customPurple
         tableView.separatorStyle = .none
     }
     

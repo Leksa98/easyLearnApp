@@ -10,15 +10,6 @@ import UIKit
 
 class EnterInfoView: UIView {
     
-    // MARK: - Constants
-    
-    private enum Locals {
-        static let borderColor = UIColor(cgColor: CGColor(srgbRed: 84.0/255.0, green: 66.0/255.0, blue: 107.0/255.0, alpha: 1)).cgColor
-        static let viewColor = UIColor(cgColor: CGColor(srgbRed: 233.0/255.0, green: 241.0/255.0, blue: 247.0/255.0, alpha: 1))
-        static let textFieldColor = UIColor(cgColor: CGColor(srgbRed: 196.0/255.0, green: 198.0/255.0, blue: 212.0/255.0, alpha: 1))
-        static let placeholderColor = UIColor(cgColor: CGColor(srgbRed: 112.0/255.0, green: 99.0/255.0, blue: 134.0/255.0, alpha: 1))
-    }
-    
     // MARK: - Properties
     
     private var infoLabel: UILabel!
@@ -46,9 +37,9 @@ class EnterInfoView: UIView {
     // MARK: - Configuration
     
     private func configureView() {
-        backgroundColor = Locals.viewColor
+        backgroundColor = UIColor.customLightBlue
         layer.borderWidth = 2
-        layer.borderColor = Locals.borderColor
+        layer.borderColor = UIColor.customDarkPurple.cgColor
         layer.cornerRadius = 15
     }
     
@@ -68,9 +59,9 @@ class EnterInfoView: UIView {
     private func configureInfoTextField(textField: String) {
         enterInfoTextField = UITextField()
         addSubview(enterInfoTextField)
-        enterInfoTextField.attributedPlaceholder = NSAttributedString(string: textField, attributes: [NSAttributedString.Key.foregroundColor: Locals.placeholderColor, NSAttributedString.Key.font: UIFont.italicSystemFont(ofSize: 18)])
+        enterInfoTextField.attributedPlaceholder = NSAttributedString(string: textField, attributes: [NSAttributedString.Key.foregroundColor: UIColor.placeholderColor, NSAttributedString.Key.font: UIFont.italicSystemFont(ofSize: 18)])
         enterInfoTextField.font = .systemFont(ofSize: 18)
-        enterInfoTextField.backgroundColor = Locals.textFieldColor
+        enterInfoTextField.backgroundColor = UIColor.textFieldColor
         enterInfoTextField.textColor = .black
         enterInfoTextField.layer.cornerRadius = 6.0
         enterInfoTextField.layer.masksToBounds = true

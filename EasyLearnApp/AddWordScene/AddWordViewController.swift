@@ -22,8 +22,6 @@ final class AddWordViewController: UIViewController, AddWordDataStore {
     // MARK: - Constants
     
     private enum Locals {
-        static let backgroundColor = UIColor(cgColor: CGColor(srgbRed: 249.0/255.0, green: 248.0/255.0, blue: 241.0/255.0, alpha: 1))
-        static let buttonColor = UIColor(cgColor: CGColor(srgbRed: 118.0/255.0, green: 93.0/255.0, blue: 152.0/255.0, alpha: 1))
         static let cellId = "addWordTableViewCell"
     }
     
@@ -52,7 +50,7 @@ final class AddWordViewController: UIViewController, AddWordDataStore {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Locals.backgroundColor
+        view.backgroundColor = UIColor.backgroundColor
         configureSearchBar()
         configureTableView()
         configureAddTranslationButton()
@@ -60,7 +58,7 @@ final class AddWordViewController: UIViewController, AddWordDataStore {
     }
     
     override func viewDidLayoutSubviews() {
-        searchBar.setPlaceholderTextColorTo(color: Locals.buttonColor)
+        searchBar.setPlaceholderTextColorTo(color: UIColor.customPurple)
     }
     
     // MARK: - Configuration
@@ -73,13 +71,13 @@ final class AddWordViewController: UIViewController, AddWordDataStore {
         searchBar.searchBarStyle = UISearchBar.Style.prominent
         searchBar.placeholder = "Type word in english..."
         searchBar.sizeToFit()
-        searchBar.barTintColor = Locals.buttonColor
-        searchBar.searchTextField.backgroundColor = Locals.backgroundColor
-        searchBar.searchTextField.leftView?.tintColor = Locals.buttonColor
+        searchBar.barTintColor = UIColor.customPurple
+        searchBar.searchTextField.backgroundColor = UIColor.backgroundColor
+        searchBar.searchTextField.leftView?.tintColor = UIColor.customPurple
         searchBar.setShowsCancelButton(true, animated: true)
         searchBar.showsCancelButton = true
         if let cancelButton = searchBar.value(forKey: "cancelButton") as? UIButton {
-            cancelButton.setTitleColor(Locals.backgroundColor, for: .normal)
+            cancelButton.setTitleColor(UIColor.backgroundColor, for: .normal)
             cancelButton.titleLabel?.font = .systemFont(ofSize: 16)
         }
     }
@@ -96,12 +94,12 @@ final class AddWordViewController: UIViewController, AddWordDataStore {
         tableView.dataSource = self
         tableView.register(AddWordTableViewCell.self, forCellReuseIdentifier: Locals.cellId)
         tableView.separatorStyle = .none
-        tableView.backgroundColor = Locals.backgroundColor
+        tableView.backgroundColor = UIColor.backgroundColor
     }
     
     private func configureAddTranslationButton() {
         view.addSubview(addTranslationButton)
-        addTranslationButton.backgroundColor = Locals.buttonColor
+        addTranslationButton.backgroundColor = UIColor.customPurple
         addTranslationButton.translatesAutoresizingMaskIntoConstraints = false
         addTranslationButton.addTarget(self, action: #selector(closeView), for: .touchUpInside)
         NSLayoutConstraint.activate([

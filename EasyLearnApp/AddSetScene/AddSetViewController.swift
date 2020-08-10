@@ -21,10 +21,6 @@ final class AddSetViewController: UIViewController {
     // MARK: - Constants
     
     private enum Locals {
-        static let backgroundColor = UIColor(cgColor: CGColor(srgbRed: 249.0/255.0, green: 248.0/255.0, blue: 241.0/255.0, alpha: 1))
-        static let buttonColor = UIColor(cgColor: CGColor(srgbRed: 118.0/255.0, green: 93.0/255.0, blue: 152.0/255.0, alpha: 1))
-        static let borderColor = UIColor(cgColor: CGColor(srgbRed: 84.0/255.0, green: 66.0/255.0, blue: 107.0/255.0, alpha: 1)).cgColor
-        static let viewColor = UIColor(cgColor: CGColor(srgbRed: 233.0/255.0, green: 241.0/255.0, blue: 247.0/255.0, alpha: 1))
         static let cellId = "addSetTableViewCell"
     }
     
@@ -60,9 +56,9 @@ final class AddSetViewController: UIViewController {
     
     private func configureView() {
         title = "Add new set"
-        view.backgroundColor = Locals.backgroundColor
+        view.backgroundColor = UIColor.backgroundColor
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveButtonTapped))
-        navigationItem.rightBarButtonItem?.tintColor = Locals.buttonColor
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.customPurple
     }
     
     private func setAddButton() {
@@ -101,16 +97,16 @@ final class AddSetViewController: UIViewController {
     
     private func configuteTableView() {
         view.addSubview(wordSetView)
-        wordSetView.backgroundColor = Locals.viewColor
+        wordSetView.backgroundColor = UIColor.customLightBlue
         wordSetView.layer.borderWidth = 2
-        wordSetView.layer.borderColor = Locals.borderColor
+        wordSetView.layer.borderColor = UIColor.customDarkPurple.cgColor
         wordSetView.layer.cornerRadius = 15
         wordSetView.addSubview(addedWordTableView)
         let tableLabel = UILabel()
         tableLabel.text = "Added words"
         tableLabel.font = .boldSystemFont(ofSize: 20)
         wordSetView.addSubview(tableLabel)
-        addedWordTableView.backgroundColor = Locals.viewColor
+        addedWordTableView.backgroundColor = UIColor.customLightBlue
         addedWordTableView.delegate = self
         addedWordTableView.dataSource = self
         addedWordTableView.register(AddSetTableViewCell.self, forCellReuseIdentifier: Locals.cellId)

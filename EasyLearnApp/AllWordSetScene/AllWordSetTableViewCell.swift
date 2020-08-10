@@ -10,10 +10,6 @@ import UIKit
 
 class AllWordSetTableViewCell: UITableViewCell {
     
-    enum Locals {
-        static let backgroundColor = UIColor(cgColor: CGColor(srgbRed: 249.0/255.0, green: 248.0/255.0, blue: 241.0/255.0, alpha: 1))
-    }
-    
     // MARK: - Properties
     
     private var setTitle: UILabel! = {
@@ -51,7 +47,7 @@ class AllWordSetTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.accessoryType = .disclosureIndicator
-        backgroundColor = Locals.backgroundColor
+        backgroundColor = UIColor.backgroundColor
         addSubview(setTitle)
         addSubview(progressBar)
         addSubview(emojiLabel)

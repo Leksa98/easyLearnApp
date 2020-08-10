@@ -10,15 +10,6 @@ import UIKit
 
 class WordSetLearnCollectionViewCell: UICollectionViewCell {
     
-    // MARK: - Constants
-    
-    private enum Locals {
-        static let backgroundColor = UIColor(cgColor: CGColor(srgbRed: 249.0/255.0, green: 248.0/255.0, blue: 241.0/255.0, alpha: 1))
-        static let borderColor = UIColor(cgColor: CGColor(srgbRed: 84.0/255.0, green: 66.0/255.0, blue: 107.0/255.0, alpha: 1)).cgColor
-        static let correctAnswerColor = UIColor(cgColor: CGColor(srgbRed: 85.0/255.0, green: 180.0/255.0, blue: 88.0/255.0, alpha: 1)).cgColor
-        static let wrongAnswerColor = UIColor(cgColor: CGColor(srgbRed: 206.0/255.0, green: 80.0/255.0, blue: 80.0/255.0, alpha: 1)).cgColor
-    }
-    
     // MARK: - Properties
     
     private var wordLabel = UILabel()
@@ -38,7 +29,7 @@ class WordSetLearnCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = Locals.backgroundColor
+        backgroundColor = UIColor.backgroundColor
         
         addSubview(wordLabel)
         wordLabel.font = .boldSystemFont(ofSize: 28)
@@ -57,7 +48,7 @@ class WordSetLearnCollectionViewCell: UICollectionViewCell {
         addSubview(inputTextField)
         inputTextField.layer.cornerRadius = 5
         inputTextField.layer.borderWidth = 3
-        inputTextField.layer.borderColor = Locals.backgroundColor.cgColor
+        inputTextField.layer.borderColor = UIColor.backgroundColor.cgColor
         inputTextField.placeholder = "Type translation here"
         let paddingView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 20))
         inputTextField.leftView = paddingView
@@ -73,7 +64,7 @@ class WordSetLearnCollectionViewCell: UICollectionViewCell {
         ])
         
         addSubview(lineView)
-        lineView.backgroundColor = UIColor(cgColor: Locals.borderColor)
+        lineView.backgroundColor = UIColor.customDarkPurple
         lineView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             lineView.heightAnchor.constraint(equalToConstant: 2),
@@ -105,7 +96,7 @@ class WordSetLearnCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         inputTextField.text = ""
-        inputTextField.layer.borderColor = Locals.backgroundColor.cgColor
+        inputTextField.layer.borderColor = UIColor.backgroundColor.cgColor
         resultExerciseLabel.text = ""
     }
     
@@ -134,12 +125,12 @@ class WordSetLearnCollectionViewCell: UICollectionViewCell {
         var textForResultExerciseLabel: String
         switch correctAnswer {
         case true:
-            borderColor = Locals.correctAnswerColor
-            resultExerciseLabel.textColor = UIColor(cgColor: Locals.correctAnswerColor)
+            borderColor = UIColor.customGreen.cgColor
+            resultExerciseLabel.textColor = UIColor.customGreen
             textForResultExerciseLabel = "Correct"
         case false:
-            borderColor = Locals.wrongAnswerColor
-            resultExerciseLabel.textColor = UIColor(cgColor: Locals.wrongAnswerColor)
+            borderColor = UIColor.customRed.cgColor
+            resultExerciseLabel.textColor = UIColor.customRed
             textForResultExerciseLabel = "Wrong"
         }
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: { [weak self] in
@@ -165,7 +156,7 @@ class WordSetLearnCollectionViewCell: UICollectionViewCell {
                 let paragraphStyle = NSMutableParagraphStyle()
                 paragraphStyle.alignment = NSTextAlignment.center
                 paragraphStyle.hyphenationFactor = 1.0
-                self?.resultExerciseLabel.textColor = UIColor(cgColor: Locals.wrongAnswerColor)
+                self?.resultExerciseLabel.textColor = UIColor.customRed
                 let attributedTitle =  NSAttributedString(string: translation.capitalizingFirstLetter(), attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
                 self?.resultExerciseLabel.attributedText = attributedTitle
             }

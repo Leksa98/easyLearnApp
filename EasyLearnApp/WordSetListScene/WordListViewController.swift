@@ -18,7 +18,6 @@ final class WordListViewController: UIViewController {
     
     enum Locals {
         static let cellId = "WordListCellId"
-        static let backgroundColor = UIColor(cgColor: CGColor(srgbRed: 249.0/255.0, green: 248.0/255.0, blue: 241.0/255.0, alpha: 1))
     }
     
     // MARK: - Properties
@@ -39,7 +38,7 @@ final class WordListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Locals.backgroundColor
+        view.backgroundColor = UIColor.backgroundColor
         title = "List"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
         configureTable()
@@ -60,7 +59,7 @@ final class WordListViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
-        tableView.backgroundColor = Locals.backgroundColor
+        tableView.backgroundColor = UIColor.backgroundColor
     }
     
     // MARK: - Button actions
