@@ -9,22 +9,22 @@
 import Foundation
 
 protocol ChooseLanguageBusinessLogic {
-    func loadLanguages()
+    func loadLanguages(request: ChooseLanguageModel.Language.Request)
 }
 
 final class ChooseLanguageInteractor: ChooseLanguageBusinessLogic {
     
     var presenter: ChooseLanguagePresentationLogic?
     
-    func loadLanguages() {
-        let languages = [ChooseLanguageModel(language: "English", flag: "🇬🇧", code: "en"),
-                         ChooseLanguageModel(language: "German", flag: "🇩🇪", code: "de"),
-                         ChooseLanguageModel(language: "French", flag: "🇫🇷", code: "fr"),
-                         ChooseLanguageModel(language: "Spanish", flag: "🇪🇸", code: "es"),
-                         ChooseLanguageModel(language: "Italian", flag: "🇮🇹", code: "it"),
-                         ChooseLanguageModel(language: "Polish", flag: "🇵🇱", code: "pl"),
-                         ChooseLanguageModel(language: "Turkish", flag: "🇹🇷", code: "tr")]
-        presenter?.prepareForPresent(languages: languages)
+    func loadLanguages(request: ChooseLanguageModel.Language.Request) {
+        let languages = [LanguageModel(language: "English", flag: "🇬🇧", code: "en"),
+                         LanguageModel(language: "German", flag: "🇩🇪", code: "de"),
+                         LanguageModel(language: "French", flag: "🇫🇷", code: "fr"),
+                         LanguageModel(language: "Spanish", flag: "🇪🇸", code: "es"),
+                         LanguageModel(language: "Italian", flag: "🇮🇹", code: "it"),
+                         LanguageModel(language: "Polish", flag: "🇵🇱", code: "pl"),
+                         LanguageModel(language: "Turkish", flag: "🇹🇷", code: "tr")]
+        presenter?.prepareForPresent(response: ChooseLanguageModel.Language.Response(languages: languages))
     }
     
 }

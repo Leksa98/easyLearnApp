@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ChooseLanguageShowTableView: class {
-    func loadDataInTableView(languages: [ChooseLanguageModel])
+    func loadDataInTableView(viewModel: ChooseLanguageModel.Language.ViewModel)
 }
 
 final class ChooseLanguageViewController: UIViewController {
@@ -26,7 +26,7 @@ final class ChooseLanguageViewController: UIViewController {
     
     private var tableView = UITableView()
     private var selectedCell: IndexPath?
-    private var languages: [ChooseLanguageModel] = [] {
+    private var languages: [LanguageModel] = [] {
         didSet {
             tableView.reloadData()
         }
@@ -41,7 +41,7 @@ final class ChooseLanguageViewController: UIViewController {
         title = "Learning language"
         navigationController?.navigationBar.prefersLargeTitles = false
         setupTableView()
-        interactor?.loadLanguages()
+        interactor?.loadLanguages(request: ChooseLanguageModel.Language.Request())
     }
     
     // MARK: - Setup UI elements
@@ -117,7 +117,7 @@ extension ChooseLanguageViewController: UITableViewDataSource {
 
 // MARK: - ChooseLanguageShowTableView protocol
 extension ChooseLanguageViewController: ChooseLanguageShowTableView {
-    func loadDataInTableView(languages: [ChooseLanguageModel]) {
-        self.languages = languages
+    func loadDataInTableView(viewModel: ChooseLanguageModel.Language.ViewModel) {
+        self.languages = viewModel.languages
     }
 }

@@ -9,14 +9,14 @@
 import Foundation
 
 protocol ChooseLanguagePresentationLogic {
-    func prepareForPresent(languages: [ChooseLanguageModel])
+    func prepareForPresent(response: ChooseLanguageModel.Language.Response)
 }
 
 final class ChooseLanguagePresenter: ChooseLanguagePresentationLogic {
     
     weak var viewController: ChooseLanguageShowTableView?
     
-    func prepareForPresent(languages: [ChooseLanguageModel]) {
-        viewController?.loadDataInTableView(languages: languages)
+    func prepareForPresent(response: ChooseLanguageModel.Language.Response) {
+        viewController?.loadDataInTableView(viewModel: ChooseLanguageModel.Language.ViewModel(languages: response.languages))
     }
 }
