@@ -9,6 +9,7 @@
 import UIKit
 
 final class ChooseLanguageTableViewCell: UITableViewCell {
+    
     // MARK: - Constants
     
     enum Locals {
@@ -20,7 +21,7 @@ final class ChooseLanguageTableViewCell: UITableViewCell {
     
     private var languageLabel = UILabel()
     private var flagLabel = UILabel()
-    var viewModel: ChooseLanguageModel? {
+    var viewModel: LanguageModel? {
         didSet {
             if let viewModel = viewModel {
                 updateContent(viewModel: viewModel)
@@ -56,7 +57,7 @@ final class ChooseLanguageTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func updateContent(viewModel: ChooseLanguageModel) {
+    private func updateContent(viewModel: LanguageModel) {
         languageLabel.text = viewModel.languageValue
         flagLabel.text = viewModel.flagValue
     }

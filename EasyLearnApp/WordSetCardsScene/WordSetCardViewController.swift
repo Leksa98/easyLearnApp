@@ -9,11 +9,10 @@
 import UIKit
 
 protocol WordSetCardsShow: class {
-    func loadWordSetCards(words: [WordModel])
-    func loadSetName(name: String)
+    func loadWordSetCards(viewModel: WordSetCardModel.FetchWordSet.ViewModel)
 }
 
-final class WordSetCardsViewController: UIViewController {
+final class WordSetCardViewController: UIViewController {
     
     // MARK: - Constants
     
@@ -47,6 +46,7 @@ final class WordSetCardsViewController: UIViewController {
         }
     }
     var interactor: WordSetCardBusinessLogic?
+    var router: WordSetCardRouterLogic?
     
     
     // MARK: - Life cycle
@@ -69,7 +69,7 @@ final class WordSetCardsViewController: UIViewController {
         configurePrevCardButton()
     }
     
-    // MARK: - Configuration
+    // MARK: - Setup UI elements
     
     private func configureCollectionView() {
         collectionView.isScrollEnabled = false
@@ -122,6 +122,8 @@ final class WordSetCardsViewController: UIViewController {
         prevCardButton.isHidden = true
     }
     
+    // MARK: - Button actions
+    
     @objc private func nextCardButtonTapped() {
         prevCardButton.isHidden = false
         let scrollCollectionViewWidth = wordSetArray.count * (Int(collectionView.frame.size.width) + 80)
@@ -150,15 +152,16 @@ final class WordSetCardsViewController: UIViewController {
     }
     
     @objc private func dismissViewController() {
-        navigationController?.popViewController(animated: true)
+        router?.routeBack()
     }
 }
 
-// MARK: - UICollectionViewDelegate
-extension WordSetCardsViewController: UICollectionViewDelegate { }
+// MARK: - UICollectionViewDelegate protocol
+extension WordSetCardViewController: UICollectionViewDelegate { }
 
-// MARK: - UICollectionViewDataSource
-extension WordSetCardsViewController: UICollectionViewDataSource {
+// MARK: - UICollectionViewDataSource protocol
+extension WordSetCardViewController: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return wordSetArray.count
     }
@@ -172,8 +175,8 @@ extension WordSetCardsViewController: UICollectionViewDataSource {
     }
 }
 
-// MARK: - UICollectionViewDelegateFlowLayout
-extension WordSetCardsViewController: UICollectionViewDelegateFlowLayout {
+// MARK: - UICollectionViewDelegateFlowLayout protocol
+extension WordSetCardViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.size.width - 20, height: collectionView.frame.size.width - 20)
@@ -194,19 +197,10 @@ extension WordSetCardsViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension WordSetCardsViewController: WordSetCardsShow {
-    func loadSetName(name: String) {
-        setName = name
-        let interactor = WordSetCardInteractor()
-        self.interactor = interactor
-        let presenter = WordSetCardPresenter()
-        interactor.presenter = presenter
-        presenter.viewController = self
-        interactor.fetchWordSet(setName: name)
-    }
+// MARK: - WordSetCardsShow protocol
+extension WordSetCardViewController: WordSetCardsShow {
     
-    func loadWordSetCards(words: [WordModel]) {
-        wordSetArray = words
+    func loadWordSetCards(viewModel: WordSetCardModel.FetchWordSet.ViewModel) {
+        wordSetArray = viewModel.wordsArray
     }
 }
-

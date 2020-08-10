@@ -9,20 +9,20 @@
 import Foundation
 
 protocol WordSetLearnBusinessLogic {
-    func fetchWords(setName: String)
-    func editWordProgress(word: String, progressChange: Double)
+    func fetchWords(request: WordSetLearnModel.FetchWordSet.Request)
+    func editWordProgress(request: WordSetLearnModel.EditWordProgress.Request)
 }
 
 final class WordSetLearnInteractor: WordSetLearnBusinessLogic {
     var presenter: WordSetLearnResentationLogic?
     
-    func fetchWords(setName: String) {
+    func fetchWords(request: WordSetLearnModel.FetchWordSet.Request) {
         let dataHandler = DataHandler()
-        presenter?.prepareForPresent(wordSet: dataHandler.fetchWords(from: setName))
+        presenter?.prepareForPresent(response: WordSetLearnModel.FetchWordSet.Response(wordsArray: dataHandler.fetchWords(from: request.setName)))
     }
     
-    func editWordProgress(word: String, progressChange: Double) {
+    func editWordProgress(request: WordSetLearnModel.EditWordProgress.Request) {
         let dataHandler = DataHandler()
-        dataHandler.updateWordProgress(word: word, progressChange: progressChange)
+        dataHandler.updateWordProgress(word: request.word, progressChange: request.progressChange)
     }
 }

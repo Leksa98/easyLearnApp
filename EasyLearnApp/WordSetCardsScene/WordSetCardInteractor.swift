@@ -9,15 +9,15 @@
 import Foundation
 
 protocol WordSetCardBusinessLogic {
-    func fetchWordSet(setName: String)
+    func fetchWordSet(request: WordSetCardModel.FetchWordSet.Request)
 }
 
 final class WordSetCardInteractor: WordSetCardBusinessLogic {
     
     var presenter: WordSetCardPresentationLogic?
     
-    func fetchWordSet(setName: String) {
+    func fetchWordSet(request: WordSetCardModel.FetchWordSet.Request) {
         let dataHandler = DataHandler()
-        presenter?.prepareForPresent(wordsArray: dataHandler.fetchWords(from: setName))
+        presenter?.prepareForPresent(response: WordSetCardModel.FetchWordSet.Response(wordsArray: dataHandler.fetchWords(from: request.setName)))
     }
 }

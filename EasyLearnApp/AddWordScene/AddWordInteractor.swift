@@ -9,21 +9,21 @@
 import UIKit
 
 protocol FetchWordTranslations {
-    func fetchWordTranslations(word: String)
+    func fetchWordTranslations(request: AddWordModel.WordTranslations.Request)
 }
 
 class AddWordInteractor: FetchWordTranslations {
     
     var presenter: PresentTranslations?
     
-    func fetchWordTranslations(word: String) {
+    func fetchWordTranslations(request: AddWordModel.WordTranslations.Request) {
         let translationMeaningsParser = TranslationMeaningsParser()
-        translationMeaningsParser.getWordMeaning(word: word) { translation, error in
+        translationMeaningsParser.getWordMeaning(word: request.word) { translation, error in
             if let error = error {
                 print(error)
             }
             if let translation = translation {
-                self.presenter?.presentTranslations(trans: translation)
+                self.presenter?.presentTranslations(response: AddWordModel.WordTranslations.Response(translations: translation))
             }
         }
     }

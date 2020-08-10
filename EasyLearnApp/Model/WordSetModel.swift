@@ -41,6 +41,8 @@ final class WordSetModel {
         self.emoji = emoji
     }
     
+    // MARK: - Public functions
+    
     func addWord(newWord: WordModel) {
         words.append(newWord)
     }

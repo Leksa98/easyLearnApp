@@ -9,7 +9,7 @@
 import UIKit
 
 protocol WordSetLearnShow: class {
-    func showWords(words: [WordModel])
+    func showWords(viewModel: WordSetLearnModel.FetchWordSet.ViewModel)
 }
 
 protocol WordSetLearnDataSource {
@@ -42,6 +42,7 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
         }
     }
     var interactor: WordSetLearnBusinessLogic?
+    var router: WordSetCardRouterLogic?
     var setName: String?
     
     // MARK: - Lifecycle
@@ -52,21 +53,11 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(dismissViewController))
         title = "Learn"
         view.backgroundColor = Locals.backgroundColor
-        
         configureCollectionView()
         configureButtonStackView()
-        
-        let interactor = WordSetLearnInteractor()
-        self.interactor = interactor
-        let presentor = WordSetLearnPresentor()
-        interactor.presenter = presentor
-        presentor.viewController = self
-        if let setName = setName {
-            interactor.fetchWords(setName: setName)
-        }
     }
     
-    // MARK: - Configuration
+    // MARK: - Setup UI elements
     
     private func configureCollectionView() {
         collectionView.isScrollEnabled = false
@@ -107,6 +98,8 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
         ])
     }
     
+    // MARK: - Button actions
+    
     @objc private func checkButtonTapped() {
         if let currentCellIndexPath = getCurrentCellIndexPath(), let cell = collectionView.cellForItem(at: currentCellIndexPath) as? WordSetLearnCollectionViewCell {
             if cell.isWrongWordTyped() {
@@ -118,14 +111,14 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
             } else {
                 if cell.checkExercise() {
                     if let studyWord = cell.viewModel?.word {
-                        interactor?.editWordProgress(word: studyWord, progressChange: 0.1)
+                        interactor?.editWordProgress(request: WordSetLearnModel.EditWordProgress.Request(word: studyWord, progressChange: 0.1))
                     }
                     cell.showAnimation(correctAnswer: true) { finished in
                         self.scrollCollectionViewToNextExercise()
                     }
                 } else {
                     if let studyWord = cell.viewModel?.word {
-                        interactor?.editWordProgress(word: studyWord, progressChange: -0.1)
+                        interactor?.editWordProgress(request: WordSetLearnModel.EditWordProgress.Request(word: studyWord, progressChange: -0.1))
                     }
                     cell.showAnimation(correctAnswer: false)
                 }
@@ -136,11 +129,13 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
     @objc private func helpButtonTapped() {
         if let currentCellIndexPath = getCurrentCellIndexPath(), let cell = collectionView.cellForItem(at: currentCellIndexPath) as? WordSetLearnCollectionViewCell {
             if let studyWord = cell.viewModel?.word {
-                interactor?.editWordProgress(word: studyWord, progressChange: -0.1)
+                interactor?.editWordProgress(request: WordSetLearnModel.EditWordProgress.Request(word: studyWord, progressChange: -0.1))
             }
             cell.showHelpAnimation()
         }
     }
+    
+    // MARK: - Scrolling Collection View
     
     private func scrollCollectionViewToNextExercise() {
         let scrollCollectionViewWidth = wordsToLearn.count * (Int(collectionView.frame.size.width) + 80)
@@ -151,7 +146,7 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
         } else {
             let finishedExerciseAlert = UIAlertController(title: "Congratulations 🎉🎉🎉", message: "You've just finished exercise!", preferredStyle: .alert)
             finishedExerciseAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-                self.navigationController?.popViewController(animated: true)
+                self.dismissViewController()
             }))
             present(finishedExerciseAlert, animated: true)
         }
@@ -205,7 +200,7 @@ extension WordSetLearnViewController: UICollectionViewDelegateFlowLayout {
 
 // MARK: - WordSetLearnShow protocol
 extension WordSetLearnViewController: WordSetLearnShow {
-    func showWords(words: [WordModel]) {
-        wordsToLearn = words
+    func showWords(viewModel: WordSetLearnModel.FetchWordSet.ViewModel) {
+        wordsToLearn = viewModel.wordsArray
     }
 }

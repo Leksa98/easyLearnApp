@@ -8,11 +8,11 @@
 
 import UIKit
 
-protocol WordListTablePresentationLogic {
-    func showWordList(setName: String)
+protocol WordListTablePresentationLogic: class {
+    func showWordList(viewModel: WordSetListModel.FetchWordSet.ViewModel)
 }
 
-final class WordListTableViewController: UIViewController, AddWordToSetDataStore {
+final class WordListViewController: UIViewController {
     
     // MARK: - Constants
     
@@ -31,8 +31,9 @@ final class WordListTableViewController: UIViewController, AddWordToSetDataStore
             tableView.reloadData()
         }
     }
-    private var setName: String?
-    private var interactor: WordSetListBusinessLogic?
+    var setName: String?
+    var interactor: WordSetListBusinessLogic?
+    var router: WordSetListRouterLogic?
     
     // MARK: - Lifecycle
     
@@ -42,17 +43,9 @@ final class WordListTableViewController: UIViewController, AddWordToSetDataStore
         title = "List"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
         configureTable()
-        let interactor = WordSetListInteractor()
-        self.interactor = interactor
     }
     
-    // MARK: - Configuration
-    
-    @objc private func addTapped() {
-        let vc = AddWordViewController()
-        vc.delegete = self
-        present(vc, animated: true, completion: nil)
-    }
+    // MARK: - Setup UI elements
     
     private func configureTable() {
         view.addSubview(tableView)
@@ -70,16 +63,15 @@ final class WordListTableViewController: UIViewController, AddWordToSetDataStore
         tableView.backgroundColor = Locals.backgroundColor
     }
     
-    func addWordToArray(word: WordModel) {
-        wordsInSet.append(word)
-        if let setName = setName {
-            interactor?.addWordToSet(setName: setName, word: word)
-        }
+    // MARK: - Button actions
+    
+    @objc private func addTapped() {
+        router?.routeToAddWordScene(viewController: self)
     }
 }
 
 // MARK: - UITableViewDelegate & UITableViewDataSource
-extension WordListTableViewController: UITableViewDelegate, UITableViewDataSource {
+extension WordListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return wordsInSet.count
     }
@@ -94,20 +86,28 @@ extension WordListTableViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let word = wordsInSet[indexPath.row]
+            let word = wordsInSet[indexPath.row].word
             wordsInSet.remove(at: indexPath.row)
             if let setName = setName {
-                interactor?.deleteWordFromSet(set: setName, word: word.word)
+                interactor?.deleteWordFromSet(request: WordSetListModel.DeleteWordFromSet.Request(set: setName, word: word))
             }
         }
     }
 }
 
-//MARK: - WordListTablePresentationLogic
-extension WordListTableViewController: WordListTablePresentationLogic {
-    func showWordList(setName: String) {
-        let dataHandler = DataHandler()
-        self.setName = setName
-        wordsInSet = dataHandler.fetchWords(from: setName)
+//MARK: - WordListTablePresentationLogic protocol
+extension WordListViewController: WordListTablePresentationLogic {
+    func showWordList(viewModel: WordSetListModel.FetchWordSet.ViewModel) {
+        wordsInSet = viewModel.words
+    }
+}
+
+//MARK: - AddWordToSetDataStore protocol
+extension WordListViewController: AddWordToSetDataStore {
+    func addWordToArray(word: WordModel) {
+        wordsInSet.append(word)
+        if let setName = setName {
+            interactor?.addWordToSet(request: WordSetListModel.AddWordToSet.Request(setName: setName, word: word))
+        }
     }
 }

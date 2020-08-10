@@ -8,8 +8,8 @@
 
 import Foundation
 
-// MARK: - DefaultWordSetModel
-struct DefaultWordSetModel: Codable {
+// MARK: - DefaultWordSet
+struct DefaultWordSet: Codable {
     let defaultSet: [DefaultSet]
 }
 

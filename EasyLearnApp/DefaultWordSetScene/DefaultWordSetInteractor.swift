@@ -9,21 +9,21 @@
 import Foundation
 
 protocol DefaultWordSetBusinessLogic {
-    func fetchDefaultSet()
+    func fetchDefaultSet(request: DefaultWordSetModel.FetchDefaultSets.Request)
 }
 
 final class DefaultWordSetInteractor: DefaultWordSetBusinessLogic {
     
     var presenter: DefaultWordSetPresentationLogic?
     
-    func fetchDefaultSet() {
+    func fetchDefaultSet(request: DefaultWordSetModel.FetchDefaultSets.Request) {
         let networkManager = NetworkManager()
         networkManager.fetchDefaultWordSets { apiResponse, error in
             if let error = error {
                 print(error)
             }
             if let apiResponse = apiResponse {
-                self.presenter?.prepareForPresent(defaultWordSetModel: apiResponse)
+                self.presenter?.prepareForPresent(response: DefaultWordSetModel.FetchDefaultSets.Response(defaultWordSetModel: apiResponse))
             }
         }
     }

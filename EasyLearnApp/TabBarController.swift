@@ -27,23 +27,22 @@ final class TabBarController: UITabBarController {
         tabBar.barTintColor = Locals.tabBarBackgroundColor
         tabBar.layer.borderWidth = Locals.tabBarBorderWidth
         
-        let wordSetsViewController = UINavigationController()
-        wordSetsViewController.pushViewController(WordSetTableViewController(), animated: false)
-        wordSetsViewController.tabBarItem = UITabBarItem(title: "Sets", image: UIImage(named: "file"), tag: 0)
+        let wordSetsViewController = AllWordSetTableViewController()
+        let wordSetsNavigationController = UINavigationController(rootViewController: wordSetsViewController)
+        AllWordSetTableConfigurator.assembly(viewController: wordSetsViewController)
+        wordSetsNavigationController.tabBarItem = UITabBarItem(title: "Sets", image: UIImage(named: "file"), tag: 0)
         
-        let newWordSetViewController = UINavigationController()
-        newWordSetViewController.pushViewController(NewWordSetViewController(), animated: false)
-        newWordSetViewController.tabBarItem = UITabBarItem(title: "Add set", image: UIImage(named: "plus-sign"), tag: 1)
+        let newWordSetViewController = NewWordSetViewController()
+        let newWordSetNavigationController = UINavigationController(rootViewController: newWordSetViewController)
+        NewWordSetConfiguration.assembly(viewController: newWordSetViewController)
+        newWordSetNavigationController.tabBarItem = UITabBarItem(title: "Add set", image: UIImage(named: "plus-sign"), tag: 1)
         
-        let wordOfDayViewController = UINavigationController()
-        wordOfDayViewController.view.backgroundColor = .orange
-        wordOfDayViewController.tabBarItem = UITabBarItem(title: "Word of the day", image: UIImage(named: "calendar"), tag: 2)
+        let settingsViewController = SettingsViewController()
+        let settingsNavigationController = UINavigationController(rootViewController: settingsViewController)
+        SettingsConfigurator.assembly(viewController: settingsViewController)
+        settingsNavigationController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "gear"), tag: 2)
         
-        let settingsViewController = UINavigationController()
-        settingsViewController.pushViewController(SettingsViewController(), animated: false)
-        settingsViewController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "gear"), tag: 2)
-        
-        let tabBarList = [wordSetsViewController, newWordSetViewController, wordOfDayViewController, settingsViewController]
+        let tabBarList = [wordSetsNavigationController, newWordSetNavigationController, settingsNavigationController]
         viewControllers = tabBarList
     }
 }

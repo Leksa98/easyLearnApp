@@ -12,6 +12,10 @@ protocol DefaultWordSetListDataSource: class {
     func presentWordSet(name: String, emoji: String, words: [WordModel])
 }
 
+protocol DefaultWordSetListSaveNotification: class {
+    func showSaveAlert(viewModel: DefaultWordSetListModel.DownloadWordSet.ViewModel)
+}
+
 final class DefaultWordSetListViewController: UIViewController {
     
     // MARK: - Constants
@@ -31,6 +35,7 @@ final class DefaultWordSetListViewController: UIViewController {
             tableView.reloadData()
         }
     }
+    var interactor: DefaultWordSetListBusinessLogic?
     
     // MARK: - Life cycle
     
@@ -61,18 +66,16 @@ final class DefaultWordSetListViewController: UIViewController {
     }
     
     @objc private func downloadButtonTapped() {
-        let dataHandler = DataHandler()
         if let name = setName, let emoji = setEmoji {
-            dataHandler.addWordSetIntoCoreData(name: name, emoji: emoji)
-            for word in words {
-                dataHandler.addWordtoSet(name: name, word: word.word, translation: word.translation)
-            }
+            interactor?.downloadWordSet(request: DefaultWordSetListModel.DownloadWordSet.Request(name: name, emoji: emoji, words: words))
         }
     }
 }
 
+// MARK: - UITableViewDelegate protocol
 extension DefaultWordSetListViewController: UITableViewDelegate { }
 
+// MARK: - UITableViewDataSource protocol
 extension DefaultWordSetListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -88,10 +91,20 @@ extension DefaultWordSetListViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - DefaultWordSetListDataSource protocol
 extension DefaultWordSetListViewController: DefaultWordSetListDataSource {
     func presentWordSet(name: String, emoji: String, words: [WordModel]) {
         self.words = words
         self.setName = name
         self.setEmoji = emoji
+    }
+}
+
+// MARK: - DefaultWordSetListSaveNotification protocol
+extension DefaultWordSetListViewController: DefaultWordSetListSaveNotification {
+    func showSaveAlert(viewModel: DefaultWordSetListModel.DownloadWordSet.ViewModel) {
+        let savedAlert = UIAlertController(title: "Saved", message: "Set \(viewModel.name) \(viewModel.emoji) was saved!", preferredStyle: .alert)
+        savedAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(savedAlert, animated: true, completion: nil)
     }
 }

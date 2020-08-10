@@ -8,7 +8,22 @@
 
 import Foundation
 
-final class ChooseLanguageModel {
+enum ChooseLanguageModel {
+    enum Language {
+        struct Request { }
+        
+        struct Response {
+            var languages: [LanguageModel]
+        }
+        
+        struct ViewModel {
+            var languages: [LanguageModel]
+        }
+    }
+}
+
+
+final class LanguageModel {
     
     // MARK: - Properties
     

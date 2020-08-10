@@ -8,7 +8,9 @@
 
 import Foundation
 
-final class WordStatisticsSection {
+final class WordStatisticsSectionModel {
+    
+    // MARK: - Properties
     
     private let name: String
     private var words: [WordModel]
@@ -26,11 +28,15 @@ final class WordStatisticsSection {
         return progress
     }
     
+    // MARK: - Initialization
+    
     init(name: String, words: [WordModel], progress: Double = 0.0) {
         self.name = name
         self.words = words
         self.progress = progress
     }
+    
+    // MARK: - Public
     
     func appendWord(word: WordModel) {
         words.append(word)

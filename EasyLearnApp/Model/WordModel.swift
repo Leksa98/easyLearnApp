@@ -9,9 +9,14 @@
 import Foundation
 
 final class WordModel {
+    
+    // MARK: - Properties
+    
     var word: String
     var translation: String
     var progress: Double
+    
+    // MARK: - Initialization
     
     init(word: String, translation: String, progress: Double = 0.0) {
         self.word = word

@@ -13,7 +13,7 @@ protocol WordSetStatisticsDataSource {
 }
 
 protocol WordSetStatisticsShow: class {
-    func showStatistics(sections: [WordStatisticsSection])
+    func showStatistics(viewModel: WordSetStatisticsModel.FetchWordSet.ViewModel)
 }
 
 final class WordSetStatisticsViewController: UIViewController, WordSetStatisticsDataSource {
@@ -29,7 +29,7 @@ final class WordSetStatisticsViewController: UIViewController, WordSetStatistics
     // MARK: - Properties
     
     private var tableView = UITableView(frame: .zero, style: .grouped)
-    private var sections: [WordStatisticsSection] = [] {
+    private var sections: [WordStatisticsSectionModel] = [] {
         didSet {
             tableView.reloadData()
         }
@@ -44,14 +44,8 @@ final class WordSetStatisticsViewController: UIViewController, WordSetStatistics
         view.backgroundColor = Locals.backgroundColor
         title = Locals.title
         configureTableView()
-        
-        let interactor = WordSetStatisticsInteractor()
-        self.interactor = interactor
-        let presenter = WordSetStatisticsPresentor()
-        interactor.presenter = presenter
-        presenter.viewController = self
         if let setTitle = setTitle {
-            interactor.fetchWords(setName: setTitle)
+            interactor?.fetchWords(request: WordSetStatisticsModel.FetchWordSet.Request(setName: setTitle))
         }
     }
     
@@ -103,7 +97,7 @@ extension WordSetStatisticsViewController: UITableViewDataSource {
 
 // MARK: - WordSetStatisticsShow protocol
 extension WordSetStatisticsViewController: WordSetStatisticsShow {
-    func showStatistics(sections: [WordStatisticsSection]) {
-        self.sections = sections
+    func showStatistics(viewModel: WordSetStatisticsModel.FetchWordSet.ViewModel) {
+        self.sections = viewModel.sections
     }
 }

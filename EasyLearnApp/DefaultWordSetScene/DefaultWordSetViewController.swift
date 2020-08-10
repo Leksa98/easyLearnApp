@@ -9,7 +9,7 @@
 import UIKit
 
 protocol DefaultWordSetShowLogic: class {
-    func showDefaultSets(sets: [WordSetModel])
+    func showDefaultSets(viewModel: DefaultWordSetModel.FetchDefaultSets.ViewModel)
 }
 
 final class DefaultWordSetViewController: UIViewController {
@@ -32,6 +32,7 @@ final class DefaultWordSetViewController: UIViewController {
         }
     }
     var interactor: DefaultWordSetBusinessLogic?
+    var router: DefaultWordSetRouterLogic?
     
     // MARK: - Life cycle
     
@@ -41,13 +42,7 @@ final class DefaultWordSetViewController: UIViewController {
         view.backgroundColor = Locals.backgroundColor
         tabBarController?.tabBar.isHidden = true
         configureTableView()
-        
-        let interactor = DefaultWordSetInteractor()
-        self.interactor = interactor
-        let presenter = DefaultWordSetPresenter()
-        interactor.presenter = presenter
-        presenter.viewController = self
-        interactor.fetchDefaultSet()
+        interactor?.fetchDefaultSet(request: DefaultWordSetModel.FetchDefaultSets.Request())
     }
     
     private func configureTableView() {
@@ -71,12 +66,10 @@ final class DefaultWordSetViewController: UIViewController {
 extension DefaultWordSetViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let delegete: DefaultWordSetListDataSource = DefaultWordSetListViewController()
         let words = defaultSets[indexPath.row].wordsValue
         let name = defaultSets[indexPath.row].nameValue
         let emoji = defaultSets[indexPath.row].emojiValue
-        navigationController?.pushViewController(delegete as! UIViewController, animated: true)
-        delegete.presentWordSet(name: name, emoji: emoji, words: words)
+        router?.routeToDefaultWordSetList(name: name, emoji: emoji, words: words)
     }
 }
 
@@ -104,8 +97,7 @@ extension DefaultWordSetViewController: UITableViewDataSource {
 }
 
 extension DefaultWordSetViewController : DefaultWordSetShowLogic {
-    func showDefaultSets(sets: [WordSetModel]) {
-        defaultSets = sets
+    func showDefaultSets(viewModel: DefaultWordSetModel.FetchDefaultSets.ViewModel) {
+        defaultSets = viewModel.sets
     }
 }
-

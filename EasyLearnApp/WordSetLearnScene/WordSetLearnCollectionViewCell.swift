@@ -166,7 +166,7 @@ class WordSetLearnCollectionViewCell: UICollectionViewCell {
                 paragraphStyle.alignment = NSTextAlignment.center
                 paragraphStyle.hyphenationFactor = 1.0
                 self?.resultExerciseLabel.textColor = UIColor(cgColor: Locals.wrongAnswerColor)
-                let attributedTitle =  NSAttributedString(string: translation, attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
+                let attributedTitle =  NSAttributedString(string: translation.capitalizingFirstLetter(), attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
                 self?.resultExerciseLabel.attributedText = attributedTitle
             }
             }, completion: nil)

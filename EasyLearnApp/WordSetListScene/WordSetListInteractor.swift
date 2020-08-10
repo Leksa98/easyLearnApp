@@ -9,19 +9,27 @@
 import Foundation
 
 protocol WordSetListBusinessLogic {
-    func deleteWordFromSet(set: String, word: String)
-    func addWordToSet(setName: String, word: WordModel)
+    func deleteWordFromSet(request: WordSetListModel.DeleteWordFromSet.Request)
+    func addWordToSet(request: WordSetListModel.AddWordToSet.Request)
+    func fetchWordSet(request: WordSetListModel.FetchWordSet.Request)
 }
 
 final class WordSetListInteractor: WordSetListBusinessLogic {
     
-    func deleteWordFromSet(set: String, word: String) {
+    var presenter: WordSetListPresentationLogic?
+    
+    func deleteWordFromSet(request: WordSetListModel.DeleteWordFromSet.Request) {
         let dataHandler = DataHandler()
-        dataHandler.deleteWordfromSet(name: set, wordValue: word)
+        dataHandler.deleteWordfromSet(name: request.set, wordValue: request.word)
     }
     
-    func addWordToSet(setName: String, word: WordModel) {
+    func addWordToSet(request: WordSetListModel.AddWordToSet.Request) {
         let dataHandler = DataHandler()
-        dataHandler.addWordtoSet(name: setName, word: word.word, translation: word.translation)
+        dataHandler.addWordtoSet(name: request.setName, word: request.word.word, translation: request.word.translation)
+    }
+    
+    func fetchWordSet(request: WordSetListModel.FetchWordSet.Request) {
+        let dataHandler = DataHandler()
+        presenter?.prepareForPresent(response: WordSetListModel.FetchWordSet.Response(words: dataHandler.fetchWords(from: request.setName)))
     }
 }

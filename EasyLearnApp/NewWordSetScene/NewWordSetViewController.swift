@@ -22,6 +22,7 @@ final class NewWordSetViewController: UIViewController {
     private let defaultSetButton = ButtonWithRoundCorners(title: "View default sets")
     private let addNewSetButton = ButtonWithRoundCorners(title: "Add new set")
     private let buttonStackView = UIStackView()
+    var router: NewWordSetRouterLogic?
     
      // MARK: - Life cycle
     
@@ -59,10 +60,10 @@ final class NewWordSetViewController: UIViewController {
     // MARK: - Button actions
     
     @objc private func addNewSetButtonTapped() {
-        navigationController?.pushViewController(AddSetViewController(), animated: false)
+        router?.routeToAddSetScene()
     }
     
     @objc private func defaultSetButtonTapped() {
-        navigationController?.pushViewController(DefaultWordSetViewController(), animated: false)
+        router?.routeToDefaultWordSetScene()
     }
 }

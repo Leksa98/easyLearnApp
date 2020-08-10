@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol ChooseLanguageShowTableView: class {
+    func loadDataInTableView(viewModel: ChooseLanguageModel.Language.ViewModel)
+}
+
 final class ChooseLanguageViewController: UIViewController {
     
     // MARK: - Constants
@@ -22,11 +26,12 @@ final class ChooseLanguageViewController: UIViewController {
     
     private var tableView = UITableView()
     private var selectedCell: IndexPath?
-    private var languages: [ChooseLanguageModel] = [] {
+    private var languages: [LanguageModel] = [] {
         didSet {
             tableView.reloadData()
         }
     }
+    var interactor: ChooseLanguageBusinessLogic?
     
     // MARK: - Life cycle
     
@@ -36,7 +41,7 @@ final class ChooseLanguageViewController: UIViewController {
         title = "Learning language"
         navigationController?.navigationBar.prefersLargeTitles = false
         setupTableView()
-        loadLanguages()
+        interactor?.loadLanguages(request: ChooseLanguageModel.Language.Request())
     }
     
     // MARK: - Setup UI elements
@@ -55,16 +60,6 @@ final class ChooseLanguageViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
         tableView.tableFooterView = UIView()
-    }
-    
-    private func loadLanguages() {
-        languages = [ChooseLanguageModel(language: "English", flag: "🇬🇧", code: "en"),
-                     ChooseLanguageModel(language: "German", flag: "🇩🇪", code: "de"),
-                     ChooseLanguageModel(language: "French", flag: "🇫🇷", code: "fr"),
-                     ChooseLanguageModel(language: "Spanish", flag: "🇪🇸", code: "es"),
-                     ChooseLanguageModel(language: "Italian", flag: "🇮🇹", code: "it"),
-                     ChooseLanguageModel(language: "Polish", flag: "🇵🇱", code: "pl"),
-                     ChooseLanguageModel(language: "Turkish", flag: "🇹🇷", code: "tr")]
     }
 }
 
@@ -117,5 +112,12 @@ extension ChooseLanguageViewController: UITableViewDataSource {
             return cell
         }
         return UITableViewCell()
+    }
+}
+
+// MARK: - ChooseLanguageShowTableView protocol
+extension ChooseLanguageViewController: ChooseLanguageShowTableView {
+    func loadDataInTableView(viewModel: ChooseLanguageModel.Language.ViewModel) {
+        self.languages = viewModel.languages
     }
 }
