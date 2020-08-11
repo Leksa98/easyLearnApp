@@ -27,7 +27,7 @@ class WordSetCardView: UIView {
         super.init(frame: frame)
         addSubview(image)
         configureLabel()
-        backgroundColor = UIColor.persianGreen
+        backgroundColor = UIColor.blueSapphire
         layer.cornerRadius = Locals.cornerRadius
     }
     

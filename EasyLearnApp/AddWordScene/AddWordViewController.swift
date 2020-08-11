@@ -58,7 +58,7 @@ final class AddWordViewController: UIViewController, AddWordDataStore {
     }
     
     override func viewDidLayoutSubviews() {
-        searchBar.setPlaceholderTextColorTo(color: UIColor.metallicSeaweed)
+        searchBar.setPlaceholderTextColorTo(color: UIColor.blueSapphire)
     }
     
     // MARK: - Configuration
@@ -71,9 +71,9 @@ final class AddWordViewController: UIViewController, AddWordDataStore {
         searchBar.searchBarStyle = UISearchBar.Style.prominent
         searchBar.placeholder = "Type word in english..."
         searchBar.sizeToFit()
-        searchBar.barTintColor = UIColor.metallicSeaweed
+        searchBar.barTintColor = UIColor.blueSapphire
         searchBar.searchTextField.backgroundColor = .white
-        searchBar.searchTextField.leftView?.tintColor = UIColor.metallicSeaweed
+        searchBar.searchTextField.leftView?.tintColor = UIColor.blueSapphire
         searchBar.setShowsCancelButton(true, animated: true)
         searchBar.showsCancelButton = true
         if let cancelButton = searchBar.value(forKey: "cancelButton") as? UIButton {

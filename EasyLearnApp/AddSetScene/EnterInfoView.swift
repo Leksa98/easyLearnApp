@@ -14,6 +14,7 @@ class EnterInfoView: UIView {
     
     private var infoLabel: UILabel!
     private var enterInfoTextField: UITextField!
+    private var lineView = UIView()
     
     public var enteredInfo: String? {
         get {
@@ -28,6 +29,7 @@ class EnterInfoView: UIView {
         configureView()
         configureInfoLabel(label: label)
         configureInfoTextField(textField: textField)
+        configureLineView()
     }
     
     required init?(coder: NSCoder) {
@@ -69,6 +71,18 @@ class EnterInfoView: UIView {
              enterInfoTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
              enterInfoTextField.topAnchor.constraint(equalTo: infoLabel.bottomAnchor, constant: 10),
              enterInfoTextField.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15)
+        ])
+    }
+    
+    private func configureLineView() {
+        addSubview(lineView)
+        lineView.backgroundColor = .lightGray
+        lineView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            lineView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
+            lineView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
+            lineView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            lineView.heightAnchor.constraint(equalToConstant: 0.7)
         ])
     }
     
