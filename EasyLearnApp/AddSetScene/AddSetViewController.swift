@@ -99,7 +99,7 @@ final class AddSetViewController: UIViewController {
         view.addSubview(addedWordTableView)
         let tableLabel = UILabel()
         tableLabel.text = "Added words"
-        tableLabel.font = .boldSystemFont(ofSize: 20)
+        tableLabel.font = UIFont.sfProTextHeavy(ofSize: 20)
         view.addSubview(tableLabel)
         addedWordTableView.backgroundColor = UIColor.white
         addedWordTableView.delegate = self

@@ -23,6 +23,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         window?.makeKeyAndVisible()
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+            let appearance = UINavigationBarAppearance()
+            let largeTitleFontAttrs = [ NSAttributedString.Key.font: UIFont.sfProTextHeavy(ofSize: 30)!]
+            let titleFontAttrs = [ NSAttributedString.Key.font: UIFont.sfProTextHeavy(ofSize: 18)!]
+            appearance.largeTitleTextAttributes =  largeTitleFontAttrs
+            appearance.titleTextAttributes = titleFontAttrs
+            appearance.backgroundColor = .white
+            UINavigationBar.appearance().standardAppearance = appearance
+            UINavigationBar.appearance().compactAppearance = appearance
+            UINavigationBar.appearance().scrollEdgeAppearance = appearance
             self.window?.rootViewController = TabBarController()
         }
     }

@@ -80,6 +80,7 @@
 		A8B869B924E297E700B61803 /* SF-Pro-Text-HeavyItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = A8B869AD24E297E700B61803 /* SF-Pro-Text-HeavyItalic.otf */; };
 		A8B869BA24E297E700B61803 /* SF-Pro-Text-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = A8B869AE24E297E700B61803 /* SF-Pro-Text-MediumItalic.otf */; };
 		A8B869BB24E297E700B61803 /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = A8B869AF24E297E700B61803 /* SF-Pro-Text-Regular.otf */; };
+		A8B869BE24E29B2A00B61803 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B869BD24E29B2A00B61803 /* UIFont+.swift */; };
 		A8BF981224DD4A7A00755F7E /* AllWordSetTableConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BF981124DD4A7A00755F7E /* AllWordSetTableConfigurator.swift */; };
 		A8BF981424DD4CC400755F7E /* WordSetCardConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BF981324DD4CC300755F7E /* WordSetCardConfigurator.swift */; };
 		A8BF981624DD4DD600755F7E /* WordSetLearnConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BF981524DD4DD600755F7E /* WordSetLearnConfigurator.swift */; };
@@ -229,6 +230,7 @@
 		A8B869AD24E297E700B61803 /* SF-Pro-Text-HeavyItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-HeavyItalic.otf"; sourceTree = "<group>"; };
 		A8B869AE24E297E700B61803 /* SF-Pro-Text-MediumItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-MediumItalic.otf"; sourceTree = "<group>"; };
 		A8B869AF24E297E700B61803 /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
+		A8B869BD24E29B2A00B61803 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		A8BF981124DD4A7A00755F7E /* AllWordSetTableConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllWordSetTableConfigurator.swift; sourceTree = "<group>"; };
 		A8BF981324DD4CC300755F7E /* WordSetCardConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetCardConfigurator.swift; sourceTree = "<group>"; };
 		A8BF981524DD4DD600755F7E /* WordSetLearnConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetLearnConfigurator.swift; sourceTree = "<group>"; };
@@ -656,6 +658,7 @@
 				A8F0D57C24C249CB0004C609 /* SearchBarExtension.swift */,
 				A88B1A0924D2ACC2008ADA7F /* String+.swift */,
 				A8B869A224E1933600B61803 /* UIColor+.swift */,
+				A8B869BD24E29B2A00B61803 /* UIFont+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -881,6 +884,7 @@
 				A8B5222B24DC1CC2008F02C7 /* ChooseLanguageTableViewCell.swift in Sources */,
 				A81FF5CE24AA3D27007068F9 /* EasyLearnApp.xcdatamodeld in Sources */,
 				A81FF5F724AA429F007068F9 /* TabBarController.swift in Sources */,
+				A8B869BE24E29B2A00B61803 /* UIFont+.swift in Sources */,
 				A8BF983024DD821E00755F7E /* DefaultWordSetListInteractor.swift in Sources */,
 				A8BF981824DD4EBD00755F7E /* WordSetStatisticsConfigurator.swift in Sources */,
 				A8BF983C24DD922F00755F7E /* AddSetRouter.swift in Sources */,

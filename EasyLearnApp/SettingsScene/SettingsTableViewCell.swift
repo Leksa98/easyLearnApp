@@ -24,7 +24,7 @@ final class SettingsTableViewCell: UITableViewCell {
         
         addSubview(label)
         label.text = "Learning language"
-        label.font = .systemFont(ofSize: 20)
+        label.font = UIFont.sfProTextMedium(ofSize: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),

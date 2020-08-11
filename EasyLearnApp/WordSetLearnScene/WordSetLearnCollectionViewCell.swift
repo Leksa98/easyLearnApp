@@ -32,9 +32,9 @@ class WordSetLearnCollectionViewCell: UICollectionViewCell {
         backgroundColor = .white
         
         addSubview(wordLabel)
-        wordLabel.font = .boldSystemFont(ofSize: 28)
+        wordLabel.font = UIFont.sfProTextHeavy(ofSize: 30)
         wordLabel.textColor = .black
-        
+
         wordLabel.numberOfLines = 0
         wordLabel.lineBreakMode = .byWordWrapping
         wordLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -50,6 +50,7 @@ class WordSetLearnCollectionViewCell: UICollectionViewCell {
         inputTextField.layer.borderWidth = 3
         inputTextField.layer.borderColor = UIColor.white.cgColor
         inputTextField.placeholder = "Type translation here"
+        inputTextField.font = UIFont.sfProTextMedium(ofSize: 20)
         let paddingView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 20))
         inputTextField.leftView = paddingView
         inputTextField.leftViewMode = .always
@@ -77,7 +78,7 @@ class WordSetLearnCollectionViewCell: UICollectionViewCell {
         addSubview(resultExerciseLabel)
         resultExerciseLabel.numberOfLines = 0
         resultExerciseLabel.lineBreakMode = .byWordWrapping
-        resultExerciseLabel.font = .boldSystemFont(ofSize: 24)
+        resultExerciseLabel.font = UIFont.sfProTextHeavy(ofSize: 25)
         resultExerciseLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             resultExerciseLabel.topAnchor.constraint(equalTo: lineView.topAnchor, constant: 5),

@@ -15,6 +15,10 @@ final class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let appearance = UITabBarItem.appearance()
+        let attributes = [NSAttributedString.Key.font: UIFont.sfProTextHeavy(ofSize: 10)]
+        appearance.setTitleTextAttributes(attributes, for: .normal)
+        
         tabBar.tintColor = UIColor.blueSapphire
         tabBar.barTintColor = UIColor.white
         
@@ -26,7 +30,7 @@ final class TabBarController: UITabBarController {
         let newWordSetViewController = NewWordSetViewController()
         let newWordSetNavigationController = UINavigationController(rootViewController: newWordSetViewController)
         NewWordSetConfiguration.assembly(viewController: newWordSetViewController)
-        newWordSetNavigationController.tabBarItem = UITabBarItem(title: "Add set", image: UIImage(named: "Plus"), tag: 1)
+        newWordSetNavigationController.tabBarItem = UITabBarItem(title: "New set", image: UIImage(named: "Plus"), tag: 1)
         
         let settingsViewController = SettingsViewController()
         let settingsNavigationController = UINavigationController(rootViewController: settingsViewController)

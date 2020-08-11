@@ -42,7 +42,7 @@ class EnterInfoView: UIView {
         infoLabel = UILabel()
         addSubview(infoLabel)
         infoLabel.text = label
-        infoLabel.font = .boldSystemFont(ofSize: 20)
+        infoLabel.font = UIFont.sfProTextHeavy(ofSize: 20)
         infoLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             infoLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
@@ -54,9 +54,10 @@ class EnterInfoView: UIView {
     private func configureInfoTextField(textField: String) {
         enterInfoTextField = UITextField()
         addSubview(enterInfoTextField)
-        enterInfoTextField.attributedPlaceholder = NSAttributedString(string: textField, attributes: [NSAttributedString.Key.foregroundColor: UIColor.blueSapphire, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)])
+        enterInfoTextField.attributedPlaceholder = NSAttributedString(string: textField, attributes: [NSAttributedString.Key.foregroundColor: UIColor.blueSapphire, NSAttributedString.Key.font: UIFont.sfProTextRegular(ofSize: 18)])
         enterInfoTextField.backgroundColor = UIColor.lightCyan
         enterInfoTextField.textColor = .blueSapphire
+        enterInfoTextField.font = UIFont.sfProTextMedium(ofSize: 18)
         enterInfoTextField.borderStyle = .roundedRect
         enterInfoTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

@@ -14,7 +14,7 @@ class AllWordSetTableViewCell: UITableViewCell {
     
     private var setTitle: UILabel! = {
         let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 20)
+        label.font = UIFont.sfProTextHeavy(ofSize: 20)
         return label
     }()
     

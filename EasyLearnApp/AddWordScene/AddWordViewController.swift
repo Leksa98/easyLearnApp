@@ -70,6 +70,7 @@ final class AddWordViewController: UIViewController, AddWordDataStore {
         searchBar.clipsToBounds = true
         searchBar.searchBarStyle = UISearchBar.Style.prominent
         searchBar.placeholder = "Type word in english..."
+        searchBar.searchTextField.font = UIFont.sfProTextMedium(ofSize: 18)
         searchBar.sizeToFit()
         searchBar.barTintColor = UIColor.blueSapphire
         searchBar.searchTextField.backgroundColor = .white
@@ -78,7 +79,7 @@ final class AddWordViewController: UIViewController, AddWordDataStore {
         searchBar.showsCancelButton = true
         if let cancelButton = searchBar.value(forKey: "cancelButton") as? UIButton {
             cancelButton.setTitleColor(.white, for: .normal)
-            cancelButton.titleLabel?.font = .systemFont(ofSize: 16)
+            cancelButton.titleLabel?.font = UIFont.sfProTextMedium(ofSize: 16)
         }
     }
     

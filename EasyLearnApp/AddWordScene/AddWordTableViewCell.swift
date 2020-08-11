@@ -22,7 +22,7 @@ class AddWordTableViewCell: UITableViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
-        label.font = .systemFont(ofSize: 18)
+        label.font = UIFont.sfProTextMedium(ofSize: 18)
         label.textColor = .blueSapphire
         return label
     }()

@@ -38,7 +38,7 @@ class WordSetCardView: UIView {
     // MARK: - Configuration
     
     private func configureLabel() {
-        label.font = .boldSystemFont(ofSize: 50)
+        label.font = UIFont.sfProTextHeavy(ofSize: 40)
         label.textColor = .white
         addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false

@@ -24,7 +24,7 @@ final class NewWordSetViewController: UIViewController {
         
         view.backgroundColor = .white
         navigationController?.navigationBar.tintColor = UIColor.blueSapphire
-        title = "Add word set"
+        navigationItem.title = "Add word set"
         navigationController?.navigationBar.prefersLargeTitles = true
         
         view.addSubview(buttonStackView)

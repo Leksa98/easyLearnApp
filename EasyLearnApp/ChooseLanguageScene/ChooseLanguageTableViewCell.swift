@@ -29,7 +29,7 @@ final class ChooseLanguageTableViewCell: UITableViewCell {
         backgroundColor = UIColor.white
         selectionStyle = .none
         tintColor = .blueSapphire
-        languageLabel.font = .systemFont(ofSize: 20)
+        languageLabel.font = UIFont.sfProTextMedium(ofSize: 20)
         flagLabel.font = .systemFont(ofSize: 30)
         addSubview(languageLabel)
         addSubview(flagLabel)
