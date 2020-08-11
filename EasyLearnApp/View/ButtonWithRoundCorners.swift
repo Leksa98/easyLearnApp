@@ -18,7 +18,6 @@ final class ButtonWithRoundCorners: UIButton {
         layer.cornerRadius = 10
         backgroundColor = UIColor.blueSapphire
         titleLabel?.font = .boldSystemFont(ofSize: 20)
-        
     }
     
     required init?(coder: NSCoder) {

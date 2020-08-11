@@ -23,14 +23,14 @@ class AddWordTableViewCell: UITableViewCell {
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         label.font = .systemFont(ofSize: 18)
-        label.textColor = .white
+        label.textColor = .blueSapphire
         return label
     }()
     
     private var containerView: UIView = {
         let containerView = UIView()
         containerView.layer.cornerRadius = Locals.cornerRadius
-        containerView.backgroundColor = UIColor.metallicSeaweed
+        containerView.backgroundColor = UIColor.lightCyan
         return containerView
     }()
     

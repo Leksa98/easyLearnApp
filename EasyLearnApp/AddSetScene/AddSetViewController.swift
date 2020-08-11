@@ -29,7 +29,6 @@ final class AddSetViewController: UIViewController {
     private var addWordButton = ButtonWithRoundCorners(title: "Add word")
     private var nameView = EnterInfoView(label: "Set Title", textField: "Enter set title")
     private var emojiView = EnterInfoView(label: "Set Emoji", textField: "Enter set emoji")
-    private var wordSetView = UIView()
     private var addedWordTableView = UITableView()
     private var addedWords: [WordModel] = [] {
         didSet {
@@ -66,10 +65,11 @@ final class AddSetViewController: UIViewController {
         view.addSubview(addWordButton)
         addWordButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            addWordButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            addWordButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            addWordButton.topAnchor.constraint(equalTo: wordSetView.bottomAnchor, constant: 10),
-            addWordButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
+            addWordButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            addWordButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            addWordButton.topAnchor.constraint(equalTo: addedWordTableView.bottomAnchor, constant: 10),
+            addWordButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            addWordButton.heightAnchor.constraint(equalToConstant: 45)
         ])
     }
     
@@ -96,33 +96,25 @@ final class AddSetViewController: UIViewController {
     }
     
     private func configuteTableView() {
-        view.addSubview(wordSetView)
-        wordSetView.backgroundColor = UIColor.white
-        wordSetView.layer.cornerRadius = 15
-        wordSetView.addSubview(addedWordTableView)
+        view.addSubview(addedWordTableView)
         let tableLabel = UILabel()
         tableLabel.text = "Added words"
         tableLabel.font = .boldSystemFont(ofSize: 20)
-        wordSetView.addSubview(tableLabel)
+        view.addSubview(tableLabel)
         addedWordTableView.backgroundColor = UIColor.white
         addedWordTableView.delegate = self
         addedWordTableView.dataSource = self
         addedWordTableView.register(AddSetTableViewCell.self, forCellReuseIdentifier: Locals.cellId)
         addedWordTableView.separatorStyle = .none
-        wordSetView.translatesAutoresizingMaskIntoConstraints = false
         addedWordTableView.translatesAutoresizingMaskIntoConstraints = false
         tableLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            wordSetView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            wordSetView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            wordSetView.topAnchor.constraint(equalTo: emojiView.bottomAnchor, constant: 10),
-            tableLabel.leadingAnchor.constraint(equalTo: wordSetView.leadingAnchor, constant: 15),
-            tableLabel.trailingAnchor.constraint(equalTo: wordSetView.trailingAnchor, constant: -15),
-            tableLabel.topAnchor.constraint(equalTo: wordSetView.topAnchor, constant: 15),
-            addedWordTableView.leadingAnchor.constraint(equalTo: wordSetView.leadingAnchor, constant: 5),
-            addedWordTableView.trailingAnchor.constraint(equalTo: wordSetView.trailingAnchor, constant: -5),
-            addedWordTableView.topAnchor.constraint(equalTo: tableLabel.bottomAnchor, constant: 5),
-            addedWordTableView.bottomAnchor.constraint(equalTo: wordSetView.bottomAnchor, constant: -15)
+            tableLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            tableLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            tableLabel.topAnchor.constraint(equalTo: emojiView.bottomAnchor, constant: 25),
+            addedWordTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
+            addedWordTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
+            addedWordTableView.topAnchor.constraint(equalTo: tableLabel.bottomAnchor, constant: 5)
         ])
     }
     

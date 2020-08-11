@@ -40,7 +40,7 @@ final class AddWordViewController: UIViewController, AddWordDataStore {
     }
     private var tableView =  UITableView()
     private var searchBar = UISearchBar()
-    private var addTranslationButton = ButtonWithRoundCorners(title: "Add")
+    private var addButton = ButtonWithRoundCorners(title: "Add")
     var interactor: FetchWordTranslations?
     var router: AddWordRoutingLogic?
     var addWord = WordModel(word: "", translation: "")
@@ -98,14 +98,15 @@ final class AddWordViewController: UIViewController, AddWordDataStore {
     }
     
     private func configureAddTranslationButton() {
-        view.addSubview(addTranslationButton)
-        addTranslationButton.translatesAutoresizingMaskIntoConstraints = false
-        addTranslationButton.addTarget(self, action: #selector(closeView), for: .touchUpInside)
+        view.addSubview(addButton)
+        addButton.translatesAutoresizingMaskIntoConstraints = false
+        addButton.addTarget(self, action: #selector(closeView), for: .touchUpInside)
         NSLayoutConstraint.activate([
-            addTranslationButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            addTranslationButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            addTranslationButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
-            addTranslationButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 10),
+            addButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            addButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            addButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30),
+            addButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 10),
+            addButton.heightAnchor.constraint(equalToConstant: 45)
         ])
     }
     

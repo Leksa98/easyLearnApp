@@ -26,7 +26,7 @@ class EnterInfoView: UIView {
     
     init(label: String, textField: String) {
         super.init(frame: .zero)
-        configureView()
+        backgroundColor = UIColor.white
         configureInfoLabel(label: label)
         configureInfoTextField(textField: textField)
         configureLineView()
@@ -37,11 +37,6 @@ class EnterInfoView: UIView {
     }
     
     // MARK: - Configuration
-    
-    private func configureView() {
-        backgroundColor = UIColor.white
-        layer.cornerRadius = 15
-    }
     
     private func configureInfoLabel(label: String) {
         infoLabel = UILabel()
@@ -62,8 +57,6 @@ class EnterInfoView: UIView {
         enterInfoTextField.attributedPlaceholder = NSAttributedString(string: textField, attributes: [NSAttributedString.Key.foregroundColor: UIColor.blueSapphire, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)])
         enterInfoTextField.backgroundColor = UIColor.lightCyan
         enterInfoTextField.textColor = .blueSapphire
-        enterInfoTextField.layer.cornerRadius = 6.0
-        enterInfoTextField.layer.masksToBounds = true
         enterInfoTextField.borderStyle = .roundedRect
         enterInfoTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
