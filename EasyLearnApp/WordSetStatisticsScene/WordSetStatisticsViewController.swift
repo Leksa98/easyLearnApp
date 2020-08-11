@@ -30,11 +30,30 @@ final class WordSetStatisticsViewController: UIViewController, WordSetStatistics
     private var tableView = UITableView(frame: .zero, style: .grouped)
     private var sections: [WordStatisticsSectionModel] = [] {
         didSet {
+            var wordsAmount = sections.reduce(0) { $0 + $1.wordsValue.count }
+            let firstSection = sections.first?.wordsValue.count ?? 0
+            let lastSection = sections.last?.wordsValue.count ?? 0
+            let secondSection = wordsAmount - firstSection - lastSection
+            
+            wordsAmount = wordsAmount ==  0 ? 1 : wordsAmount
+            print(CGFloat(Float(firstSection)/Float(wordsAmount)),
+                  CGFloat(Float(secondSection)/Float(wordsAmount)),
+                  CGFloat(Float(lastSection)/Float(wordsAmount)))
+            
+            progressView.setProgress(firstSection: CGFloat(Float(lastSection)/Float(wordsAmount)),
+                                     secondSection: CGFloat(Float(secondSection)/Float(wordsAmount)),
+                                     thirdSection: CGFloat(Float(firstSection)/Float(wordsAmount)))
+            progressView.setNeedsDisplay()
             tableView.reloadData()
         }
     }
     var setTitle: String?
     var interactor: WordSetStatisticsBusinessLogic?
+    private var progressView = ProgressBarView()
+    
+    private var firstProgressBar = UIProgressView()
+    private var secondProgressBar = UIProgressView()
+    private var thirdProgressBar = UIProgressView()
     
     // MARK: - Life cycle
     
@@ -42,13 +61,25 @@ final class WordSetStatisticsViewController: UIViewController, WordSetStatistics
         super.viewDidLoad()
         view.backgroundColor = .white
         title = Locals.title
+        setUpProgressBar()
         configureTableView()
         if let setTitle = setTitle {
             interactor?.fetchWords(request: WordSetStatisticsModel.FetchWordSet.Request(setName: setTitle))
         }
     }
     
-    // MARK: - Configuration
+    // MARK: - Setup UI elements
+    
+    private func setUpProgressBar() {
+        view.addSubview(progressView)
+        progressView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            progressView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            progressView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            progressView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            progressView.heightAnchor.constraint(equalToConstant: 20)
+        ])
+    }
     
     private func configureTableView() {
         tableView.backgroundColor = .white
@@ -59,7 +90,7 @@ final class WordSetStatisticsViewController: UIViewController, WordSetStatistics
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.topAnchor.constraint(equalTo: progressView.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
