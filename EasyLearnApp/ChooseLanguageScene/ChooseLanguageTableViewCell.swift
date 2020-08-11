@@ -10,13 +10,6 @@ import UIKit
 
 final class ChooseLanguageTableViewCell: UITableViewCell {
     
-    // MARK: - Constants
-    
-    enum Locals {
-        static let backgroundColor = UIColor(cgColor: CGColor(srgbRed: 249.0/255.0, green: 248.0/255.0, blue: 241.0/255.0, alpha: 1))
-        static let checkmarkColor = UIColor(cgColor: CGColor(srgbRed: 118.0/255.0, green: 93.0/255.0, blue: 152.0/255.0, alpha: 1))
-    }
-    
     // MARK: - Properties
     
     private var languageLabel = UILabel()
@@ -33,10 +26,10 @@ final class ChooseLanguageTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = Locals.backgroundColor
+        backgroundColor = UIColor.white
         selectionStyle = .none
-        
-        languageLabel.font = .systemFont(ofSize: 20)
+        tintColor = .blueSapphire
+        languageLabel.font = UIFont.sfProTextMedium(ofSize: 20)
         flagLabel.font = .systemFont(ofSize: 30)
         addSubview(languageLabel)
         addSubview(flagLabel)

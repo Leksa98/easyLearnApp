@@ -22,8 +22,6 @@ final class AddWordViewController: UIViewController, AddWordDataStore {
     // MARK: - Constants
     
     private enum Locals {
-        static let backgroundColor = UIColor(cgColor: CGColor(srgbRed: 249.0/255.0, green: 248.0/255.0, blue: 241.0/255.0, alpha: 1))
-        static let buttonColor = UIColor(cgColor: CGColor(srgbRed: 118.0/255.0, green: 93.0/255.0, blue: 152.0/255.0, alpha: 1))
         static let cellId = "addWordTableViewCell"
     }
     
@@ -42,7 +40,7 @@ final class AddWordViewController: UIViewController, AddWordDataStore {
     }
     private var tableView =  UITableView()
     private var searchBar = UISearchBar()
-    private var addTranslationButton = ButtonWithRoundCorners(title: "Add")
+    private var addButton = ButtonWithRoundCorners(title: "Add")
     var interactor: FetchWordTranslations?
     var router: AddWordRoutingLogic?
     var addWord = WordModel(word: "", translation: "")
@@ -52,7 +50,7 @@ final class AddWordViewController: UIViewController, AddWordDataStore {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Locals.backgroundColor
+        view.backgroundColor = .white
         configureSearchBar()
         configureTableView()
         configureAddTranslationButton()
@@ -60,7 +58,7 @@ final class AddWordViewController: UIViewController, AddWordDataStore {
     }
     
     override func viewDidLayoutSubviews() {
-        searchBar.setPlaceholderTextColorTo(color: Locals.buttonColor)
+        searchBar.setPlaceholderTextColorTo(color: UIColor.blueSapphire)
     }
     
     // MARK: - Configuration
@@ -72,15 +70,16 @@ final class AddWordViewController: UIViewController, AddWordDataStore {
         searchBar.clipsToBounds = true
         searchBar.searchBarStyle = UISearchBar.Style.prominent
         searchBar.placeholder = "Type word in english..."
+        searchBar.searchTextField.font = UIFont.sfProTextMedium(ofSize: 18)
         searchBar.sizeToFit()
-        searchBar.barTintColor = Locals.buttonColor
-        searchBar.searchTextField.backgroundColor = Locals.backgroundColor
-        searchBar.searchTextField.leftView?.tintColor = Locals.buttonColor
+        searchBar.barTintColor = UIColor.blueSapphire
+        searchBar.searchTextField.backgroundColor = .white
+        searchBar.searchTextField.leftView?.tintColor = UIColor.blueSapphire
         searchBar.setShowsCancelButton(true, animated: true)
         searchBar.showsCancelButton = true
         if let cancelButton = searchBar.value(forKey: "cancelButton") as? UIButton {
-            cancelButton.setTitleColor(Locals.backgroundColor, for: .normal)
-            cancelButton.titleLabel?.font = .systemFont(ofSize: 16)
+            cancelButton.setTitleColor(.white, for: .normal)
+            cancelButton.titleLabel?.font = UIFont.sfProTextMedium(ofSize: 16)
         }
     }
     
@@ -96,19 +95,19 @@ final class AddWordViewController: UIViewController, AddWordDataStore {
         tableView.dataSource = self
         tableView.register(AddWordTableViewCell.self, forCellReuseIdentifier: Locals.cellId)
         tableView.separatorStyle = .none
-        tableView.backgroundColor = Locals.backgroundColor
+        tableView.backgroundColor = .white
     }
     
     private func configureAddTranslationButton() {
-        view.addSubview(addTranslationButton)
-        addTranslationButton.backgroundColor = Locals.buttonColor
-        addTranslationButton.translatesAutoresizingMaskIntoConstraints = false
-        addTranslationButton.addTarget(self, action: #selector(closeView), for: .touchUpInside)
+        view.addSubview(addButton)
+        addButton.translatesAutoresizingMaskIntoConstraints = false
+        addButton.addTarget(self, action: #selector(closeView), for: .touchUpInside)
         NSLayoutConstraint.activate([
-            addTranslationButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            addTranslationButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            addTranslationButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
-            addTranslationButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 10),
+            addButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            addButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            addButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30),
+            addButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 10),
+            addButton.heightAnchor.constraint(equalToConstant: 45)
         ])
     }
     

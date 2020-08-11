@@ -10,13 +10,6 @@ import UIKit
 
 final class NewWordSetViewController: UIViewController {
     
-    // MARK: - Constants
-    
-    private enum Locals {
-        static let backgroundColor = UIColor(cgColor: CGColor(srgbRed: 249.0/255.0, green: 248.0/255.0, blue: 241.0/255.0, alpha: 1))
-        static let navigationBarColor = UIColor(cgColor: CGColor(srgbRed: 118.0/255.0, green: 93.0/255.0, blue: 152.0/255.0, alpha: 1))
-    }
-    
     // MARK: - Properties
     
     private let defaultSetButton = ButtonWithRoundCorners(title: "View default sets")
@@ -29,9 +22,9 @@ final class NewWordSetViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = Locals.backgroundColor
-        navigationController?.navigationBar.tintColor = Locals.navigationBarColor
-        title = "Add word set"
+        view.backgroundColor = .white
+        navigationController?.navigationBar.tintColor = UIColor.blueSapphire
+        navigationItem.title = "Add word set"
         navigationController?.navigationBar.prefersLargeTitles = true
         
         view.addSubview(buttonStackView)

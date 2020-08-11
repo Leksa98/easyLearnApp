@@ -10,12 +10,6 @@ import UIKit
 
 final class SettingsTableViewCell: UITableViewCell {
     
-    // MARK: - Constants
-    
-    enum Locals {
-        static let backgroundColor = UIColor(cgColor: CGColor(srgbRed: 249.0/255.0, green: 248.0/255.0, blue: 241.0/255.0, alpha: 1))
-    }
-    
     // MARK: - Properties
     
     private var label = UILabel()
@@ -24,13 +18,13 @@ final class SettingsTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = Locals.backgroundColor
+        backgroundColor = .white
         accessoryType = .disclosureIndicator
         selectionStyle = .none
         
         addSubview(label)
         label.text = "Learning language"
-        label.font = .systemFont(ofSize: 20)
+        label.font = UIFont.sfProTextMedium(ofSize: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),

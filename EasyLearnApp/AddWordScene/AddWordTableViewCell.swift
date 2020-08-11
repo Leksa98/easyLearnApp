@@ -13,25 +13,24 @@ class AddWordTableViewCell: UITableViewCell {
     // MARK: - Constants
     
     private enum Locals {
-        static let backgroundColor = UIColor(cgColor: CGColor(srgbRed: 249.0/255.0, green: 248.0/255.0, blue: 241.0/255.0, alpha: 1))
-        static let selectedBackgroundColor = UIColor(cgColor: CGColor(srgbRed: 202.0/255.0, green: 192.0/255.0, blue: 216.0/255.0, alpha: 1))
-        static let cornerRadius = CGFloat(15)
-        static let containerViewBackgroundColor = UIColor(cgColor: CGColor(srgbRed: 181.0/255.0, green: 166.0/255.0, blue: 201.0/255.0, alpha: 1))
+        static let cornerRadius = CGFloat(6)
     }
+    
+    // MARK: - Properties
     
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
-        label.font = .systemFont(ofSize: 18)
-        label.textColor = .black
+        label.font = UIFont.sfProTextMedium(ofSize: 18)
+        label.textColor = .blueSapphire
         return label
     }()
     
     private var containerView: UIView = {
         let containerView = UIView()
         containerView.layer.cornerRadius = Locals.cornerRadius
-        containerView.backgroundColor = Locals.containerViewBackgroundColor
+        containerView.backgroundColor = UIColor.lightCyan
         return containerView
     }()
     
@@ -45,15 +44,17 @@ class AddWordTableViewCell: UITableViewCell {
         }
     }
     
+    // MARK: - Initialization
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = Locals.backgroundColor
+        backgroundColor = .white
         addSubview(containerView)
         containerView.layer.masksToBounds = true
         containerView.translatesAutoresizingMaskIntoConstraints = false
         let bgColorView = UIView()
         bgColorView.layer.cornerRadius = Locals.cornerRadius
-        bgColorView.backgroundColor = Locals.selectedBackgroundColor
+        bgColorView.backgroundColor = UIColor.persianGreen
         selectedBackgroundView = bgColorView
         addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -69,15 +70,13 @@ class AddWordTableViewCell: UITableViewCell {
         ])
     }
     
-    func updateContent(label: String) {
-        titleLabel.text = label
-    }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    // MARK: - Update content
+    
+    func updateContent(label: String) {
+        titleLabel.text = label
     }
 }

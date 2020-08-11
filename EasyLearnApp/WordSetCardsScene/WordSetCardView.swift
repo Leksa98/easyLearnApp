@@ -13,20 +13,21 @@ class WordSetCardView: UIView {
     // MARK: - Constants
     
     private enum Locals {
-        static let buttonColor = UIColor(cgColor: CGColor(srgbRed: 118.0/255.0, green: 93.0/255.0, blue: 152.0/255.0, alpha: 1))
         static let cornerRadius = CGFloat(40)
     }
     
     // MARK: - Property
     
     private var label = UILabel()
+    private var image = UIImageView()
     
     // MARK: - Initialization
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        addSubview(image)
         configureLabel()
-        backgroundColor = Locals.buttonColor
+        backgroundColor = UIColor.blueSapphire
         layer.cornerRadius = Locals.cornerRadius
     }
     
@@ -37,7 +38,7 @@ class WordSetCardView: UIView {
     // MARK: - Configuration
     
     private func configureLabel() {
-        label.font = .boldSystemFont(ofSize: 50)
+        label.font = UIFont.sfProTextHeavy(ofSize: 40)
         label.textColor = .white
         addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false

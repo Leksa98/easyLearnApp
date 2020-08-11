@@ -10,37 +10,32 @@ import UIKit
 
 final class TabBarController: UITabBarController {
     
-    // MARK: - Constants
-    
-    enum Locals {
-        static let tabBarTextColor = UIColor(cgColor: CGColor(srgbRed: 118.0/255.0, green: 93.0/255.0, blue: 152.0/255.0, alpha: 1))
-        static let tabBarBackgroundColor = UIColor(cgColor: CGColor(srgbRed: 233.0/255.0, green: 241.0/255.0, blue: 247.0/255.0, alpha: 1))
-        static let tabBarBorderWidth: CGFloat = 0.2
-    }
-    
     // MARK: - Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tabBar.tintColor = Locals.tabBarTextColor
-        tabBar.barTintColor = Locals.tabBarBackgroundColor
-        tabBar.layer.borderWidth = Locals.tabBarBorderWidth
+        let appearance = UITabBarItem.appearance()
+        let attributes = [NSAttributedString.Key.font: UIFont.sfProTextHeavy(ofSize: 10)]
+        appearance.setTitleTextAttributes(attributes, for: .normal)
+        
+        tabBar.tintColor = UIColor.blueSapphire
+        tabBar.barTintColor = UIColor.white
         
         let wordSetsViewController = AllWordSetTableViewController()
         let wordSetsNavigationController = UINavigationController(rootViewController: wordSetsViewController)
         AllWordSetTableConfigurator.assembly(viewController: wordSetsViewController)
-        wordSetsNavigationController.tabBarItem = UITabBarItem(title: "Sets", image: UIImage(named: "file"), tag: 0)
+        wordSetsNavigationController.tabBarItem = UITabBarItem(title: "Sets", image: UIImage(named: "Home"), tag: 0)
         
         let newWordSetViewController = NewWordSetViewController()
         let newWordSetNavigationController = UINavigationController(rootViewController: newWordSetViewController)
         NewWordSetConfiguration.assembly(viewController: newWordSetViewController)
-        newWordSetNavigationController.tabBarItem = UITabBarItem(title: "Add set", image: UIImage(named: "plus-sign"), tag: 1)
+        newWordSetNavigationController.tabBarItem = UITabBarItem(title: "New set", image: UIImage(named: "Plus"), tag: 1)
         
         let settingsViewController = SettingsViewController()
         let settingsNavigationController = UINavigationController(rootViewController: settingsViewController)
         SettingsConfigurator.assembly(viewController: settingsViewController)
-        settingsNavigationController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "gear"), tag: 2)
+        settingsNavigationController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "Settings"), tag: 2)
         
         let tabBarList = [wordSetsNavigationController, newWordSetNavigationController, settingsNavigationController]
         viewControllers = tabBarList

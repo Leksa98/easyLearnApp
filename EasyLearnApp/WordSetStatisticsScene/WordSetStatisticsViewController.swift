@@ -21,7 +21,6 @@ final class WordSetStatisticsViewController: UIViewController, WordSetStatistics
     // MARK: - Constants
     
     enum Locals {
-        static let backgroundColor = UIColor(cgColor: CGColor(srgbRed: 249.0/255.0, green: 248.0/255.0, blue: 241.0/255.0, alpha: 1))
         static let title = "Statistics"
         static let cellId = "WordSetStatusticsCellId"
     }
@@ -41,7 +40,7 @@ final class WordSetStatisticsViewController: UIViewController, WordSetStatistics
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Locals.backgroundColor
+        view.backgroundColor = .white
         title = Locals.title
         configureTableView()
         if let setTitle = setTitle {
@@ -52,7 +51,7 @@ final class WordSetStatisticsViewController: UIViewController, WordSetStatistics
     // MARK: - Configuration
     
     private func configureTableView() {
-        tableView.backgroundColor = Locals.backgroundColor
+        tableView.backgroundColor = .white
         tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
