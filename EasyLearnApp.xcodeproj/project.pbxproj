@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A804C91E24D06CAA007E2524 /* WordListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A804C91D24D06CAA007E2524 /* WordListTableViewCell.swift */; };
 		A804C92024D076C8007E2524 /* WordSetListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A804C91F24D076C8007E2524 /* WordSetListInteractor.swift */; };
 		A804C92224D1AFC5007E2524 /* WordSetCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A804C92124D1AFC5007E2524 /* WordSetCardViewController.swift */; };
 		A80D8C7E24C09D260056F7D9 /* AddWordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80D8C7D24C09D260056F7D9 /* AddWordTableViewCell.swift */; };
@@ -152,7 +151,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		A804C91D24D06CAA007E2524 /* WordListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListTableViewCell.swift; sourceTree = "<group>"; };
 		A804C91F24D076C8007E2524 /* WordSetListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetListInteractor.swift; sourceTree = "<group>"; };
 		A804C92124D1AFC5007E2524 /* WordSetCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetCardViewController.swift; sourceTree = "<group>"; };
 		A80D8C7D24C09D260056F7D9 /* AddWordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWordTableViewCell.swift; sourceTree = "<group>"; };
@@ -354,7 +352,6 @@
 			isa = PBXGroup;
 			children = (
 				A8185FFC24CB069300F93FD3 /* WordListViewController.swift */,
-				A804C91D24D06CAA007E2524 /* WordListTableViewCell.swift */,
 				A804C91F24D076C8007E2524 /* WordSetListInteractor.swift */,
 				A8BF982324DD6B3D00755F7E /* WordSetListConfigurator.swift */,
 				A8BF982524DD6D1700755F7E /* WordSetListPresenter.swift */,
@@ -924,7 +921,6 @@
 				A8B2144324D97CF600A3CF7F /* WordSetStatisticsPresentor.swift in Sources */,
 				A804C92024D076C8007E2524 /* WordSetListInteractor.swift in Sources */,
 				A8BF983A24DD901300755F7E /* AddSetConfiguration.swift in Sources */,
-				A804C91E24D06CAA007E2524 /* WordListTableViewCell.swift in Sources */,
 				A8F0D57F24C38B8E0004C609 /* EnterInfoView.swift in Sources */,
 				A8BF982824DD6F8A00755F7E /* WordSetListRouter.swift in Sources */,
 				A8B869A324E1933600B61803 /* UIColor+.swift in Sources */,

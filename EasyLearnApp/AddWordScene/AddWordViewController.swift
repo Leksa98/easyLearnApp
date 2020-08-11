@@ -138,7 +138,7 @@ extension AddWordViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: Locals.cellId, for: indexPath) as? AddWordTableViewCell {
-            cell.viewModel = translations[indexPath.row]
+            cell.viewModel = WordModel(word: searchBar.text ?? "", translation: translations[indexPath.row])
             return cell
         }
         return UITableViewCell()

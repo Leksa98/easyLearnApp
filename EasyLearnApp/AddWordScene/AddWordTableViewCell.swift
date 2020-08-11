@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddWordTableViewCell: UITableViewCell {
+final class AddWordTableViewCell: UITableViewCell {
    
     // MARK: - Constants
     
@@ -18,7 +18,7 @@ class AddWordTableViewCell: UITableViewCell {
     
     // MARK: - Properties
     
-    private var titleLabel: UILabel = {
+    var titleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
@@ -27,19 +27,17 @@ class AddWordTableViewCell: UITableViewCell {
         return label
     }()
     
-    private var containerView: UIView = {
+    var containerView: UIView = {
         let containerView = UIView()
         containerView.layer.cornerRadius = Locals.cornerRadius
         containerView.backgroundColor = UIColor.lightCyan
         return containerView
     }()
     
-    var viewModel: Any? {
+    var viewModel: WordModel? {
         didSet {
             if let viewModel = viewModel {
-                if let viewModel = viewModel as? String {
-                    updateContent(label: viewModel)
-                }
+                updateContent(label: viewModel.translation)
             }
         }
     }
@@ -76,7 +74,7 @@ class AddWordTableViewCell: UITableViewCell {
     
     // MARK: - Update content
     
-    func updateContent(label: String) {
+    private func updateContent(label: String) {
         titleLabel.text = label
     }
 }

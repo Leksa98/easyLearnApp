@@ -50,10 +50,7 @@ final class WordSetStatisticsViewController: UIViewController, WordSetStatistics
     var setTitle: String?
     var interactor: WordSetStatisticsBusinessLogic?
     private var progressView = ProgressBarView()
-    
-    private var firstProgressBar = UIProgressView()
-    private var secondProgressBar = UIProgressView()
-    private var thirdProgressBar = UIProgressView()
+    private var currentProgressLabel = UILabel()
     
     // MARK: - Life cycle
     
@@ -61,6 +58,7 @@ final class WordSetStatisticsViewController: UIViewController, WordSetStatistics
         super.viewDidLoad()
         view.backgroundColor = .white
         title = Locals.title
+        setUpProgressLabe()
         setUpProgressBar()
         configureTableView()
         if let setTitle = setTitle {
@@ -70,13 +68,25 @@ final class WordSetStatisticsViewController: UIViewController, WordSetStatistics
     
     // MARK: - Setup UI elements
     
+    private func setUpProgressLabe() {
+        view.addSubview(currentProgressLabel)
+        currentProgressLabel.text = "Current progress"
+        currentProgressLabel.font = UIFont.sfProTextHeavy(ofSize: 18)
+        currentProgressLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            currentProgressLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            currentProgressLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            currentProgressLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+        ])
+    }
+    
     private func setUpProgressBar() {
         view.addSubview(progressView)
         progressView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            progressView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-            progressView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-            progressView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            progressView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            progressView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            progressView.topAnchor.constraint(equalTo: currentProgressLabel.bottomAnchor, constant: 10),
             progressView.heightAnchor.constraint(equalToConstant: 20)
         ])
     }
@@ -86,7 +96,7 @@ final class WordSetStatisticsViewController: UIViewController, WordSetStatistics
         tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(WordListTableViewCell.self, forCellReuseIdentifier: Locals.cellId)
+        tableView.register(AddSetTableViewCell.self, forCellReuseIdentifier: Locals.cellId)
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -117,7 +127,7 @@ extension WordSetStatisticsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: Locals.cellId, for: indexPath) as? WordListTableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: Locals.cellId, for: indexPath) as? AddSetTableViewCell {
             cell.viewModel = sections[indexPath.section].wordsValue[indexPath.row]
             return cell
         }
