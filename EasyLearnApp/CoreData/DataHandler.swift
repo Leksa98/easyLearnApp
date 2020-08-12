@@ -60,6 +60,8 @@ final class DataHandler : NSObject {
         newWord.word = word
         newWord.translation = translation
         newWord.progress = 0.0
+        newWord.wrongAnswer = 0
+        newWord.rightAnswer = 0
         print("Word \(String(describing: newWord.word)) with translation \(String(describing: newWord.translation)) added")
         saveContext()
         return newWord
@@ -88,7 +90,7 @@ final class DataHandler : NSObject {
             if let setWithWords = wordSet.withWord {
                 for (_,word) in setWithWords.allObjects.enumerated() {
                     if let word = word as? Word, let wordValue = word.word, let wordTranslation = word.translation {
-                        wordArray.append(WordModel(word: wordValue, translation: wordTranslation, progress: word.progress))
+                        wordArray.append(WordModel(word: wordValue, translation: wordTranslation, progress: word.progress, rightAnswer: Int(word.rightAnswer), wrongAnswer: Int(word.wrongAnswer)))
                     }
                 }
             }
@@ -130,6 +132,11 @@ final class DataHandler : NSObject {
             for currentWord in words {
                 if let currentWord = currentWord as? Word,
                     (currentWord.word?.trimmingCharacters(in: .whitespacesAndNewlines).capitalized == word.capitalized || currentWord.translation?.trimmingCharacters(in: .whitespacesAndNewlines).capitalized == word.capitalized)   {
+                    if progressChange > 0 {
+                        currentWord.rightAnswer += 1
+                    } else if progressChange < 0 {
+                        currentWord.wrongAnswer += 1
+                    }
                     if (currentWord.progress + progressChange >= 0.0) && (currentWord.progress <= 1.0) {
                         currentWord.progress += progressChange
                     }

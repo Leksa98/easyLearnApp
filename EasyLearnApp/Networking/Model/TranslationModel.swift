@@ -17,7 +17,7 @@ struct TranslationModel: Codable {
 // MARK: - Def
 struct Def: Codable {
     let text: String
-    let pos: String
+    let pos: String?
     let ts: String
     let tr: [Tr]
 }
@@ -25,7 +25,7 @@ struct Def: Codable {
 // MARK: - Tr
 struct Tr: Codable {
     let text: String 
-    let pos: String
+    let pos: String?
     let gen: String?
     let syn: [Syn]?
     let mean: [Mean]?

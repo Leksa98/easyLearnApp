@@ -55,7 +55,7 @@ final class WordListViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
         ])
-        tableView.register(WordListTableViewCell.self, forCellReuseIdentifier: Locals.cellId)
+        tableView.register(AddSetTableViewCell.self, forCellReuseIdentifier: Locals.cellId)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
@@ -76,7 +76,7 @@ extension WordListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: Locals.cellId, for: indexPath) as? WordListTableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: Locals.cellId, for: indexPath) as? AddSetTableViewCell {
             cell.viewModel = wordsInSet[indexPath.row]
             return cell
         }
