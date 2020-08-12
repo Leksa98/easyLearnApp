@@ -16,12 +16,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        if #available(iOS 13.0, *) {
+            let appearance = UINavigationBarAppearance()
+            let largeTitleFontAttrs = [ NSAttributedString.Key.font: UIFont.sfProTextHeavy(ofSize: 30)!]
+            let titleFontAttrs = [ NSAttributedString.Key.font: UIFont.sfProTextHeavy(ofSize: 18)!]
+            appearance.largeTitleTextAttributes =  largeTitleFontAttrs
+            appearance.titleTextAttributes = titleFontAttrs
+            appearance.backgroundColor = .white
+            UINavigationBar.appearance().standardAppearance = appearance
+            UINavigationBar.appearance().compactAppearance = appearance
+            UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        } else {
+            let titleFontAttrs = [NSAttributedString.Key.font: UIFont.sfProTextHeavy(ofSize: 18)!]
+            UINavigationBar.appearance().titleTextAttributes = titleFontAttrs
+            UINavigationBar.appearance().backgroundColor = .white
+        }
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateInitialViewController()
         window?.makeKeyAndVisible()
-        let titleFontAttrs = [ NSAttributedString.Key.font: UIFont.sfProTextHeavy(ofSize: 18)!]
-        UINavigationBar.appearance().titleTextAttributes = titleFontAttrs
-        UINavigationBar.appearance().backgroundColor = .white
         window?.rootViewController = TabBarController()
         
         return true
