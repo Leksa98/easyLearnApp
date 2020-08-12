@@ -134,7 +134,7 @@ final class DataHandler : NSObject {
                     (currentWord.word?.trimmingCharacters(in: .whitespacesAndNewlines).capitalized == word.capitalized || currentWord.translation?.trimmingCharacters(in: .whitespacesAndNewlines).capitalized == word.capitalized)   {
                     if progressChange > 0 {
                         currentWord.rightAnswer += 1
-                    } else {
+                    } else if progressChange < 0 {
                         currentWord.wrongAnswer += 1
                     }
                     if (currentWord.progress + progressChange >= 0.0) && (currentWord.progress <= 1.0) {

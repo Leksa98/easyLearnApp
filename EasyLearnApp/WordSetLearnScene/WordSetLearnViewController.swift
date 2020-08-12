@@ -128,7 +128,11 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
     @objc private func helpButtonTapped() {
         if let currentCellIndexPath = getCurrentCellIndexPath(), let cell = collectionView.cellForItem(at: currentCellIndexPath) as? WordSetLearnCollectionViewCell {
             if let studyWord = cell.viewModel?.word {
-                interactor?.editWordProgress(request: WordSetLearnModel.EditWordProgress.Request(word: studyWord, progressChange: -0.1))
+                var progressChange = -0.1
+                if cell.isWrongWordTyped() {
+                    progressChange = 0
+                }
+                interactor?.editWordProgress(request: WordSetLearnModel.EditWordProgress.Request(word: studyWord, progressChange: progressChange))
             }
             cell.showHelpAnimation()
         }
