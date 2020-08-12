@@ -70,11 +70,19 @@ final class AddWordViewController: UIViewController, AddWordDataStore {
         searchBar.clipsToBounds = true
         searchBar.searchBarStyle = UISearchBar.Style.prominent
         searchBar.placeholder = "Type word in english..."
-        searchBar.searchTextField.font = UIFont.sfProTextMedium(ofSize: 18)
+        if #available(iOS 13.0, *) {
+            searchBar.searchTextField.font = UIFont.sfProTextMedium(ofSize: 18)
+        } else {
+            // Fallback on earlier versions
+        }
         searchBar.sizeToFit()
         searchBar.barTintColor = UIColor.blueSapphire
-        searchBar.searchTextField.backgroundColor = .white
-        searchBar.searchTextField.leftView?.tintColor = UIColor.blueSapphire
+        if #available(iOS 13.0, *) {
+            searchBar.searchTextField.backgroundColor = .white
+            searchBar.searchTextField.leftView?.tintColor = UIColor.blueSapphire
+        } else {
+            // Fallback on earlier versions
+        }
         searchBar.setShowsCancelButton(true, animated: true)
         searchBar.showsCancelButton = true
         if let cancelButton = searchBar.value(forKey: "cancelButton") as? UIButton {
@@ -96,6 +104,9 @@ final class AddWordViewController: UIViewController, AddWordDataStore {
         tableView.register(AddWordTableViewCell.self, forCellReuseIdentifier: Locals.cellId)
         tableView.separatorStyle = .none
         tableView.backgroundColor = .white
+        if #available(iOS 11.0, *) {} else {
+            tableView.estimatedRowHeight = 44
+        }
     }
     
     private func configureAddTranslationButton() {

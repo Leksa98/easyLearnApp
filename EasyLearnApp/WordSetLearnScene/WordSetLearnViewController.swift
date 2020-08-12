@@ -62,12 +62,21 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
         collectionView.isScrollEnabled = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(collectionView)
-        NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            collectionView.bottomAnchor.constraint(equalTo:view.safeAreaLayoutGuide.bottomAnchor, constant: -320),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
+        if #available(iOS 11.0, *) {
+            NSLayoutConstraint.activate([
+                collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+                collectionView.bottomAnchor.constraint(equalTo:view.safeAreaLayoutGuide.bottomAnchor, constant: -320),
+                collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+                collectionView.bottomAnchor.constraint(equalTo:view.bottomAnchor, constant: -320),
+                collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            ])
+        }
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = .white

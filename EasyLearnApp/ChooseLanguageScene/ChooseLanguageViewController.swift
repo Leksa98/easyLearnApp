@@ -37,7 +37,9 @@ final class ChooseLanguageViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         title = "Learning language"
-        navigationController?.navigationBar.prefersLargeTitles = false
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = false
+        }
         setupTableView()
         interactor?.loadLanguages(request: ChooseLanguageModel.Language.Request())
     }
@@ -51,13 +53,25 @@ final class ChooseLanguageViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(ChooseLanguageTableViewCell.self, forCellReuseIdentifier: Locals.cellId)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-        ])
+        if #available(iOS 11.0, *) {
+            NSLayoutConstraint.activate([
+                tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+                tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                tableView.topAnchor.constraint(equalTo: view.topAnchor),
+                tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            ])
+        }
         tableView.tableFooterView = UIView()
+        if #available(iOS 11.0, *) {} else {
+            tableView.estimatedRowHeight = 44
+        }
     }
 }
 

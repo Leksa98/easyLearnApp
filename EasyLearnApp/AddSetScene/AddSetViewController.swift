@@ -64,13 +64,23 @@ final class AddSetViewController: UIViewController {
         addWordButton.addTarget(self, action: #selector(addWordButtonTapped), for: .touchUpInside)
         view.addSubview(addWordButton)
         addWordButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            addWordButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-            addWordButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-            addWordButton.topAnchor.constraint(equalTo: addedWordTableView.bottomAnchor, constant: 10),
-            addWordButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
-            addWordButton.heightAnchor.constraint(equalToConstant: 45)
-        ])
+        if #available(iOS 11.0, *) {
+            NSLayoutConstraint.activate([
+                addWordButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+                addWordButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+                addWordButton.topAnchor.constraint(equalTo: addedWordTableView.bottomAnchor, constant: 10),
+                addWordButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+                addWordButton.heightAnchor.constraint(equalToConstant: 45)
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                addWordButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+                addWordButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+                addWordButton.topAnchor.constraint(equalTo: addedWordTableView.bottomAnchor, constant: 10),
+                addWordButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10),
+                addWordButton.heightAnchor.constraint(equalToConstant: 45)
+            ])
+        }
     }
     
     private func configureEmojiView() {
@@ -87,12 +97,21 @@ final class AddSetViewController: UIViewController {
     private func configureNameView() {
         view.addSubview(nameView)
         nameView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            nameView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            nameView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            nameView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            nameView.heightAnchor.constraint(equalToConstant: 100)
-        ])
+        if #available(iOS 11.0, *) {
+            NSLayoutConstraint.activate([
+                nameView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                nameView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                nameView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+                nameView.heightAnchor.constraint(equalToConstant: 100)
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                nameView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: 10),
+                nameView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                nameView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                nameView.heightAnchor.constraint(equalToConstant: 100)
+            ])
+        }
     }
     
     private func configuteTableView() {
@@ -116,6 +135,9 @@ final class AddSetViewController: UIViewController {
             addedWordTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
             addedWordTableView.topAnchor.constraint(equalTo: tableLabel.bottomAnchor, constant: 5)
         ])
+        if #available(iOS 11.0, *) {} else {
+            addedWordTableView.estimatedRowHeight = 44
+        }
     }
     
     // MARK: - Button actions

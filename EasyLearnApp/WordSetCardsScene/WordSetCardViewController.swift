@@ -71,12 +71,21 @@ final class WordSetCardViewController: UIViewController {
         collectionView.isScrollEnabled = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(collectionView)
-        NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            collectionView.bottomAnchor.constraint(equalTo:view.safeAreaLayoutGuide.bottomAnchor, constant: -100),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
+        if #available(iOS 11.0, *) {
+            NSLayoutConstraint.activate([
+                collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+                collectionView.bottomAnchor.constraint(equalTo:view.safeAreaLayoutGuide.bottomAnchor, constant: -100),
+                collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
+                collectionView.bottomAnchor.constraint(equalTo:view.bottomAnchor, constant: -100),
+                collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            ])
+        }
     }
     
     private func configureNextCardButton() {

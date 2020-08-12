@@ -8,10 +8,10 @@
 
 import UIKit
 
+@available(iOS 13.0, *)
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -22,18 +22,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateInitialViewController()
         window?.windowScene = windowScene
         window?.makeKeyAndVisible()
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
-            let appearance = UINavigationBarAppearance()
-            let largeTitleFontAttrs = [ NSAttributedString.Key.font: UIFont.sfProTextHeavy(ofSize: 30)!]
-            let titleFontAttrs = [ NSAttributedString.Key.font: UIFont.sfProTextHeavy(ofSize: 18)!]
-            appearance.largeTitleTextAttributes =  largeTitleFontAttrs
-            appearance.titleTextAttributes = titleFontAttrs
-            appearance.backgroundColor = .white
-            UINavigationBar.appearance().standardAppearance = appearance
-            UINavigationBar.appearance().compactAppearance = appearance
-            UINavigationBar.appearance().scrollEdgeAppearance = appearance
-            self.window?.rootViewController = TabBarController()
-        }
+        let appearance = UINavigationBarAppearance()
+        let largeTitleFontAttrs = [ NSAttributedString.Key.font: UIFont.sfProTextHeavy(ofSize: 30)!]
+        let titleFontAttrs = [ NSAttributedString.Key.font: UIFont.sfProTextHeavy(ofSize: 18)!]
+        appearance.largeTitleTextAttributes =  largeTitleFontAttrs
+        appearance.titleTextAttributes = titleFontAttrs
+        appearance.backgroundColor = .white
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().compactAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        self.window?.rootViewController = TabBarController()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

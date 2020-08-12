@@ -48,11 +48,16 @@ final class AllWordSetTableViewController: UITableViewController {
     private func configureTableView() {
         view.backgroundColor = .white
         navigationItem.title = "My sets"
-        navigationController?.navigationBar.prefersLargeTitles = true
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
+        }
         tableView.register(AllWordSetTableViewCell.self, forCellReuseIdentifier: Locals.cellId)
         navigationItem.rightBarButtonItem = self.editButtonItem
         navigationController?.navigationBar.tintColor = UIColor.blueSapphire
         tableView.separatorStyle = .none
+        if #available(iOS 11.0, *) {} else {
+            tableView.estimatedRowHeight = 44
+        }
     }
     
     // MARK: - Table view data source
