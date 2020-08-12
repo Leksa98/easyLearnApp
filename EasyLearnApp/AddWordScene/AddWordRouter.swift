@@ -10,6 +10,7 @@ import Foundation
 
 protocol AddWordRoutingLogic {
     func routeToAddSetView(source: AddWordViewController, destination: AddWordToSetDataStore)
+    func routeBack(source: AddWordViewController)
 }
 
 final class AddWordRouter: AddWordRoutingLogic {
@@ -21,6 +22,10 @@ final class AddWordRouter: AddWordRoutingLogic {
     
     private func passData(source: WordModel, destination: AddWordToSetDataStore) {
         destination.addWordToArray(word: source)
+    }
+    
+    func routeBack(source: AddWordViewController) {
+        source.dismiss(animated: true, completion: nil)
     }
     
 }

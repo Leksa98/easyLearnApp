@@ -41,6 +41,7 @@ final class AddWordViewController: UIViewController, AddWordDataStore {
     private var tableView =  UITableView()
     private var searchBar = UISearchBar()
     private var addButton = ButtonWithRoundCorners(title: "Add")
+    private var isKeyboardVisible = false
     var interactor: FetchWordTranslations?
     var router: AddWordRoutingLogic?
     var addWord = WordModel(word: "", translation: "")
@@ -65,23 +66,17 @@ final class AddWordViewController: UIViewController, AddWordDataStore {
     
     private func configureSearchBar() {
         searchBar.delegate = self
-        navigationItem.titleView = searchBar
         view.addSubview(searchBar)
         searchBar.clipsToBounds = true
         searchBar.searchBarStyle = UISearchBar.Style.prominent
         searchBar.placeholder = "Type word in english..."
-        if #available(iOS 13.0, *) {
-            searchBar.searchTextField.font = UIFont.sfProTextMedium(ofSize: 18)
-        } else {
-            // Fallback on earlier versions
-        }
         searchBar.sizeToFit()
         searchBar.barTintColor = UIColor.blueSapphire
-        if #available(iOS 13.0, *) {
-            searchBar.searchTextField.backgroundColor = .white
-            searchBar.searchTextField.leftView?.tintColor = UIColor.blueSapphire
-        } else {
-            // Fallback on earlier versions
+        searchBar.textField?.font = UIFont.sfProTextMedium(ofSize: 18)
+        searchBar.textField?.backgroundColor = .white
+        if let glassIconView = searchBar.textField?.leftView as? UIImageView {
+            glassIconView.image = glassIconView.image?.withRenderingMode(.alwaysTemplate)
+            glassIconView.tintColor = UIColor.blueSapphire
         }
         searchBar.setShowsCancelButton(true, animated: true)
         searchBar.showsCancelButton = true
@@ -94,7 +89,15 @@ final class AddWordViewController: UIViewController, AddWordDataStore {
     private func configureTableView() {
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        if #available(iOS 13.0, *) {
+            searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        } else {
+            searchBar.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
+        }
         NSLayoutConstraint.activate([
+            searchBar.leftAnchor.constraint(equalTo: view.leftAnchor),
+            searchBar.rightAnchor.constraint(equalTo: view.rightAnchor),
             tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor)
@@ -167,10 +170,6 @@ extension AddWordViewController: UISearchBarDelegate {
         interactor?.fetchWordTranslations(request: AddWordModel.WordTranslations.Request(word: text))
     }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        dismissKeyboard()
-    }
-    
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.setShowsCancelButton(true, animated: true)
     }
@@ -181,8 +180,12 @@ extension AddWordViewController: UISearchBarDelegate {
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.text = ""
-        translations = []
+        if translations.isEmpty && ((searchBar.text?.isEmpty) != nil) {
+            router?.routeBack(source: self)
+        } else {
+            searchBar.text = ""
+            translations = []
+        }
     }
 }
 
