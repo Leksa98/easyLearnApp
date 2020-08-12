@@ -58,7 +58,7 @@ final class WordSetStatisticsViewController: UIViewController, WordSetStatistics
         super.viewDidLoad()
         view.backgroundColor = .white
         title = Locals.title
-        setUpProgressLabe()
+        setUpProgressLabel()
         setUpProgressBar()
         configureTableView()
         if let setTitle = setTitle {
@@ -68,7 +68,7 @@ final class WordSetStatisticsViewController: UIViewController, WordSetStatistics
     
     // MARK: - Setup UI elements
     
-    private func setUpProgressLabe() {
+    private func setUpProgressLabel() {
         view.addSubview(currentProgressLabel)
         currentProgressLabel.text = "Current progress"
         currentProgressLabel.font = UIFont.sfProTextHeavy(ofSize: 18)
@@ -96,7 +96,7 @@ final class WordSetStatisticsViewController: UIViewController, WordSetStatistics
         tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(AddSetTableViewCell.self, forCellReuseIdentifier: Locals.cellId)
+        tableView.register(WordSetStatisticsTableViewCell.self, forCellReuseIdentifier: Locals.cellId)
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -127,7 +127,7 @@ extension WordSetStatisticsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: Locals.cellId, for: indexPath) as? AddSetTableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: Locals.cellId, for: indexPath) as? WordSetStatisticsTableViewCell {
             cell.viewModel = sections[indexPath.section].wordsValue[indexPath.row]
             return cell
         }

@@ -15,12 +15,16 @@ final class WordModel {
     var word: String
     var translation: String
     var progress: Double
+    var rightAnswer: Int
+    var wrongAnswer: Int
     
     // MARK: - Initialization
     
-    init(word: String, translation: String, progress: Double = 0.0) {
+    init(word: String, translation: String, progress: Double = 0.0, rightAnswer: Int = 0, wrongAnswer: Int = 0) {
         self.word = word
         self.translation = translation
         self.progress = progress
+        self.rightAnswer = rightAnswer
+        self.wrongAnswer = wrongAnswer
     }
 }

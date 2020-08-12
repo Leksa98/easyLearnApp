@@ -81,6 +81,7 @@
 		A8B869BB24E297E700B61803 /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = A8B869AF24E297E700B61803 /* SF-Pro-Text-Regular.otf */; };
 		A8B869BE24E29B2A00B61803 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B869BD24E29B2A00B61803 /* UIFont+.swift */; };
 		A8B869C024E2D07700B61803 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B869BF24E2D07700B61803 /* ProgressBarView.swift */; };
+		A8B869C224E3DC4600B61803 /* WordSetStatisticsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B869C124E3DC4600B61803 /* WordSetStatisticsTableViewCell.swift */; };
 		A8BF981224DD4A7A00755F7E /* AllWordSetTableConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BF981124DD4A7A00755F7E /* AllWordSetTableConfigurator.swift */; };
 		A8BF981424DD4CC400755F7E /* WordSetCardConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BF981324DD4CC300755F7E /* WordSetCardConfigurator.swift */; };
 		A8BF981624DD4DD600755F7E /* WordSetLearnConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BF981524DD4DD600755F7E /* WordSetLearnConfigurator.swift */; };
@@ -231,6 +232,7 @@
 		A8B869AF24E297E700B61803 /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
 		A8B869BD24E29B2A00B61803 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		A8B869BF24E2D07700B61803 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
+		A8B869C124E3DC4600B61803 /* WordSetStatisticsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetStatisticsTableViewCell.swift; sourceTree = "<group>"; };
 		A8BF981124DD4A7A00755F7E /* AllWordSetTableConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllWordSetTableConfigurator.swift; sourceTree = "<group>"; };
 		A8BF981324DD4CC300755F7E /* WordSetCardConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetCardConfigurator.swift; sourceTree = "<group>"; };
 		A8BF981524DD4DD600755F7E /* WordSetLearnConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetLearnConfigurator.swift; sourceTree = "<group>"; };
@@ -591,6 +593,7 @@
 				A8BF981724DD4EBD00755F7E /* WordSetStatisticsConfigurator.swift */,
 				A8BF984F24DF255500755F7E /* WordSetStatisticsModel.swift */,
 				A8B869BF24E2D07700B61803 /* ProgressBarView.swift */,
+				A8B869C124E3DC4600B61803 /* WordSetStatisticsTableViewCell.swift */,
 			);
 			path = WordSetStatisticsScene;
 			sourceTree = "<group>";
@@ -910,6 +913,7 @@
 				A8BF983224DD823D00755F7E /* DefaultWordSetListPresenter.swift in Sources */,
 				A8BF984824DEFAA900755F7E /* AllWordSetTableModel.swift in Sources */,
 				A8BF984224DD971700755F7E /* ChooseLanguageInteractor.swift in Sources */,
+				A8B869C224E3DC4600B61803 /* WordSetStatisticsTableViewCell.swift in Sources */,
 				A80D8C7E24C09D260056F7D9 /* AddWordTableViewCell.swift in Sources */,
 				A8BF984A24DF03E100755F7E /* WordSetListModel.swift in Sources */,
 				A8BF981E24DD56A400755F7E /* AllWordSetTableRouter.swift in Sources */,
