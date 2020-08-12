@@ -19,6 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateInitialViewController()
         window?.makeKeyAndVisible()
+        let titleFontAttrs = [ NSAttributedString.Key.font: UIFont.sfProTextHeavy(ofSize: 18)!]
+        UINavigationBar.appearance().titleTextAttributes = titleFontAttrs
+        UINavigationBar.appearance().backgroundColor = .white
         window?.rootViewController = TabBarController()
         
         return true
