@@ -54,7 +54,7 @@ class EnterInfoView: UIView {
     private func configureInfoTextField(textField: String) {
         enterInfoTextField = UITextField()
         addSubview(enterInfoTextField)
-        enterInfoTextField.attributedPlaceholder = NSAttributedString(string: textField, attributes: [NSAttributedString.Key.foregroundColor: UIColor.blueSapphire, NSAttributedString.Key.font: UIFont.sfProTextRegular(ofSize: 18)])
+        enterInfoTextField.attributedPlaceholder = NSAttributedString(string: textField, attributes: [NSAttributedString.Key.foregroundColor: UIColor.blueSapphire, NSAttributedString.Key.font: UIFont.sfProTextRegular(ofSize: 18) ?? UIFont.systemFont(ofSize: 18)])
         enterInfoTextField.backgroundColor = UIColor.lightCyan
         enterInfoTextField.textColor = .blueSapphire
         enterInfoTextField.font = UIFont.sfProTextMedium(ofSize: 18)

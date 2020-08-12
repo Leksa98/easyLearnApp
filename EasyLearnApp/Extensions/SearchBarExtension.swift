@@ -10,10 +10,23 @@ import UIKit
 
 extension UISearchBar {
     func setPlaceholderTextColorTo(color: UIColor) {
-        let textFieldInsideSearchBar = self.value(forKey: "searchField") as? UITextField
-        textFieldInsideSearchBar?.textColor = color
-        textFieldInsideSearchBar?.font = .boldSystemFont(ofSize: 20)
-        let textFieldInsideSearchBarLabel = textFieldInsideSearchBar!.value(forKey: "placeholderLabel") as? UILabel
-        textFieldInsideSearchBarLabel?.textColor = color
+        if let textFieldInsideSearchBar = self.value(forKey: "searchField") as? UITextField {
+            textFieldInsideSearchBar.textColor = color
+            textFieldInsideSearchBar.font = UIFont.sfProTextMedium(ofSize: 18) ?? UIFont.systemFont(ofSize: 18)
+            if let textFieldInsideSearchBarLabel = textFieldInsideSearchBar.value(forKey: "placeholderLabel") as? UILabel {
+                textFieldInsideSearchBarLabel.textColor = color
+            }
+        }
+    }
+    
+    var textField: UITextField? {
+        if #available(iOS 13.0, *) {
+            return self.searchTextField
+        } else {
+            if let searchField = self.value(forKey: "searchField") as? UITextField {
+                return searchField
+            }
+        }
+        return nil
     }
 }

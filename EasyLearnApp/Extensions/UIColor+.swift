@@ -28,9 +28,9 @@ extension UIColor {
         self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
     }
     
-    static let customGreen = UIColor(cgColor: CGColor(srgbRed: 85.0/255.0, green: 180.0/255.0, blue: 88.0/255.0, alpha: 1))
+    static let customGreen = UIColor(hexString: "55B458")
     
-    static let customRed = UIColor(cgColor: CGColor(srgbRed: 206.0/255.0, green: 80.0/255.0, blue: 80.0/255.0, alpha: 1))
+    static let customRed = UIColor(hexString: "CE5058")
     
     static let blueSapphire = UIColor(hexString: "05668D")
     

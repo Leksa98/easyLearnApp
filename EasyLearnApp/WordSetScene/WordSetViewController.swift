@@ -45,11 +45,19 @@ final class WordSetViewController: UIViewController {
         stackButton.spacing = 30
         view.addSubview(stackButton)
         stackButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            stackButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
-            stackButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
-            stackButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100)
-        ])
+        if #available(iOS 11.0, *) {
+            NSLayoutConstraint.activate([
+                stackButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
+                stackButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
+                stackButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100)
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                stackButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
+                stackButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
+                stackButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100)
+            ])
+        }
     }
     
     // MARK: - Button actions

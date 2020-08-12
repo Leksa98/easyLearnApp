@@ -18,7 +18,7 @@ final class SettingsViewController: UIViewController {
     
     // MARK: - Properties
     
-    private let tableView = UITableView(frame: .zero, style: .grouped)
+    private let tableView = UITableView()
     var router: SettingsRouterLogic?
     
     // MARK: - Life cycle
@@ -27,13 +27,17 @@ final class SettingsViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         title = "Settings"
-        navigationController?.navigationBar.prefersLargeTitles = true
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
+        }
         navigationController?.navigationBar.tintColor = UIColor.blueSapphire
         setupTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.prefersLargeTitles = true
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
+        }
     }
     
     // MARK: - Setup UI elements
@@ -45,12 +49,25 @@ final class SettingsViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(SettingsTableViewCell.self, forCellReuseIdentifier: Locals.chooseLanguageCellId)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-        ])
+        if #available(iOS 11.0, *) {
+            NSLayoutConstraint.activate([
+                tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+                tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                tableView.topAnchor.constraint(equalTo: view.topAnchor),
+                tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            ])
+        }
+        tableView.tableFooterView = UIView()
+        if #available(iOS 11.0, *) {} else {
+            tableView.estimatedRowHeight = 44
+        }
     }
 }
 

@@ -73,11 +73,19 @@ final class WordSetStatisticsViewController: UIViewController, WordSetStatistics
         currentProgressLabel.text = "Current progress"
         currentProgressLabel.font = UIFont.sfProTextHeavy(ofSize: 18)
         currentProgressLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            currentProgressLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-            currentProgressLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-            currentProgressLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-        ])
+        if #available(iOS 11.0, *) {
+            NSLayoutConstraint.activate([
+                currentProgressLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+                currentProgressLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+                currentProgressLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                currentProgressLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+                currentProgressLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+                currentProgressLabel.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: 10),
+            ])
+        }
     }
     
     private func setUpProgressBar() {
@@ -99,12 +107,24 @@ final class WordSetStatisticsViewController: UIViewController, WordSetStatistics
         tableView.register(WordSetStatisticsTableViewCell.self, forCellReuseIdentifier: Locals.cellId)
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 10),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-        ])
+        if #available(iOS 11.0, *) {
+            NSLayoutConstraint.activate([
+                tableView.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 10),
+                tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                tableView.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 10),
+                tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            ])
+        }
+        if #available(iOS 11.0, *) {} else {
+            tableView.estimatedRowHeight = 44
+        }
     }
 }
 

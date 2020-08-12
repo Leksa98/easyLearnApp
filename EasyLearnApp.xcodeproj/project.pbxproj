@@ -15,7 +15,6 @@
 		A8185FFA24CAFE7000F93FD3 /* ButtonWithRoundCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8185FF924CAFE7000F93FD3 /* ButtonWithRoundCorners.swift */; };
 		A8185FFD24CB069300F93FD3 /* WordListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8185FFC24CB069300F93FD3 /* WordListViewController.swift */; };
 		A81FF5C424AA3D27007068F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81FF5C324AA3D27007068F9 /* AppDelegate.swift */; };
-		A81FF5C624AA3D27007068F9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81FF5C524AA3D27007068F9 /* SceneDelegate.swift */; };
 		A81FF5C824AA3D27007068F9 /* AddSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81FF5C724AA3D27007068F9 /* AddSetViewController.swift */; };
 		A81FF5CE24AA3D27007068F9 /* EasyLearnApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A81FF5CC24AA3D27007068F9 /* EasyLearnApp.xcdatamodeld */; };
 		A81FF5DE24AA3D2A007068F9 /* EasyLearnAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81FF5DD24AA3D2A007068F9 /* EasyLearnAppTests.swift */; };
@@ -161,7 +160,6 @@
 		A8185FFC24CB069300F93FD3 /* WordListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListViewController.swift; sourceTree = "<group>"; };
 		A81FF5C024AA3D27007068F9 /* EasyLearnApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyLearnApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A81FF5C324AA3D27007068F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A81FF5C524AA3D27007068F9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A81FF5C724AA3D27007068F9 /* AddSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSetViewController.swift; sourceTree = "<group>"; };
 		A81FF5CD24AA3D27007068F9 /* EasyLearnApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EasyLearnApp.xcdatamodel; sourceTree = "<group>"; };
 		A81FF5D424AA3D2A007068F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -392,7 +390,6 @@
 				A8185FF824CAFE3E00F93FD3 /* View */,
 				A804C91C24D06C16007E2524 /* Model */,
 				A81FF5C324AA3D27007068F9 /* AppDelegate.swift */,
-				A81FF5C524AA3D27007068F9 /* SceneDelegate.swift */,
 				A8BF985F24E156BB00755F7E /* LaunchScreen.storyboard */,
 				A84B2D3B24AA5ECF0022F029 /* Assets.xcassets */,
 				A81FF5D424AA3D2A007068F9 /* Info.plist */,
@@ -917,7 +914,6 @@
 				A80D8C7E24C09D260056F7D9 /* AddWordTableViewCell.swift in Sources */,
 				A8BF984A24DF03E100755F7E /* WordSetListModel.swift in Sources */,
 				A8BF981E24DD56A400755F7E /* AllWordSetTableRouter.swift in Sources */,
-				A81FF5C624AA3D27007068F9 /* SceneDelegate.swift in Sources */,
 				A8BF982A24DD74D100755F7E /* NewWordSetRouter.swift in Sources */,
 				A8580B1F24DB161C0099B00F /* DefaultWordSetInteractor.swift in Sources */,
 				A87EDF2324C8769C00D4F9CC /* AllWordSetTableInteractor.swift in Sources */,
@@ -1086,6 +1082,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93M6Q9D5UG;
 				INFOPLIST_FILE = EasyLearnApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1104,6 +1101,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 93M6Q9D5UG;
 				INFOPLIST_FILE = EasyLearnApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
