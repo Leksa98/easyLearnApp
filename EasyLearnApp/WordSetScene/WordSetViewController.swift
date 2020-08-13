@@ -10,6 +10,15 @@ import UIKit
 
 final class WordSetViewController: UIViewController {
     
+    // MARK: - Constants
+    
+    enum Locals {
+        static let leadingAnchor: CGFloat = 25
+        static let trailingAnchor: CGFloat = -25
+        static let bottomAnchor: CGFloat = -100
+        static let stackSpacing: CGFloat = 30
+    }
+    
     // MARK: - Properties
     
     private let listButton = ButtonWithRoundCorners(title: "List")
@@ -42,20 +51,20 @@ final class WordSetViewController: UIViewController {
         stackButton.axis = .vertical
         stackButton.distribution = .fillEqually
         stackButton.alignment = .fill
-        stackButton.spacing = 30
+        stackButton.spacing = Locals.stackSpacing
         view.addSubview(stackButton)
         stackButton.translatesAutoresizingMaskIntoConstraints = false
         if #available(iOS 11.0, *) {
             NSLayoutConstraint.activate([
-                stackButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
-                stackButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
-                stackButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100)
+                stackButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Locals.leadingAnchor),
+                stackButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Locals.trailingAnchor),
+                stackButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: Locals.bottomAnchor)
             ])
         } else {
             NSLayoutConstraint.activate([
-                stackButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
-                stackButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
-                stackButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100)
+                stackButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Locals.leadingAnchor),
+                stackButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Locals.trailingAnchor),
+                stackButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: Locals.bottomAnchor)
             ])
         }
     }

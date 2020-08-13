@@ -10,21 +10,35 @@ import UIKit
 
 class AllWordSetTableViewCell: UITableViewCell {
     
+    // MARK: - Constants
+    enum Locals {
+        static let cornerRadius: CGFloat = 10
+        static let titleSize: CGFloat = 20
+        static let emojiSize: CGFloat = 45
+        static let leadingAnchor: CGFloat = 25
+        static let topAnchor: CGFloat = 10
+        static let progressBarTopAnchor: CGFloat = 20
+        static let progressBarBottomAnchor: CGFloat = -20
+        static let progressTrailingAnchor: CGFloat = -70
+        static let titleLeadingAnchor: CGFloat = 10
+        static let titleTrailingAnchor: CGFloat = -25
+    }
+    
     // MARK: - Properties
     
     private var setTitle: UILabel = {
         let label = UILabel()
-        label.font = UIFont.sfProTextHeavy(ofSize: 20)
+        label.font = UIFont.sfProTextHeavy(ofSize: Locals.titleSize)
         return label
     }()
     
     private var progressBar: UIProgressView = {
         let progress = UIProgressView()
         progress.transform = progress.transform.scaledBy(x: 1, y: 6)
-        progress.layer.cornerRadius = 10
+        progress.layer.cornerRadius = Locals.cornerRadius
         progress.clipsToBounds = true
         progress.layer.sublayers?.forEach { sublayer in
-            sublayer.cornerRadius = 10
+            sublayer.cornerRadius = Locals.cornerRadius
         }
         progress.subviews.forEach { subview in
             subview.clipsToBounds = true
@@ -34,7 +48,7 @@ class AllWordSetTableViewCell: UITableViewCell {
     
     private var emojiLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 45)
+        label.font = .systemFont(ofSize: Locals.emojiSize)
         return label
     }()
     
@@ -59,16 +73,16 @@ class AllWordSetTableViewCell: UITableViewCell {
         progressBar.translatesAutoresizingMaskIntoConstraints = false
         emojiLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            emojiLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
-            emojiLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            setTitle.leadingAnchor.constraint(equalTo: emojiLabel.trailingAnchor, constant: 10),
+            emojiLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Locals.leadingAnchor),
+            emojiLabel.topAnchor.constraint(equalTo: topAnchor, constant: Locals.topAnchor),
+            setTitle.leadingAnchor.constraint(equalTo: emojiLabel.trailingAnchor, constant: Locals.titleLeadingAnchor),
             setTitle.centerYAnchor.constraint(equalTo: emojiLabel.centerYAnchor),
-            setTitle.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25),
-            setTitle.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            progressBar.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
-            progressBar.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -70),
-            progressBar.topAnchor.constraint(equalTo: emojiLabel.bottomAnchor, constant: 20),
-            progressBar.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20)
+            setTitle.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Locals.titleTrailingAnchor),
+            setTitle.topAnchor.constraint(equalTo: topAnchor, constant: Locals.topAnchor),
+            progressBar.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Locals.leadingAnchor),
+            progressBar.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Locals.progressTrailingAnchor),
+            progressBar.topAnchor.constraint(equalTo: emojiLabel.bottomAnchor, constant: Locals.progressBarTopAnchor),
+            progressBar.bottomAnchor.constraint(equalTo: bottomAnchor, constant: Locals.progressBarBottomAnchor)
         ])
     }
     

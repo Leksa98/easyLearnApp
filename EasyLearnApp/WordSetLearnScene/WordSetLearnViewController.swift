@@ -22,10 +22,16 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
     
     enum Locals {
         static let cellId = "WordSetLearnCellId"
-        static let cellSize = CGSize(width: 300, height: 300)
-        static let lineSpacing = CGFloat(100)
+        static let lineSpacing: CGFloat = 100
         static let edgeInserts = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         static let numberOfSections = 1
+        static let bottomAnchor: CGFloat = -320
+        static let stackLeadingAnchor: CGFloat = 10
+        static let stackTrailingAnchor: CGFloat = -10
+        static let stackHeightAnchor: CGFloat = 40
+        static let scrollingConstant: CGFloat = 80
+        static let stackSpacing: CGFloat = 10
+        static let cellSizeOffset: CGFloat = 20
     }
     
     // MARK: - Property
@@ -65,14 +71,14 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
         if #available(iOS 11.0, *) {
             NSLayoutConstraint.activate([
                 collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-                collectionView.bottomAnchor.constraint(equalTo:view.safeAreaLayoutGuide.bottomAnchor, constant: -320),
+                collectionView.bottomAnchor.constraint(equalTo:view.safeAreaLayoutGuide.bottomAnchor, constant: Locals.bottomAnchor),
                 collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
             ])
         } else {
             NSLayoutConstraint.activate([
                 collectionView.topAnchor.constraint(equalTo: view.topAnchor),
-                collectionView.bottomAnchor.constraint(equalTo:view.bottomAnchor, constant: -320),
+                collectionView.bottomAnchor.constraint(equalTo:view.bottomAnchor, constant: Locals.bottomAnchor),
                 collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
             ])
@@ -92,17 +98,17 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
         buttonStackView.addArrangedSubview(checkButton)
         checkButton.addTarget(self, action: #selector(checkButtonTapped), for: .touchUpInside)
         buttonStackView.axis = .horizontal
-        buttonStackView.spacing = 10
+        buttonStackView.spacing = Locals.stackSpacing
         buttonStackView.distribution = .fillEqually
         view.addSubview(buttonStackView)
         buttonStackView.translatesAutoresizingMaskIntoConstraints = false
         checkButton.translatesAutoresizingMaskIntoConstraints = false
         helpButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            buttonStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-            buttonStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            buttonStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Locals.stackTrailingAnchor),
+            buttonStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Locals.stackLeadingAnchor),
             buttonStackView.topAnchor.constraint(equalTo: collectionView.bottomAnchor),
-            buttonStackView.heightAnchor.constraint(equalToConstant: 40)
+            buttonStackView.heightAnchor.constraint(equalToConstant: Locals.stackHeightAnchor)
         ])
     }
     
@@ -150,10 +156,10 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
     // MARK: - Scrolling Collection View
     
     private func scrollCollectionViewToNextExercise() {
-        let scrollCollectionViewWidth = wordsToLearn.count * (Int(collectionView.frame.size.width) + 80)
-        if  Int(collectionView.contentOffset.x + collectionView.frame.size.width) + 80 < scrollCollectionViewWidth {
+        let scrollCollectionViewWidth = wordsToLearn.count * (Int(collectionView.frame.size.width) + Int(Locals.scrollingConstant))
+        if  Int(collectionView.contentOffset.x + collectionView.frame.size.width) + Int(Locals.scrollingConstant) < scrollCollectionViewWidth {
             UIView.animate(withDuration: 0.6) {
-                self.collectionView.contentOffset.x += self.collectionView.frame.size.width + 80
+                self.collectionView.contentOffset.x += self.collectionView.frame.size.width + Locals.scrollingConstant
             }
         } else {
             let finishedExerciseAlert = UIAlertController(title: "Congratulations 🎉🎉🎉", message: "You've just finished exercise!", preferredStyle: .alert)
@@ -198,7 +204,7 @@ extension WordSetLearnViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegateFlowLayout protocol
 extension WordSetLearnViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.size.width - 20, height: collectionView.frame.size.width / 2.0)
+        return CGSize(width: collectionView.frame.size.width - Locals.cellSizeOffset, height: collectionView.frame.size.width / 2)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

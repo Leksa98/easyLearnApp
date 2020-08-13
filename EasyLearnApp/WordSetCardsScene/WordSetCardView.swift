@@ -13,7 +13,8 @@ class WordSetCardView: UIView {
     // MARK: - Constants
     
     private enum Locals {
-        static let cornerRadius = CGFloat(40)
+        static let cornerRadius: CGFloat = 40
+        static let textSize: CGFloat = 40
     }
     
     // MARK: - Property
@@ -38,7 +39,7 @@ class WordSetCardView: UIView {
     // MARK: - Configuration
     
     private func configureLabel() {
-        label.font = UIFont.sfProTextHeavy(ofSize: 40)
+        label.font = UIFont.sfProTextHeavy(ofSize: Locals.textSize)
         label.textColor = .white
         addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
