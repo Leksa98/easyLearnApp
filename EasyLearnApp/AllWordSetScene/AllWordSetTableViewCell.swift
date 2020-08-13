@@ -12,23 +12,27 @@ class AllWordSetTableViewCell: UITableViewCell {
     
     // MARK: - Properties
     
-    private var setTitle: UILabel! = {
+    private var setTitle: UILabel = {
         let label = UILabel()
         label.font = UIFont.sfProTextHeavy(ofSize: 20)
         return label
     }()
     
-    private var progressBar: UIProgressView! = {
+    private var progressBar: UIProgressView = {
         let progress = UIProgressView()
         progress.transform = progress.transform.scaledBy(x: 1, y: 6)
         progress.layer.cornerRadius = 10
         progress.clipsToBounds = true
-        progress.layer.sublayers![1].cornerRadius = 10
-        progress.subviews[1].clipsToBounds = true
+        progress.layer.sublayers?.forEach { sublayer in
+            sublayer.cornerRadius = 10
+        }
+        progress.subviews.forEach { subview in
+            subview.clipsToBounds = true
+        }
         return progress
     }()
     
-    private var emojiLabel: UILabel! = {
+    private var emojiLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 45)
         return label

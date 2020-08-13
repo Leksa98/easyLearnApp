@@ -18,17 +18,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if #available(iOS 13.0, *) {
             let appearance = UINavigationBarAppearance()
-            let largeTitleFontAttrs = [ NSAttributedString.Key.font: UIFont.sfProTextHeavy(ofSize: 30)!]
-            let titleFontAttrs = [ NSAttributedString.Key.font: UIFont.sfProTextHeavy(ofSize: 18)!]
-            appearance.largeTitleTextAttributes =  largeTitleFontAttrs
-            appearance.titleTextAttributes = titleFontAttrs
+            if let largeTitleFont = UIFont.sfProTextHeavy(ofSize: 30) {
+                let largeTitleFontAttrs = [NSAttributedString.Key.font: largeTitleFont]
+                appearance.largeTitleTextAttributes =  largeTitleFontAttrs
+            }
+            if let titleFont = UIFont.sfProTextHeavy(ofSize: 18) {
+                let titleFontAttrs = [NSAttributedString.Key.font: titleFont]
+                appearance.titleTextAttributes = titleFontAttrs
+            }
             appearance.backgroundColor = .white
             UINavigationBar.appearance().standardAppearance = appearance
             UINavigationBar.appearance().compactAppearance = appearance
             UINavigationBar.appearance().scrollEdgeAppearance = appearance
         } else {
-            let titleFontAttrs = [NSAttributedString.Key.font: UIFont.sfProTextHeavy(ofSize: 18)!]
-            UINavigationBar.appearance().titleTextAttributes = titleFontAttrs
+            if let titleFont = UIFont.sfProTextHeavy(ofSize: 18) {
+                let titleFontAttrs = [NSAttributedString.Key.font: titleFont]
+                UINavigationBar.appearance().titleTextAttributes = titleFontAttrs
+            }
             UINavigationBar.appearance().backgroundColor = .white
         }
         

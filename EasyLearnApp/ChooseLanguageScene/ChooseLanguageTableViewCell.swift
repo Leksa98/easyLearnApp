@@ -50,6 +50,8 @@ final class ChooseLanguageTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Update content
+    
     private func updateContent(viewModel: LanguageModel) {
         languageLabel.text = viewModel.languageValue
         flagLabel.text = viewModel.flagValue

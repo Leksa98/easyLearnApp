@@ -44,6 +44,8 @@ final class DefaultWordSetViewController: UIViewController {
         interactor?.fetchDefaultSet(request: DefaultWordSetModel.FetchDefaultSets.Request())
     }
     
+    // MARK: - Setup UI elements
+    
     private func configureTableView() {
         view.addSubview(tableView)
         tableView.backgroundColor = .white
@@ -103,11 +105,10 @@ extension DefaultWordSetViewController: UITableViewDataSource {
         super.setEditing(editing, animated: animated)
         tableView.setEditing(editing, animated: true)
     }
-    
-    
 }
 
-extension DefaultWordSetViewController : DefaultWordSetShowLogic {
+// MARK: - DefaultWordSetShowLogic protocol
+extension DefaultWordSetViewController: DefaultWordSetShowLogic {
     func showDefaultSets(viewModel: DefaultWordSetModel.FetchDefaultSets.ViewModel) {
         defaultSets = viewModel.sets
     }

@@ -21,31 +21,31 @@ final class WordSetRouter: WordSetRouterLogic {
     weak var navigationController: UINavigationController?
     
     func routeToWordSetList(with title: String) {
-        let vc = WordListViewController()
-        WordSetListConfigurator.assembly(viewController: vc, setTitle: title)
-        vc.interactor?.fetchWordSet(request: WordSetListModel.FetchWordSet.Request(setName: title))
-        navigationController?.pushViewController(vc, animated: true)
+        let viewController = WordListViewController()
+        WordSetListConfigurator.assembly(viewController: viewController, setTitle: title)
+        viewController.interactor?.fetchWordSet(request: WordSetListModel.FetchWordSet.Request(setName: title))
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
     func routeToWordSetCards(with title: String) {
-        let vc = WordSetCardViewController()
-        navigationController?.pushViewController(vc, animated: true)
-        WordSetCardConfigurator.assembly(viewController: vc)
-        vc.title = title
-        vc.interactor?.fetchWordSet(request: WordSetCardModel.FetchWordSet.Request(setName: title))
+        let viewController = WordSetCardViewController()
+        navigationController?.pushViewController(viewController, animated: true)
+        WordSetCardConfigurator.assembly(viewController: viewController)
+        viewController.title = title
+        viewController.interactor?.fetchWordSet(request: WordSetCardModel.FetchWordSet.Request(setName: title))
     }
     
     func routeToWordSetLearn(with title: String) {
-        let vc = WordSetLearnViewController()
-        navigationController?.pushViewController(vc, animated: true)
-        WordSetLearnConfigurator.assembly(viewController: vc)
-        vc.title = title
-        vc.interactor?.fetchWords(request: WordSetLearnModel.FetchWordSet.Request(setName: title))
+        let viewController = WordSetLearnViewController()
+        navigationController?.pushViewController(viewController, animated: true)
+        WordSetLearnConfigurator.assembly(viewController: viewController)
+        viewController.title = title
+        viewController.interactor?.fetchWords(request: WordSetLearnModel.FetchWordSet.Request(setName: title))
     }
     
     func routeToWordSetStatistics(with title: String) {
-        let vc = WordSetStatisticsConfigurator.assembly(setTitle: title)
-        navigationController?.pushViewController(vc, animated: true)
+        let viewController = WordSetStatisticsConfigurator.assembly(setTitle: title)
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
 }

@@ -24,5 +24,4 @@ final class AddWordConfigurator {
         
         return viewController
     }
-
 }

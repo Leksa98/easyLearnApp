@@ -8,12 +8,12 @@
 
 import UIKit
 
-class EnterInfoView: UIView {
+final class EnterInfoView: UIView {
     
     // MARK: - Properties
     
-    private var infoLabel: UILabel!
-    private var enterInfoTextField: UITextField!
+    private var infoLabel = UILabel()
+    private var enterInfoTextField = UITextField()
     private var lineView = UIView()
     
     public var enteredInfo: String? {
@@ -39,7 +39,6 @@ class EnterInfoView: UIView {
     // MARK: - Configuration
     
     private func configureInfoLabel(label: String) {
-        infoLabel = UILabel()
         addSubview(infoLabel)
         infoLabel.text = label
         infoLabel.font = UIFont.sfProTextHeavy(ofSize: 20)
@@ -52,7 +51,6 @@ class EnterInfoView: UIView {
     }
     
     private func configureInfoTextField(textField: String) {
-        enterInfoTextField = UITextField()
         addSubview(enterInfoTextField)
         enterInfoTextField.attributedPlaceholder = NSAttributedString(string: textField, attributes: [NSAttributedString.Key.foregroundColor: UIColor.blueSapphire, NSAttributedString.Key.font: UIFont.sfProTextRegular(ofSize: 18) ?? UIFont.systemFont(ofSize: 18)])
         enterInfoTextField.backgroundColor = UIColor.lightCyan

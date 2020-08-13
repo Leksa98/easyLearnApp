@@ -16,8 +16,10 @@ final class TabBarController: UITabBarController {
         super.viewDidLoad()
         
         let appearance = UITabBarItem.appearance()
-        let attributes = [NSAttributedString.Key.font: UIFont.sfProTextHeavy(ofSize: 10) ?? UIFont.systemFont(ofSize: 10)]
-        appearance.setTitleTextAttributes(attributes, for: .normal)
+        if let font = UIFont.sfProTextHeavy(ofSize: 10) {
+            let attributes = [NSAttributedString.Key.font: font]
+            appearance.setTitleTextAttributes(attributes, for: .normal)
+        }
         
         tabBar.tintColor = UIColor.blueSapphire
         tabBar.barTintColor = UIColor.white

@@ -75,7 +75,11 @@ final class DataHandler : NSObject {
     func addWordtoSet(name: String, word: String, translation: String) {
         if let word = addWordIntoCoreData(word: word, translation: translation),
             let set = fetchWordSetRecord(with: name) {
-            set.withWord = NSSet(set: set.withWord?.adding(word) ?? NSSet(object: word) as! Set<AnyHashable>)
+            if let setWithWord = set.withWord {
+                set.withWord = NSSet(set: setWithWord.adding(word))
+            } else {
+                set.withWord = NSSet(object: word)
+            }
             print("Word \(String(describing: word.word)) with translation \(String(describing: word.translation)) added to WordSet \(String(describing: set.name))")
             saveContext()
         }

@@ -18,9 +18,9 @@ final class AllWordSetTableRouter: AllWordSetTableRouterLogic {
     weak var navigationController: UINavigationController?
     
     func routeToWordSetDetails(with title: String) {
-        let vc = WordSetViewController()
-        vc.title = title
-        navigationController?.pushViewController(vc, animated: true)
-        WordSetConfigurator.assembly(viewController: vc)
+        let viewController = WordSetViewController()
+        viewController.title = title
+        navigationController?.pushViewController(viewController, animated: true)
+        WordSetConfigurator.assembly(viewController: viewController)
     }
 }
