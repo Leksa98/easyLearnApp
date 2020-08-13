@@ -13,7 +13,9 @@ public enum Result<String> {
     case failure(String)
 }
 
-class NetworkManager {
+
+/// Класс для взаимодействия с сетью
+final class NetworkManager {
     private let translationRouter = Router<TranslateWordApi>()
     private let defaultSetsRouter = Router<DefaultWordSetModelApi>()
     
@@ -49,6 +51,11 @@ class NetworkManager {
     }
     
     
+    /// Запрос на перевод слова
+    /// - Parameters:
+    ///   - word: слово для перевода
+    ///   - completion: принимает параметры: translation - структура с ответом на запрос, error - ошибка
+    /// - Returns:
     func translateWord(word: String, completion: @escaping (_ translation: TranslationModel?, _ error: String?) -> ()) {
         translationRouter.request(.translate(word: word)) { data, response, error in
             if error != nil {
@@ -76,7 +83,11 @@ class NetworkManager {
         }
     }
     
-    func fetchDefaultWordSets(completion: @escaping (_ translation: DefaultWordSet?, _ error: String?) -> ()) {
+    
+    /// Запрос на получение дефолтных сетов
+    /// - Parameter completion: принимает параметры: defaultWordSet - структура с ответом на запрос, error - ошибка
+    /// - Returns:
+    func fetchDefaultWordSets(completion: @escaping (_ defaultWordSet: DefaultWordSet?, _ error: String?) -> ()) {
         defaultSetsRouter.request(.fetchDefaultWordSet) { data, response, error in
             if error != nil {
                 completion(nil, "Error")

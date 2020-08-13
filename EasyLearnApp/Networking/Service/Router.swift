@@ -12,10 +12,6 @@ class Router<EndPoint: EndPointType> {
     
     private var task: URLSessionTask?
     
-    /// Generating URL request: creating URLSession, building request and creating task
-    /// - Parameters:
-    ///   - route: URL request configuration that conforms EndPointType protocol
-    ///   - completion: Passing data, response and error in completion
     func request(_ route: EndPoint, completion: @escaping NetworkRouterCompletion) {
         do {
             let request = try self.buildRequest(from: route)
@@ -32,10 +28,6 @@ class Router<EndPoint: EndPointType> {
         self.task?.cancel()
     }
     
-    /// Converting EndPoint into URLRequest and then pass it to session
-    /// - Parameter route: EndPoint that will be converted
-    /// - Throws: Error if unable to convert into URLRequest
-    /// - Returns: URLRequest that will be passed in session for doing request
     fileprivate func buildRequest(from route: EndPoint) throws -> URLRequest {
         var request = URLRequest(url: route.baseURL.appendingPathComponent(route.path),
                                  cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
@@ -59,12 +51,6 @@ class Router<EndPoint: EndPointType> {
         }
     }
     
-    /// Transforming request parameters
-    /// - Parameters:
-    ///   - bodyParameters: Parameters needed to transform into JSON
-    ///   - urlParameters: Parameters needed to transform into URL format
-    ///   - request: Request which is currently being  generated
-    /// - Throws: Errors if unable to encode parameters
     fileprivate func configureParameters(bodyParameters: Parameters?,
                                          urlParameters: Parameters?,
                                          request: inout URLRequest) throws {
@@ -80,10 +66,6 @@ class Router<EndPoint: EndPointType> {
         }
     }
     
-    /// Adding headers to the request
-    /// - Parameters:
-    ///   - additionalHeaders: Headers needed to be added
-    ///   - request: Request which is currently being  generated
     fileprivate func addAdditionalHeaders(_ additionalHeaders: HTTPHeaders?, request: inout URLRequest) {
         guard let headers = additionalHeaders else {
             return

@@ -8,7 +8,6 @@
 
 import Foundation
 
-/// Encoding and transforming list of parameters into URL parameters
 public struct URLParameterEncoder: ParameterEncoder {
     public static func encode(urlRequest: inout URLRequest, with parameters: Parameters) throws {
         

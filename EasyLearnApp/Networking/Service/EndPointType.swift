@@ -8,7 +8,6 @@
 
 import Foundation
 
-/// URLRequest components configuration
 protocol EndPointType {
     var baseURL: URL { get }
     var path: String { get }

@@ -8,7 +8,6 @@
 
 import Foundation
 
-/// Encoding and transforming list of parameters into JSON parameters
 public struct JSONParameterEncoder: ParameterEncoder {
     public static func encode(urlRequest: inout URLRequest, with parameters: Parameters) throws {
         do {
