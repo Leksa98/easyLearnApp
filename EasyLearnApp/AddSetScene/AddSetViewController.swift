@@ -22,6 +22,21 @@ final class AddSetViewController: UIViewController {
     
     private enum Locals {
         static let cellId = "addSetTableViewCell"
+        static let tableViewRowHeight: CGFloat = 44
+        static let tableLabelSize: CGFloat = 20
+        
+        static let leadingAnchor: CGFloat = 15
+        static let trailingAnchor: CGFloat = -15
+        static let buttonTopAnchor: CGFloat = 10
+        static let buttonBottomAnchor: CGFloat = -10
+        
+        static let infoViewTopAnchor: CGFloat = 10
+        static let infoViewHeightAnchor: CGFloat = 100
+        
+        static let tableLabelTopAnchor: CGFloat = 25
+        static let tableViewLeadingAnchor: CGFloat = 5
+        static let tableViewTrailingAnchor: CGFloat = -5
+        static let tableViewTopAnchor: CGFloat = 5
     }
     
     // MARK: - Properties
@@ -29,10 +44,10 @@ final class AddSetViewController: UIViewController {
     private var addWordButton = ButtonWithRoundCorners(title: "Add word")
     private var nameView = EnterInfoView(label: "Set Title", textField: "Enter set title")
     private var emojiView = EnterInfoView(label: "Set Emoji", textField: "Enter set emoji")
-    private var addedWordTableView = UITableView()
+    private var tableView = UITableView()
     private var addedWords: [WordModel] = [] {
         didSet {
-            addedWordTableView.reloadData()
+            tableView.reloadData()
         }
     }
     var interactor: AddSetBusinessLogic?
@@ -66,19 +81,17 @@ final class AddSetViewController: UIViewController {
         addWordButton.translatesAutoresizingMaskIntoConstraints = false
         if #available(iOS 11.0, *) {
             NSLayoutConstraint.activate([
-                addWordButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-                addWordButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-                addWordButton.topAnchor.constraint(equalTo: addedWordTableView.bottomAnchor, constant: 10),
-                addWordButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
-                addWordButton.heightAnchor.constraint(equalToConstant: 45)
+                addWordButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Locals.trailingAnchor),
+                addWordButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Locals.leadingAnchor),
+                addWordButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: Locals.buttonTopAnchor),
+                addWordButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: Locals.buttonBottomAnchor)
             ])
         } else {
             NSLayoutConstraint.activate([
-                addWordButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-                addWordButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-                addWordButton.topAnchor.constraint(equalTo: addedWordTableView.bottomAnchor, constant: 10),
-                addWordButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10),
-                addWordButton.heightAnchor.constraint(equalToConstant: 45)
+                addWordButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Locals.trailingAnchor),
+                addWordButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Locals.leadingAnchor),
+                addWordButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: Locals.buttonTopAnchor),
+                addWordButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: Locals.buttonBottomAnchor)
             ])
         }
     }
@@ -89,8 +102,8 @@ final class AddSetViewController: UIViewController {
         NSLayoutConstraint.activate([
             emojiView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             emojiView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            emojiView.topAnchor.constraint(equalTo: nameView.bottomAnchor, constant: 10),
-            emojiView.heightAnchor.constraint(equalToConstant: 100)
+            emojiView.topAnchor.constraint(equalTo: nameView.bottomAnchor, constant: Locals.infoViewTopAnchor),
+            emojiView.heightAnchor.constraint(equalToConstant: Locals.infoViewHeightAnchor)
         ])
     }
     
@@ -101,42 +114,42 @@ final class AddSetViewController: UIViewController {
             NSLayoutConstraint.activate([
                 nameView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 nameView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                nameView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-                nameView.heightAnchor.constraint(equalToConstant: 100)
+                nameView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Locals.infoViewTopAnchor),
+                nameView.heightAnchor.constraint(equalToConstant: Locals.infoViewHeightAnchor)
             ])
         } else {
             NSLayoutConstraint.activate([
-                nameView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: 10),
+                nameView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: Locals.infoViewTopAnchor),
                 nameView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 nameView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                nameView.heightAnchor.constraint(equalToConstant: 100)
+                nameView.heightAnchor.constraint(equalToConstant: Locals.infoViewHeightAnchor)
             ])
         }
     }
     
     private func configuteTableView() {
-        view.addSubview(addedWordTableView)
+        view.addSubview(tableView)
         let tableLabel = UILabel()
         tableLabel.text = "Added words"
-        tableLabel.font = UIFont.sfProTextHeavy(ofSize: 20)
+        tableLabel.font = UIFont.sfProTextHeavy(ofSize: Locals.tableLabelSize)
         view.addSubview(tableLabel)
-        addedWordTableView.backgroundColor = UIColor.white
-        addedWordTableView.delegate = self
-        addedWordTableView.dataSource = self
-        addedWordTableView.register(AddSetTableViewCell.self, forCellReuseIdentifier: Locals.cellId)
-        addedWordTableView.separatorStyle = .none
-        addedWordTableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.backgroundColor = UIColor.white
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(AddSetTableViewCell.self, forCellReuseIdentifier: Locals.cellId)
+        tableView.separatorStyle = .none
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            tableLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-            tableLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-            tableLabel.topAnchor.constraint(equalTo: emojiView.bottomAnchor, constant: 25),
-            addedWordTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
-            addedWordTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
-            addedWordTableView.topAnchor.constraint(equalTo: tableLabel.bottomAnchor, constant: 5)
+            tableLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Locals.leadingAnchor),
+            tableLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Locals.trailingAnchor),
+            tableLabel.topAnchor.constraint(equalTo: emojiView.bottomAnchor, constant: Locals.tableLabelTopAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Locals.tableViewLeadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Locals.tableViewTrailingAnchor),
+            tableView.topAnchor.constraint(equalTo: tableLabel.bottomAnchor, constant: Locals.tableViewTopAnchor)
         ])
         if #available(iOS 11.0, *) {} else {
-            addedWordTableView.estimatedRowHeight = 44
+            tableView.estimatedRowHeight = Locals.tableViewRowHeight
         }
     }
     
@@ -159,10 +172,6 @@ extension AddSetViewController: UITableViewDelegate { }
 
 // MARK: - UITableViewDataSource protocol
 extension AddSetViewController: UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return addedWords.count

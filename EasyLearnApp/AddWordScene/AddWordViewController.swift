@@ -23,6 +23,11 @@ final class AddWordViewController: UIViewController, AddWordDataStore {
     
     private enum Locals {
         static let cellId = "addWordTableViewCell"
+        static let tableViewRowHeight: CGFloat = 44
+        static let buttonLeadingAnchor: CGFloat = 10
+        static let buttonTrailingAnchor: CGFloat = -10
+        static let buttonBottomAnchor: CGFloat = -30
+        static let buttonTopAnchor: CGFloat = 10
     }
     
     // MARK: - Properties
@@ -69,10 +74,10 @@ final class AddWordViewController: UIViewController, AddWordDataStore {
         view.addSubview(searchBar)
         searchBar.clipsToBounds = true
         searchBar.searchBarStyle = UISearchBar.Style.prominent
-        searchBar.placeholder = "Type word in english..."
+        let language = (UserDefaults.standard.object(forKey: "selectedLanguage") as? String) ?? "English"
+        searchBar.placeholder = "Type word in \(language)..."
         searchBar.sizeToFit()
         searchBar.barTintColor = UIColor.blueSapphire
-        searchBar.textField?.font = UIFont.sfProTextMedium(ofSize: 18)
         searchBar.textField?.backgroundColor = .white
         if let glassIconView = searchBar.textField?.leftView as? UIImageView {
             glassIconView.image = glassIconView.image?.withRenderingMode(.alwaysTemplate)
@@ -82,7 +87,6 @@ final class AddWordViewController: UIViewController, AddWordDataStore {
         searchBar.showsCancelButton = true
         if let cancelButton = searchBar.value(forKey: "cancelButton") as? UIButton {
             cancelButton.setTitleColor(.white, for: .normal)
-            cancelButton.titleLabel?.font = UIFont.sfProTextMedium(ofSize: 16)
         }
     }
     
@@ -108,7 +112,7 @@ final class AddWordViewController: UIViewController, AddWordDataStore {
         tableView.separatorStyle = .none
         tableView.backgroundColor = .white
         if #available(iOS 11.0, *) {} else {
-            tableView.estimatedRowHeight = 44
+            tableView.estimatedRowHeight = Locals.tableViewRowHeight
         }
     }
     
@@ -117,11 +121,10 @@ final class AddWordViewController: UIViewController, AddWordDataStore {
         addButton.translatesAutoresizingMaskIntoConstraints = false
         addButton.addTarget(self, action: #selector(closeView), for: .touchUpInside)
         NSLayoutConstraint.activate([
-            addButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            addButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-            addButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30),
-            addButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 10),
-            addButton.heightAnchor.constraint(equalToConstant: 45)
+            addButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Locals.buttonLeadingAnchor),
+            addButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Locals.buttonTrailingAnchor),
+            addButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: Locals.buttonBottomAnchor),
+            addButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: Locals.buttonTopAnchor),
         ])
     }
     
@@ -141,10 +144,6 @@ extension AddWordViewController: UITableViewDelegate {
 
 // MARK: - UITableViewDataSource protocol
 extension AddWordViewController: UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return translations.count

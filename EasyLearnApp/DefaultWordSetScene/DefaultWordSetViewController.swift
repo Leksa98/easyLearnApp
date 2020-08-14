@@ -18,6 +18,7 @@ final class DefaultWordSetViewController: UIViewController {
     
     private enum Locals {
         static let cellId = "DefaultWordSetCellId"
+        static let tableViewRowHeight: CGFloat = 44
     }
     
     // MARK: - Properties
@@ -70,7 +71,7 @@ final class DefaultWordSetViewController: UIViewController {
         }
         tableView.register(DefaultWordSetTableViewCell.self, forCellReuseIdentifier: Locals.cellId)
         if #available(iOS 11.0, *) {} else {
-            tableView.estimatedRowHeight = 44
+            tableView.estimatedRowHeight = Locals.tableViewRowHeight
         }
     }
 }

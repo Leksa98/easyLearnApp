@@ -10,6 +10,16 @@ import UIKit
 
 final class SettingsTableViewCell: UITableViewCell {
     
+    // MARK: - Constants
+    
+    enum Locals {
+        static let lebelSize: CGFloat = 20
+        static let leadingAnchor: CGFloat = 20
+        static let trailingAnchor: CGFloat = -20
+        static let topAnchor: CGFloat = 10
+        static let bottomAnchor: CGFloat = -10
+    }
+    
     // MARK: - Properties
     
     private var label = UILabel()
@@ -24,13 +34,13 @@ final class SettingsTableViewCell: UITableViewCell {
         
         addSubview(label)
         label.text = "Learning language"
-        label.font = UIFont.sfProTextMedium(ofSize: 20)
+        label.font = UIFont.sfProTextMedium(ofSize: Locals.lebelSize)
         label.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            label.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
+            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Locals.leadingAnchor),
+            label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Locals.trailingAnchor),
+            label.topAnchor.constraint(equalTo: topAnchor, constant: Locals.topAnchor),
+            label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: Locals.bottomAnchor)
         ])
     }
     

@@ -13,16 +13,30 @@ final class AddSetTableViewCell: UITableViewCell {
     // MARK: - Constants
     
     private enum Locals {
-        static let cornerRadius = CGFloat(6)
+        static let cornerRadius: CGFloat = 6
+        static let numberOfLines = 0
+        static let wordLabelSize: CGFloat = 18
+        static let translationLabelSize: CGFloat = 16
+        
+        static let containerViewLeadingAnchor: CGFloat = 10
+        static let containerViewTrailingAnchor: CGFloat = -10
+        static let containerViewTopAnchor: CGFloat = 10
+        static let containerViewBottomAnchor: CGFloat = -10
+        
+        static let labelLeadingAnchor: CGFloat = 20
+        static let labelTrailingAnchor: CGFloat = -20
+        static let labelBottomAnchor: CGFloat = -20
+        static let labelTopAnchor: CGFloat = 20
+        static let distanceBetweenLabels: CGFloat = 3
     }
     
     // MARK: - Properties
     
     private var wordLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 0
+        label.numberOfLines = Locals.numberOfLines
         label.lineBreakMode = .byWordWrapping
-        label.font = UIFont.sfProTextMedium(ofSize: 18)
+        label.font = UIFont.sfProTextMedium(ofSize: Locals.wordLabelSize)
         label.textColor = .blueSapphire
         return label
     }()
@@ -37,9 +51,9 @@ final class AddSetTableViewCell: UITableViewCell {
     
     private var translationLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 0
+        label.numberOfLines = Locals.numberOfLines
         label.lineBreakMode = .byWordWrapping
-        label.font = UIFont.sfProTextRegular(ofSize: 16)
+        label.font = UIFont.sfProTextRegular(ofSize: Locals.translationLabelSize)
         label.textColor = .blueSapphire
         return label
     }()
@@ -69,17 +83,17 @@ final class AddSetTableViewCell: UITableViewCell {
         containerView.translatesAutoresizingMaskIntoConstraints = false
         wordLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            containerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            containerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-            containerView.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            containerView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
-            wordLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            wordLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            wordLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20),
-            translationLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            translationLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            translationLabel.topAnchor.constraint(equalTo: wordLabel.bottomAnchor, constant: 3),
-            translationLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20)
+            containerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Locals.containerViewLeadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Locals.containerViewTrailingAnchor),
+            containerView.topAnchor.constraint(equalTo: topAnchor, constant: Locals.containerViewTopAnchor),
+            containerView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: Locals.containerViewBottomAnchor),
+            wordLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Locals.labelLeadingAnchor),
+            wordLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Locals.labelTrailingAnchor),
+            wordLabel.topAnchor.constraint(equalTo: topAnchor, constant: Locals.labelTopAnchor),
+            translationLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Locals.labelLeadingAnchor),
+            translationLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Locals.labelTrailingAnchor),
+            translationLabel.topAnchor.constraint(equalTo: wordLabel.bottomAnchor, constant: Locals.distanceBetweenLabels),
+            translationLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: Locals.labelBottomAnchor)
         ])
     }
     

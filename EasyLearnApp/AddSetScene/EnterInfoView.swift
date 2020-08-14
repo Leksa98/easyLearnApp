@@ -10,6 +10,20 @@ import UIKit
 
 final class EnterInfoView: UIView {
     
+    // MARK: - Constants
+    enum Locals {
+        static let labelTextSize: CGFloat = 20
+        static let textFieldSize: CGFloat = 18
+        
+        static let leadingAnchor: CGFloat = 15
+        static let trailingAnchor: CGFloat = -15
+        
+        static let labelTopAnchor: CGFloat = 15
+        static let textFieldTopAnchor: CGFloat = 10
+        static let textFieldBottomAnchor: CGFloat = -15
+        static let lineViewHeightAnchor: CGFloat = 0.7
+    }
+    
     // MARK: - Properties
     
     private var infoLabel = UILabel()
@@ -41,28 +55,28 @@ final class EnterInfoView: UIView {
     private func configureInfoLabel(label: String) {
         addSubview(infoLabel)
         infoLabel.text = label
-        infoLabel.font = UIFont.sfProTextHeavy(ofSize: 20)
+        infoLabel.font = UIFont.sfProTextHeavy(ofSize: Locals.labelTextSize)
         infoLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            infoLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
-            infoLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
-            infoLabel.topAnchor.constraint(equalTo: topAnchor, constant: 15)
+            infoLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Locals.leadingAnchor),
+            infoLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Locals.trailingAnchor),
+            infoLabel.topAnchor.constraint(equalTo: topAnchor, constant: Locals.labelTopAnchor)
         ])
     }
     
     private func configureInfoTextField(textField: String) {
         addSubview(enterInfoTextField)
-        enterInfoTextField.attributedPlaceholder = NSAttributedString(string: textField, attributes: [NSAttributedString.Key.foregroundColor: UIColor.blueSapphire, NSAttributedString.Key.font: UIFont.sfProTextRegular(ofSize: 18) ?? UIFont.systemFont(ofSize: 18)])
+        enterInfoTextField.attributedPlaceholder = NSAttributedString(string: textField, attributes: [NSAttributedString.Key.foregroundColor: UIColor.blueSapphire, NSAttributedString.Key.font: UIFont.sfProTextRegular(ofSize: Locals.textFieldSize) ?? UIFont.systemFont(ofSize: Locals.textFieldSize)])
         enterInfoTextField.backgroundColor = UIColor.lightCyan
         enterInfoTextField.textColor = .blueSapphire
-        enterInfoTextField.font = UIFont.sfProTextMedium(ofSize: 18)
+        enterInfoTextField.font = UIFont.sfProTextMedium(ofSize: Locals.textFieldSize)
         enterInfoTextField.borderStyle = .roundedRect
         enterInfoTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-             enterInfoTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
-             enterInfoTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
-             enterInfoTextField.topAnchor.constraint(equalTo: infoLabel.bottomAnchor, constant: 10),
-             enterInfoTextField.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15)
+             enterInfoTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Locals.leadingAnchor),
+             enterInfoTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Locals.trailingAnchor),
+             enterInfoTextField.topAnchor.constraint(equalTo: infoLabel.bottomAnchor, constant: Locals.textFieldTopAnchor),
+             enterInfoTextField.bottomAnchor.constraint(equalTo: bottomAnchor, constant: Locals.textFieldBottomAnchor)
         ])
     }
     
@@ -71,10 +85,10 @@ final class EnterInfoView: UIView {
         lineView.backgroundColor = .lightGray
         lineView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            lineView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
-            lineView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
+            lineView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Locals.leadingAnchor),
+            lineView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Locals.trailingAnchor),
             lineView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            lineView.heightAnchor.constraint(equalToConstant: 0.7)
+            lineView.heightAnchor.constraint(equalToConstant: Locals.lineViewHeightAnchor)
         ])
     }
     

@@ -23,6 +23,18 @@ final class WordSetStatisticsViewController: UIViewController, WordSetStatistics
     enum Locals {
         static let title = "Statistics"
         static let cellId = "WordSetStatusticsCellId"
+        
+        static let labelLeadingAnchor: CGFloat = 15
+        static let labelTrailingAnchor: CGFloat = -15
+        static let topAnchor: CGFloat = 10
+        
+        static let progressLabelSize: CGFloat = 18
+        
+        static let progressViewLeadingAnchor: CGFloat = 10
+        static let progressViewTrailingAnchor: CGFloat = -10
+        static let progressViewHeight: CGFloat = 20
+        
+        static let tableViewRowHeight: CGFloat = 44
     }
     
     // MARK: - Properties
@@ -71,19 +83,19 @@ final class WordSetStatisticsViewController: UIViewController, WordSetStatistics
     private func setUpProgressLabel() {
         view.addSubview(currentProgressLabel)
         currentProgressLabel.text = "Current progress"
-        currentProgressLabel.font = UIFont.sfProTextHeavy(ofSize: 18)
+        currentProgressLabel.font = UIFont.sfProTextHeavy(ofSize: Locals.progressLabelSize)
         currentProgressLabel.translatesAutoresizingMaskIntoConstraints = false
         if #available(iOS 11.0, *) {
             NSLayoutConstraint.activate([
-                currentProgressLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-                currentProgressLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-                currentProgressLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+                currentProgressLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Locals.labelLeadingAnchor),
+                currentProgressLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Locals.labelTrailingAnchor),
+                currentProgressLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Locals.topAnchor),
             ])
         } else {
             NSLayoutConstraint.activate([
-                currentProgressLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-                currentProgressLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-                currentProgressLabel.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: 10),
+                currentProgressLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Locals.labelLeadingAnchor),
+                currentProgressLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Locals.labelTrailingAnchor),
+                currentProgressLabel.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: Locals.topAnchor),
             ])
         }
     }
@@ -92,10 +104,10 @@ final class WordSetStatisticsViewController: UIViewController, WordSetStatistics
         view.addSubview(progressView)
         progressView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            progressView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            progressView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-            progressView.topAnchor.constraint(equalTo: currentProgressLabel.bottomAnchor, constant: 10),
-            progressView.heightAnchor.constraint(equalToConstant: 20)
+            progressView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Locals.progressViewLeadingAnchor),
+            progressView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Locals.progressViewTrailingAnchor),
+            progressView.topAnchor.constraint(equalTo: currentProgressLabel.bottomAnchor, constant: Locals.topAnchor),
+            progressView.heightAnchor.constraint(equalToConstant: Locals.progressViewHeight)
         ])
     }
     
@@ -109,21 +121,21 @@ final class WordSetStatisticsViewController: UIViewController, WordSetStatistics
         tableView.translatesAutoresizingMaskIntoConstraints = false
         if #available(iOS 11.0, *) {
             NSLayoutConstraint.activate([
-                tableView.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 10),
+                tableView.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: Locals.topAnchor),
                 tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                 tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
             ])
         } else {
             NSLayoutConstraint.activate([
-                tableView.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 10),
+                tableView.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: Locals.topAnchor),
                 tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                 tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
             ])
         }
         if #available(iOS 11.0, *) {} else {
-            tableView.estimatedRowHeight = 44
+            tableView.estimatedRowHeight = Locals.tableViewRowHeight
         }
     }
 }
