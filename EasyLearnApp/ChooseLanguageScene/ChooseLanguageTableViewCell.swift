@@ -10,6 +10,19 @@ import UIKit
 
 final class ChooseLanguageTableViewCell: UITableViewCell {
     
+    // MARK: - Constants
+    
+    enum Locals {
+        static let labelSize: CGFloat = 20
+        static let flagSize: CGFloat = 30
+        
+        static let topAnchor: CGFloat = 10
+        static let bottomAnchor: CGFloat = -10
+        static let leadingAnchor: CGFloat = 20
+        static let trailingAnchor: CGFloat = -20
+        static let distanceBetweenLabels: CGFloat = 10
+    }
+    
     // MARK: - Properties
     
     private var languageLabel = UILabel()
@@ -29,26 +42,28 @@ final class ChooseLanguageTableViewCell: UITableViewCell {
         backgroundColor = UIColor.white
         selectionStyle = .none
         tintColor = .blueSapphire
-        languageLabel.font = UIFont.sfProTextMedium(ofSize: 20)
-        flagLabel.font = .systemFont(ofSize: 30)
+        languageLabel.font = UIFont.sfProTextMedium(ofSize: Locals.labelSize)
+        flagLabel.font = .systemFont(ofSize: Locals.flagSize)
         addSubview(languageLabel)
         addSubview(flagLabel)
         languageLabel.translatesAutoresizingMaskIntoConstraints = false
         flagLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            flagLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            flagLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            flagLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
-            languageLabel.leadingAnchor.constraint(equalTo: flagLabel.trailingAnchor, constant: 10),
-            languageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            languageLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            languageLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
+            flagLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Locals.leadingAnchor),
+            flagLabel.topAnchor.constraint(equalTo: topAnchor, constant: Locals.topAnchor),
+            flagLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: Locals.bottomAnchor),
+            languageLabel.leadingAnchor.constraint(equalTo: flagLabel.trailingAnchor, constant: Locals.distanceBetweenLabels),
+            languageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Locals.trailingAnchor),
+            languageLabel.topAnchor.constraint(equalTo: topAnchor, constant: Locals.topAnchor),
+            languageLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: Locals.bottomAnchor)
         ])
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Update content
     
     private func updateContent(viewModel: LanguageModel) {
         languageLabel.text = viewModel.languageValue

@@ -8,49 +8,48 @@
 
 import Foundation
 
-// MARK: - TranslationModel
+/// Структура содержащая словарь, генерируемая для результата запроса
 struct TranslationModel: Codable {
     let head: Head
     let def: [Def]
 }
 
-// MARK: - Def
+/// Структура словаря
 struct Def: Codable {
     let text: String
     let pos: String?
     let ts: String
-    let tr: [Tr]
+    let tr: [Translation]
 }
 
-// MARK: - Tr
-struct Tr: Codable {
+/// Струкрура перевода слова
+struct Translation: Codable {
     let text: String 
     let pos: String?
     let gen: String?
-    let syn: [Syn]?
-    let mean: [Mean]?
-    let ex: [Ex]?
+    let syn: [Synonym]?
+    let mean: [Meaning]?
+    let ex: [Example]?
     let asp: String?
 }
 
-// MARK: - Ex
-struct Ex: Codable {
+/// Структура для примера к слову
+struct Example: Codable {
     let text: String
-    let tr: [Mean]
+    let tr: [Meaning]
 }
 
-// MARK: - Mean
-struct Mean: Codable {
+/// Структура для значения слова
+struct Meaning: Codable {
     let text: String
 }
 
-// MARK: - Syn
-struct Syn: Codable {
+/// Структура для синонима к слову
+struct Synonym: Codable {
     let text: String
     let pos: String
     let gen, asp: String?
 }
 
-// MARK: - Head
-struct Head: Codable {
-}
+/// Head
+struct Head: Codable { }

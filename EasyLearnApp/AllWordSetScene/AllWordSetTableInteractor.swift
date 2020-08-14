@@ -19,7 +19,7 @@ final class AllWordSetTableInteractor: AllWordSetTableBusinessLogic {
     
     func fetchStudySets(request: AllWordSetTableModel.FetchStudySets.Request) {
         let dataHandler = DataHandler()
-        guard let sets = dataHandler.fetchAllWordSetRecord() else {
+        guard let sets = dataHandler.fetchAllWordSet() else {
             return
         }
         presenter?.presentSets(response: AllWordSetTableModel.FetchStudySets.Response(studySets: sets))

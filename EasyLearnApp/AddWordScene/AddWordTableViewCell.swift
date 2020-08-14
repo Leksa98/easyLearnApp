@@ -13,16 +13,29 @@ final class AddWordTableViewCell: UITableViewCell {
     // MARK: - Constants
     
     private enum Locals {
-        static let cornerRadius = CGFloat(6)
+        static let cornerRadius: CGFloat = 6
+        
+        static let numberOfLines = 0
+        static let labelSize: CGFloat = 18
+        
+        static let containerViewLeadingAnchor: CGFloat = 10
+        static let containerViewTrailingAnchor: CGFloat = -10
+        static let containerViewTopAnchor: CGFloat = 10
+        static let containerViewBottomAnchor: CGFloat = -10
+        
+        static let labelLeadingAnchor: CGFloat = 20
+        static let labelTrailingAnchor: CGFloat = -20
+        static let labelBottomAnchor: CGFloat = -20
+        static let labelTopAnchor: CGFloat = 20
     }
     
     // MARK: - Properties
     
     var titleLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 0
+        label.numberOfLines = Locals.numberOfLines
         label.lineBreakMode = .byWordWrapping
-        label.font = UIFont.sfProTextMedium(ofSize: 18)
+        label.font = UIFont.sfProTextMedium(ofSize: Locals.labelSize)
         label.textColor = .blueSapphire
         return label
     }()
@@ -57,14 +70,14 @@ final class AddWordTableViewCell: UITableViewCell {
         addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            containerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            containerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-            containerView.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            containerView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20),
-            titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
+            containerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Locals.containerViewLeadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Locals.containerViewTrailingAnchor),
+            containerView.topAnchor.constraint(equalTo: topAnchor, constant: Locals.containerViewTopAnchor),
+            containerView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: Locals.containerViewBottomAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Locals.labelLeadingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Locals.labelTrailingAnchor),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: Locals.labelTopAnchor),
+            titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: Locals.labelBottomAnchor),
         ])
     }
     

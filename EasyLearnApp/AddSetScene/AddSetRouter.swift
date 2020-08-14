@@ -17,8 +17,8 @@ final class AddSetRouter: AddSetRouterLogic {
     weak var navigationController: UINavigationController?
     
     func routeToAddWordScene(viewController: UIViewController) {
-        let vc = AddWordConfigurator.assembly()
-        vc.delegete = viewController as? AddWordToSetDataStore
-        viewController.present(vc, animated: true, completion: nil)
+        let viewControllerToShow = AddWordConfigurator.assembly()
+        viewControllerToShow.delegete = viewController as? AddWordToSetDataStore
+        viewController.present(viewControllerToShow, animated: true, completion: nil)
     }
 }

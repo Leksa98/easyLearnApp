@@ -18,7 +18,7 @@ final class AddSetInteractor: AddSetBusinessLogic {
     
     func saveWordSetInCoreData(request: AddSetModel.SaveWordSet.Request) {
         let dataHandler = DataHandler()
-        dataHandler.addWordSetIntoCoreData(name: request.name, emoji: request.emoji)
+        dataHandler.saveWordSet(name: request.name, emoji: request.emoji)
         request.words.forEach { word in
             dataHandler.addWordtoSet(name: request.name, word: word.word, translation: word.translation)
         }

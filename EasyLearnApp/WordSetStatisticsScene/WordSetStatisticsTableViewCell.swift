@@ -13,16 +13,31 @@ final class WordSetStatisticsTableViewCell: UITableViewCell {
     // MARK: - Constants
     
     private enum Locals {
-        static let cornerRadius = CGFloat(6)
+        static let cornerRadius: CGFloat = 6
+        static let wordLabelSize: CGFloat = 18
+        static let translationLabelSize: CGFloat = 16
+        static let progressLabelSize: CGFloat = 14
+        static let labelNumberOfLines: Int = 0
+        
+        static let containerViewLeadingAnchor: CGFloat = 10
+        static let containerViewTrailingAnchor: CGFloat = -10
+        static let containerViewTopAnchor: CGFloat = 10
+        static let containerViewBottomAnchor: CGFloat = -10
+        
+        static let labelLeadingAnchor: CGFloat = 20
+        static let labelTrailingAnchor: CGFloat = -20
+        static let labelTopAnchor: CGFloat = 20
+        static let labelBottomAnchor: CGFloat = -20
+        static let distanceBetweenLabels: CGFloat = 3
     }
     
     // MARK: - Properties
     
     private var wordLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 0
+        label.numberOfLines = Locals.labelNumberOfLines
         label.lineBreakMode = .byWordWrapping
-        label.font = UIFont.sfProTextMedium(ofSize: 18)
+        label.font = UIFont.sfProTextMedium(ofSize: Locals.wordLabelSize)
         label.textColor = .blueSapphire
         return label
     }()
@@ -37,23 +52,23 @@ final class WordSetStatisticsTableViewCell: UITableViewCell {
     
     private var translationLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 0
+        label.numberOfLines = Locals.labelNumberOfLines
         label.lineBreakMode = .byWordWrapping
-        label.font = UIFont.sfProTextRegular(ofSize: 16)
+        label.font = UIFont.sfProTextRegular(ofSize: Locals.translationLabelSize)
         label.textColor = .blueSapphire
         return label
     }()
     
     private var correctAnswerLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.sfProTextRegular(ofSize: 14)
+        label.font = UIFont.sfProTextRegular(ofSize: Locals.progressLabelSize)
         label.textColor = .customGreen
         return label
     }()
     
     private var wrongAnswerLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.sfProTextRegular(ofSize: 14)
+        label.font = UIFont.sfProTextRegular(ofSize: Locals.progressLabelSize)
         label.textColor = .customRed
         return label
     }()
@@ -87,25 +102,25 @@ final class WordSetStatisticsTableViewCell: UITableViewCell {
         wrongAnswerLabel.translatesAutoresizingMaskIntoConstraints = false
         correctAnswerLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            containerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            containerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-            containerView.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            containerView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
+            containerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Locals.containerViewLeadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Locals.containerViewTrailingAnchor),
+            containerView.topAnchor.constraint(equalTo: topAnchor, constant: Locals.containerViewTopAnchor),
+            containerView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: Locals.containerViewBottomAnchor),
             
-            wordLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            wordLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20),
-            correctAnswerLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20),
-            correctAnswerLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            wordLabel.trailingAnchor.constraint(lessThanOrEqualTo: correctAnswerLabel.leadingAnchor, constant: -20),
+            wordLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Locals.labelLeadingAnchor),
+            wordLabel.topAnchor.constraint(equalTo: topAnchor, constant: Locals.labelTopAnchor),
+            correctAnswerLabel.topAnchor.constraint(equalTo: topAnchor, constant: Locals.labelTopAnchor),
+            correctAnswerLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Locals.labelTrailingAnchor),
+            wordLabel.trailingAnchor.constraint(lessThanOrEqualTo: correctAnswerLabel.leadingAnchor, constant: Locals.labelTrailingAnchor),
             
-            translationLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            translationLabel.topAnchor.constraint(equalTo: wordLabel.bottomAnchor, constant: 3),
-            translationLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
-            wrongAnswerLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
-            wrongAnswerLabel.topAnchor.constraint(equalTo: correctAnswerLabel.bottomAnchor, constant: 3),
+            translationLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Locals.labelLeadingAnchor),
+            translationLabel.topAnchor.constraint(equalTo: wordLabel.bottomAnchor, constant: Locals.distanceBetweenLabels),
+            translationLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: Locals.labelBottomAnchor),
+            wrongAnswerLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: Locals.labelBottomAnchor),
+            wrongAnswerLabel.topAnchor.constraint(equalTo: correctAnswerLabel.bottomAnchor, constant: Locals.distanceBetweenLabels),
             wrongAnswerLabel.leadingAnchor.constraint(equalTo: correctAnswerLabel.leadingAnchor),
-            wrongAnswerLabel.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -20),
-            translationLabel.trailingAnchor.constraint(lessThanOrEqualTo: wrongAnswerLabel.leadingAnchor, constant: -20)
+            wrongAnswerLabel.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: Locals.labelTrailingAnchor),
+            translationLabel.trailingAnchor.constraint(lessThanOrEqualTo: wrongAnswerLabel.leadingAnchor, constant: Locals.labelTrailingAnchor)
         ])
     }
     
@@ -119,5 +134,4 @@ final class WordSetStatisticsTableViewCell: UITableViewCell {
         correctAnswerLabel.text = "Correct answers: \(viewModel.rightAnswer)"
         wrongAnswerLabel.text = "Wrong answers: \(viewModel.wrongAnswer)"
     }
-
 }

@@ -10,6 +10,28 @@ import UIKit
 
 class WordSetLearnCollectionViewCell: UICollectionViewCell {
     
+    // MARK: - Constants
+    
+    enum Locals {
+        static let labelSize: CGFloat = 30
+        static let labelNumberOfLines = 0
+        static let textFieldCornerRadius: CGFloat = 5
+        static let textFieldBorderWidth: CGFloat = 3
+        static let textFieldSize: CGFloat = 20
+        static let resultLabelSize: CGFloat = 25
+        
+        static let paddingViewHeight: CGFloat = 20
+        static let paddingViewWidth: CGFloat = 10
+        
+        static let labelTopAnchor: CGFloat = 10
+        static let leadingAnchor: CGFloat = 20
+        static let trailingAnchor: CGFloat = -20
+        static let textFieldHeight: CGFloat = 40
+        static let lineViewHeight: CGFloat = 2
+        static let lineViewTopAnchor: CGFloat = 5
+        static let lineViewBottomAnchor: CGFloat = -40
+    }
+    
     // MARK: - Properties
     
     private var wordLabel = UILabel()
@@ -32,58 +54,58 @@ class WordSetLearnCollectionViewCell: UICollectionViewCell {
         backgroundColor = .white
         
         addSubview(wordLabel)
-        wordLabel.font = UIFont.sfProTextHeavy(ofSize: 30)
+        wordLabel.font = UIFont.sfProTextHeavy(ofSize: Locals.labelSize)
         wordLabel.textColor = .black
 
-        wordLabel.numberOfLines = 0
+        wordLabel.numberOfLines = Locals.labelNumberOfLines
         wordLabel.lineBreakMode = .byWordWrapping
         wordLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            wordLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            wordLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            wordLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            wordLabel.topAnchor.constraint(equalTo: topAnchor, constant: Locals.labelTopAnchor),
+            wordLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Locals.leadingAnchor),
+            wordLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Locals.trailingAnchor),
         ])
         wordLabel.sizeToFit()
         
         addSubview(inputTextField)
-        inputTextField.layer.cornerRadius = 5
-        inputTextField.layer.borderWidth = 3
+        inputTextField.layer.cornerRadius = Locals.textFieldCornerRadius
+        inputTextField.layer.borderWidth = Locals.textFieldBorderWidth
         inputTextField.layer.borderColor = UIColor.white.cgColor
         inputTextField.placeholder = "Type translation here"
-        inputTextField.font = UIFont.sfProTextMedium(ofSize: 20)
-        let paddingView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 20))
+        inputTextField.font = UIFont.sfProTextMedium(ofSize: Locals.textFieldSize)
+        let paddingView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: Locals.paddingViewWidth, height: Locals.paddingViewHeight))
         inputTextField.leftView = paddingView
         inputTextField.leftViewMode = .always
         inputTextField.autocorrectionType = .no
         inputTextField.becomeFirstResponder()
         inputTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            inputTextField.heightAnchor.constraint(equalToConstant: 40),
-            inputTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            inputTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            inputTextField.topAnchor.constraint(equalTo: wordLabel.bottomAnchor, constant: 10)
+            inputTextField.heightAnchor.constraint(equalToConstant: Locals.textFieldHeight),
+            inputTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Locals.leadingAnchor),
+            inputTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Locals.trailingAnchor),
+            inputTextField.topAnchor.constraint(equalTo: wordLabel.bottomAnchor, constant: Locals.labelTopAnchor)
         ])
         
         addSubview(lineView)
         lineView.backgroundColor = UIColor.blueSapphire
         lineView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            lineView.heightAnchor.constraint(equalToConstant: 2),
-            lineView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            lineView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            lineView.topAnchor.constraint(equalTo: inputTextField.bottomAnchor, constant: 5),
-            lineView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -40)
+            lineView.heightAnchor.constraint(equalToConstant: Locals.lineViewHeight),
+            lineView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Locals.leadingAnchor),
+            lineView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Locals.trailingAnchor),
+            lineView.topAnchor.constraint(equalTo: inputTextField.bottomAnchor, constant: Locals.lineViewTopAnchor),
+            lineView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: Locals.lineViewBottomAnchor)
         ])
         
         addSubview(resultExerciseLabel)
-        resultExerciseLabel.numberOfLines = 0
+        resultExerciseLabel.numberOfLines = Locals.labelNumberOfLines
         resultExerciseLabel.lineBreakMode = .byWordWrapping
-        resultExerciseLabel.font = UIFont.sfProTextHeavy(ofSize: 25)
+        resultExerciseLabel.font = UIFont.sfProTextHeavy(ofSize: Locals.resultLabelSize)
         resultExerciseLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            resultExerciseLabel.topAnchor.constraint(equalTo: lineView.topAnchor, constant: 5),
-            resultExerciseLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            resultExerciseLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            resultExerciseLabel.topAnchor.constraint(equalTo: lineView.topAnchor, constant: Locals.lineViewTopAnchor),
+            resultExerciseLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Locals.leadingAnchor),
+            resultExerciseLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Locals.trailingAnchor),
         ])
         resultExerciseLabel.sizeToFit()
     }

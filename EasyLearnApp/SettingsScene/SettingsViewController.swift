@@ -14,6 +14,8 @@ final class SettingsViewController: UIViewController {
     
     enum Locals {
         static let chooseLanguageCellId = "chooseLanguageCellId"
+        static let numberOfRows = 1
+        static let tableViewRowHeight: CGFloat = 44
     }
     
     // MARK: - Properties
@@ -66,7 +68,7 @@ final class SettingsViewController: UIViewController {
         }
         tableView.tableFooterView = UIView()
         if #available(iOS 11.0, *) {} else {
-            tableView.estimatedRowHeight = 44
+            tableView.estimatedRowHeight = Locals.tableViewRowHeight
         }
     }
 }
@@ -80,12 +82,9 @@ extension SettingsViewController: UITableViewDelegate {
 
 // MARK: - UITableViewDataSource protocol
 extension SettingsViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        1
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+        Locals.numberOfRows
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -8,18 +8,19 @@
 
 import Foundation
 
-// MARK: - DefaultWordSet
+
+/// Структура, содержащая дефолтные сеты
 struct DefaultWordSet: Codable {
     let defaultSet: [DefaultSet]
 }
 
-// MARK: - DefaultSet
+/// Структура дефолтного сета
 struct DefaultSet: Codable {
     let name, emoji: String
     let words: [WordToLearn]
 }
 
-// MARK: - WordToLearn
+/// Структура для слова из сета
 struct WordToLearn: Codable {
     let wordToLearn, translation: String
 }

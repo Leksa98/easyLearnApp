@@ -24,7 +24,7 @@ class NetworkManagerTest: XCTestCase {
     }
 
     func testEmptyInput() {
-        var result = ""
+        var result: String?
         let expectation = self.expectation(description: "Request")
         sut.translateWord(word: "") { apiResponse, error in
             if let error = error {
@@ -40,7 +40,7 @@ class NetworkManagerTest: XCTestCase {
     }
     
     func testUnableDecodeInput() {
-        var result = ""
+        var result: String?
         let expectation = self.expectation(description: "Request")
         let userDefaults = UserDefaults.standard
         let prevLang = (userDefaults.object(forKey: "lang") as? String) ?? "en"

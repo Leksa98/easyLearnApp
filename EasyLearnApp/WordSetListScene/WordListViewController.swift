@@ -18,6 +18,7 @@ final class WordListViewController: UIViewController {
     
     enum Locals {
         static let cellId = "WordListCellId"
+        static let tableViewHeight: CGFloat = 44
     }
     
     // MARK: - Properties
@@ -70,7 +71,7 @@ final class WordListViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.backgroundColor = .white
         if #available(iOS 11.0, *) {} else {
-            tableView.estimatedRowHeight = 44
+            tableView.estimatedRowHeight = Locals.tableViewHeight
         }
     }
     

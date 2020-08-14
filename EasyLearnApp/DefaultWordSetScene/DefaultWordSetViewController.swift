@@ -18,6 +18,7 @@ final class DefaultWordSetViewController: UIViewController {
     
     private enum Locals {
         static let cellId = "DefaultWordSetCellId"
+        static let tableViewRowHeight: CGFloat = 44
     }
     
     // MARK: - Properties
@@ -44,6 +45,8 @@ final class DefaultWordSetViewController: UIViewController {
         interactor?.fetchDefaultSet(request: DefaultWordSetModel.FetchDefaultSets.Request())
     }
     
+    // MARK: - Setup UI elements
+    
     private func configureTableView() {
         view.addSubview(tableView)
         tableView.backgroundColor = .white
@@ -68,7 +71,7 @@ final class DefaultWordSetViewController: UIViewController {
         }
         tableView.register(DefaultWordSetTableViewCell.self, forCellReuseIdentifier: Locals.cellId)
         if #available(iOS 11.0, *) {} else {
-            tableView.estimatedRowHeight = 44
+            tableView.estimatedRowHeight = Locals.tableViewRowHeight
         }
     }
 }
@@ -103,11 +106,10 @@ extension DefaultWordSetViewController: UITableViewDataSource {
         super.setEditing(editing, animated: animated)
         tableView.setEditing(editing, animated: true)
     }
-    
-    
 }
 
-extension DefaultWordSetViewController : DefaultWordSetShowLogic {
+// MARK: - DefaultWordSetShowLogic protocol
+extension DefaultWordSetViewController: DefaultWordSetShowLogic {
     func showDefaultSets(viewModel: DefaultWordSetModel.FetchDefaultSets.ViewModel) {
         defaultSets = viewModel.sets
     }

@@ -10,6 +10,12 @@ import UIKit
 
 final class ProgressBarView: UIView {
     
+    // MARK: - Constants
+    
+    enum Locals {
+        static let cornerRadius: CGFloat = 8
+    }
+    
     // MARK: - Properties
     
     private var firstSection: CGFloat?
@@ -21,7 +27,7 @@ final class ProgressBarView: UIView {
         super.init(frame: frame)
         backgroundColor = .white
         clipsToBounds = true
-        layer.cornerRadius = 8
+        layer.cornerRadius = Locals.cornerRadius
     }
     
     required init?(coder: NSCoder) {

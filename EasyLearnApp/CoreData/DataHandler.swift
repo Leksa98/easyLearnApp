@@ -10,11 +10,11 @@ import Foundation
 import UIKit
 import CoreData
 
-/// For dealing with Core Data
+
+///  Класс для обращения к CoreData
 final class DataHandler : NSObject {
     
-    /// Saving changes into Core Data
-    func saveContext() {
+    private func saveContext() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -28,11 +28,11 @@ final class DataHandler : NSObject {
         }
     }
     
-    /// Adding Word Set to Core Data
+    /// Сохранение сета в CoreData
     /// - Parameters:
-    ///   - name: Word set name given by user
-    ///   - emoji: Emoji for word set given by user
-    func addWordSetIntoCoreData(name: String, emoji: String) {
+    ///   - name: название сета
+    ///   - emoji: emoji для сета
+    func saveWordSet(name: String, emoji: String) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -46,12 +46,7 @@ final class DataHandler : NSObject {
         saveContext()
     }
     
-    /// Adding Word into Core Data
-    /// - Parameters:
-    ///   - word: Word which user wants to add
-    ///   - translation: Translation of the word chosen by user
-    /// - Returns: Entity of type Word that will be related to the specific WordSet
-    private func addWordIntoCoreData(word: String, translation: String) -> Word? {
+    private func saveWord(word: String, translation: String) -> Word? {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return nil
         }
@@ -67,26 +62,30 @@ final class DataHandler : NSObject {
         return newWord
     }
     
-    /// Adding Word to the specific WordSet
+    /// Добавление нового слова в сет
     /// - Parameters:
-    ///   - name: Name of the WordSet
-    ///   - word: Word that will be added to the WordSet
-    ///   - translation: Translation of the added Word
+    ///   - name: имя сета
+    ///   - word: слово, добавляемое в сет
+    ///   - translation: перевод слова
     func addWordtoSet(name: String, word: String, translation: String) {
-        if let word = addWordIntoCoreData(word: word, translation: translation),
-            let set = fetchWordSetRecord(with: name) {
-            set.withWord = NSSet(set: set.withWord?.adding(word) ?? NSSet(object: word) as! Set<AnyHashable>)
+        if let word = saveWord(word: word, translation: translation),
+            let set = fetchWordSet(with: name) {
+            if let setWithWord = set.withWord {
+                set.withWord = NSSet(set: setWithWord.adding(word))
+            } else {
+                set.withWord = NSSet(object: word)
+            }
             print("Word \(String(describing: word.word)) with translation \(String(describing: word.translation)) added to WordSet \(String(describing: set.name))")
             saveContext()
         }
     }
     
-    /// Fetching words from the specific WordSet
-    /// - Parameter setWithName: Name of the WordSet
-    /// - Returns: Word Dictionary with words and their translations
+    /// Получение слов из определенного сета
+    /// - Parameter setWithName: имя сета
+    /// - Returns: Массив объектов типа WordModel, содержащий слово, перевод и текущий прогресс
     func fetchWords(from setWithName: String) -> [WordModel]  {
         var wordArray: [WordModel] = []
-        if let wordSet = fetchWordSetRecord(with: setWithName) {
+        if let wordSet = fetchWordSet(with: setWithName) {
             if let setWithWords = wordSet.withWord {
                 for (_,word) in setWithWords.allObjects.enumerated() {
                     if let word = word as? Word, let wordValue = word.word, let wordTranslation = word.translation {
@@ -98,10 +97,10 @@ final class DataHandler : NSObject {
         return wordArray
     }
     
-    /// Fetching Word Set with the specific name
-    /// - Parameter name: Name of the Word Set to fetch
-    /// - Returns: Enitity of type WordSet
-    func fetchWordSetRecord(with name: String) -> WordSet? {
+    /// Получение сета
+    /// - Parameter name: имя сета
+    /// - Returns: сет типа WordSet?
+    func fetchWordSet(with name: String) -> WordSet? {
         guard  let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return nil
         }
@@ -121,6 +120,11 @@ final class DataHandler : NSObject {
         return nil
     }
     
+    
+    /// Обновление прогресса для слова
+    /// - Parameters:
+    ///   - word: слово, для которого обновляется прогресс
+    ///   - progressChange: значение типа Double, на которое изменяется прогресс
     func updateWordProgress(word: String, progressChange: Double) {
         guard  let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -175,7 +179,10 @@ final class DataHandler : NSObject {
         saveContext()
     }
     
-    func fetchAllWordSetRecord() -> [WordSet]? {
+    
+    /// Получение всех сохраненных сетов
+    /// - Returns: массив объектов типа WordSet
+    func fetchAllWordSet() -> [WordSet]? {
         guard  let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return nil
         }
@@ -197,8 +204,8 @@ final class DataHandler : NSObject {
         return nil
     }
     
-    /// Deleting WordSet with the specific name
-    /// - Parameter name: Name of the WordSet to delete
+    /// Удаление сета
+    /// - Parameter name: имя удаляемого сета
     func deleteWordSet(name: String) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -219,6 +226,11 @@ final class DataHandler : NSObject {
         saveContext()
     }
     
+    
+    /// Удаление слова из сета
+    /// - Parameters:
+    ///   - name: имя сета
+    ///   - wordValue: удаляемое слово
     func deleteWordfromSet(name: String, wordValue: String) {
            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
                return

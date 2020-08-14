@@ -14,6 +14,7 @@ class WordSetCardCollectionViewCell: UICollectionViewCell {
     
     private enum Locals {
         static let cornerRadius = CGFloat(40)
+        static let animationDuration: TimeInterval = 0.5
     }
     
     // MARK: - Property
@@ -72,7 +73,7 @@ class WordSetCardCollectionViewCell: UICollectionViewCell {
     
     func flipCardAnimation() {
         let transitionOptions = UIView.AnimationOptions.transitionFlipFromLeft
-        UIView.transition(with: self.contentView, duration: 0.5, options: transitionOptions, animations: {
+        UIView.transition(with: self.contentView, duration: Locals.animationDuration, options: transitionOptions, animations: {
             
             switch self.isFrontText {
             case true:

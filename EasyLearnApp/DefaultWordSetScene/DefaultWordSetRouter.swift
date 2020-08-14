@@ -17,7 +17,7 @@ final class DefaultWordSetRouter: DefaultWordSetRouterLogic {
     weak var navigationController: UINavigationController?
     
     func routeToDefaultWordSetList(name: String, emoji: String, words: [WordModel]) {
-        let vc = DefaultWordSetListConfiguration.assembly(setName: name, setEmoji: emoji, words: words)
-        navigationController?.pushViewController(vc, animated: false)
+        let viewController = DefaultWordSetListConfiguration.assembly(setName: name, setEmoji: emoji, words: words)
+        navigationController?.pushViewController(viewController, animated: false)
     }
 }

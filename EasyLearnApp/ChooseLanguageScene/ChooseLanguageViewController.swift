@@ -18,6 +18,7 @@ final class ChooseLanguageViewController: UIViewController {
     
     enum Locals {
         static let cellId = "ChooseLanguageCellId"
+        static let tableViewRowHeight: CGFloat = 44
     }
     
     // MARK: - Properties
@@ -70,7 +71,7 @@ final class ChooseLanguageViewController: UIViewController {
         }
         tableView.tableFooterView = UIView()
         if #available(iOS 11.0, *) {} else {
-            tableView.estimatedRowHeight = 44
+            tableView.estimatedRowHeight = Locals.tableViewRowHeight
         }
     }
 }
@@ -91,6 +92,7 @@ extension ChooseLanguageViewController: UITableViewDelegate {
             cell.accessoryType = .checkmark
             let userDefaults = UserDefaults.standard
             userDefaults.set(cell.viewModel?.codeValue, forKey: "lang")
+            userDefaults.set(cell.viewModel?.languageValue, forKey: "selectedLanguage")
         }
     }
 }
