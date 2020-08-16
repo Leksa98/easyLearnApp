@@ -25,10 +25,8 @@ final class WordSetCardViewController: UIViewController {
         static let leadingAnchor: CGFloat = 10
         static let trailingAnchor: CGFloat = -10
         static let bottomAnchor: CGFloat = -100
-        static let cornerRadius: CGFloat = 15
         static let buttonHeight: CGFloat = 35
         static let buttonWidth: CGFloat = 165
-        static let buttonTextSize: CGFloat = 20
         static let animationDuration: TimeInterval = 0.5
         static let scrollingConstant: CGFloat = 80
         static let cardSizeOffset: CGFloat = 20
@@ -37,14 +35,21 @@ final class WordSetCardViewController: UIViewController {
     // MARK: - Property
     
     private var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-    private var nextCardButton = UIButton()
-    private var prevCardButton = UIButton()
+    private var nextCardButton = ButtonWithRoundCorners(title: "Next")
+    private var prevCardButton = ButtonWithRoundCorners(title: "Previous")
     private var setName: String?
     private var wordSetArray: [WordModel] = [] {
         willSet {
             if newValue.count == 1 {
-                nextCardButton.isHidden = true
                 prevCardButton.isHidden = true
+                nextCardButton.setTitle("Done", for: .normal)
+                UIView.animate(withDuration: Locals.animationDuration, delay: 0.0, options: [.repeat, .autoreverse, .allowUserInteraction], animations:  {
+                    self.nextCardButton.backgroundColor = .customGreen
+                    self.nextCardButton.removeTarget(self, action: #selector(self.nextCardButtonTapped), for: .touchUpInside)
+                    self.nextCardButton.addTarget(self, action: #selector(self.dismissViewController), for: .touchUpInside)
+                }, completion: { _ in
+                    self.nextCardButton.layer.removeAllAnimations()
+                })
             }
         }
         didSet {
@@ -99,11 +104,6 @@ final class WordSetCardViewController: UIViewController {
     }
     
     private func configureNextCardButton() {
-        nextCardButton.setTitle("Next", for: .normal)
-        nextCardButton.layer.cornerRadius = Locals.cornerRadius
-        nextCardButton.setTitleColor(.white, for: .normal)
-        nextCardButton.titleLabel?.font = .boldSystemFont(ofSize: Locals.buttonTextSize)
-        nextCardButton.backgroundColor = UIColor.blueSapphire
         nextCardButton.addTarget(self, action: #selector(nextCardButtonTapped), for: .touchUpInside)
         view.addSubview(nextCardButton)
         nextCardButton.translatesAutoresizingMaskIntoConstraints = false
@@ -116,11 +116,6 @@ final class WordSetCardViewController: UIViewController {
     }
     
     private func configurePrevCardButton() {
-        prevCardButton.setTitle("Previous", for: .normal)
-        prevCardButton.layer.cornerRadius = Locals.cornerRadius
-        prevCardButton.setTitleColor(.white, for: .normal)
-        prevCardButton.titleLabel?.font = .boldSystemFont(ofSize: Locals.buttonTextSize)
-        prevCardButton.backgroundColor = UIColor.blueSapphire
         prevCardButton.addTarget(self, action: #selector(prevCardButtonTapped), for: .touchUpInside)
         view.addSubview(prevCardButton)
         prevCardButton.translatesAutoresizingMaskIntoConstraints = false
@@ -146,7 +141,14 @@ final class WordSetCardViewController: UIViewController {
         }
         
         if Int(collectionView.contentOffset.x + collectionView.frame.size.width) + Int(Locals.scrollingConstant) == scrollCollectionViewWidth {
-            nextCardButton.isHidden = true
+            UIView.animate(withDuration: Locals.animationDuration, delay: 0.0, options: [.repeat, .autoreverse, .allowUserInteraction], animations:  {
+                self.nextCardButton.setTitle("Done", for: .normal)
+                self.nextCardButton.backgroundColor = .customGreen
+                self.nextCardButton.removeTarget(self, action: #selector(self.nextCardButtonTapped), for: .touchUpInside)
+                self.nextCardButton.addTarget(self, action: #selector(self.dismissViewController), for: .touchUpInside)
+            }, completion: { _ in
+                self.nextCardButton.layer.removeAllAnimations()
+            })
         }
     }
 
@@ -155,6 +157,14 @@ final class WordSetCardViewController: UIViewController {
         if collectionView.contentOffset.x - (collectionView.frame.size.width + Locals.scrollingConstant) >= 0 {
             UIView.animate(withDuration: Locals.animationDuration) {
                 self.collectionView.contentOffset.x -= self.collectionView.frame.size.width + Locals.scrollingConstant
+                if self.nextCardButton.titleLabel?.text == "Done" {
+                    self.nextCardButton.layer.removeAllAnimations()
+                    self.nextCardButton.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                    self.nextCardButton.setTitle("Next", for: .normal)
+                    self.nextCardButton.backgroundColor = .blueSapphire
+                    self.nextCardButton.removeTarget(self, action: #selector(self.dismissViewController), for: .touchUpInside)
+                    self.nextCardButton.addTarget(self, action: #selector(self.nextCardButtonTapped), for: .touchUpInside)
+                }
             }
         }
         if collectionView.contentOffset.x == 0 {
