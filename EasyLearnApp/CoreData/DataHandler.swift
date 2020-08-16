@@ -100,7 +100,7 @@ final class DataHandler : NSObject {
     /// Получение сета
     /// - Parameter name: имя сета
     /// - Returns: сет типа WordSet?
-    func fetchWordSet(with name: String) -> WordSet? {
+    private func fetchWordSet(with name: String) -> WordSet? {
         guard  let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return nil
         }
