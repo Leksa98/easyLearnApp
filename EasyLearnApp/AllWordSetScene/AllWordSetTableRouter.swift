@@ -19,7 +19,7 @@ final class AllWordSetTableRouter: AllWordSetTableRouterLogic {
     
     func routeToWordSetDetails(with title: String) {
         let viewController = WordSetViewController()
-        viewController.title = title
+        viewController.setName = title
         navigationController?.pushViewController(viewController, animated: true)
         WordSetConfigurator.assembly(viewController: viewController)
     }

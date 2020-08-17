@@ -47,7 +47,7 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
         }
     }
     var interactor: WordSetLearnBusinessLogic?
-    var router: WordSetCardRouterLogic?
+    var router: WordSetLearnRouterLogic?
     var setName: String?
     
     // MARK: - Lifecycle
@@ -60,6 +60,10 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
         view.backgroundColor = .white
         configureCollectionView()
         configureButtonStackView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false
     }
     
     // MARK: - Setup UI elements
@@ -162,11 +166,14 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
                 self.collectionView.contentOffset.x += self.collectionView.frame.size.width + Locals.scrollingConstant
             }
         } else {
-            let finishedExerciseAlert = UIAlertController(title: "Congratulations 🎉🎉🎉", message: "You've just finished exercise!", preferredStyle: .alert)
+            /*let finishedExerciseAlert = UIAlertController(title: "Congratulations 🎉🎉🎉", message: "You've just finished exercise!", preferredStyle: .alert)
             finishedExerciseAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                 self.dismissViewController()
             }))
-            present(finishedExerciseAlert, animated: true)
+            present(finishedExerciseAlert, animated: true)*/
+            if let setName = setName {
+                router?.routeFinishedExerciseScene(with: setName)
+            }
         }
     }
     
