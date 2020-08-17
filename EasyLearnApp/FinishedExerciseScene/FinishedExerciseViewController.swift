@@ -13,8 +13,9 @@ final class FinishedExerciseViewController: UIViewController {
     // MARK: - Constants
     
     enum Locals {
-        static let numberOfLines = 2
-        static let labelSize: CGFloat = 20
+        static let numberOfLines = 0
+        static let topAnchor: CGFloat = 60
+        static let labelSize: CGFloat = 25
         static let stackSpacing: CGFloat = 40
         static let leadingAnchor: CGFloat = 20
         static let trailingAnchor: CGFloat = -20
@@ -51,12 +52,16 @@ final class FinishedExerciseViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         if #available(iOS 11.0, *) {
             NSLayoutConstraint.activate([
-                label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
+                label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Locals.topAnchor),
+                label.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor, constant: Locals.leadingAnchor),
+                label.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: Locals.trailingAnchor),
                 label.centerXAnchor.constraint(equalTo: view.centerXAnchor)
             ])
         } else {
             NSLayoutConstraint.activate([
-                label.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: 10),
+                label.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: Locals.topAnchor),
+                label.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor, constant: Locals.leadingAnchor),
+                label.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: Locals.trailingAnchor),
                 label.centerXAnchor.constraint(equalTo: view.centerXAnchor)
             ])
         }
