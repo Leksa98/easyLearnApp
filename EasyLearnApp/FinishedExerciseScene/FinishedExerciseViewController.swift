@@ -14,7 +14,7 @@ final class FinishedExerciseViewController: UIViewController {
     
     enum Locals {
         static let numberOfLines = 0
-        static let topAnchor: CGFloat = 60
+        static let topAnchor: CGFloat = 100
         static let labelSize: CGFloat = 25
         static let stackSpacing: CGFloat = 40
         static let leadingAnchor: CGFloat = 20

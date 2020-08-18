@@ -6,7 +6,6 @@
 //  Copyright © 2020 Alexandra Gertsenshtein. All rights reserved.
 //
 
-import Foundation
 import UIKit
 import CoreData
 
@@ -32,7 +31,7 @@ final class DataHandler : NSObject {
     /// - Parameters:
     ///   - name: название сета
     ///   - emoji: emoji для сета
-    func saveWordSet(name: String, emoji: String) {
+    public func saveWordSet(name: String, emoji: String) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -67,7 +66,7 @@ final class DataHandler : NSObject {
     ///   - name: имя сета
     ///   - word: слово, добавляемое в сет
     ///   - translation: перевод слова
-    func addWordtoSet(name: String, word: String, translation: String) {
+    public func addWordtoSet(name: String, word: String, translation: String) {
         if let word = saveWord(word: word, translation: translation),
             let set = fetchWordSet(with: name) {
             if let setWithWord = set.withWord {
@@ -83,7 +82,7 @@ final class DataHandler : NSObject {
     /// Получение слов из определенного сета
     /// - Parameter setWithName: имя сета
     /// - Returns: Массив объектов типа WordModel, содержащий слово, перевод и текущий прогресс
-    func fetchWords(from setWithName: String) -> [WordModel]  {
+    public func fetchWords(from setWithName: String) -> [WordModel]  {
         var wordArray: [WordModel] = []
         if let wordSet = fetchWordSet(with: setWithName) {
             if let setWithWords = wordSet.withWord {
@@ -125,7 +124,7 @@ final class DataHandler : NSObject {
     /// - Parameters:
     ///   - word: слово, для которого обновляется прогресс
     ///   - progressChange: значение типа Double, на которое изменяется прогресс
-    func updateWordProgress(word: String, progressChange: Double) {
+    public func updateWordProgress(word: String, progressChange: Double) {
         guard  let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -182,7 +181,7 @@ final class DataHandler : NSObject {
     
     /// Получение всех сохраненных сетов
     /// - Returns: массив объектов типа WordSet
-    func fetchAllWordSet() -> [WordSet]? {
+    public func fetchAllWordSet() -> [WordSet]? {
         guard  let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return nil
         }
@@ -206,7 +205,7 @@ final class DataHandler : NSObject {
     
     /// Удаление сета
     /// - Parameter name: имя удаляемого сета
-    func deleteWordSet(name: String) {
+    public func deleteWordSet(name: String) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -231,7 +230,7 @@ final class DataHandler : NSObject {
     /// - Parameters:
     ///   - name: имя сета
     ///   - wordValue: удаляемое слово
-    func deleteWordfromSet(name: String, wordValue: String) {
+    public func deleteWordfromSet(name: String, wordValue: String) {
            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
                return
            }
