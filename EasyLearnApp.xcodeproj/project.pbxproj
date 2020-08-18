@@ -61,6 +61,7 @@
 		A8ABBCB124B50CAD008081FB /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8ABBCB024B50CAD008081FB /* Router.swift */; };
 		A8ABBCB424B51501008081FB /* TranslateWordApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8ABBCB324B51501008081FB /* TranslateWordApi.swift */; };
 		A8ABBCB824B5B2B1008081FB /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8ABBCB724B5B2B1008081FB /* NetworkManager.swift */; };
+		A8AC78B024EBC8F600089C2E /* WordOfDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AC78AF24EBC8F600089C2E /* WordOfDayViewController.swift */; };
 		A8B2143F24D9641100A3CF7F /* WordSetStatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2143E24D9641100A3CF7F /* WordSetStatisticsViewController.swift */; };
 		A8B2144124D97CE900A3CF7F /* WordSetStatisticsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2144024D97CE900A3CF7F /* WordSetStatisticsInteractor.swift */; };
 		A8B2144324D97CF600A3CF7F /* WordSetStatisticsPresentor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2144224D97CF600A3CF7F /* WordSetStatisticsPresentor.swift */; };
@@ -217,6 +218,7 @@
 		A8ABBCB024B50CAD008081FB /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		A8ABBCB324B51501008081FB /* TranslateWordApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateWordApi.swift; sourceTree = "<group>"; };
 		A8ABBCB724B5B2B1008081FB /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		A8AC78AF24EBC8F600089C2E /* WordOfDayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordOfDayViewController.swift; sourceTree = "<group>"; };
 		A8B2143E24D9641100A3CF7F /* WordSetStatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetStatisticsViewController.swift; sourceTree = "<group>"; };
 		A8B2144024D97CE900A3CF7F /* WordSetStatisticsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetStatisticsInteractor.swift; sourceTree = "<group>"; };
 		A8B2144224D97CF600A3CF7F /* WordSetStatisticsPresentor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetStatisticsPresentor.swift; sourceTree = "<group>"; };
@@ -419,6 +421,7 @@
 				A8B5221D24DB2494008F02C7 /* DefaultWordSetListScene */,
 				A8AA51DC24C03C5C0047B084 /* AddSetScene */,
 				A8AA51DB24C03C1C0047B084 /* AddWordScene */,
+				A8AC78AE24EBC8C000089C2E /* WordOfDayScene */,
 				A8B5222224DC0620008F02C7 /* SettingsScene */,
 				A8B5222724DC11E4008F02C7 /* ChooseLanguageScene */,
 				A8F0D57724C249000004C609 /* Extensions */,
@@ -604,6 +607,14 @@
 				A8ABBCB724B5B2B1008081FB /* NetworkManager.swift */,
 			);
 			path = Manager;
+			sourceTree = "<group>";
+		};
+		A8AC78AE24EBC8C000089C2E /* WordOfDayScene */ = {
+			isa = PBXGroup;
+			children = (
+				A8AC78AF24EBC8F600089C2E /* WordOfDayViewController.swift */,
+			);
+			path = WordOfDayScene;
 			sourceTree = "<group>";
 		};
 		A8B2143D24D963BD00A3CF7F /* WordSetStatisticsScene */ = {
@@ -883,6 +894,7 @@
 				A88B1A1324D7EA28008ADA7F /* WordSetLearnPresentor.swift in Sources */,
 				A8B2143F24D9641100A3CF7F /* WordSetStatisticsViewController.swift in Sources */,
 				A82EEA7A24B3C01B00C35D90 /* WordSetViewController.swift in Sources */,
+				A8AC78B024EBC8F600089C2E /* WordOfDayViewController.swift in Sources */,
 				A8580B1B24DAFE450099B00F /* DefaultWordSetViewController.swift in Sources */,
 				A8BF981C24DD50F700755F7E /* AddWordConfigurator.swift in Sources */,
 				A82EEA7E24B4814000C35D90 /* HTTPMethod.swift in Sources */,

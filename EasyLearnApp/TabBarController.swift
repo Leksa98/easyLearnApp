@@ -34,12 +34,15 @@ final class TabBarController: UITabBarController {
         NewWordSetConfiguration.assembly(viewController: newWordSetViewController)
         newWordSetNavigationController.tabBarItem = UITabBarItem(title: "New set", image: UIImage(named: "Plus"), tag: 1)
         
+        let wordOfDayViewController = WordOfDayViewController()
+        let wordOfDayNavigationController = UINavigationController(rootViewController: wordOfDayViewController)
+        wordOfDayNavigationController.tabBarItem = UITabBarItem(title: "Word of day", image: UIImage(named: "Calendar"), tag: 2)
+        
         let settingsViewController = SettingsViewController()
         let settingsNavigationController = UINavigationController(rootViewController: settingsViewController)
         SettingsConfigurator.assembly(viewController: settingsViewController)
-        settingsNavigationController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "Settings"), tag: 2)
+        settingsNavigationController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "Settings"), tag: 3)
         
-        let tabBarList = [wordSetsNavigationController, newWordSetNavigationController, settingsNavigationController]
-        viewControllers = tabBarList
+        viewControllers = [wordSetsNavigationController, newWordSetNavigationController, wordOfDayNavigationController, settingsNavigationController]
     }
 }
