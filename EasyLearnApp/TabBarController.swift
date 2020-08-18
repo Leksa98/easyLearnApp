@@ -34,7 +34,7 @@ final class TabBarController: UITabBarController {
         NewWordSetConfiguration.assembly(viewController: newWordSetViewController)
         newWordSetNavigationController.tabBarItem = UITabBarItem(title: "New set", image: UIImage(named: "Plus"), tag: 1)
         
-        let wordOfDayViewController = WordOfDayViewController()
+        let wordOfDayViewController = WordOfDayConfigurator.assembly()
         let wordOfDayNavigationController = UINavigationController(rootViewController: wordOfDayViewController)
         wordOfDayNavigationController.tabBarItem = UITabBarItem(title: "Word of day", image: UIImage(named: "Calendar"), tag: 2)
         
