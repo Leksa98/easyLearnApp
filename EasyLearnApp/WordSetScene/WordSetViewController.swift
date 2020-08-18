@@ -27,6 +27,11 @@ final class WordSetViewController: UIViewController {
     private let statisticsButton = ButtonWithRoundCorners(title: "Statistics")
     private let stackButton = UIStackView()
     var router: WordSetRouterLogic?
+    var setName: String? {
+        didSet {
+            title = setName
+        }
+    }
     
     // MARK: - Lifecycle
     
@@ -35,6 +40,10 @@ final class WordSetViewController: UIViewController {
         tabBarController?.tabBar.isHidden = true
         view.backgroundColor = .white
         setButtons()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false
     }
     
     // MARK: - Setup UI elements

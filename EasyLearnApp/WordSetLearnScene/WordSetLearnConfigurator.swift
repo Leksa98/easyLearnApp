@@ -14,7 +14,7 @@ final class WordSetLearnConfigurator {
         
         let presenter = WordSetLearnPresentor()
         let interactor = WordSetLearnInteractor()
-        let router = WordSetCardRouter()
+        let router = WordSetLearnRouter()
         
         viewController.interactor = interactor
         viewController.router = router
