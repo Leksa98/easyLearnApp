@@ -115,7 +115,7 @@ final class NetworkManager {
         }
     }
     
-    func fetchWordOfDay(completion: @escaping (_ defaultWordSet: WordOfDay?, _ error: String?) -> ()) {
+    func fetchWordOfDay(completion: @escaping (_ defaultWordSet: WordOfDayModelNetwork?, _ error: String?) -> ()) {
         wordOfDayRouter.request(.fetchWordOfDay) { data, response, error in
             if error != nil {
                 completion(nil, "Error")
@@ -130,7 +130,7 @@ final class NetworkManager {
                         return
                     }
                     do {
-                        let apiResponse = try JSONDecoder().decode(WordOfDay.self, from: responseData)
+                        let apiResponse = try JSONDecoder().decode(WordOfDayModelNetwork.self, from: responseData)
                         completion(apiResponse, nil)
                     } catch {
                         completion(nil, NetworkResponse.unableToDecode.rawValue)

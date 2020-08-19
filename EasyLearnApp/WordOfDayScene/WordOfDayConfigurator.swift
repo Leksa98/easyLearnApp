@@ -11,15 +11,16 @@ import Foundation
 final class WordOfDayConfigurator {
     
     static func assembly() -> WordOfDayViewController {
-           
-           let viewController = WordOfDayViewController()
-           let presenter = WordOfDayPresenter()
-           let interactor = WordOfDayInteractor()
-           
-           viewController.interactor = interactor
-           interactor.presenter = presenter
-           presenter.viewController = viewController
-           
-           return viewController
-       }
+        
+        let viewController = WordOfDayViewController()
+        let presenter = WordOfDayPresenter()
+        let interactor = WordOfDayInteractor()
+        
+        viewController.interactor = interactor
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+        interactor.fetchWordOfDay(request: WordOfDayModel.FetchWordOfDay.Request())
+        
+        return viewController
+    }
 }

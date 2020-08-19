@@ -9,7 +9,7 @@
 import Foundation
 
 // MARK: - WordOfDay
-struct WordOfDay: Codable {
+struct WordOfDayModelNetwork: Codable {
     let id, word: String
     let contentProvider: ContentProvider
     let definitions: [Definition]

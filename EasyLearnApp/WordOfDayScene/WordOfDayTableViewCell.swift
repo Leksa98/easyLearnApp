@@ -23,19 +23,24 @@ final class WordOfDayTableViewCell: UITableViewCell {
     
     private var partOfSpeechLabel = UILabel()
     private var definitionLabel = UILabel()
+    var viewModel: String? {
+        didSet {
+            if let viewModel = viewModel {
+                updateContent(viewModel: viewModel)
+            }
+        }
+    }
     
     // MARK: - Lifecycle
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        selectionStyle = .none
         
         addSubview(partOfSpeechLabel)
         addSubview(definitionLabel)
         
-        partOfSpeechLabel.text = "noun"
         partOfSpeechLabel.font = UIFont.sfProTextMediumItalic(ofSize: Locals.textSize)
-        
-        definitionLabel.text = "In the law of wills, the determination of what happens when property left under a will is no longer in the testator's estate when the testator dies."
         definitionLabel.font = UIFont.sfProTextMedium(ofSize: Locals.textSize)
         definitionLabel.numberOfLines = Locals.numberOflines
         
@@ -57,5 +62,11 @@ final class WordOfDayTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Update content
+    
+    private func updateContent(viewModel: String) {
+        definitionLabel.text = viewModel
     }
 }

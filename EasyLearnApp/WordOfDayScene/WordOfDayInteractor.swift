@@ -9,20 +9,20 @@
 import Foundation
 
 protocol WordOfDayBusinessLogic {
-    func fetchWordOfDay()
+    func fetchWordOfDay(request: WordOfDayModel.FetchWordOfDay.Request)
 }
 
 final class WordOfDayInteractor: WordOfDayBusinessLogic {
     var presenter: WordOfDayPresentationLogic?
     
-    func fetchWordOfDay() {
-        let networkManager = NetworkManager()
-        networkManager.fetchWordOfDay { apiResponse, error in
+    func fetchWordOfDay(request: WordOfDayModel.FetchWordOfDay.Request) {
+        let wordOfDayParser = WordOfDayParser()
+        wordOfDayParser.fetchWordOfDay { apiResponse, error in
             if let error = error {
                 print(error)
             }
             if let apiResponse = apiResponse {
-                print(apiResponse)
+                self.presenter?.prepareForPresent(response: WordOfDayModel.FetchWordOfDay.Response(wordOfDay: apiResponse))
             }
         }
     }

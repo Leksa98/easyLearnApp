@@ -7,3 +7,19 @@
 //
 
 import Foundation
+
+enum WordOfDayModel {
+    
+    enum FetchWordOfDay {
+        
+        struct Request {}
+        
+        struct Response {
+            var wordOfDay: WordOfDay
+        }
+        
+        struct ViewModel {
+            var wordOfDay: WordOfDay
+        }
+    }
+}

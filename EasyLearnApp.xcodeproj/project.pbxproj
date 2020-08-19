@@ -25,6 +25,8 @@
 		A84B2D3C24AA5ECF0022F029 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A84B2D3B24AA5ECF0022F029 /* Assets.xcassets */; };
 		A84B2D3E24AB39570022F029 /* AllWordSetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84B2D3D24AB39570022F029 /* AllWordSetTableViewController.swift */; };
 		A84B2D4024AB4BD00022F029 /* AllWordSetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84B2D3F24AB4BD00022F029 /* AllWordSetTableViewCell.swift */; };
+		A8574FC624ED5D2C005BAAB8 /* WordOfDayParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8574FC524ED5D2C005BAAB8 /* WordOfDayParser.swift */; };
+		A8574FC824ED5EBC005BAAB8 /* WordOfDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8574FC724ED5EBC005BAAB8 /* WordOfDay.swift */; };
 		A8580B1324DAF0070099B00F /* DefaultWordSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8580B1224DAF0070099B00F /* DefaultWordSet.swift */; };
 		A8580B1524DAF20D0099B00F /* DefaultWordSetModelApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8580B1424DAF20D0099B00F /* DefaultWordSetModelApi.swift */; };
 		A8580B1924DAF6D70099B00F /* NewWordSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8580B1824DAF6D70099B00F /* NewWordSetViewController.swift */; };
@@ -67,7 +69,7 @@
 		A8AC78B624EBCFA000089C2E /* WordOfDayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AC78B524EBCFA000089C2E /* WordOfDayModel.swift */; };
 		A8AC78B824EBCFB200089C2E /* WordOfDayConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AC78B724EBCFB200089C2E /* WordOfDayConfigurator.swift */; };
 		A8AC78BA24EBE42300089C2E /* WordOfDayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AC78B924EBE42300089C2E /* WordOfDayTableViewCell.swift */; };
-		A8AC78BC24ED083600089C2E /* WordOfDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AC78BB24ED083600089C2E /* WordOfDay.swift */; };
+		A8AC78BC24ED083600089C2E /* WordOfDayModelNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AC78BB24ED083600089C2E /* WordOfDayModelNetwork.swift */; };
 		A8AC78BE24ED0D1D00089C2E /* WordOfDayApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AC78BD24ED0D1D00089C2E /* WordOfDayApi.swift */; };
 		A8B2143F24D9641100A3CF7F /* WordSetStatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2143E24D9641100A3CF7F /* WordSetStatisticsViewController.swift */; };
 		A8B2144124D97CE900A3CF7F /* WordSetStatisticsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2144024D97CE900A3CF7F /* WordSetStatisticsInteractor.swift */; };
@@ -189,6 +191,8 @@
 		A84B2D3B24AA5ECF0022F029 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A84B2D3D24AB39570022F029 /* AllWordSetTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllWordSetTableViewController.swift; sourceTree = "<group>"; };
 		A84B2D3F24AB4BD00022F029 /* AllWordSetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllWordSetTableViewCell.swift; sourceTree = "<group>"; };
+		A8574FC524ED5D2C005BAAB8 /* WordOfDayParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordOfDayParser.swift; sourceTree = "<group>"; };
+		A8574FC724ED5EBC005BAAB8 /* WordOfDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordOfDay.swift; sourceTree = "<group>"; };
 		A8580B1224DAF0070099B00F /* DefaultWordSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWordSet.swift; sourceTree = "<group>"; };
 		A8580B1424DAF20D0099B00F /* DefaultWordSetModelApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWordSetModelApi.swift; sourceTree = "<group>"; };
 		A8580B1824DAF6D70099B00F /* NewWordSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWordSetViewController.swift; sourceTree = "<group>"; };
@@ -231,7 +235,7 @@
 		A8AC78B524EBCFA000089C2E /* WordOfDayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordOfDayModel.swift; sourceTree = "<group>"; };
 		A8AC78B724EBCFB200089C2E /* WordOfDayConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordOfDayConfigurator.swift; sourceTree = "<group>"; };
 		A8AC78B924EBE42300089C2E /* WordOfDayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordOfDayTableViewCell.swift; sourceTree = "<group>"; };
-		A8AC78BB24ED083600089C2E /* WordOfDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordOfDay.swift; sourceTree = "<group>"; };
+		A8AC78BB24ED083600089C2E /* WordOfDayModelNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordOfDayModelNetwork.swift; sourceTree = "<group>"; };
 		A8AC78BD24ED0D1D00089C2E /* WordOfDayApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordOfDayApi.swift; sourceTree = "<group>"; };
 		A8B2143E24D9641100A3CF7F /* WordSetStatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetStatisticsViewController.swift; sourceTree = "<group>"; };
 		A8B2144024D97CE900A3CF7F /* WordSetStatisticsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetStatisticsInteractor.swift; sourceTree = "<group>"; };
@@ -341,6 +345,7 @@
 			children = (
 				A8F0D58A24C4CFDD0004C609 /* WordModel.swift */,
 				A8FFB4D024B3393E00CCCE43 /* WordSetModel.swift */,
+				A8574FC724ED5EBC005BAAB8 /* WordOfDay.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -364,6 +369,7 @@
 			isa = PBXGroup;
 			children = (
 				A81162A224BC9777002B4D8B /* TranslationMeaningsParser.swift */,
+				A8574FC524ED5D2C005BAAB8 /* WordOfDayParser.swift */,
 			);
 			path = Parser;
 			sourceTree = "<group>";
@@ -612,7 +618,7 @@
 			children = (
 				A8101D9224B5EF2D00FE4F60 /* TranslationModel.swift */,
 				A8580B1224DAF0070099B00F /* DefaultWordSet.swift */,
-				A8AC78BB24ED083600089C2E /* WordOfDay.swift */,
+				A8AC78BB24ED083600089C2E /* WordOfDayModelNetwork.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -903,6 +909,7 @@
 				A867382324EA66F2006D66C5 /* FinishedExerciseViewController.swift in Sources */,
 				A8BF985024DF255500755F7E /* WordSetStatisticsModel.swift in Sources */,
 				A8580B1324DAF0070099B00F /* DefaultWordSet.swift in Sources */,
+				A8574FC624ED5D2C005BAAB8 /* WordOfDayParser.swift in Sources */,
 				A8BF982C24DD75A900755F7E /* NewWordSetConfiguration.swift in Sources */,
 				A8BF981A24DD502400755F7E /* DefaultWordSetConfigurator.swift in Sources */,
 				A8BF984424DD972900755F7E /* ChooseLanguagePresenter.swift in Sources */,
@@ -914,6 +921,7 @@
 				A8F0D57B24C249880004C609 /* TextFieldExtension.swift in Sources */,
 				A8BF984024DD94D000755F7E /* SettingsConfigurator.swift in Sources */,
 				A8BF981224DD4A7A00755F7E /* AllWordSetTableConfigurator.swift in Sources */,
+				A8574FC824ED5EBC005BAAB8 /* WordOfDay.swift in Sources */,
 				A88B1A1324D7EA28008ADA7F /* WordSetLearnPresentor.swift in Sources */,
 				A8B2143F24D9641100A3CF7F /* WordSetStatisticsViewController.swift in Sources */,
 				A82EEA7A24B3C01B00C35D90 /* WordSetViewController.swift in Sources */,
@@ -961,7 +969,7 @@
 				A88B1A0F24D2FB40008ADA7F /* WordSetLearnCollectionViewCell.swift in Sources */,
 				A8580B1D24DB04F50099B00F /* DefaultWordSetTableViewCell.swift in Sources */,
 				A8BF985224DF3C5F00755F7E /* DefaultWordSetModel.swift in Sources */,
-				A8AC78BC24ED083600089C2E /* WordOfDay.swift in Sources */,
+				A8AC78BC24ED083600089C2E /* WordOfDayModelNetwork.swift in Sources */,
 				A8BF983824DD8DEC00755F7E /* AddSetInteractor.swift in Sources */,
 				A81162A324BC9777002B4D8B /* TranslationMeaningsParser.swift in Sources */,
 				A8ABBCAD24B50B84008081FB /* JSONParameterEncoder.swift in Sources */,

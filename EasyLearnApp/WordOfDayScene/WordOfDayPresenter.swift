@@ -9,9 +9,13 @@
 import Foundation
 
 protocol WordOfDayPresentationLogic {
-    
+    func prepareForPresent(response: WordOfDayModel.FetchWordOfDay.Response)
 }
 
 final class WordOfDayPresenter: WordOfDayPresentationLogic {
     weak var viewController: WordOfDayDisplay?
+    
+    func prepareForPresent(response: WordOfDayModel.FetchWordOfDay.Response) {
+        viewController?.updateContent(viewModel: WordOfDayModel.FetchWordOfDay.ViewModel(wordOfDay: response.wordOfDay))
+    }
 }
