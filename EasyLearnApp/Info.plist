@@ -58,5 +58,10 @@
 		<string>SF-Pro-Text-Semibold.otf</string>
 		<string>SF-Pro-Text-SemiboldItalic.otf</string>
 	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>

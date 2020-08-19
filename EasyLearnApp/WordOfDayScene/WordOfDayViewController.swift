@@ -48,6 +48,7 @@ final class WordOfDayViewController: UIViewController {
         navigationItem.title = "Word of the day"
         setUpLabels()
         setUpTableView()
+        interactor?.fetchWordOfDay()
     }
     
     // MARK: - Setup UI elements
