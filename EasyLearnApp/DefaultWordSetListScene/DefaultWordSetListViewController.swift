@@ -35,6 +35,8 @@ final class DefaultWordSetListViewController: UIViewController {
             tableView.reloadData()
         }
     }
+    private let alertView = CustomAlertView()
+    private let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
     var interactor: DefaultWordSetListBusinessLogic?
     
     // MARK: - Life cycle
@@ -115,8 +117,30 @@ extension DefaultWordSetListViewController: DefaultWordSetListDataSource {
 // MARK: - DefaultWordSetListSaveNotification protocol
 extension DefaultWordSetListViewController: DefaultWordSetListSaveNotification {
     func showSaveAlert(viewModel: DefaultWordSetListModel.DownloadWordSet.ViewModel) {
-        let savedAlert = UIAlertController(title: "Saved", message: "Set \(viewModel.name) \(viewModel.emoji) was saved!", preferredStyle: .alert)
+        view.addSubview(visualEffectView)
+        visualEffectView.translatesAutoresizingMaskIntoConstraints = false
+        alertView.titleLabel.text = "Saved"
+        alertView.messageLabel.text = "Set \(viewModel.name) \(viewModel.emoji) was saved!"
+        alertView.button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        view.addSubview(alertView)
+        alertView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            visualEffectView.topAnchor.constraint(equalTo: topLayoutGuide.topAnchor),
+            visualEffectView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            visualEffectView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            visualEffectView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            alertView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            alertView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            alertView.widthAnchor.constraint(equalToConstant: 300),
+            alertView.heightAnchor.constraint(equalToConstant: 150),
+        ])
+        /*let savedAlert = UIAlertController(title: "Saved", message: "Set \(viewModel.name) \(viewModel.emoji) was saved!", preferredStyle: .alert)
         savedAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(savedAlert, animated: true, completion: nil)
+        self.present(savedAlert, animated: true, completion: nil)*/
+    }
+    
+    @objc private func buttonPressed() {
+        visualEffectView.removeFromSuperview()
+        alertView.removeFromSuperview()
     }
 }
