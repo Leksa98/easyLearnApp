@@ -17,10 +17,9 @@ final class DefaultWordSetListInteractor: DefaultWordSetListBusinessLogic {
     var presenter: DefaultWordSetListPresentationLogic?
     
     func downloadWordSet(request: DefaultWordSetListModel.DownloadWordSet.Request) {
-        let dataHandler = DataHandler()
-        dataHandler.saveWordSet(name: request.name, emoji: request.emoji)
+        DataHandler.shared.saveWordSet(name: request.name, emoji: request.emoji)
         for word in request.words {
-            dataHandler.addWordtoSet(name: request.name, word: word.word, translation: word.translation)
+            DataHandler.shared.addWordtoSet(name: request.name, word: word.word, translation: word.translation)
         }
         presenter?.prepareForPresent(response: DefaultWordSetListModel.DownloadWordSet.Response(name: request.name, emoji: request.emoji))
     }

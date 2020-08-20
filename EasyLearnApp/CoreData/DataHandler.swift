@@ -6,7 +6,6 @@
 //  Copyright © 2020 Alexandra Gertsenshtein. All rights reserved.
 //
 
-import UIKit
 import CoreData
 
 
@@ -15,9 +14,16 @@ final class DataHandler : NSObject {
     
     // MARK: - Constants
     
+    private enum Keys {
+        static let word = "Word"
+        static let wordSet = "WordSet"
+    }
+    
+    // MARK: - Properties
+    
     static let shared = DataHandler()
     
-    let persistentContainer: NSPersistentContainer = {
+    lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "EasyLearnApp")
         container.loadPersistentStores { (storeDescription, error) in
             if let error = error {
@@ -27,14 +33,13 @@ final class DataHandler : NSObject {
         return container
     }()
     
-    private enum Keys {
-        static let word = "Word"
-        static let wordSet = "WordSet"
-    }
-    
     private var context: NSManagedObjectContext {
         return persistentContainer.viewContext
     }
+    
+    // MARK: - Init
+    
+    private override init() {}
     
     // MARK: - Private data handling functions
     
@@ -155,6 +160,7 @@ final class DataHandler : NSObject {
     
     /// Обновление прогресса для слова
     /// - Parameters:
+    ///   - setName: имя сета
     ///   - word: слово, для которого обновляется прогресс
     ///   - progressChange: значение типа Double, на которое изменяется прогресс
     public func updateWordProgress(setName: String, wordUpdate: String, progressChange: Double) {

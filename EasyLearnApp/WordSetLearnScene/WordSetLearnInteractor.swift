@@ -17,12 +17,10 @@ final class WordSetLearnInteractor: WordSetLearnBusinessLogic {
     var presenter: WordSetLearnResentationLogic?
     
     func fetchWords(request: WordSetLearnModel.FetchWordSet.Request) {
-        let dataHandler = DataHandler()
-        presenter?.prepareForPresent(response: WordSetLearnModel.FetchWordSet.Response(wordsArray: dataHandler.fetchWords(from: request.setName)))
+        presenter?.prepareForPresent(response: WordSetLearnModel.FetchWordSet.Response(wordsArray: DataHandler.shared.fetchWords(from: request.setName)))
     }
     
     func editWordProgress(request: WordSetLearnModel.EditWordProgress.Request) {
-        let dataHandler = DataHandler()
-        dataHandler.updateWordProgress(setName: request.setName, wordUpdate: request.word, progressChange: request.progressChange)
+        DataHandler.shared.updateWordProgress(setName: request.setName, wordUpdate: request.word, progressChange: request.progressChange)
     }
 }
