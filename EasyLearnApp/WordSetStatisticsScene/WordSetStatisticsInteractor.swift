@@ -17,8 +17,7 @@ final class WordSetStatisticsInteractor: WordSetStatisticsBusinessLogic {
     var presenter: WordSetStatisticsPresentationLogic?
     
     func fetchWords(request: WordSetStatisticsModel.FetchWordSet.Request) {
-        let dataHandler = DataHandler()
-        let wordArray = dataHandler.fetchWords(from: request.setName)
+        let wordArray = DataHandler.shared.fetchWords(from: request.setName)
         presenter?.prepareForPresent(response: WordSetStatisticsModel.FetchWordSet.Response(wordsArray: wordArray))
     }
 }

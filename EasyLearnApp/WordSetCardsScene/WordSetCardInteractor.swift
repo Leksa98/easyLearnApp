@@ -17,7 +17,6 @@ final class WordSetCardInteractor: WordSetCardBusinessLogic {
     var presenter: WordSetCardPresentationLogic?
     
     func fetchWordSet(request: WordSetCardModel.FetchWordSet.Request) {
-        let dataHandler = DataHandler()
-        presenter?.prepareForPresent(response: WordSetCardModel.FetchWordSet.Response(wordsArray: dataHandler.fetchWords(from: request.setName)))
+        presenter?.prepareForPresent(response: WordSetCardModel.FetchWordSet.Response(wordsArray: DataHandler.shared.fetchWords(from: request.setName)))
     }
 }

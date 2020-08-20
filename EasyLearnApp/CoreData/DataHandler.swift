@@ -6,59 +6,112 @@
 //  Copyright © 2020 Alexandra Gertsenshtein. All rights reserved.
 //
 
-import UIKit
 import CoreData
 
 
 ///  Класс для обращения к CoreData
 final class DataHandler : NSObject {
     
-    private func saveContext() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
+    // MARK: - Constants
+    
+    private enum Keys {
+        static let word = "Word"
+        static let wordSet = "WordSet"
+    }
+    
+    // MARK: - Properties
+    
+    static let shared = DataHandler()
+    
+    lazy var group: DispatchGroup = {
+        return DispatchGroup()
+    }()
+    
+    lazy var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "EasyLearnApp")
+        container.loadPersistentStores { (storeDescription, error) in
+            if let error = error {
+                fatalError("Loading store failed \(error)")
+            }
         }
-        let viewContext = appDelegate.persistentContainer.viewContext
-        if viewContext.hasChanges {
+        return container
+    }()
+    
+    private var context: NSManagedObjectContext {
+        return persistentContainer.viewContext
+    }
+    
+    // MARK: - Init
+    
+    private override init() {}
+    
+    // MARK: - Private data handling functions
+    
+    private func saveWord(word: String, translation: String) -> Word? {
+        if let newWord = NSEntityDescription.insertNewObject(forEntityName: Keys.word, into: context) as? Word {
+            newWord.word = word
+            newWord.translation = translation
+            newWord.progress = 0.0
+            newWord.wrongAnswer = 0
+            newWord.rightAnswer = 0
             do {
-                try viewContext.save()
+                try context.save()
+                print("Word \(String(describing: newWord.word)) with translation \(String(describing: newWord.translation)) added")
+                return newWord
+            } catch {
+                print("Failed to save new word set: \(error)")
+            }
+        }
+        return nil
+    }
+    
+    private func setOverallSetProgress(setName: String) {
+        let fetchRequest = NSFetchRequest<WordSet>(entityName: Keys.wordSet)
+        fetchRequest.predicate = NSPredicate(format: "name == %@", setName)
+        do {
+            if let wordSet = try context.fetch(fetchRequest).first {
+                if let words = wordSet.withWord {
+                    var sumProgress: Float = 0
+                    for word in words {
+                        if let word = word as? Word {
+                            sumProgress += Float(word.progress)
+                        }
+                    }
+                    wordSet.progress = Double(sumProgress / Float(words.count))
+                }
+            }
+            do {
+                try context.save()
             } catch let error as NSError {
                 print("not Save==\(error),\(error.userInfo)")
             }
+        } catch {
+            print("Failed to set overall set progress: \(error)")
         }
     }
+    
+    // MARK: - Public data handling functions
     
     /// Сохранение сета в CoreData
     /// - Parameters:
     ///   - name: название сета
     ///   - emoji: emoji для сета
     public func saveWordSet(name: String, emoji: String) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
+        group.enter()
+        if let newWordSet = NSEntityDescription.insertNewObject(forEntityName: Keys.wordSet, into: context) as? WordSet {
+            newWordSet.name = name
+            newWordSet.emoji = emoji
+            newWordSet.progress = 0.0
+            newWordSet.withWord = NSSet()
+            do {
+                try context.save()
+                print("WordSet with name \(String(describing: newWordSet.name)) added")
+                group.leave()
+            } catch {
+                print("Failed to save new word set: \(error)")
+                group.leave()
+            }
         }
-        let viewContext = appDelegate.persistentContainer.viewContext
-        let wordSet = WordSet(context: viewContext)
-        wordSet.name = name
-        wordSet.emoji = emoji
-        wordSet.progress = 0.0
-        wordSet.withWord = NSSet()
-        print("WordSet with name \(String(describing: wordSet.name)) added")
-        saveContext()
-    }
-    
-    private func saveWord(word: String, translation: String) -> Word? {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return nil
-        }
-        let viewContext = appDelegate.persistentContainer.viewContext
-        let newWord = Word(context: viewContext)
-        newWord.word = word
-        newWord.translation = translation
-        newWord.progress = 0.0
-        newWord.wrongAnswer = 0
-        newWord.rightAnswer = 0
-        print("Word \(String(describing: newWord.word)) with translation \(String(describing: newWord.translation)) added")
-        saveContext()
-        return newWord
     }
     
     /// Добавление нового слова в сет
@@ -67,15 +120,28 @@ final class DataHandler : NSObject {
     ///   - word: слово, добавляемое в сет
     ///   - translation: перевод слова
     public func addWordtoSet(name: String, word: String, translation: String) {
-        if let word = saveWord(word: word, translation: translation),
-            let set = fetchWordSet(with: name) {
-            if let setWithWord = set.withWord {
-                set.withWord = NSSet(set: setWithWord.adding(word))
-            } else {
-                set.withWord = NSSet(object: word)
+        group.enter()
+        let fetchRequest = NSFetchRequest<WordSet>(entityName: Keys.wordSet)
+        fetchRequest.predicate = NSPredicate(format: "name == %@", name)
+        let newWord = saveWord(word: word, translation: translation)
+        do {
+            if let wordSet = try context.fetch(fetchRequest).first {
+                if let setWithWord = wordSet.withWord {
+                    wordSet.withWord = NSSet(set: setWithWord.adding(newWord as Any))
+                } else {
+                    wordSet.withWord = NSSet(object: newWord as Any)
+                }
+                do {
+                    try context.save()
+                    print("Word \(String(describing: newWord?.word)) with translation \(String(describing: newWord?.translation)) added to WordSet \(String(describing: wordSet.name))")
+                } catch let error as NSError {
+                    print("not Save==\(error),\(error.userInfo)")
+                }
             }
-            print("Word \(String(describing: word.word)) with translation \(String(describing: word.translation)) added to WordSet \(String(describing: set.name))")
-            saveContext()
+            group.leave()
+        } catch {
+            print("Failed to add word to set: \(error)")
+            group.leave()
         }
     }
     
@@ -83,122 +149,90 @@ final class DataHandler : NSObject {
     /// - Parameter setWithName: имя сета
     /// - Returns: Массив объектов типа WordModel, содержащий слово, перевод и текущий прогресс
     public func fetchWords(from setWithName: String) -> [WordModel]  {
+        group.enter()
         var wordArray: [WordModel] = []
-        if let wordSet = fetchWordSet(with: setWithName) {
-            if let setWithWords = wordSet.withWord {
-                for (_,word) in setWithWords.allObjects.enumerated() {
-                    if let word = word as? Word, let wordValue = word.word, let wordTranslation = word.translation {
-                        wordArray.append(WordModel(word: wordValue, translation: wordTranslation, progress: word.progress, rightAnswer: Int(word.rightAnswer), wrongAnswer: Int(word.wrongAnswer)))
+        let fetchRequest = NSFetchRequest<WordSet>(entityName: Keys.wordSet)
+        fetchRequest.predicate = NSPredicate(format: "name == %@", setWithName)
+        do {
+            if let wordSet = try context.fetch(fetchRequest).first {
+                if let setWithWords = wordSet.withWord {
+                    for (_,word) in setWithWords.allObjects.enumerated() {
+                        if let word = word as? Word, let wordValue = word.word, let wordTranslation = word.translation {
+                            wordArray.append(WordModel(word: wordValue, translation: wordTranslation, progress: word.progress, rightAnswer: Int(word.rightAnswer), wrongAnswer: Int(word.wrongAnswer)))
+                        }
                     }
                 }
             }
+            group.leave()
+        } catch {
+            print("Failed to fetch words from set: \(error)")
+            group.leave()
         }
         return wordArray
     }
     
-    /// Получение сета
-    /// - Parameter name: имя сета
-    /// - Returns: сет типа WordSet?
-    private func fetchWordSet(with name: String) -> WordSet? {
-        guard  let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return nil
-        }
-        let viewContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "WordSet")
-        do {
-            let wordSet = try viewContext.fetch(fetchRequest)
-            for set in wordSet {
-                if let set = set as? WordSet, set.name == name {
-                    print("Fetch word set with name \(String(describing: set.name))")
-                    return set
-                }
-            }
-        } catch let error as NSError {
-            print("not fetch==\(error),\(error.userInfo)")
-        }
-        return nil
-    }
-    
-    
     /// Обновление прогресса для слова
     /// - Parameters:
+    ///   - setName: имя сета
     ///   - word: слово, для которого обновляется прогресс
     ///   - progressChange: значение типа Double, на которое изменяется прогресс
-    public func updateWordProgress(word: String, progressChange: Double) {
-        guard  let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        let viewContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Word")
+    public func updateWordProgress(setName: String, wordUpdate: String, progressChange: Double) {
+        group.enter()
+        let fetchRequest = NSFetchRequest<WordSet>(entityName: Keys.wordSet)
+        fetchRequest.predicate = NSPredicate(format: "name == %@", setName)
         do {
-            let words = try viewContext.fetch(fetchRequest)
-            for currentWord in words {
-                if let currentWord = currentWord as? Word,
-                    (currentWord.word?.trimmingCharacters(in: .whitespacesAndNewlines).capitalized == word.capitalized || currentWord.translation?.trimmingCharacters(in: .whitespacesAndNewlines).capitalized == word.capitalized)   {
-                    if progressChange > 0 {
-                        currentWord.rightAnswer += 1
-                    } else if progressChange < 0 {
-                        currentWord.wrongAnswer += 1
-                    }
-                    if (currentWord.progress + progressChange >= 0.0) && (currentWord.progress <= 1.0) {
-                        currentWord.progress += progressChange
-                    }
-                }
-            }
-        } catch let error as NSError {
-            print("not fetch==\(error),\(error.userInfo)")
-        }
-        saveContext()
-    }
-    
-    private func setOverallSetProgress(setName: String) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        let viewContext = appDelegate.persistentContainer.viewContext
-        let fetchRequestUser = NSFetchRequest<NSManagedObject>(entityName: "WordSet")
-        do {
-            let wordSets = try viewContext.fetch(fetchRequestUser)
-            for wordSet in wordSets {
-                if let wordSet = wordSet as? WordSet, wordSet.name == setName {
-                    if let words = wordSet.withWord {
-                        var sumProgress: Float = 0
-                        for word in words {
-                            if let word = word as? Word {
-                                sumProgress += Float(word.progress)
+            if let wordSet = try context.fetch(fetchRequest).first {
+                if let setWithWords = wordSet.withWord {
+                    for (_,word) in setWithWords.allObjects.enumerated() {
+                        if let word = word as? Word,
+                            let wordValue = word.word,
+                            let wordTranslation = word.translation,
+                            wordValue.capitalized == wordUpdate.trimmingCharacters(in: .whitespacesAndNewlines).capitalized ||
+                                wordTranslation.capitalized == wordUpdate.trimmingCharacters(in: .whitespacesAndNewlines).capitalized {
+                            if progressChange > 0 {
+                                word.rightAnswer += 1
+                            } else if progressChange < 0 {
+                                word.wrongAnswer += 1
+                            }
+                            if (word.progress + progressChange >= 0.0) && (word.progress <= 1.0) {
+                                word.progress += progressChange
+                            }
+                            do {
+                                try context.save()
+                                print("progress updated")
+                            } catch let error as NSError {
+                                print("not Save==\(error),\(error.userInfo)")
                             }
                         }
-                        wordSet.progress = Double(sumProgress / Float(words.count))
                     }
                 }
             }
+            group.leave()
         } catch let error as NSError {
-               print("not deleted==\(error),\(error.userInfo)")
+            print("not fetch==\(error),\(error.userInfo)")
+            group.leave()
         }
-        saveContext()
     }
-    
     
     /// Получение всех сохраненных сетов
     /// - Returns: массив объектов типа WordSet
     public func fetchAllWordSet() -> [WordSet]? {
-        guard  let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return nil
-        }
-        let viewContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "WordSet")
+        group.enter()
+        let fetchRequest = NSFetchRequest<WordSet>(entityName: Keys.wordSet)
         do {
-            let wordSet = try viewContext.fetch(fetchRequest)
-            var resultSet: [WordSet]? = []
-            for set in wordSet {
-                if let set = set as? WordSet, let setName = set.name {
-                    setOverallSetProgress(setName: setName)
-                    resultSet?.append(set)
-                }
+            let sets = try context.fetch(fetchRequest)
+            
+            var result: [WordSet] = []
+            for set in sets {
+                guard let name = set.name else { return nil }
+                setOverallSetProgress(setName: name)
+                result.append(set)
             }
-            return resultSet
-        } catch let error as NSError {
-            print("not fetch==\(error),\(error.userInfo)")
+            group.leave()
+            return result
+        } catch {
+            print("Failed to get word sets: \(error)")
+            group.leave()
         }
         return nil
     }
@@ -206,53 +240,53 @@ final class DataHandler : NSObject {
     /// Удаление сета
     /// - Parameter name: имя удаляемого сета
     public func deleteWordSet(name: String) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        let viewContext = appDelegate.persistentContainer.viewContext
-        let fetchRequestUser = NSFetchRequest<NSManagedObject>(entityName: "WordSet")
+        group.enter()
+        let fetchRequest = NSFetchRequest<WordSet>(entityName: Keys.wordSet)
+        fetchRequest.predicate = NSPredicate(format: "name == %@", name)
         do {
-            let wordSets = try viewContext.fetch(fetchRequestUser)
-            for wordSet in wordSets {
-                if let wordSet = wordSet as? WordSet, wordSet.name == name {
-                    viewContext.delete(wordSet)
-                    print("Deleted \(wordSet.value(forKey: "name") ?? "No Name Available")")
+            if let wordSet = try context.fetch(fetchRequest).first {
+                context.delete(wordSet)
+                do {
+                    try context.save()
+                } catch let error as NSError {
+                    print("not Save==\(error),\(error.userInfo)")
                 }
             }
-        } catch let error as NSError {
-               print("not deleted==\(error),\(error.userInfo)")
+            group.leave()
+        } catch {
+            print("Failed to delete word set: \(error)")
+            group.leave()
         }
-        saveContext()
     }
-    
     
     /// Удаление слова из сета
     /// - Parameters:
     ///   - name: имя сета
     ///   - wordValue: удаляемое слово
     public func deleteWordfromSet(name: String, wordValue: String) {
-           guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-               return
-           }
-           let viewContext = appDelegate.persistentContainer.viewContext
-           let fetchRequestUser = NSFetchRequest<NSManagedObject>(entityName: "WordSet")
-           do {
-               let wordSets = try viewContext.fetch(fetchRequestUser)
-               for wordSet in wordSets {
-                   if let wordSet = wordSet as? WordSet, wordSet.name == name {
-                    if let words = wordSet.withWord {
-                        for word in words {
-                            if let word = word as? Word, word.word == wordValue {
-                                viewContext.delete(word)
-                                print("Deleted \(String(describing: word.word))")
-                            }
+        group.enter()
+        let fetchRequest = NSFetchRequest<WordSet>(entityName: Keys.wordSet)
+        fetchRequest.predicate = NSPredicate(format: "name == %@", name)
+        do {
+            if let wordSet = try context.fetch(fetchRequest).first {
+                if let words = wordSet.withWord {
+                    for word in words {
+                        if let word = word as? Word, word.word == wordValue {
+                            context.delete(word)
+                            print("Deleted \(String(describing: word.word))")
                         }
                     }
-                   }
-               }
-           } catch let error as NSError {
-                  print("not deleted==\(error),\(error.userInfo)")
-           }
-           saveContext()
-       }
+                }
+            }
+            do {
+                try context.save()
+            } catch let error as NSError {
+                print("not Save==\(error),\(error.userInfo)")
+            }
+            group.leave()
+        } catch let error as NSError {
+            print("not deleted==\(error),\(error.userInfo)")
+            group.leave()
+        }
+    }
 }

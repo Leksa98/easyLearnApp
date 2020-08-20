@@ -18,15 +18,13 @@ final class AllWordSetTableInteractor: AllWordSetTableBusinessLogic {
     var presenter: AllWordSetTablePresentationLogic?
     
     func fetchStudySets(request: AllWordSetTableModel.FetchStudySets.Request) {
-        let dataHandler = DataHandler()
-        guard let sets = dataHandler.fetchAllWordSet() else {
+        guard let sets = DataHandler.shared.fetchAllWordSet() else {
             return
         }
         presenter?.presentSets(response: AllWordSetTableModel.FetchStudySets.Response(studySets: sets))
     }
     
     func deletefromCoreData(request: AllWordSetTableModel.DeleteSet.Request) {
-        let dataHandler = DataHandler()
-        dataHandler.deleteWordSet(name: request.setName)
+        DataHandler.shared.deleteWordSet(name: request.setName)
     }
 }
