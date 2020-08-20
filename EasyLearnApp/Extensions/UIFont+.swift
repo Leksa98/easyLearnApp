@@ -20,4 +20,8 @@ extension UIFont {
     open class func sfProTextRegular(ofSize: CGFloat) -> UIFont? {
         return UIFont(name: "SFProText-Regular", size: ofSize)
     }
+    
+    open class func sfProTextMediumItalic(ofSize: CGFloat) -> UIFont? {
+        return UIFont(name: "SFProText-MediumItalic", size: ofSize)
+    }
 }

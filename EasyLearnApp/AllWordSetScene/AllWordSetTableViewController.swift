@@ -18,6 +18,7 @@ final class AllWordSetTableViewController: UITableViewController {
     
     enum Locals {
         static let cellId = "wordSetCell"
+        static let tableRowHeight: CGFloat = 44
     }
     
     // MARK: - Properties
@@ -56,15 +57,11 @@ final class AllWordSetTableViewController: UITableViewController {
         navigationController?.navigationBar.tintColor = UIColor.blueSapphire
         tableView.separatorStyle = .none
         if #available(iOS 11.0, *) {} else {
-            tableView.estimatedRowHeight = 44
+            tableView.estimatedRowHeight = Locals.tableRowHeight
         }
     }
     
     // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return studySet.count

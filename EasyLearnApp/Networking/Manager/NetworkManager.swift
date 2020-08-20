@@ -18,6 +18,7 @@ public enum Result<String> {
 final class NetworkManager {
     private let translationRouter = Router<TranslateWordApi>()
     private let defaultSetsRouter = Router<DefaultWordSetModelApi>()
+    private let wordOfDayRouter = Router<WordOfDayApi>()
     
     public enum NetworkResponse: String {
         case success
@@ -103,6 +104,33 @@ final class NetworkManager {
                     }
                     do {
                         let apiResponse = try JSONDecoder().decode(DefaultWordSet.self, from: responseData)
+                        completion(apiResponse, nil)
+                    } catch {
+                        completion(nil, NetworkResponse.unableToDecode.rawValue)
+                    }
+                case .failure(let NetworkFailureError):
+                    completion(nil, NetworkFailureError)
+                }
+            }
+        }
+    }
+    
+    func fetchWordOfDay(completion: @escaping (_ defaultWordSet: WordOfDayModelNetwork?, _ error: String?) -> ()) {
+        wordOfDayRouter.request(.fetchWordOfDay) { data, response, error in
+            if error != nil {
+                completion(nil, "Error")
+            }
+            
+            if let response = response as? HTTPURLResponse {
+                let result = self.handleNetworkRequest(response)
+                switch result {
+                case .success:
+                    guard let responseData = data else {
+                        completion(nil, NetworkResponse.noData.rawValue)
+                        return
+                    }
+                    do {
+                        let apiResponse = try JSONDecoder().decode(WordOfDayModelNetwork.self, from: responseData)
                         completion(apiResponse, nil)
                     } catch {
                         completion(nil, NetworkResponse.unableToDecode.rawValue)

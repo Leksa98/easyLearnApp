@@ -39,7 +39,13 @@ final class TabBarController: UITabBarController {
         SettingsConfigurator.assembly(viewController: settingsViewController)
         settingsNavigationController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "Settings"), tag: 2)
         
-        let tabBarList = [wordSetsNavigationController, newWordSetNavigationController, settingsNavigationController]
-        viewControllers = tabBarList
+        if let language = UserDefaults.standard.object(forKey: "selectedLanguage") as? String, language == "English" {
+            let wordOfDayViewController = WordOfDayConfigurator.assembly()
+            let wordOfDayNavigationController = UINavigationController(rootViewController: wordOfDayViewController)
+            wordOfDayNavigationController.tabBarItem = UITabBarItem(title: "Word of day", image: UIImage(named: "Calendar"), tag: 3)
+            viewControllers = [wordSetsNavigationController, newWordSetNavigationController, wordOfDayNavigationController, settingsNavigationController]
+        } else {
+            viewControllers = [wordSetsNavigationController, newWordSetNavigationController, settingsNavigationController]
+        }
     }
 }
