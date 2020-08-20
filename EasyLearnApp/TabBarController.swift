@@ -39,7 +39,8 @@ final class TabBarController: UITabBarController {
         SettingsConfigurator.assembly(viewController: settingsViewController)
         settingsNavigationController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "Settings"), tag: 2)
         
-        if let language = UserDefaults.standard.object(forKey: "selectedLanguage") as? String, language == "English" {
+        let language = (UserDefaults.standard.object(forKey: "selectedLanguage") as? String) ?? "English"
+        if language == "English" {
             let wordOfDayViewController = WordOfDayConfigurator.assembly()
             let wordOfDayNavigationController = UINavigationController(rootViewController: wordOfDayViewController)
             wordOfDayNavigationController.tabBarItem = UITabBarItem(title: "Word of day", image: UIImage(named: "Calendar"), tag: 3)
