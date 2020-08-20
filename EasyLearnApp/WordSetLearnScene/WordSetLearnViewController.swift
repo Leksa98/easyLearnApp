@@ -125,6 +125,8 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
                     cell.showAnimation(correctAnswer: true) { finished in
                         self.scrollCollectionViewToNextExercise()
                     }
+                } else {
+                    UIDevice.vibrate()
                 }
             } else {
                 if cell.checkExercise() {
@@ -135,6 +137,7 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
                         self.scrollCollectionViewToNextExercise()
                     }
                 } else {
+                    UIDevice.vibrate()
                     if let studyWord = cell.viewModel?.word, let setName = setName {
                         interactor?.editWordProgress(request: WordSetLearnModel.EditWordProgress.Request(setName: setName, word: studyWord, progressChange: -0.1))
                     }
