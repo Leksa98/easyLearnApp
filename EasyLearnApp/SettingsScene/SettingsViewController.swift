@@ -40,6 +40,7 @@ final class SettingsViewController: UIViewController {
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
         }
+        tabBarController?.tabBar.isHidden = false
     }
     
     // MARK: - Setup UI elements

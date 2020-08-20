@@ -27,12 +27,15 @@ final class WordOfDayViewController: UIViewController {
         static let tableRowHeight: CGFloat = 44
         static let wordLabelTextSize: CGFloat = 20
         static let dateLabelTextSize: CGFloat = 15
+        
         static let topAnchor: CGFloat = 10
         static let leadingAnchor: CGFloat = 15
         static let trailingAnchor: CGFloat = -15
         static let bottomAnchor: CGFloat = -10
         static let distanceBetweenLabels: CGFloat = 5
+        
         static let noteNumberOfLines = 0
+        static let headerHeight: CGFloat = 30
     }
     
     // MARK: - Properties
@@ -119,7 +122,7 @@ final class WordOfDayViewController: UIViewController {
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: lineView.bottomAnchor, constant: Locals.topAnchor),
+            tableView.topAnchor.constraint(equalTo: lineView.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Locals.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Locals.trailingAnchor)
         ])
@@ -136,14 +139,14 @@ extension WordOfDayViewController: UITableViewDelegate { }
 extension WordOfDayViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UILabel.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 30))
+        let headerView = UILabel.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: Locals.headerHeight))
         headerView.text = sections[section].name
         headerView.font = UIFont.sfProTextHeavy(ofSize: Locals.wordLabelTextSize)
         return headerView
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
+        return Locals.headerHeight
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
