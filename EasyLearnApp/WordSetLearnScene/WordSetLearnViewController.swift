@@ -128,15 +128,15 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
                 }
             } else {
                 if cell.checkExercise() {
-                    if let studyWord = cell.viewModel?.word {
-                        interactor?.editWordProgress(request: WordSetLearnModel.EditWordProgress.Request(word: studyWord, progressChange: 0.1))
+                    if let studyWord = cell.viewModel?.word, let setName = setName {
+                        interactor?.editWordProgress(request: WordSetLearnModel.EditWordProgress.Request(setName: setName, word: studyWord, progressChange: 0.1))
                     }
                     cell.showAnimation(correctAnswer: true) { finished in
                         self.scrollCollectionViewToNextExercise()
                     }
                 } else {
-                    if let studyWord = cell.viewModel?.word {
-                        interactor?.editWordProgress(request: WordSetLearnModel.EditWordProgress.Request(word: studyWord, progressChange: -0.1))
+                    if let studyWord = cell.viewModel?.word, let setName = setName {
+                        interactor?.editWordProgress(request: WordSetLearnModel.EditWordProgress.Request(setName: setName, word: studyWord, progressChange: -0.1))
                     }
                     cell.showAnimation(correctAnswer: false)
                 }
@@ -151,7 +151,9 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
                 if cell.isWrongWordTyped() {
                     progressChange = 0
                 }
-                interactor?.editWordProgress(request: WordSetLearnModel.EditWordProgress.Request(word: studyWord, progressChange: progressChange))
+                if let setName = setName {
+                    interactor?.editWordProgress(request: WordSetLearnModel.EditWordProgress.Request(setName: setName, word: studyWord, progressChange: progressChange))
+                }
             }
             cell.showHelpAnimation()
         }
@@ -166,11 +168,6 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
                 self.collectionView.contentOffset.x += self.collectionView.frame.size.width + Locals.scrollingConstant
             }
         } else {
-            /*let finishedExerciseAlert = UIAlertController(title: "Congratulations 🎉🎉🎉", message: "You've just finished exercise!", preferredStyle: .alert)
-            finishedExerciseAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-                self.dismissViewController()
-            }))
-            present(finishedExerciseAlert, animated: true)*/
             if let setName = setName {
                 router?.routeFinishedExerciseScene(with: setName)
             }

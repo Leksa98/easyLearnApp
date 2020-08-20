@@ -23,6 +23,6 @@ final class WordSetLearnInteractor: WordSetLearnBusinessLogic {
     
     func editWordProgress(request: WordSetLearnModel.EditWordProgress.Request) {
         let dataHandler = DataHandler()
-        dataHandler.updateWordProgress(word: request.word, progressChange: request.progressChange)
+        dataHandler.updateWordProgress(setName: request.setName, wordUpdate: request.word, progressChange: request.progressChange)
     }
 }

@@ -28,6 +28,7 @@ enum WordSetLearnModel {
     enum EditWordProgress {
         
         struct Request {
+            var setName: String
             var word: String
             var progressChange: Double
         }
