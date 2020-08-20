@@ -23,6 +23,10 @@ final class DataHandler : NSObject {
     
     static let shared = DataHandler()
     
+    lazy var group: DispatchGroup = {
+        return DispatchGroup()
+    }()
+    
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "EasyLearnApp")
         container.loadPersistentStores { (storeDescription, error) in
@@ -93,6 +97,7 @@ final class DataHandler : NSObject {
     ///   - name: название сета
     ///   - emoji: emoji для сета
     public func saveWordSet(name: String, emoji: String) {
+        group.enter()
         if let newWordSet = NSEntityDescription.insertNewObject(forEntityName: Keys.wordSet, into: context) as? WordSet {
             newWordSet.name = name
             newWordSet.emoji = emoji
@@ -101,8 +106,10 @@ final class DataHandler : NSObject {
             do {
                 try context.save()
                 print("WordSet with name \(String(describing: newWordSet.name)) added")
+                group.leave()
             } catch {
                 print("Failed to save new word set: \(error)")
+                group.leave()
             }
         }
     }
@@ -113,6 +120,7 @@ final class DataHandler : NSObject {
     ///   - word: слово, добавляемое в сет
     ///   - translation: перевод слова
     public func addWordtoSet(name: String, word: String, translation: String) {
+        group.enter()
         let fetchRequest = NSFetchRequest<WordSet>(entityName: Keys.wordSet)
         fetchRequest.predicate = NSPredicate(format: "name == %@", name)
         let newWord = saveWord(word: word, translation: translation)
@@ -130,8 +138,10 @@ final class DataHandler : NSObject {
                     print("not Save==\(error),\(error.userInfo)")
                 }
             }
+            group.leave()
         } catch {
             print("Failed to add word to set: \(error)")
+            group.leave()
         }
     }
     
@@ -139,6 +149,7 @@ final class DataHandler : NSObject {
     /// - Parameter setWithName: имя сета
     /// - Returns: Массив объектов типа WordModel, содержащий слово, перевод и текущий прогресс
     public func fetchWords(from setWithName: String) -> [WordModel]  {
+        group.enter()
         var wordArray: [WordModel] = []
         let fetchRequest = NSFetchRequest<WordSet>(entityName: Keys.wordSet)
         fetchRequest.predicate = NSPredicate(format: "name == %@", setWithName)
@@ -152,8 +163,10 @@ final class DataHandler : NSObject {
                     }
                 }
             }
+            group.leave()
         } catch {
             print("Failed to fetch words from set: \(error)")
+            group.leave()
         }
         return wordArray
     }
@@ -164,6 +177,7 @@ final class DataHandler : NSObject {
     ///   - word: слово, для которого обновляется прогресс
     ///   - progressChange: значение типа Double, на которое изменяется прогресс
     public func updateWordProgress(setName: String, wordUpdate: String, progressChange: Double) {
+        group.enter()
         let fetchRequest = NSFetchRequest<WordSet>(entityName: Keys.wordSet)
         fetchRequest.predicate = NSPredicate(format: "name == %@", setName)
         do {
@@ -193,14 +207,17 @@ final class DataHandler : NSObject {
                     }
                 }
             }
+            group.leave()
         } catch let error as NSError {
             print("not fetch==\(error),\(error.userInfo)")
+            group.leave()
         }
     }
     
     /// Получение всех сохраненных сетов
     /// - Returns: массив объектов типа WordSet
     public func fetchAllWordSet() -> [WordSet]? {
+        group.enter()
         let fetchRequest = NSFetchRequest<WordSet>(entityName: Keys.wordSet)
         do {
             let sets = try context.fetch(fetchRequest)
@@ -211,9 +228,11 @@ final class DataHandler : NSObject {
                 setOverallSetProgress(setName: name)
                 result.append(set)
             }
+            group.leave()
             return result
         } catch {
             print("Failed to get word sets: \(error)")
+            group.leave()
         }
         return nil
     }
@@ -221,6 +240,7 @@ final class DataHandler : NSObject {
     /// Удаление сета
     /// - Parameter name: имя удаляемого сета
     public func deleteWordSet(name: String) {
+        group.enter()
         let fetchRequest = NSFetchRequest<WordSet>(entityName: Keys.wordSet)
         fetchRequest.predicate = NSPredicate(format: "name == %@", name)
         do {
@@ -232,8 +252,10 @@ final class DataHandler : NSObject {
                     print("not Save==\(error),\(error.userInfo)")
                 }
             }
+            group.leave()
         } catch {
             print("Failed to delete word set: \(error)")
+            group.leave()
         }
     }
     
@@ -242,6 +264,7 @@ final class DataHandler : NSObject {
     ///   - name: имя сета
     ///   - wordValue: удаляемое слово
     public func deleteWordfromSet(name: String, wordValue: String) {
+        group.enter()
         let fetchRequest = NSFetchRequest<WordSet>(entityName: Keys.wordSet)
         fetchRequest.predicate = NSPredicate(format: "name == %@", name)
         do {
@@ -260,8 +283,10 @@ final class DataHandler : NSObject {
             } catch let error as NSError {
                 print("not Save==\(error),\(error.userInfo)")
             }
+            group.leave()
         } catch let error as NSError {
             print("not deleted==\(error),\(error.userInfo)")
+            group.leave()
         }
     }
 }
