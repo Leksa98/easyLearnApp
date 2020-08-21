@@ -28,6 +28,7 @@
 		A8574FC624ED5D2C005BAAB8 /* WordOfDayParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8574FC524ED5D2C005BAAB8 /* WordOfDayParser.swift */; };
 		A8574FC824ED5EBC005BAAB8 /* WordOfDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8574FC724ED5EBC005BAAB8 /* WordOfDay.swift */; };
 		A8574FCA24EEAFB3005BAAB8 /* UIDevice+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8574FC924EEAFB3005BAAB8 /* UIDevice+.swift */; };
+		A8574FCC24EEDF6D005BAAB8 /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8574FCB24EEDF6D005BAAB8 /* CustomAlertView.swift */; };
 		A8580B1324DAF0070099B00F /* DefaultWordSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8580B1224DAF0070099B00F /* DefaultWordSet.swift */; };
 		A8580B1524DAF20D0099B00F /* DefaultWordSetModelApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8580B1424DAF20D0099B00F /* DefaultWordSetModelApi.swift */; };
 		A8580B1924DAF6D70099B00F /* NewWordSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8580B1824DAF6D70099B00F /* NewWordSetViewController.swift */; };
@@ -195,6 +196,7 @@
 		A8574FC524ED5D2C005BAAB8 /* WordOfDayParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordOfDayParser.swift; sourceTree = "<group>"; };
 		A8574FC724ED5EBC005BAAB8 /* WordOfDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordOfDay.swift; sourceTree = "<group>"; };
 		A8574FC924EEAFB3005BAAB8 /* UIDevice+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+.swift"; sourceTree = "<group>"; };
+		A8574FCB24EEDF6D005BAAB8 /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
 		A8580B1224DAF0070099B00F /* DefaultWordSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWordSet.swift; sourceTree = "<group>"; };
 		A8580B1424DAF20D0099B00F /* DefaultWordSetModelApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWordSetModelApi.swift; sourceTree = "<group>"; };
 		A8580B1824DAF6D70099B00F /* NewWordSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWordSetViewController.swift; sourceTree = "<group>"; };
@@ -380,6 +382,7 @@
 			isa = PBXGroup;
 			children = (
 				A8185FF924CAFE7000F93FD3 /* ButtonWithRoundCorners.swift */,
+				A8574FCB24EEDF6D005BAAB8 /* CustomAlertView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -951,6 +954,7 @@
 				A88B1A0D24D2F1D6008ADA7F /* WordSetLearnViewController.swift in Sources */,
 				A8AC78B424EBCF8400089C2E /* WordOfDayPresenter.swift in Sources */,
 				A85A0A2B24BDA3C30044CFBA /* DataHandler.swift in Sources */,
+				A8574FCC24EEDF6D005BAAB8 /* CustomAlertView.swift in Sources */,
 				A8BF983424DD833300755F7E /* DefaultWordSetListConfiguration.swift in Sources */,
 				A84B2D4024AB4BD00022F029 /* AllWordSetTableViewCell.swift in Sources */,
 				A8F0D58B24C4CFDD0004C609 /* WordModel.swift in Sources */,
