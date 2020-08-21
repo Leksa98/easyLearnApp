@@ -37,6 +37,11 @@ final class AddSetViewController: UIViewController {
         static let tableViewLeadingAnchor: CGFloat = 5
         static let tableViewTrailingAnchor: CGFloat = -5
         static let tableViewTopAnchor: CGFloat = 5
+        
+        static let alertViewWidth: CGFloat = 300
+        static let alertViewHeight: CGFloat = 150
+        static let alertTransformScale: CGFloat = 1.3
+        static let animationDuration: TimeInterval = 0.4
     }
     
     // MARK: - Properties
@@ -50,6 +55,8 @@ final class AddSetViewController: UIViewController {
             tableView.reloadData()
         }
     }
+    private let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+    private let alertView = CustomAlertView()
     var interactor: AddSetBusinessLogic?
     var router: AddSetRouterLogic?
     
@@ -64,6 +71,7 @@ final class AddSetViewController: UIViewController {
         configureEmojiView()
         configuteTableView()
         setAddButton()
+        visualEffectConfiguration()
     }
     
     // MARK: - Setup UI elements
@@ -153,6 +161,13 @@ final class AddSetViewController: UIViewController {
         }
     }
     
+    private func visualEffectConfiguration() {
+        view.addSubview(visualEffectView)
+        visualEffectView.frame = view.bounds
+        visualEffectView.alpha = 0.0
+        
+    }
+    
     // MARK: - Button actions
     
     @objc private func addWordButtonTapped() {
@@ -196,12 +211,38 @@ extension AddSetViewController: AddWordToSetDataStore {
 // MARK: - AddSetSavedNotification protocol
 extension AddSetViewController: AddSetSavedNotification {
     func showSavedAlert(viewModel: AddSetModel.SaveWordSet.ViewModel) {
-        let savedAlert = UIAlertController(title: "Saved", message: "Set \(viewModel.name) \(viewModel.emoji) was saved!", preferredStyle: .alert)
-        savedAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(savedAlert, animated: true) {
+        alertView.alpha = 0
+        alertView.titleLabel.text = "Saved"
+        alertView.messageLabel.text = "Set \(viewModel.name) \(viewModel.emoji) was saved!"
+        alertView.button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        view.addSubview(alertView)
+        alertView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            alertView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            alertView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            alertView.widthAnchor.constraint(equalToConstant: Locals.alertViewWidth),
+            alertView.heightAnchor.constraint(equalToConstant: Locals.alertViewHeight),
+        ])
+        alertView.transform = CGAffineTransform(scaleX: Locals.alertTransformScale, y: Locals.alertTransformScale)
+        UIView.animate(withDuration: Locals.animationDuration) {
+            self.visualEffectView.alpha = 0.7
+            self.alertView.alpha = 1
+            self.alertView.transform = CGAffineTransform.identity
+        }
+    }
+    
+    @objc private func buttonPressed() {
+        UIView.animate(withDuration: Locals.animationDuration,
+                       animations: {
+                        self.visualEffectView.alpha = 0
+                        self.alertView.alpha = 0
+                        self.alertView.transform = CGAffineTransform(scaleX: Locals.alertTransformScale, y: Locals.alertTransformScale)
+        }) { _ in
+            self.alertView.removeFromSuperview()
             self.addedWords = []
             self.nameView.emptyEnteredInfo()
             self.emojiView.emptyEnteredInfo()
+
         }
     }
 }

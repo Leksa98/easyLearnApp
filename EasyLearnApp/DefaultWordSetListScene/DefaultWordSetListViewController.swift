@@ -23,6 +23,10 @@ final class DefaultWordSetListViewController: UIViewController {
     private enum Locals {
         static let cellId = "DefaultWordSetListCellId"
         static let tableViewRowHeight: CGFloat = 44
+        static let alertViewWidth: CGFloat = 300
+        static let alertViewHeight: CGFloat = 150
+        static let alertTransformScale: CGFloat = 1.3
+        static let animationDuration: TimeInterval = 0.4
     }
     
     // MARK: - Properties
@@ -36,7 +40,7 @@ final class DefaultWordSetListViewController: UIViewController {
         }
     }
     private let alertView = CustomAlertView()
-    private let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
+    private let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
     var interactor: DefaultWordSetListBusinessLogic?
     
     // MARK: - Life cycle
@@ -47,9 +51,10 @@ final class DefaultWordSetListViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Download", style: .plain, target: self, action: #selector(downloadButtonTapped))
         view.backgroundColor = .white
         configureTableView()
+        visualEffectConfiguration()
     }
     
-    // MARK: - Configuration
+    // MARK: - Setup UI elements
     
     private func configureTableView() {
         view.addSubview(tableView)
@@ -78,6 +83,15 @@ final class DefaultWordSetListViewController: UIViewController {
             tableView.estimatedRowHeight = Locals.tableViewRowHeight
         }
     }
+    
+    private func visualEffectConfiguration() {
+        view.addSubview(visualEffectView)
+        visualEffectView.frame = view.bounds
+        visualEffectView.alpha = 0.0
+        
+    }
+    
+    // MARK: - Button actions
     
     @objc private func downloadButtonTapped() {
         if let name = setName, let emoji = setEmoji {
@@ -117,30 +131,34 @@ extension DefaultWordSetListViewController: DefaultWordSetListDataSource {
 // MARK: - DefaultWordSetListSaveNotification protocol
 extension DefaultWordSetListViewController: DefaultWordSetListSaveNotification {
     func showSaveAlert(viewModel: DefaultWordSetListModel.DownloadWordSet.ViewModel) {
-        view.addSubview(visualEffectView)
-        visualEffectView.translatesAutoresizingMaskIntoConstraints = false
+        alertView.alpha = 0
         alertView.titleLabel.text = "Saved"
         alertView.messageLabel.text = "Set \(viewModel.name) \(viewModel.emoji) was saved!"
         alertView.button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         view.addSubview(alertView)
         alertView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            visualEffectView.topAnchor.constraint(equalTo: topLayoutGuide.topAnchor),
-            visualEffectView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            visualEffectView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            visualEffectView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             alertView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             alertView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            alertView.widthAnchor.constraint(equalToConstant: 300),
-            alertView.heightAnchor.constraint(equalToConstant: 150),
+            alertView.widthAnchor.constraint(equalToConstant: Locals.alertViewWidth),
+            alertView.heightAnchor.constraint(equalToConstant: Locals.alertViewHeight),
         ])
-        /*let savedAlert = UIAlertController(title: "Saved", message: "Set \(viewModel.name) \(viewModel.emoji) was saved!", preferredStyle: .alert)
-        savedAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(savedAlert, animated: true, completion: nil)*/
+        alertView.transform = CGAffineTransform(scaleX: Locals.alertTransformScale, y: Locals.alertTransformScale)
+        UIView.animate(withDuration: Locals.animationDuration) {
+            self.visualEffectView.alpha = 0.7
+            self.alertView.alpha = 1
+            self.alertView.transform = CGAffineTransform.identity
+        }
     }
     
     @objc private func buttonPressed() {
-        visualEffectView.removeFromSuperview()
-        alertView.removeFromSuperview()
+        UIView.animate(withDuration: Locals.animationDuration,
+                       animations: {
+                        self.visualEffectView.alpha = 0
+                        self.alertView.alpha = 0
+                        self.alertView.transform = CGAffineTransform(scaleX: Locals.alertTransformScale, y: Locals.alertTransformScale)
+        }) { _ in
+            self.alertView.removeFromSuperview()
+        }
     }
 }
