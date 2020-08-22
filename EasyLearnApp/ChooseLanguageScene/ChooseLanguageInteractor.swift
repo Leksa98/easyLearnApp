@@ -21,9 +21,7 @@ final class ChooseLanguageInteractor: ChooseLanguageBusinessLogic {
                          LanguageModel(language: "German", flag: "🇩🇪", code: "de"),
                          LanguageModel(language: "French", flag: "🇫🇷", code: "fr"),
                          LanguageModel(language: "Spanish", flag: "🇪🇸", code: "es"),
-                         LanguageModel(language: "Italian", flag: "🇮🇹", code: "it"),
-                         LanguageModel(language: "Polish", flag: "🇵🇱", code: "pl"),
-                         LanguageModel(language: "Turkish", flag: "🇹🇷", code: "tr")]
+                         LanguageModel(language: "Italian", flag: "🇮🇹", code: "it")]
         presenter?.prepareForPresent(response: ChooseLanguageModel.Language.Response(languages: languages))
     }
     
