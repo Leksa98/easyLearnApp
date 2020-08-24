@@ -103,6 +103,8 @@ final class DataHandler : NSObject {
             newWordSet.emoji = emoji
             newWordSet.progress = 0.0
             newWordSet.withWord = NSSet()
+            let language = (UserDefaults.standard.object(forKey: "selectedLanguage") as? String) ?? "English"
+            newWordSet.language = language
             do {
                 try context.save()
                 print("WordSet with name \(String(describing: newWordSet.name)) added")
@@ -219,9 +221,10 @@ final class DataHandler : NSObject {
     public func fetchAllWordSet() -> [WordSet]? {
         group.enter()
         let fetchRequest = NSFetchRequest<WordSet>(entityName: Keys.wordSet)
+        let language = (UserDefaults.standard.object(forKey: "selectedLanguage") as? String) ?? "English"
+        fetchRequest.predicate = NSPredicate(format: "language == %@", language)
         do {
             let sets = try context.fetch(fetchRequest)
-            
             var result: [WordSet] = []
             for set in sets {
                 guard let name = set.name else { return nil }

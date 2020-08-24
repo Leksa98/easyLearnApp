@@ -53,7 +53,6 @@ final class AllWordSetTableViewController: UITableViewController {
             navigationController?.navigationBar.prefersLargeTitles = true
         }
         tableView.register(AllWordSetTableViewCell.self, forCellReuseIdentifier: Locals.cellId)
-        navigationItem.rightBarButtonItem = self.editButtonItem
         navigationController?.navigationBar.tintColor = UIColor.blueSapphire
         tableView.separatorStyle = .none
         if #available(iOS 11.0, *) {} else {
