@@ -69,15 +69,12 @@ final class AddSetTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = .white
+        selectionStyle = .none
         
         addSubview(containerView)
         containerView.addSubview(wordLabel)
         containerView.addSubview(translationLabel)
         containerView.layer.masksToBounds = true
-        let bgColorView = UIView()
-        bgColorView.layer.cornerRadius = Locals.cornerRadius
-        bgColorView.backgroundColor = UIColor.persianGreen
-        selectedBackgroundView = bgColorView
         
         translationLabel.translatesAutoresizingMaskIntoConstraints = false
         containerView.translatesAutoresizingMaskIntoConstraints = false

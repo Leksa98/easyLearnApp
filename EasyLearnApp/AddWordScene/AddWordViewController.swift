@@ -146,6 +146,11 @@ extension AddWordViewController: UITableViewDelegate {
 extension AddWordViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if translations.count == 0 {
+            tableView.backgroundView = AddWordTableEmptyView()
+        } else {
+            tableView.backgroundView = nil
+        }
         return translations.count
     }
     
