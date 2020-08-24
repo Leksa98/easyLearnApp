@@ -24,8 +24,8 @@ enum DefaultWordSetListModel {
         }
         
         struct ViewModel {
-            var name: String
-            var emoji: String
+            var alertTitleLabel: String
+            var alertMessageLabel: String
         }
     }
 }

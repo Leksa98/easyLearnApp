@@ -14,6 +14,7 @@ protocol AddWordToSetDataStore {
 
 protocol AddSetSavedNotification: class {
     func showSavedAlert(viewModel: AddSetModel.SaveWordSet.ViewModel)
+    var needToEmptyEnteredInfo: Bool? { get set }
 }
 
 final class AddSetViewController: UIViewController {
@@ -57,6 +58,7 @@ final class AddSetViewController: UIViewController {
     }
     private let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
     private let alertView = CustomAlertView()
+    var needToEmptyEnteredInfo: Bool?
     var interactor: AddSetBusinessLogic?
     var router: AddSetRouterLogic?
     
@@ -178,6 +180,9 @@ final class AddSetViewController: UIViewController {
         if let setName = nameView.enteredInfo, !setName.isEmpty,
             let setEmoji = emojiView.enteredInfo, !setEmoji.isEmpty, !addedWords.isEmpty {
             interactor?.saveWordSetInCoreData(request: AddSetModel.SaveWordSet.Request(name: setName, emoji: setEmoji, words: addedWords))
+        } else {
+            needToEmptyEnteredInfo = false
+            showSavedAlert(viewModel: AddSetModel.SaveWordSet.ViewModel(alertTitleLabel: "Not saved!", alertMessageLabel: "You entered not all information!"))
         }
     }
 }
@@ -212,8 +217,8 @@ extension AddSetViewController: AddWordToSetDataStore {
 extension AddSetViewController: AddSetSavedNotification {
     func showSavedAlert(viewModel: AddSetModel.SaveWordSet.ViewModel) {
         alertView.alpha = 0
-        alertView.titleLabel.text = "Saved"
-        alertView.messageLabel.text = "Set \(viewModel.name) \(viewModel.emoji) was saved!"
+        alertView.titleLabel.text = viewModel.alertTitleLabel
+        alertView.messageLabel.text = viewModel.alertMessageLabel
         alertView.button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         view.addSubview(alertView)
         alertView.translatesAutoresizingMaskIntoConstraints = false
@@ -224,6 +229,7 @@ extension AddSetViewController: AddSetSavedNotification {
             alertView.heightAnchor.constraint(equalToConstant: Locals.alertViewHeight),
         ])
         alertView.transform = CGAffineTransform(scaleX: Locals.alertTransformScale, y: Locals.alertTransformScale)
+        navigationController?.setNavigationBarHidden(true, animated: true)
         UIView.animate(withDuration: Locals.animationDuration) {
             self.visualEffectView.alpha = 0.7
             self.alertView.alpha = 1
@@ -239,10 +245,12 @@ extension AddSetViewController: AddSetSavedNotification {
                         self.alertView.transform = CGAffineTransform(scaleX: Locals.alertTransformScale, y: Locals.alertTransformScale)
         }) { _ in
             self.alertView.removeFromSuperview()
-            self.addedWords = []
-            self.nameView.emptyEnteredInfo()
-            self.emojiView.emptyEnteredInfo()
-
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            if let needToEmptyEnteredInfo = self.needToEmptyEnteredInfo, needToEmptyEnteredInfo {
+                self.addedWords = []
+                self.nameView.emptyEnteredInfo()
+                self.emojiView.emptyEnteredInfo()
+            }
         }
     }
 }

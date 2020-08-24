@@ -17,10 +17,13 @@ final class AddSetInteractor: AddSetBusinessLogic {
     var presenter: AddSetPresentationLogic?
     
     func saveWordSetInCoreData(request: AddSetModel.SaveWordSet.Request) {
-        DataHandler.shared.saveWordSet(name: request.name, emoji: request.emoji)
-        request.words.forEach { word in
-            DataHandler.shared.addWordtoSet(name: request.name, word: word.word, translation: word.translation)
+        if DataHandler.shared.saveWordSet(name: request.name, emoji: request.emoji) {
+            request.words.forEach { word in
+                DataHandler.shared.addWordtoSet(name: request.name, word: word.word, translation: word.translation)
+            }
+            presenter?.prepareForPresent(response: AddSetModel.SaveWordSet.Response(name: request.name, emoji: request.emoji, isAlreadyExist: false))
+        } else {
+             presenter?.prepareForPresent(response: AddSetModel.SaveWordSet.Response(name: request.name, emoji: request.emoji, isAlreadyExist: true))
         }
-        presenter?.prepareForPresent(response: AddSetModel.SaveWordSet.Response(name: request.name, emoji: request.emoji))
     }
 }

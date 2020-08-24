@@ -96,8 +96,19 @@ final class DataHandler : NSObject {
     /// - Parameters:
     ///   - name: название сета
     ///   - emoji: emoji для сета
-    public func saveWordSet(name: String, emoji: String) {
+    public func saveWordSet(name: String, emoji: String) -> Bool {
         group.enter()
+        
+        let fetchRequest = NSFetchRequest<WordSet>(entityName: Keys.wordSet)
+        fetchRequest.predicate = NSPredicate(format: "name == %@", name)
+        do {
+            if (try context.fetch(fetchRequest).first) != nil {
+                group.leave()
+                return false
+            }
+        } catch {
+            
+        }
         if let newWordSet = NSEntityDescription.insertNewObject(forEntityName: Keys.wordSet, into: context) as? WordSet {
             newWordSet.name = name
             newWordSet.emoji = emoji
@@ -109,11 +120,13 @@ final class DataHandler : NSObject {
                 try context.save()
                 print("WordSet with name \(String(describing: newWordSet.name)) added")
                 group.leave()
+                return true
             } catch {
                 print("Failed to save new word set: \(error)")
                 group.leave()
             }
         }
+        return false
     }
     
     /// Добавление нового слова в сет

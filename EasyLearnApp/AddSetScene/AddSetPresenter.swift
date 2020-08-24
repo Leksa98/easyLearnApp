@@ -17,6 +17,12 @@ final class AddSetPresenter: AddSetPresentationLogic {
     weak var viewController: AddSetSavedNotification?
     
     func prepareForPresent(response: AddSetModel.SaveWordSet.Response) {
-        viewController?.showSavedAlert(viewModel: AddSetModel.SaveWordSet.ViewModel(name: response.name, emoji: response.emoji))
+        if !response.isAlreadyExist {
+            viewController?.needToEmptyEnteredInfo = true
+            viewController?.showSavedAlert(viewModel: AddSetModel.SaveWordSet.ViewModel(alertTitleLabel: "Saved", alertMessageLabel: "Set \(response.name) \(response.emoji) was saved!"))
+        } else {
+            viewController?.needToEmptyEnteredInfo = false
+            viewController?.showSavedAlert(viewModel: AddSetModel.SaveWordSet.ViewModel(alertTitleLabel: "Inappropriate name!", alertMessageLabel: "Set with name \(response.name) already exists!"))
+        }
     }
 }

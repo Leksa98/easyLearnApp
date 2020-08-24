@@ -9,14 +9,18 @@
 import Foundation
 
 protocol DefaultWordSetListPresentationLogic {
-    func prepareForPresent(response: DefaultWordSetListModel.DownloadWordSet.Response)
+    func prepareForPresent(response: DefaultWordSetListModel.DownloadWordSet.Response?)
 }
 
 final class DefaultWordSetListPresenter: DefaultWordSetListPresentationLogic {
     
     weak var viewController: DefaultWordSetListSaveNotification?
     
-    func prepareForPresent(response: DefaultWordSetListModel.DownloadWordSet.Response) {
-        viewController?.showSaveAlert(viewModel: DefaultWordSetListModel.DownloadWordSet.ViewModel(name: response.name, emoji: response.emoji))
+    func prepareForPresent(response: DefaultWordSetListModel.DownloadWordSet.Response?) {
+        if let response = response {
+            viewController?.showSaveAlert(viewModel: DefaultWordSetListModel.DownloadWordSet.ViewModel(alertTitleLabel: "Saved!", alertMessageLabel:"Set \(response.name) \(response.emoji) was saved!"))
+        } else {
+            viewController?.showSaveAlert(viewModel: DefaultWordSetListModel.DownloadWordSet.ViewModel(alertTitleLabel: "Set was saved before!", alertMessageLabel: "Go to your sets to find downloaded set!"))
+        }
     }
 }

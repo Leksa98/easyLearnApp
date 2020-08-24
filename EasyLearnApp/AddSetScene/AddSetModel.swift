@@ -21,11 +21,12 @@ enum AddSetModel {
         struct Response {
             var name: String
             var emoji: String
+            var isAlreadyExist: Bool
         }
         
         struct ViewModel {
-            var name: String
-            var emoji: String
+            var alertTitleLabel: String
+            var alertMessageLabel: String
         }
     }
 }
