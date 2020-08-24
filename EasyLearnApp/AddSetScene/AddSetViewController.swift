@@ -194,6 +194,11 @@ extension AddSetViewController: UITableViewDelegate { }
 extension AddSetViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if addedWords.count == 0 {
+            tableView.backgroundView = AddSetTableEmptyView()
+        } else {
+            tableView.backgroundView = nil
+        }
         return addedWords.count
     }
     
