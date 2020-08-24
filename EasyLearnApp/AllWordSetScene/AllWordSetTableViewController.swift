@@ -63,6 +63,13 @@ final class AllWordSetTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if studySet.count == 0 {
+            let backgroundView = AllWordSetEmptyView()
+            backgroundView.tabBarController = tabBarController
+            tableView.backgroundView = backgroundView
+        } else {
+            tableView.backgroundView = nil
+        }
         return studySet.count
     }
 
