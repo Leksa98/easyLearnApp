@@ -1,5 +1,5 @@
 //
-//  AddSetTableEmptyView.swift
+//  AddWordTableEmptyView.swift
 //  EasyLearnApp
 //
 //  Created by Alexandra Gertsenshtein on 24.08.2020.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class AddSetTableEmptyView: UIView {
+final class AddWordTableEmptyView: UIView {
     
     // MARK: - Constants
     
@@ -21,7 +21,6 @@ final class AddSetTableEmptyView: UIView {
         static let leadingAnchor: CGFloat = 15
         static let trailingAnchor: CGFloat = -15
         static let topAnchor: CGFloat = 10
-        static let centerYAnchor: CGFloat = -30
     }
     
     // MARK: - Property
@@ -34,11 +33,11 @@ final class AddSetTableEmptyView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        titleLabel.text = "Words"
+        titleLabel.text = "Nothing found"
         titleLabel.textColor = .gray
         titleLabel.font = UIFont.sfProTextMedium(ofSize: Locals.titleLabelSize)
         
-        messageLabel.text = "You haven't added any words yet. All your added words will show up here."
+        messageLabel.text = "All translations of the word you typed will show up here."
         messageLabel.textColor = .gray
         messageLabel.numberOfLines = Locals.numberOfLines
         messageLabel.font = UIFont.sfProTextMedium(ofSize: Locals.messageLabelSize)
@@ -52,7 +51,7 @@ final class AddSetTableEmptyView: UIView {
         
         NSLayoutConstraint.activate([
             titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: Locals.centerYAnchor),
+            titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
             messageLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Locals.leadingAnchor),
             messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Locals.trailingAnchor),
             messageLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Locals.topAnchor)
