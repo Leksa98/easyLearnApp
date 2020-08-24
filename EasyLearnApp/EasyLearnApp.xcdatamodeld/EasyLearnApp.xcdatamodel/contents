@@ -10,12 +10,13 @@
     </entity>
     <entity name="WordSet" representedClassName="WordSet" syncable="YES" codeGenerationType="class">
         <attribute name="emoji" optional="YES" attributeType="String"/>
+        <attribute name="language" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="progress" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <relationship name="withWord" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Word" inverseName="ofSet" inverseEntity="Word"/>
     </entity>
     <elements>
         <element name="Word" positionX="-54" positionY="9" width="128" height="133"/>
-        <element name="WordSet" positionX="-392.63671875" positionY="8.67578125" width="128" height="103"/>
+        <element name="WordSet" positionX="-392.63671875" positionY="8.67578125" width="128" height="118"/>
     </elements>
 </model>
