@@ -45,7 +45,7 @@ final class CustomAlertView: UIView {
         addSubview(messageLabel)
         addSubview(button)
         
-        imageView.image = UIImage(named: "Alert")
+        imageView.image = UIImage(named: "alert")
         titleLabel.font = UIFont.sfProTextHeavy(ofSize: Locals.titleSize)
         messageLabel.font = UIFont.sfProTextMedium(ofSize: Locals.messageSize)
         messageLabel.numberOfLines = Locals.messageNumberOfLines

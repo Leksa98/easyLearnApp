@@ -17,10 +17,13 @@ final class DefaultWordSetListInteractor: DefaultWordSetListBusinessLogic {
     var presenter: DefaultWordSetListPresentationLogic?
     
     func downloadWordSet(request: DefaultWordSetListModel.DownloadWordSet.Request) {
-        DataHandler.shared.saveWordSet(name: request.name, emoji: request.emoji)
-        for word in request.words {
-            DataHandler.shared.addWordtoSet(name: request.name, word: word.word, translation: word.translation)
+        if DataHandler.shared.saveWordSet(name: request.name, emoji: request.emoji) {
+            for word in request.words {
+                DataHandler.shared.addWordtoSet(name: request.name, word: word.word, translation: word.translation)
+            }
+            presenter?.prepareForPresent(response: DefaultWordSetListModel.DownloadWordSet.Response(name: request.name, emoji: request.emoji))
+        } else {
+            presenter?.prepareForPresent(response: nil)
         }
-        presenter?.prepareForPresent(response: DefaultWordSetListModel.DownloadWordSet.Response(name: request.name, emoji: request.emoji))
     }
 }

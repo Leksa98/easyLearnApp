@@ -132,8 +132,8 @@ extension DefaultWordSetListViewController: DefaultWordSetListDataSource {
 extension DefaultWordSetListViewController: DefaultWordSetListSaveNotification {
     func showSaveAlert(viewModel: DefaultWordSetListModel.DownloadWordSet.ViewModel) {
         alertView.alpha = 0
-        alertView.titleLabel.text = "Saved"
-        alertView.messageLabel.text = "Set \(viewModel.name) \(viewModel.emoji) was saved!"
+        alertView.titleLabel.text = viewModel.alertTitleLabel
+        alertView.messageLabel.text = viewModel.alertMessageLabel
         alertView.button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         view.addSubview(alertView)
         alertView.translatesAutoresizingMaskIntoConstraints = false
@@ -144,6 +144,7 @@ extension DefaultWordSetListViewController: DefaultWordSetListSaveNotification {
             alertView.heightAnchor.constraint(equalToConstant: Locals.alertViewHeight),
         ])
         alertView.transform = CGAffineTransform(scaleX: Locals.alertTransformScale, y: Locals.alertTransformScale)
+        navigationController?.setNavigationBarHidden(true, animated: true)
         UIView.animate(withDuration: Locals.animationDuration) {
             self.visualEffectView.alpha = 0.7
             self.alertView.alpha = 1
@@ -159,6 +160,7 @@ extension DefaultWordSetListViewController: DefaultWordSetListSaveNotification {
                         self.alertView.transform = CGAffineTransform(scaleX: Locals.alertTransformScale, y: Locals.alertTransformScale)
         }) { _ in
             self.alertView.removeFromSuperview()
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
         }
     }
 }
