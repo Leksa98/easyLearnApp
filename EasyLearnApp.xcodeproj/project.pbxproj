@@ -32,6 +32,11 @@
 		A8574FD024F3E913005BAAB8 /* AllWordSetEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8574FCF24F3E913005BAAB8 /* AllWordSetEmptyView.swift */; };
 		A8574FD424F405C6005BAAB8 /* AddSetTableEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8574FD324F405C6005BAAB8 /* AddSetTableEmptyView.swift */; };
 		A8574FD624F42830005BAAB8 /* AddWordTableEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8574FD524F42830005BAAB8 /* AddWordTableEmptyView.swift */; };
+		A8574FD924F52932005BAAB8 /* AboutAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8574FD824F52932005BAAB8 /* AboutAppViewController.swift */; };
+		A8574FDB24F52951005BAAB8 /* AboutAppInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8574FDA24F52951005BAAB8 /* AboutAppInteractor.swift */; };
+		A8574FDD24F5295D005BAAB8 /* AboutAppPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8574FDC24F5295D005BAAB8 /* AboutAppPresenter.swift */; };
+		A8574FDF24F5296D005BAAB8 /* AboutAppConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8574FDE24F5296D005BAAB8 /* AboutAppConfigurator.swift */; };
+		A8574FE124F52980005BAAB8 /* AboutAppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8574FE024F52980005BAAB8 /* AboutAppModel.swift */; };
 		A8580B1324DAF0070099B00F /* DefaultWordSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8580B1224DAF0070099B00F /* DefaultWordSet.swift */; };
 		A8580B1524DAF20D0099B00F /* DefaultWordSetModelApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8580B1424DAF20D0099B00F /* DefaultWordSetModelApi.swift */; };
 		A8580B1924DAF6D70099B00F /* NewWordSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8580B1824DAF6D70099B00F /* NewWordSetViewController.swift */; };
@@ -203,6 +208,11 @@
 		A8574FCF24F3E913005BAAB8 /* AllWordSetEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllWordSetEmptyView.swift; sourceTree = "<group>"; };
 		A8574FD324F405C6005BAAB8 /* AddSetTableEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSetTableEmptyView.swift; sourceTree = "<group>"; };
 		A8574FD524F42830005BAAB8 /* AddWordTableEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWordTableEmptyView.swift; sourceTree = "<group>"; };
+		A8574FD824F52932005BAAB8 /* AboutAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppViewController.swift; sourceTree = "<group>"; };
+		A8574FDA24F52951005BAAB8 /* AboutAppInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppInteractor.swift; sourceTree = "<group>"; };
+		A8574FDC24F5295D005BAAB8 /* AboutAppPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppPresenter.swift; sourceTree = "<group>"; };
+		A8574FDE24F5296D005BAAB8 /* AboutAppConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppConfigurator.swift; sourceTree = "<group>"; };
+		A8574FE024F52980005BAAB8 /* AboutAppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppModel.swift; sourceTree = "<group>"; };
 		A8580B1224DAF0070099B00F /* DefaultWordSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWordSet.swift; sourceTree = "<group>"; };
 		A8580B1424DAF20D0099B00F /* DefaultWordSetModelApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWordSetModelApi.swift; sourceTree = "<group>"; };
 		A8580B1824DAF6D70099B00F /* NewWordSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWordSetViewController.swift; sourceTree = "<group>"; };
@@ -454,6 +464,7 @@
 				A8AA51DB24C03C1C0047B084 /* AddWordScene */,
 				A8AC78AE24EBC8C000089C2E /* WordOfDayScene */,
 				A8B5222224DC0620008F02C7 /* SettingsScene */,
+				A8574FD724F52904005BAAB8 /* AboutAppScene */,
 				A8B5222724DC11E4008F02C7 /* ChooseLanguageScene */,
 				A8F0D57724C249000004C609 /* Extensions */,
 			);
@@ -478,6 +489,18 @@
 				A81FF5EA24AA3D2A007068F9 /* Info.plist */,
 			);
 			path = EasyLearnAppUITests;
+			sourceTree = "<group>";
+		};
+		A8574FD724F52904005BAAB8 /* AboutAppScene */ = {
+			isa = PBXGroup;
+			children = (
+				A8574FD824F52932005BAAB8 /* AboutAppViewController.swift */,
+				A8574FDA24F52951005BAAB8 /* AboutAppInteractor.swift */,
+				A8574FDC24F5295D005BAAB8 /* AboutAppPresenter.swift */,
+				A8574FDE24F5296D005BAAB8 /* AboutAppConfigurator.swift */,
+				A8574FE024F52980005BAAB8 /* AboutAppModel.swift */,
+			);
+			path = AboutAppScene;
 			sourceTree = "<group>";
 		};
 		A8580B1624DAF6700099B00F /* NewWordSetScene */ = {
@@ -906,6 +929,7 @@
 				A8BF985C24E1296C00755F7E /* WordSetLearnRouter.swift in Sources */,
 				A867382B24EA67B3006D66C5 /* FinishedExerciseRouter.swift in Sources */,
 				A8B5222924DC1212008F02C7 /* ChooseLanguageViewController.swift in Sources */,
+				A8574FDF24F5296D005BAAB8 /* AboutAppConfigurator.swift in Sources */,
 				A8BF985824E120A200755F7E /* AddWordModel.swift in Sources */,
 				A8F0D57924C249440004C609 /* UIViewController+.swift in Sources */,
 				A88B1A0624D1F672008ADA7F /* WordSetCardInteractor.swift in Sources */,
@@ -943,6 +967,7 @@
 				A8AC78B024EBC8F600089C2E /* WordOfDayViewController.swift in Sources */,
 				A8580B1B24DAFE450099B00F /* DefaultWordSetViewController.swift in Sources */,
 				A8BF981C24DD50F700755F7E /* AddWordConfigurator.swift in Sources */,
+				A8574FE124F52980005BAAB8 /* AboutAppModel.swift in Sources */,
 				A82EEA7E24B4814000C35D90 /* HTTPMethod.swift in Sources */,
 				A867382D24EA67F3006D66C5 /* FinishedExerciseConfigurator.swift in Sources */,
 				A88B1A0424D1E090008ADA7F /* WordSetCardView.swift in Sources */,
@@ -977,8 +1002,10 @@
 				A8F0D58724C4AA790004C609 /* AddWordRouter.swift in Sources */,
 				A8B5222B24DC1CC2008F02C7 /* ChooseLanguageTableViewCell.swift in Sources */,
 				A81FF5CE24AA3D27007068F9 /* EasyLearnApp.xcdatamodeld in Sources */,
+				A8574FDB24F52951005BAAB8 /* AboutAppInteractor.swift in Sources */,
 				A81FF5F724AA429F007068F9 /* TabBarController.swift in Sources */,
 				A867382724EA6759006D66C5 /* FinishedExercisePresenter.swift in Sources */,
+				A8574FD924F52932005BAAB8 /* AboutAppViewController.swift in Sources */,
 				A8B869BE24E29B2A00B61803 /* UIFont+.swift in Sources */,
 				A8BF983024DD821E00755F7E /* DefaultWordSetListInteractor.swift in Sources */,
 				A8BF981824DD4EBD00755F7E /* WordSetStatisticsConfigurator.swift in Sources */,
@@ -989,6 +1016,7 @@
 				A8BF985224DF3C5F00755F7E /* DefaultWordSetModel.swift in Sources */,
 				A8AC78BC24ED083600089C2E /* WordOfDayModelNetwork.swift in Sources */,
 				A8BF983824DD8DEC00755F7E /* AddSetInteractor.swift in Sources */,
+				A8574FDD24F5295D005BAAB8 /* AboutAppPresenter.swift in Sources */,
 				A81162A324BC9777002B4D8B /* TranslationMeaningsParser.swift in Sources */,
 				A8ABBCAD24B50B84008081FB /* JSONParameterEncoder.swift in Sources */,
 				A87EDF2524C876B800D4F9CC /* AllWordSetTablePresenter.swift in Sources */,

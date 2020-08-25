@@ -24,6 +24,14 @@ final class SettingsTableViewCell: UITableViewCell {
     
     private var label = UILabel()
     
+    var viewModel: String? {
+        didSet {
+            if let viewModel = viewModel {
+                updateContent(viewModel: viewModel)
+            }
+        }
+    }
+    
     // MARK: - Initialization
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -33,7 +41,6 @@ final class SettingsTableViewCell: UITableViewCell {
         selectionStyle = .none
         
         addSubview(label)
-        label.text = "Learning language"
         label.font = UIFont.sfProTextMedium(ofSize: Locals.lebelSize)
         label.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -48,4 +55,7 @@ final class SettingsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    private func updateContent(viewModel: String) {
+        label.text = viewModel
+    }
 }
