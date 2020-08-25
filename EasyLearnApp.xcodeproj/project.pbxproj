@@ -37,6 +37,8 @@
 		A8574FDD24F5295D005BAAB8 /* AboutAppPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8574FDC24F5295D005BAAB8 /* AboutAppPresenter.swift */; };
 		A8574FDF24F5296D005BAAB8 /* AboutAppConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8574FDE24F5296D005BAAB8 /* AboutAppConfigurator.swift */; };
 		A8574FE124F52980005BAAB8 /* AboutAppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8574FE024F52980005BAAB8 /* AboutAppModel.swift */; };
+		A8574FE324F54B93005BAAB8 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8574FE224F54B93005BAAB8 /* UIView+.swift */; };
+		A8574FE524F54D4C005BAAB8 /* UIApplication+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8574FE424F54D4C005BAAB8 /* UIApplication+.swift */; };
 		A8580B1324DAF0070099B00F /* DefaultWordSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8580B1224DAF0070099B00F /* DefaultWordSet.swift */; };
 		A8580B1524DAF20D0099B00F /* DefaultWordSetModelApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8580B1424DAF20D0099B00F /* DefaultWordSetModelApi.swift */; };
 		A8580B1924DAF6D70099B00F /* NewWordSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8580B1824DAF6D70099B00F /* NewWordSetViewController.swift */; };
@@ -213,6 +215,8 @@
 		A8574FDC24F5295D005BAAB8 /* AboutAppPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppPresenter.swift; sourceTree = "<group>"; };
 		A8574FDE24F5296D005BAAB8 /* AboutAppConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppConfigurator.swift; sourceTree = "<group>"; };
 		A8574FE024F52980005BAAB8 /* AboutAppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppModel.swift; sourceTree = "<group>"; };
+		A8574FE224F54B93005BAAB8 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		A8574FE424F54D4C005BAAB8 /* UIApplication+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+.swift"; sourceTree = "<group>"; };
 		A8580B1224DAF0070099B00F /* DefaultWordSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWordSet.swift; sourceTree = "<group>"; };
 		A8580B1424DAF20D0099B00F /* DefaultWordSetModelApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWordSetModelApi.swift; sourceTree = "<group>"; };
 		A8580B1824DAF6D70099B00F /* NewWordSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWordSetViewController.swift; sourceTree = "<group>"; };
@@ -761,6 +765,8 @@
 				A8B869A224E1933600B61803 /* UIColor+.swift */,
 				A8B869BD24E29B2A00B61803 /* UIFont+.swift */,
 				A8574FC924EEAFB3005BAAB8 /* UIDevice+.swift */,
+				A8574FE224F54B93005BAAB8 /* UIView+.swift */,
+				A8574FE424F54D4C005BAAB8 /* UIApplication+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -992,6 +998,7 @@
 				A8BF983424DD833300755F7E /* DefaultWordSetListConfiguration.swift in Sources */,
 				A84B2D4024AB4BD00022F029 /* AllWordSetTableViewCell.swift in Sources */,
 				A8F0D58B24C4CFDD0004C609 /* WordModel.swift in Sources */,
+				A8574FE324F54B93005BAAB8 /* UIView+.swift in Sources */,
 				A8B5221F24DB24B4008F02C7 /* DefaultWordSetListViewController.swift in Sources */,
 				A8574FCA24EEAFB3005BAAB8 /* UIDevice+.swift in Sources */,
 				A8BF981424DD4CC400755F7E /* WordSetCardConfigurator.swift in Sources */,
@@ -1045,6 +1052,7 @@
 				A8580B1F24DB161C0099B00F /* DefaultWordSetInteractor.swift in Sources */,
 				A87EDF2324C8769C00D4F9CC /* AllWordSetTableInteractor.swift in Sources */,
 				A8ABBCAF24B50BEE008081FB /* NetworkRouter.swift in Sources */,
+				A8574FE524F54D4C005BAAB8 /* UIApplication+.swift in Sources */,
 				A8B2144324D97CF600A3CF7F /* WordSetStatisticsPresentor.swift in Sources */,
 				A804C92024D076C8007E2524 /* WordSetListInteractor.swift in Sources */,
 				A8BF983A24DD901300755F7E /* AddSetConfiguration.swift in Sources */,

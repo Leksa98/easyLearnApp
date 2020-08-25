@@ -58,6 +58,7 @@ final class AddSetViewController: UIViewController {
     }
     private let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
     private let alertView = CustomAlertView()
+    private let screenshotImageView = UIImageView()
     var needToEmptyEnteredInfo: Bool?
     var interactor: AddSetBusinessLogic?
     var router: AddSetRouterLogic?
@@ -73,7 +74,7 @@ final class AddSetViewController: UIViewController {
         configureEmojiView()
         configuteTableView()
         setAddButton()
-        visualEffectConfiguration()
+        screenshotImageView.addBlur()
     }
     
     // MARK: - Setup UI elements
@@ -163,13 +164,6 @@ final class AddSetViewController: UIViewController {
         }
     }
     
-    private func visualEffectConfiguration() {
-        view.addSubview(visualEffectView)
-        visualEffectView.frame = view.bounds
-        visualEffectView.alpha = 0.0
-        
-    }
-    
     // MARK: - Button actions
     
     @objc private func addWordButtonTapped() {
@@ -177,6 +171,7 @@ final class AddSetViewController: UIViewController {
     }
     
     @objc private func saveButtonTapped() {
+        screenshotImageView.image = UIApplication.shared.takeScreenshot()
         if let setName = nameView.enteredInfo, !setName.isEmpty,
             let setEmoji = emojiView.enteredInfo, !setEmoji.isEmpty, !addedWords.isEmpty {
             interactor?.saveWordSetInCoreData(request: AddSetModel.SaveWordSet.Request(name: setName, emoji: setEmoji, words: addedWords))
@@ -225,16 +220,22 @@ extension AddSetViewController: AddSetSavedNotification {
         alertView.titleLabel.text = viewModel.alertTitleLabel
         alertView.messageLabel.text = viewModel.alertMessageLabel
         alertView.button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        view.addSubview(screenshotImageView)
         view.addSubview(alertView)
         alertView.translatesAutoresizingMaskIntoConstraints = false
+        screenshotImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
+            screenshotImageView.topAnchor.constraint(equalTo: view.topAnchor),
+            screenshotImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            screenshotImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            screenshotImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             alertView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             alertView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             alertView.widthAnchor.constraint(equalToConstant: Locals.alertViewWidth),
             alertView.heightAnchor.constraint(equalToConstant: Locals.alertViewHeight),
         ])
         alertView.transform = CGAffineTransform(scaleX: Locals.alertTransformScale, y: Locals.alertTransformScale)
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.setNavigationBarHidden(true, animated: false)
         UIView.animate(withDuration: Locals.animationDuration) {
             self.visualEffectView.alpha = 0.7
             self.alertView.alpha = 1
@@ -249,13 +250,14 @@ extension AddSetViewController: AddSetSavedNotification {
                         self.alertView.alpha = 0
                         self.alertView.transform = CGAffineTransform(scaleX: Locals.alertTransformScale, y: Locals.alertTransformScale)
         }) { _ in
-            self.alertView.removeFromSuperview()
-            self.navigationController?.setNavigationBarHidden(false, animated: true)
             if let needToEmptyEnteredInfo = self.needToEmptyEnteredInfo, needToEmptyEnteredInfo {
                 self.addedWords = []
                 self.nameView.emptyEnteredInfo()
                 self.emojiView.emptyEnteredInfo()
             }
+            self.alertView.removeFromSuperview()
+            self.screenshotImageView.removeFromSuperview()
+            self.navigationController?.setNavigationBarHidden(false, animated: false)
         }
     }
 }
