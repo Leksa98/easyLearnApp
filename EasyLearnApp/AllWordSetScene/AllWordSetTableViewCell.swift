@@ -13,8 +13,8 @@ class AllWordSetTableViewCell: UITableViewCell {
     // MARK: - Constants
     enum Locals {
         static let cornerRadius: CGFloat = 10
-        static let titleSize: CGFloat = 20
-        static let emojiSize: CGFloat = 45
+        static let titleSize: CGFloat = 18
+        static let emojiSize: CGFloat = 40
         static let leadingAnchor: CGFloat = 25
         static let topAnchor: CGFloat = 10
         static let progressBarTopAnchor: CGFloat = 20

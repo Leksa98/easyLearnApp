@@ -12,8 +12,8 @@ final class EnterInfoView: UIView {
     
     // MARK: - Constants
     enum Locals {
-        static let labelTextSize: CGFloat = 20
-        static let textFieldSize: CGFloat = 18
+        static let labelTextSize: CGFloat = 18
+        static let textFieldSize: CGFloat = 16
         
         static let leadingAnchor: CGFloat = 15
         static let trailingAnchor: CGFloat = -15

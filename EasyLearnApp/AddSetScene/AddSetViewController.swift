@@ -24,7 +24,7 @@ final class AddSetViewController: UIViewController {
     private enum Locals {
         static let cellId = "addSetTableViewCell"
         static let tableViewRowHeight: CGFloat = 44
-        static let tableLabelSize: CGFloat = 20
+        static let tableLabelSize: CGFloat = 18
         
         static let leadingAnchor: CGFloat = 15
         static let trailingAnchor: CGFloat = -15

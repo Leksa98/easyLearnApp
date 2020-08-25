@@ -22,27 +22,30 @@ final class WordOfDayViewController: UIViewController {
     // MARK: - Constants
     
     enum Locals {
-        static let lineViewHeightAnchor: CGFloat = 0.7
+        static let lineViewHeightAnchor: CGFloat = 0.5
         static let cellId = "WordOfDayTableViewCellId"
         static let tableRowHeight: CGFloat = 44
         static let wordLabelTextSize: CGFloat = 20
-        static let dateLabelTextSize: CGFloat = 15
+        static let sectionHeaderTextSize: CGFloat = 18
+        static let dateLabelTextSize: CGFloat = 16
         
         static let topAnchor: CGFloat = 10
         static let leadingAnchor: CGFloat = 15
         static let trailingAnchor: CGFloat = -15
         static let bottomAnchor: CGFloat = -10
-        static let distanceBetweenLabels: CGFloat = 5
+        static let distanceBetweenLabels: CGFloat = 10
         
         static let noteNumberOfLines = 0
-        static let headerHeight: CGFloat = 30
+        static let headerHeight: CGFloat = 20
     }
     
     // MARK: - Properties
     
     private var wordLabel = UILabel()
     private var dateLabel = UILabel()
+    private var dateValueLabel = UILabel()
     private var noteLabel = UILabel()
+    private var noteValueLabel = UILabel()
     private var lineView = UIView()
     private var tableView = UITableView(frame: .zero, style: .grouped)
     private var sections: [WordOfDaySection] = [] {
@@ -74,17 +77,14 @@ final class WordOfDayViewController: UIViewController {
         view.addSubview(lineView)
         
         wordLabel.font = UIFont.sfProTextHeavy(ofSize: Locals.wordLabelTextSize)
-        dateLabel.font = UIFont.sfProTextHeavy(ofSize: Locals.dateLabelTextSize)
-        noteLabel.font = UIFont.sfProTextHeavy(ofSize: Locals.dateLabelTextSize)
         noteLabel.numberOfLines = Locals.noteNumberOfLines
-        
         lineView.backgroundColor = .lightGray
         
         wordLabel.translatesAutoresizingMaskIntoConstraints = false
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
         noteLabel.translatesAutoresizingMaskIntoConstraints = false
         lineView.translatesAutoresizingMaskIntoConstraints = false
-        
+       
         if #available(iOS 11.0, *) {
             wordLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Locals.topAnchor).isActive = true
         } else {
@@ -102,7 +102,7 @@ final class WordOfDayViewController: UIViewController {
             noteLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Locals.leadingAnchor),
             noteLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Locals.trailingAnchor),
             
-            lineView.topAnchor.constraint(equalTo: noteLabel.bottomAnchor, constant: Locals.distanceBetweenLabels),
+            lineView.topAnchor.constraint(equalTo: noteLabel.bottomAnchor, constant: 20),
             lineView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Locals.leadingAnchor),
             lineView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Locals.trailingAnchor),
             lineView.heightAnchor.constraint(equalToConstant: Locals.lineViewHeightAnchor),
@@ -139,9 +139,9 @@ extension WordOfDayViewController: UITableViewDelegate { }
 extension WordOfDayViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UILabel.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: Locals.headerHeight))
+        let headerView = UILabel(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: Locals.headerHeight))
         headerView.text = sections[section].name
-        headerView.font = UIFont.sfProTextHeavy(ofSize: Locals.wordLabelTextSize)
+        headerView.font = UIFont.sfProTextHeavy(ofSize: Locals.sectionHeaderTextSize)
         return headerView
     }
     
@@ -175,9 +175,15 @@ extension WordOfDayViewController: UITableViewDataSource {
 extension WordOfDayViewController: WordOfDayDisplay {
     func updateContent(viewModel: WordOfDayModel.FetchWordOfDay.ViewModel) {
         DispatchQueue.main.async {
+            let attrs1 = [NSAttributedString.Key.font: UIFont.sfProTextHeavy(ofSize: Locals.dateLabelTextSize) ?? UIFont.boldSystemFont(ofSize: Locals.dateLabelTextSize), NSAttributedString.Key.foregroundColor: UIColor.black]
+            let attrs2 = [NSAttributedString.Key.font: UIFont.sfProTextMedium(ofSize: Locals.dateLabelTextSize) ?? UIFont.systemFont(ofSize: Locals.dateLabelTextSize), NSAttributedString.Key.foregroundColor: UIColor.customDarkGray]
+            let attributedDateString = NSMutableAttributedString(string: "Date: ", attributes: attrs1)
+            attributedDateString.append(NSMutableAttributedString(string: viewModel.wordOfDay.dateValue, attributes: attrs2))
+            let attributedNoteString = NSMutableAttributedString(string: "Note: ", attributes: attrs1)
+            attributedNoteString.append(NSMutableAttributedString(string: viewModel.wordOfDay.noteValue, attributes: attrs2))
             self.wordLabel.text = viewModel.wordOfDay.wordValue.capitalizingFirstLetter()
-            self.dateLabel.text = "Date: " + viewModel.wordOfDay.dateValue
-            self.noteLabel.text = "Note: " + viewModel.wordOfDay.noteValue
+            self.dateLabel.attributedText = attributedDateString
+            self.noteLabel.attributedText = attributedNoteString
             var wordDefinition: [String] = []
             viewModel.wordOfDay.definitionValue.forEach { definition in
                 wordDefinition.append(definition.partOfSpeechValue + ": " + definition.definitionValue)
