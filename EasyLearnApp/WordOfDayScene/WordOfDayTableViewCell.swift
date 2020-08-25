@@ -13,7 +13,7 @@ final class WordOfDayTableViewCell: UITableViewCell {
     // MARK: - Constants
     
     enum Locals {
-        static let textSize: CGFloat = 18
+        static let textSize: CGFloat = 16
         static let numberOflines = 0
         static let distanceBetweenLabels: CGFloat = 10
         static let bottomAnchor: CGFloat = -10
@@ -36,23 +36,15 @@ final class WordOfDayTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
-        
-        addSubview(partOfSpeechLabel)
         addSubview(definitionLabel)
-        
-        partOfSpeechLabel.font = UIFont.sfProTextMediumItalic(ofSize: Locals.textSize)
+    
         definitionLabel.font = UIFont.sfProTextMedium(ofSize: Locals.textSize)
         definitionLabel.numberOfLines = Locals.numberOflines
-        
-        partOfSpeechLabel.translatesAutoresizingMaskIntoConstraints = false
+        definitionLabel.textColor = .customDarkGray
         definitionLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            partOfSpeechLabel.topAnchor.constraint(equalTo: topAnchor),
-            partOfSpeechLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            partOfSpeechLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            
-            definitionLabel.topAnchor.constraint(equalTo: partOfSpeechLabel.bottomAnchor, constant: Locals.distanceBetweenLabels),
+            definitionLabel.topAnchor.constraint(equalTo: topAnchor, constant: Locals.distanceBetweenLabels),
             definitionLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             definitionLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             definitionLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: Locals.bottomAnchor)

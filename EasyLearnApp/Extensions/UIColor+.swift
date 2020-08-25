@@ -43,4 +43,6 @@ extension UIColor {
     static let paleSpringBud = UIColor(hexString: "F0F3BD")
     
     static let lightCyan = UIColor(hexString: "CAE9E6")
+    
+    static let customDarkGray = UIColor(red: 58/255, green: 58/255, blue: 60/255, alpha: 1.0)
 }

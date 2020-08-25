@@ -13,8 +13,8 @@ final class AllWordSetEmptyView: UIView {
     // MARK: - Constants
     
     private enum Locals {
-        static let titleLabelSize: CGFloat = 24
-        static let messageLabelSize: CGFloat = 20
+        static let titleLabelSize: CGFloat = 18
+        static let messageLabelSize: CGFloat = 16
         
         static let numberOfLines = 0
         
@@ -87,5 +87,4 @@ final class AllWordSetEmptyView: UIView {
     @objc private func buttonTapped() {
         tabBarController?.selectedIndex = 1
     }
-    
 }

@@ -10,14 +10,19 @@ import UIKit
 
 final class ButtonWithRoundCorners: UIButton {
     
+    private enum Locals {
+        static let cornerRadius: CGFloat = 10
+        static let textSize: CGFloat = 18
+    }
+    
     // MARK: - Initialization
     
     init(title: String) {
         super.init(frame: .zero)
         setTitle(title, for: .normal)
-        layer.cornerRadius = 10
+        layer.cornerRadius = Locals.cornerRadius
         backgroundColor = UIColor.blueSapphire
-        titleLabel?.font = UIFont.sfProTextHeavy(ofSize: 20)
+        titleLabel?.font = UIFont.sfProTextHeavy(ofSize: Locals.textSize)
     }
     
     required init?(coder: NSCoder) {

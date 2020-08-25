@@ -13,7 +13,7 @@ final class SettingsTableViewCell: UITableViewCell {
     // MARK: - Constants
     
     enum Locals {
-        static let lebelSize: CGFloat = 20
+        static let lebelSize: CGFloat = 18
         static let leadingAnchor: CGFloat = 20
         static let trailingAnchor: CGFloat = -20
         static let topAnchor: CGFloat = 10

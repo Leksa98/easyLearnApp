@@ -13,7 +13,7 @@ final class ChooseLanguageTableViewCell: UITableViewCell {
     // MARK: - Constants
     
     enum Locals {
-        static let labelSize: CGFloat = 20
+        static let labelSize: CGFloat = 18
         static let flagSize: CGFloat = 30
         
         static let topAnchor: CGFloat = 10

@@ -13,8 +13,8 @@ final class CustomAlertView: UIView {
     // MARK: - Constants
     
     private enum Locals {
-        static let titleSize: CGFloat = 20
-        static let messageSize: CGFloat = 18
+        static let titleSize: CGFloat = 18
+        static let messageSize: CGFloat = 16
         static let messageNumberOfLines = 0
         
         static let titleTopAnchor: CGFloat = 20
