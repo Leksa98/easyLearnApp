@@ -14,7 +14,11 @@ class WordSetCardView: UIView {
     
     private enum Locals {
         static let cornerRadius: CGFloat = 40
-        static let textSize: CGFloat = 40
+        static let textSize: CGFloat = 30
+        static let numberOfLines = 0
+        
+        static let leadingAnchor: CGFloat = 15
+        static let trailingAnchor: CGFloat = -15
     }
     
     // MARK: - Property
@@ -41,10 +45,13 @@ class WordSetCardView: UIView {
     private func configureLabel() {
         label.font = UIFont.sfProTextHeavy(ofSize: Locals.textSize)
         label.textColor = .white
+        label.numberOfLines = Locals.numberOfLines
+        label.textAlignment = .center
         addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            label.centerXAnchor.constraint(equalTo: centerXAnchor),
+            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Locals.leadingAnchor),
+            label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Locals.trailingAnchor),
             label.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
@@ -54,5 +61,4 @@ class WordSetCardView: UIView {
     func setTextLabel(text: String) {
         label.text = text.capitalizingFirstLetter()
     }
-    
 }

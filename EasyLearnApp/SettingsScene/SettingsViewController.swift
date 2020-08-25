@@ -8,19 +8,23 @@
 
 import UIKit
 
+struct SettingsSection {
+    let cellName: [String]
+}
+
 final class SettingsViewController: UIViewController {
     
     // MARK: - Constants
     
     enum Locals {
         static let chooseLanguageCellId = "chooseLanguageCellId"
-        static let numberOfRows = 1
         static let tableViewRowHeight: CGFloat = 44
     }
     
     // MARK: - Properties
     
-    private let tableView = UITableView()
+    private let tableView = UITableView(frame: .zero, style: .grouped)
+    private let sections = [SettingsSection(cellName: ["About app"]), SettingsSection(cellName: ["Language to study"])]
     var router: SettingsRouterLogic?
     
     // MARK: - Life cycle
@@ -76,19 +80,33 @@ final class SettingsViewController: UIViewController {
 // MARK: - UITableViewDelegate protocol
 extension SettingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        router?.routeToChooseLanguageScene()
+        if let cell = tableView.cellForRow(at: indexPath) as? SettingsTableViewCell {
+            if cell.viewModel == "Language to study" {
+                router?.routeToChooseLanguageScene()
+            } else if cell.viewModel == "About app" {
+                router?.routeToAboutAppScene()
+            }
+        }
     }
 }
 
 // MARK: - UITableViewDataSource protocol
 extension SettingsViewController: UITableViewDataSource {
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return sections.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        Locals.numberOfRows
+        return sections[section].cellName.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Locals.chooseLanguageCellId, for: indexPath)
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: Locals.chooseLanguageCellId, for: indexPath) as? SettingsTableViewCell {
+            let section = self.sections[indexPath.section]
+            cell.viewModel = section.cellName[indexPath.row]
+            return cell
+        }
+        return UITableViewCell()
     }
 }

@@ -13,6 +13,7 @@ import UIKit
 protocol SettingsRouterLogic {
     var navigationController: UINavigationController? { get }
     func routeToChooseLanguageScene()
+    func routeToAboutAppScene()
 }
 
 final class SettingsRouter: SettingsRouterLogic {
@@ -20,5 +21,9 @@ final class SettingsRouter: SettingsRouterLogic {
     
     func routeToChooseLanguageScene() {
         navigationController?.pushViewController(ChooseLanguageConfigurator.assembly(), animated: false)
+    }
+    
+    func routeToAboutAppScene() {
+        navigationController?.pushViewController(AboutAppConfigurator.assembly(), animated: false)
     }
 }
