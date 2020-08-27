@@ -56,9 +56,7 @@ final class AddSetViewController: UIViewController {
             tableView.reloadData()
         }
     }
-    private let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
-    private let alertView = CustomAlertView()
-    private let screenshotImageView = UIImageView()
+    private let alertView = CustomAlertWithBackgroundView()
     var needToEmptyEnteredInfo: Bool?
     var interactor: AddSetBusinessLogic?
     var router: AddSetRouterLogic?
@@ -74,7 +72,6 @@ final class AddSetViewController: UIViewController {
         configureEmojiView()
         configuteTableView()
         setAddButton()
-        screenshotImageView.addBlur()
     }
     
     // MARK: - Setup UI elements
@@ -171,9 +168,10 @@ final class AddSetViewController: UIViewController {
     }
     
     @objc private func saveButtonTapped() {
-        screenshotImageView.image = UIApplication.shared.takeScreenshot()
+        alertView.screenshotImageView.image = UIApplication.shared.takeScreenshot()
         if let setName = nameView.enteredInfo, !setName.isEmpty,
             let setEmoji = emojiView.enteredInfo, !setEmoji.isEmpty, !addedWords.isEmpty {
+            needToEmptyEnteredInfo = true
             interactor?.saveWordSetInCoreData(request: AddSetModel.SaveWordSet.Request(name: setName, emoji: setEmoji, words: addedWords))
         } else {
             needToEmptyEnteredInfo = false
@@ -216,48 +214,29 @@ extension AddSetViewController: AddWordToSetDataStore {
 // MARK: - AddSetSavedNotification protocol
 extension AddSetViewController: AddSetSavedNotification {
     func showSavedAlert(viewModel: AddSetModel.SaveWordSet.ViewModel) {
-        alertView.alpha = 0
-        alertView.titleLabel.text = viewModel.alertTitleLabel
-        alertView.messageLabel.text = viewModel.alertMessageLabel
-        alertView.button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-        view.addSubview(screenshotImageView)
+        alertView.navigationController = navigationController
+        alertView.delegate = self
+        alertView.alertView.titleLabel.text = viewModel.alertTitleLabel
+        alertView.alertView.messageLabel.text = viewModel.alertMessageLabel
         view.addSubview(alertView)
         alertView.translatesAutoresizingMaskIntoConstraints = false
-        screenshotImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            screenshotImageView.topAnchor.constraint(equalTo: view.topAnchor),
-            screenshotImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            screenshotImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            screenshotImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            alertView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            alertView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            alertView.widthAnchor.constraint(equalToConstant: Locals.alertViewWidth),
-            alertView.heightAnchor.constraint(equalToConstant: Locals.alertViewHeight),
+            alertView.topAnchor.constraint(equalTo: view.topAnchor),
+            alertView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            alertView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            alertView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
-        alertView.transform = CGAffineTransform(scaleX: Locals.alertTransformScale, y: Locals.alertTransformScale)
-        navigationController?.setNavigationBarHidden(true, animated: false)
-        UIView.animate(withDuration: Locals.animationDuration) {
-            self.visualEffectView.alpha = 0.7
-            self.alertView.alpha = 1
-            self.alertView.transform = CGAffineTransform.identity
-        }
+        alertView.showAlert()
     }
-    
-    @objc private func buttonPressed() {
-        UIView.animate(withDuration: Locals.animationDuration,
-                       animations: {
-                        self.visualEffectView.alpha = 0
-                        self.alertView.alpha = 0
-                        self.alertView.transform = CGAffineTransform(scaleX: Locals.alertTransformScale, y: Locals.alertTransformScale)
-        }) { _ in
-            if let needToEmptyEnteredInfo = self.needToEmptyEnteredInfo, needToEmptyEnteredInfo {
-                self.addedWords = []
-                self.nameView.emptyEnteredInfo()
-                self.emojiView.emptyEnteredInfo()
-            }
-            self.alertView.removeFromSuperview()
-            self.screenshotImageView.removeFromSuperview()
-            self.navigationController?.setNavigationBarHidden(false, animated: false)
+}
+
+// MARK: - AlertButtonWasPressed protocol
+extension AddSetViewController: AlertButtonWasPressed {
+    func alertButtonWasPressed() {
+        if let needToEmptyEnteredInfo = self.needToEmptyEnteredInfo, needToEmptyEnteredInfo {
+            self.addedWords = []
+            self.nameView.emptyEnteredInfo()
+            self.emojiView.emptyEnteredInfo()
         }
     }
 }

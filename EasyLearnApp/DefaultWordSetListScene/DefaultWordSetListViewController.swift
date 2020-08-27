@@ -39,8 +39,7 @@ final class DefaultWordSetListViewController: UIViewController {
             tableView.reloadData()
         }
     }
-    private let alertView = CustomAlertView()
-    private let screenshotImageView = UIImageView()
+    private let alertView = CustomAlertWithBackgroundView()
     var interactor: DefaultWordSetListBusinessLogic?
     
     // MARK: - Life cycle
@@ -51,7 +50,6 @@ final class DefaultWordSetListViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Download", style: .plain, target: self, action: #selector(downloadButtonTapped))
         view.backgroundColor = .white
         configureTableView()
-        screenshotImageView.addBlur()
     }
     
     // MARK: - Setup UI elements
@@ -87,7 +85,7 @@ final class DefaultWordSetListViewController: UIViewController {
     // MARK: - Button actions
     
     @objc private func downloadButtonTapped() {
-        screenshotImageView.image = UIApplication.shared.takeScreenshot()
+        alertView.screenshotImageView.image = UIApplication.shared.takeScreenshot()
         if let name = setName, let emoji = setEmoji {
             interactor?.downloadWordSet(request: DefaultWordSetListModel.DownloadWordSet.Request(name: name, emoji: emoji, words: words))
         }
@@ -125,41 +123,17 @@ extension DefaultWordSetListViewController: DefaultWordSetListDataSource {
 // MARK: - DefaultWordSetListSaveNotification protocol
 extension DefaultWordSetListViewController: DefaultWordSetListSaveNotification {
     func showSaveAlert(viewModel: DefaultWordSetListModel.DownloadWordSet.ViewModel) {
-        alertView.alpha = 0
-        alertView.titleLabel.text = viewModel.alertTitleLabel
-        alertView.messageLabel.text = viewModel.alertMessageLabel
-        alertView.button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-        view.addSubview(screenshotImageView)
+        alertView.navigationController = navigationController
+        alertView.alertView.titleLabel.text = viewModel.alertTitleLabel
+        alertView.alertView.messageLabel.text = viewModel.alertMessageLabel
         view.addSubview(alertView)
         alertView.translatesAutoresizingMaskIntoConstraints = false
-        screenshotImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            screenshotImageView.topAnchor.constraint(equalTo: view.topAnchor),
-            screenshotImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            screenshotImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            screenshotImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            alertView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            alertView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            alertView.widthAnchor.constraint(equalToConstant: Locals.alertViewWidth),
-            alertView.heightAnchor.constraint(equalToConstant: Locals.alertViewHeight),
+            alertView.topAnchor.constraint(equalTo: view.topAnchor),
+            alertView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            alertView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            alertView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
-        alertView.transform = CGAffineTransform(scaleX: Locals.alertTransformScale, y: Locals.alertTransformScale)
-        navigationController?.setNavigationBarHidden(true, animated: false)
-        UIView.animate(withDuration: Locals.animationDuration) {
-            self.alertView.alpha = 1
-            self.alertView.transform = CGAffineTransform.identity
-        }
-    }
-    
-    @objc private func buttonPressed() {
-        UIView.animate(withDuration: Locals.animationDuration,
-                       animations: {
-                        self.alertView.alpha = 0
-                        self.alertView.transform = CGAffineTransform(scaleX: Locals.alertTransformScale, y: Locals.alertTransformScale)
-        }) { _ in
-            self.alertView.removeFromSuperview()
-            self.navigationController?.setNavigationBarHidden(false, animated: false)
-            self.screenshotImageView.removeFromSuperview()
-        }
+        alertView.showAlert()
     }
 }
