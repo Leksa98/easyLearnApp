@@ -19,6 +19,7 @@ final class DefaultWordSetListConfiguration {
         
         viewController.interactor = interactor
         interactor.presenter = presenter
+        interactor.worker = DataHandler.shared
         presenter.viewController = viewController
         
         return viewController

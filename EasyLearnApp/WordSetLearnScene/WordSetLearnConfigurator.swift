@@ -20,6 +20,7 @@ final class WordSetLearnConfigurator {
         viewController.router = router
         router.navigationController = viewController.navigationController
         interactor.presenter = presenter
+        interactor.worker = DataHandler.shared
         presenter.viewController = viewController
     }
 }

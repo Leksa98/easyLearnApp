@@ -17,16 +17,19 @@ protocol WordSetListBusinessLogic {
 final class WordSetListInteractor: WordSetListBusinessLogic {
     
     var presenter: WordSetListPresentationLogic?
+    var worker: (DataStorageWordSetEdit & DataStorageWordSetView)?
     
     func deleteWordFromSet(request: WordSetListModel.DeleteWordFromSet.Request) {
-        DataHandler.shared.deleteWordfromSet(name: request.set, wordValue: request.word)
+        worker?.deleteWordfromSet(name: request.set, wordValue: request.word)
     }
     
     func addWordToSet(request: WordSetListModel.AddWordToSet.Request) {
-        DataHandler.shared.addWordtoSet(name: request.setName, word: request.word.word, translation: request.word.translation)
+        worker?.addWordtoSet(name: request.setName, word: request.word.word, translation: request.word.translation)
     }
     
     func fetchWordSet(request: WordSetListModel.FetchWordSet.Request) {
-        presenter?.prepareForPresent(response: WordSetListModel.FetchWordSet.Response(words: DataHandler.shared.fetchWords(from: request.setName)))
+        if let words = worker?.fetchWords(from: request.setName) {
+            presenter?.prepareForPresent(response: WordSetListModel.FetchWordSet.Response(words: words))
+        }
     }
 }

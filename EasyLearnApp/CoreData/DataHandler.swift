@@ -8,6 +8,28 @@
 
 import CoreData
 
+protocol DataStorageAllWordSet {
+    func fetchAllWordSet() -> [WordSetModel]?
+    func deleteWordSet(name: String)
+}
+
+protocol DataStorageWordSetEdit {
+    func addWordtoSet(name: String, word: String, translation: String)
+    func deleteWordfromSet(name: String, wordValue: String)
+}
+
+protocol DataStorageWordSetView {
+     func fetchWords(from setWithName: String) -> [WordModel]
+}
+
+protocol DataStorageWordSetProgress {
+     func updateWordProgress(setName: String, wordUpdate: String, progressChange: Double)
+}
+
+protocol DataStorageWordSetSave {
+    func saveWordSet(name: String, emoji: String) -> Bool
+}
+
 
 ///  Класс для обращения к CoreData
 final class DataHandler : NSObject {
@@ -89,6 +111,10 @@ final class DataHandler : NSObject {
             print("Failed to set overall set progress: \(error)")
         }
     }
+}
+
+// MARK: - DataStorageAllWordSet, DataStorageWordSetEdit, DataStorageWordSetView, DataStorageWordSetProgress, DataStorageSetSave protocol
+extension DataHandler: DataStorageAllWordSet, DataStorageWordSetEdit, DataStorageWordSetView, DataStorageWordSetProgress, DataStorageWordSetSave {
     
     // MARK: - Public data handling functions
     
@@ -231,18 +257,18 @@ final class DataHandler : NSObject {
     
     /// Получение всех сохраненных сетов
     /// - Returns: массив объектов типа WordSet
-    public func fetchAllWordSet() -> [WordSet]? {
+    public func fetchAllWordSet() -> [WordSetModel]? {
         group.enter()
         let fetchRequest = NSFetchRequest<WordSet>(entityName: Keys.wordSet)
         let language = (UserDefaults.standard.object(forKey: "selectedLanguage") as? String) ?? "English"
         fetchRequest.predicate = NSPredicate(format: "language == %@", language)
         do {
             let sets = try context.fetch(fetchRequest)
-            var result: [WordSet] = []
+            var result: [WordSetModel] = []
             for set in sets {
-                guard let name = set.name else { return nil }
+                guard let name = set.name, let emoji = set.emoji else { return nil }
                 setOverallSetProgress(setName: name)
-                result.append(set)
+                result.append(WordSetModel(name: name, emoji: emoji, progress: Float(set.progress)))
             }
             group.leave()
             return result

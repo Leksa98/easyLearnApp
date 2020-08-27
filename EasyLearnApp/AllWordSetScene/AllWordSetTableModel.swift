@@ -15,7 +15,7 @@ enum AllWordSetTableModel {
         struct Request { }
         
         struct Response {
-            var studySets: [WordSet]
+            var studySets: [WordSetModel]
         }
         
         struct ViewModel {

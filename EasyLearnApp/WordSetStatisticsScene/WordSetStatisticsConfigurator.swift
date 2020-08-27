@@ -19,6 +19,7 @@ final class WordSetStatisticsConfigurator {
         viewController.interactor = interactor
         viewController.setTitle = setTitle
         interactor.presenter = presenter
+        interactor.worker = DataHandler.shared
         presenter.viewController = viewController
         
         return viewController

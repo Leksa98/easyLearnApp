@@ -15,11 +15,12 @@ protocol AddSetBusinessLogic {
 final class AddSetInteractor: AddSetBusinessLogic {
     
     var presenter: AddSetPresentationLogic?
+    var worker: (DataStorageWordSetEdit & DataStorageWordSetSave)?
     
     func saveWordSetInCoreData(request: AddSetModel.SaveWordSet.Request) {
-        if DataHandler.shared.saveWordSet(name: request.name, emoji: request.emoji) {
+        if (worker?.saveWordSet(name: request.name, emoji: request.emoji)) != nil {
             request.words.forEach { word in
-                DataHandler.shared.addWordtoSet(name: request.name, word: word.word, translation: word.translation)
+                worker?.addWordtoSet(name: request.name, word: word.word, translation: word.translation)
             }
             presenter?.prepareForPresent(response: AddSetModel.SaveWordSet.Response(name: request.name, emoji: request.emoji, isAlreadyExist: false))
         } else {

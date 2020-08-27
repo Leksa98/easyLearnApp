@@ -17,12 +17,6 @@ final class AllWordSetTablePresenter: AllWordSetTablePresentationLogic {
     weak var viewController: AllWordSetTableShow?
     
     func presentSets(response: AllWordSetTableModel.FetchStudySets.Response) {
-        var studySet: [WordSetModel] = []
-        response.studySets.forEach { set in
-            if let setName = set.name, let setEmoji = set.emoji {
-                studySet.append(WordSetModel(name: setName, emoji: setEmoji, progress: Float(set.progress)))
-            }
-        }
-        viewController?.showWordSets(viewModel: AllWordSetTableModel.FetchStudySets.ViewModel(studySets: studySet))
+        viewController?.showWordSets(viewModel: AllWordSetTableModel.FetchStudySets.ViewModel(studySets: response.studySets))
     }
 }

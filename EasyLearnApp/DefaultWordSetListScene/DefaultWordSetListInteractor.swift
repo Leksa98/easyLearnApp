@@ -15,11 +15,12 @@ protocol DefaultWordSetListBusinessLogic {
 final class DefaultWordSetListInteractor: DefaultWordSetListBusinessLogic {
     
     var presenter: DefaultWordSetListPresentationLogic?
+    var worker: (DataStorageWordSetSave & DataStorageWordSetEdit)?
     
     func downloadWordSet(request: DefaultWordSetListModel.DownloadWordSet.Request) {
-        if DataHandler.shared.saveWordSet(name: request.name, emoji: request.emoji) {
+        if (worker?.saveWordSet(name: request.name, emoji: request.emoji)) != nil {
             for word in request.words {
-                DataHandler.shared.addWordtoSet(name: request.name, word: word.word, translation: word.translation)
+                worker?.addWordtoSet(name: request.name, word: word.word, translation: word.translation)
             }
             presenter?.prepareForPresent(response: DefaultWordSetListModel.DownloadWordSet.Response(name: request.name, emoji: request.emoji))
         } else {

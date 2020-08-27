@@ -16,15 +16,16 @@ protocol AllWordSetTableBusinessLogic {
 final class AllWordSetTableInteractor: AllWordSetTableBusinessLogic {
     
     var presenter: AllWordSetTablePresentationLogic?
+    var worker: DataStorageAllWordSet?
     
     func fetchStudySets(request: AllWordSetTableModel.FetchStudySets.Request) {
-        guard let sets = DataHandler.shared.fetchAllWordSet() else {
+        guard let sets = worker?.fetchAllWordSet() else {
             return
         }
         presenter?.presentSets(response: AllWordSetTableModel.FetchStudySets.Response(studySets: sets))
     }
     
     func deletefromCoreData(request: AllWordSetTableModel.DeleteSet.Request) {
-        DataHandler.shared.deleteWordSet(name: request.setName)
+        worker?.deleteWordSet(name: request.setName)
     }
 }

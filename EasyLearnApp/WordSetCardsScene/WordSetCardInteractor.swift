@@ -15,8 +15,11 @@ protocol WordSetCardBusinessLogic {
 final class WordSetCardInteractor: WordSetCardBusinessLogic {
     
     var presenter: WordSetCardPresentationLogic?
+    var worker: DataStorageWordSetView?
     
     func fetchWordSet(request: WordSetCardModel.FetchWordSet.Request) {
-        presenter?.prepareForPresent(response: WordSetCardModel.FetchWordSet.Response(wordsArray: DataHandler.shared.fetchWords(from: request.setName)))
+        if let words =  worker?.fetchWords(from: request.setName) {
+            presenter?.prepareForPresent(response: WordSetCardModel.FetchWordSet.Response(wordsArray: words))
+        }
     }
 }

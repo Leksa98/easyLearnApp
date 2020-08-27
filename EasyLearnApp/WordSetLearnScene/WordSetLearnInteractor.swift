@@ -14,13 +14,17 @@ protocol WordSetLearnBusinessLogic {
 }
 
 final class WordSetLearnInteractor: WordSetLearnBusinessLogic {
+    
     var presenter: WordSetLearnResentationLogic?
+    var worker: (DataStorageWordSetView & DataStorageWordSetProgress)?
     
     func fetchWords(request: WordSetLearnModel.FetchWordSet.Request) {
-        presenter?.prepareForPresent(response: WordSetLearnModel.FetchWordSet.Response(wordsArray: DataHandler.shared.fetchWords(from: request.setName)))
+        if let words = worker?.fetchWords(from: request.setName) {
+            presenter?.prepareForPresent(response: WordSetLearnModel.FetchWordSet.Response(wordsArray: words))
+        }
     }
     
     func editWordProgress(request: WordSetLearnModel.EditWordProgress.Request) {
-        DataHandler.shared.updateWordProgress(setName: request.setName, wordUpdate: request.word, progressChange: request.progressChange)
+        worker?.updateWordProgress(setName: request.setName, wordUpdate: request.word, progressChange: request.progressChange)
     }
 }
