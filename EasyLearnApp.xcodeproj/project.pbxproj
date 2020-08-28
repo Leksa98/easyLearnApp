@@ -49,6 +49,8 @@
 		A8580B1F24DB161C0099B00F /* DefaultWordSetInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8580B1E24DB161C0099B00F /* DefaultWordSetInteractor.swift */; };
 		A8580B2124DB16AF0099B00F /* DefaultWordSetPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8580B2024DB16AF0099B00F /* DefaultWordSetPresenter.swift */; };
 		A85A0A2B24BDA3C30044CFBA /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85A0A2A24BDA3C30044CFBA /* DataHandler.swift */; };
+		A86208E124F950A000FF77EB /* WordSetStatisticsSceneTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86208E024F950A000FF77EB /* WordSetStatisticsSceneTest.swift */; };
+		A86208E324F9522C00FF77EB /* AddSetSceneTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86208E224F9522C00FF77EB /* AddSetSceneTest.swift */; };
 		A867382324EA66F2006D66C5 /* FinishedExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A867382224EA66F2006D66C5 /* FinishedExerciseViewController.swift */; };
 		A867382B24EA67B3006D66C5 /* FinishedExerciseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A867382A24EA67B3006D66C5 /* FinishedExerciseRouter.swift */; };
 		A867382D24EA67F3006D66C5 /* FinishedExerciseConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A867382C24EA67F3006D66C5 /* FinishedExerciseConfigurator.swift */; };
@@ -83,6 +85,8 @@
 		A8AC78BC24ED083600089C2E /* WordOfDayModelNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AC78BB24ED083600089C2E /* WordOfDayModelNetwork.swift */; };
 		A8AC78BE24ED0D1D00089C2E /* WordOfDayApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AC78BD24ED0D1D00089C2E /* WordOfDayApi.swift */; };
 		A8AD3FA224F7EC34001DE288 /* WordSetListSceneTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AD3FA124F7EC34001DE288 /* WordSetListSceneTest.swift */; };
+		A8AD3FA424F93FF1001DE288 /* WordSetCardsSceneTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AD3FA324F93FF1001DE288 /* WordSetCardsSceneTest.swift */; };
+		A8AD3FA624F94355001DE288 /* WordSetLearnSceneTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AD3FA524F94355001DE288 /* WordSetLearnSceneTest.swift */; };
 		A8B2143F24D9641100A3CF7F /* WordSetStatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2143E24D9641100A3CF7F /* WordSetStatisticsViewController.swift */; };
 		A8B2144124D97CE900A3CF7F /* WordSetStatisticsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2144024D97CE900A3CF7F /* WordSetStatisticsInteractor.swift */; };
 		A8B2144324D97CF600A3CF7F /* WordSetStatisticsPresentor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2144224D97CF600A3CF7F /* WordSetStatisticsPresentor.swift */; };
@@ -227,6 +231,8 @@
 		A8580B1E24DB161C0099B00F /* DefaultWordSetInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWordSetInteractor.swift; sourceTree = "<group>"; };
 		A8580B2024DB16AF0099B00F /* DefaultWordSetPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWordSetPresenter.swift; sourceTree = "<group>"; };
 		A85A0A2A24BDA3C30044CFBA /* DataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
+		A86208E024F950A000FF77EB /* WordSetStatisticsSceneTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetStatisticsSceneTest.swift; sourceTree = "<group>"; };
+		A86208E224F9522C00FF77EB /* AddSetSceneTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSetSceneTest.swift; sourceTree = "<group>"; };
 		A867382224EA66F2006D66C5 /* FinishedExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedExerciseViewController.swift; sourceTree = "<group>"; };
 		A867382A24EA67B3006D66C5 /* FinishedExerciseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedExerciseRouter.swift; sourceTree = "<group>"; };
 		A867382C24EA67F3006D66C5 /* FinishedExerciseConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedExerciseConfigurator.swift; sourceTree = "<group>"; };
@@ -261,6 +267,8 @@
 		A8AC78BB24ED083600089C2E /* WordOfDayModelNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordOfDayModelNetwork.swift; sourceTree = "<group>"; };
 		A8AC78BD24ED0D1D00089C2E /* WordOfDayApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordOfDayApi.swift; sourceTree = "<group>"; };
 		A8AD3FA124F7EC34001DE288 /* WordSetListSceneTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetListSceneTest.swift; sourceTree = "<group>"; };
+		A8AD3FA324F93FF1001DE288 /* WordSetCardsSceneTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetCardsSceneTest.swift; sourceTree = "<group>"; };
+		A8AD3FA524F94355001DE288 /* WordSetLearnSceneTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetLearnSceneTest.swift; sourceTree = "<group>"; };
 		A8B2143E24D9641100A3CF7F /* WordSetStatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetStatisticsViewController.swift; sourceTree = "<group>"; };
 		A8B2144024D97CE900A3CF7F /* WordSetStatisticsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetStatisticsInteractor.swift; sourceTree = "<group>"; };
 		A8B2144224D97CF600A3CF7F /* WordSetStatisticsPresentor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetStatisticsPresentor.swift; sourceTree = "<group>"; };
@@ -485,6 +493,10 @@
 				A81FF5DF24AA3D2A007068F9 /* Info.plist */,
 				A8574FE824F7D534005BAAB8 /* AllWordSetSceneTest.swift */,
 				A8AD3FA124F7EC34001DE288 /* WordSetListSceneTest.swift */,
+				A8AD3FA324F93FF1001DE288 /* WordSetCardsSceneTest.swift */,
+				A8AD3FA524F94355001DE288 /* WordSetLearnSceneTest.swift */,
+				A86208E024F950A000FF77EB /* WordSetStatisticsSceneTest.swift */,
+				A86208E224F9522C00FF77EB /* AddSetSceneTest.swift */,
 			);
 			path = EasyLearnAppTests;
 			sourceTree = "<group>";
@@ -1065,10 +1077,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A86208E124F950A000FF77EB /* WordSetStatisticsSceneTest.swift in Sources */,
+				A86208E324F9522C00FF77EB /* AddSetSceneTest.swift in Sources */,
 				A8A736BE24C5F38900F7482E /* NetworkManagerTest.swift in Sources */,
 				A8F0D58D24C5E1F40004C609 /* TranslationMeaningsParserTests.swift in Sources */,
 				A81FF5DE24AA3D2A007068F9 /* EasyLearnAppTests.swift in Sources */,
+				A8AD3FA424F93FF1001DE288 /* WordSetCardsSceneTest.swift in Sources */,
 				A8574FE924F7D534005BAAB8 /* AllWordSetSceneTest.swift in Sources */,
+				A8AD3FA624F94355001DE288 /* WordSetLearnSceneTest.swift in Sources */,
 				A8AD3FA224F7EC34001DE288 /* WordSetListSceneTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

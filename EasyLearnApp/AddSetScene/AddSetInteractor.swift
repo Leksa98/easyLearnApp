@@ -18,7 +18,7 @@ final class AddSetInteractor: AddSetBusinessLogic {
     var worker: (DataStorageWordSetEdit & DataStorageWordSetSave)?
     
     func saveWordSetInCoreData(request: AddSetModel.SaveWordSet.Request) {
-        if (worker?.saveWordSet(name: request.name, emoji: request.emoji)) != nil {
+        if let isAbleToSave = worker?.saveWordSet(name: request.name, emoji: request.emoji), isAbleToSave {
             request.words.forEach { word in
                 worker?.addWordtoSet(name: request.name, word: word.word, translation: word.translation)
             }

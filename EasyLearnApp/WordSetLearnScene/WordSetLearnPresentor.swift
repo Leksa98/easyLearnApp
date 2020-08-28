@@ -8,11 +8,11 @@
 
 import Foundation
 
-protocol WordSetLearnResentationLogic {
+protocol WordSetLearnPresentationLogic {
     func prepareForPresent(response: WordSetLearnModel.FetchWordSet.Response)
 }
 
-final class WordSetLearnPresentor: WordSetLearnResentationLogic {
+final class WordSetLearnPresentor: WordSetLearnPresentationLogic {
     weak var viewController: WordSetLearnShow?
     
     func prepareForPresent(response: WordSetLearnModel.FetchWordSet.Response) {

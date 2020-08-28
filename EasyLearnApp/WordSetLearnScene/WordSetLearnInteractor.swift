@@ -15,7 +15,7 @@ protocol WordSetLearnBusinessLogic {
 
 final class WordSetLearnInteractor: WordSetLearnBusinessLogic {
     
-    var presenter: WordSetLearnResentationLogic?
+    var presenter: WordSetLearnPresentationLogic?
     var worker: (DataStorageWordSetView & DataStorageWordSetProgress)?
     
     func fetchWords(request: WordSetLearnModel.FetchWordSet.Request) {
