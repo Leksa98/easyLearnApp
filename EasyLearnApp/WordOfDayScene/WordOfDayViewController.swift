@@ -64,8 +64,6 @@ final class WordOfDayViewController: UIViewController {
             navigationController?.navigationBar.prefersLargeTitles = true
         }
         navigationItem.title = "Word of the day"
-        setUpLabels()
-        setUpTableView()
     }
     
     // MARK: - Setup UI elements
@@ -190,6 +188,8 @@ extension WordOfDayViewController: WordOfDayDisplay {
             }
             self.sections.append(WordOfDaySection(name: "Definitions", content: wordDefinition))
             self.sections.append(WordOfDaySection(name: "Examples", content: viewModel.wordOfDay.exampleValue))
+            self.setUpLabels()
+            self.setUpTableView()
         }
     }
 }

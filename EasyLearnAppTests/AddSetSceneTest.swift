@@ -54,16 +54,16 @@ final class AddSetSceneTest: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        let wordSetListInteractor = AddSetInteractor()
-        let wordSetListWorker = AddSetWorkingLogicSpy()
-        let wordSetListPresenter = AddSetPresentationLogicSpy()
+        let addSetInteractor = AddSetInteractor()
+        let addSetWorker = AddSetWorkingLogicSpy()
+        let addSetPresenter = AddSetPresentationLogicSpy()
         
-        wordSetListInteractor.worker = wordSetListWorker
-        wordSetListInteractor.presenter = wordSetListPresenter
+        addSetInteractor.worker = addSetWorker
+        addSetInteractor.presenter = addSetPresenter
         
-        sut = wordSetListInteractor
-        worker = wordSetListWorker
-        presenter = wordSetListPresenter
+        sut = addSetInteractor
+        worker = addSetWorker
+        presenter = addSetPresenter
     }
     
     override func tearDown() {
@@ -76,7 +76,7 @@ final class AddSetSceneTest: XCTestCase {
     
     // MARK: - Public Methods
     
-    func testSaveWordSet() {
+    func testSaveWordSetSuccess() {
         let words = [WordModel(word: "study", translation: "учиться"),
                      WordModel(word: "book", translation: "книга")]
         
@@ -88,11 +88,18 @@ final class AddSetSceneTest: XCTestCase {
         XCTAssertTrue(worker.isCalledAddWordToSet, "Not started worker.saveWordSet(:)")
         XCTAssertTrue(presenter.isCalledPrepareForPresent, "Not started presenter.prepareForPresent(:)")
         XCTAssertNotEqual(presenter.isAlreadyExist, worker.isAbleToSave)
+    }
+    
+    func testSaveWordSetFail() {
+        let words = [WordModel(word: "study", translation: "учиться"),
+                     WordModel(word: "book", translation: "книга")]
         
+        let request = AddSetModel.SaveWordSet.Request(name: "name", emoji: "emoji", words: words)
         worker.isAbleToSave = false
         sut.saveWordSetInCoreData(request: request)
+        
         XCTAssertTrue(worker.isCalledSaveWordSet, "Not started worker.addWordtoSet(:)")
-        XCTAssertTrue(worker.isCalledAddWordToSet, "Not started worker.saveWordSet(:)")
+        XCTAssertFalse(worker.isCalledAddWordToSet, "Started worker.saveWordSet(:) when shouldn't")
         XCTAssertTrue(presenter.isCalledPrepareForPresent, "Not started presenter.prepareForPresent(:)")
         XCTAssertNotEqual(presenter.isAlreadyExist, worker.isAbleToSave)
     }

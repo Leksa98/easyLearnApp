@@ -15,10 +15,10 @@ protocol FetchWordTranslations {
 class AddWordInteractor: FetchWordTranslations {
     
     var presenter: PresentTranslations?
+    var worker: TranslationParse?
     
     func fetchWordTranslations(request: AddWordModel.WordTranslations.Request) {
-        let translationMeaningsParser = TranslationMeaningsParser()
-        translationMeaningsParser.getWordMeaning(word: request.word) { translation, error in
+        worker?.getWordMeaning(word: request.word) { translation, error in
             if let error = error {
                 print(error)
             }

@@ -53,16 +53,16 @@ final class WordSetLearnSceneTest: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        let wordSetListInteractor = WordSetLearnInteractor()
-        let wordSetListWorker = WordSetLearnWorkingLogicSpy()
-        let wordSetListPresenter = WordSetLearnPresentationLogicSpy()
+        let wordSetLearnInteractor = WordSetLearnInteractor()
+        let wordSetLearnWorker = WordSetLearnWorkingLogicSpy()
+        let wordSetLearnPresenter = WordSetLearnPresentationLogicSpy()
         
-        wordSetListInteractor.worker = wordSetListWorker
-        wordSetListInteractor.presenter = wordSetListPresenter
+        wordSetLearnInteractor.worker = wordSetLearnWorker
+        wordSetLearnInteractor.presenter = wordSetLearnPresenter
         
-        sut = wordSetListInteractor
-        worker = wordSetListWorker
-        presenter = wordSetListPresenter
+        sut = wordSetLearnInteractor
+        worker = wordSetLearnWorker
+        presenter = wordSetLearnPresenter
     }
     
     override func tearDown() {

@@ -20,6 +20,7 @@ final class AddWordConfigurator {
         viewController.interactor = interactor
         viewController.router = router
         interactor.presenter = presenter
+        interactor.worker = TranslationMeaningsParser()
         presenter.viewController = viewController
         
         return viewController

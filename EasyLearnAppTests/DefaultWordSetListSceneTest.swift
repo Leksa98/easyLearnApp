@@ -58,16 +58,16 @@ final class DefaultWordSetListSceneTest: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        let wordSetListInteractor = DefaultWordSetListInteractor()
-        let wordSetListWorker = DefaultWordSetListWorkingLogicSpy()
-        let wordSetListPresenter = DefaultWordSetListPresentationLogicSpy()
+        let defaultWordSetListInteractor = DefaultWordSetListInteractor()
+        let defaultWordSetListWorker = DefaultWordSetListWorkingLogicSpy()
+        let defaultWordSetListPresenter = DefaultWordSetListPresentationLogicSpy()
         
-        wordSetListInteractor.worker = wordSetListWorker
-        wordSetListInteractor.presenter = wordSetListPresenter
+        defaultWordSetListInteractor.worker = defaultWordSetListWorker
+        defaultWordSetListInteractor.presenter = defaultWordSetListPresenter
         
-        sut = wordSetListInteractor
-        worker = wordSetListWorker
-        presenter = wordSetListPresenter
+        sut = defaultWordSetListInteractor
+        worker = defaultWordSetListWorker
+        presenter = defaultWordSetListPresenter
     }
     
     override func tearDown() {
@@ -80,7 +80,7 @@ final class DefaultWordSetListSceneTest: XCTestCase {
     
     // MARK: - Public Methods
     
-    func testFetchWordSet() {
+    func testDownloadWordSetSuccess() {
         let words = [WordModel(word: "study", translation: "учиться"),
         WordModel(word: "book", translation: "книга")]
         
@@ -92,11 +92,18 @@ final class DefaultWordSetListSceneTest: XCTestCase {
         XCTAssertTrue(worker.isCalledAddWordToSet, "Not started worker.saveWordSet(:)")
         XCTAssertTrue(presenter.isCalledPrepareForPresent, "Not started presenter.prepareForPresent(:)")
         XCTAssertNotEqual(presenter.isResponseNil, worker.isAbleToSave)
+    }
+    
+     func testDownloadWordSetFail() {
+        let words = [WordModel(word: "study", translation: "учиться"),
+        WordModel(word: "book", translation: "книга")]
         
+        let request = DefaultWordSetListModel.DownloadWordSet.Request(name: "name", emoji: "emoji", words: words)
         worker.isAbleToSave = false
         sut.downloadWordSet(request: request)
+        
         XCTAssertTrue(worker.isCalledSaveWordSet, "Not started worker.addWordtoSet(:)")
-        XCTAssertTrue(worker.isCalledAddWordToSet, "Not started worker.saveWordSet(:)")
+        XCTAssertFalse(worker.isCalledAddWordToSet, "Started worker.saveWordSet(:) when shouldn't")
         XCTAssertTrue(presenter.isCalledPrepareForPresent, "Not started presenter.prepareForPresent(:)")
         XCTAssertNotEqual(presenter.isResponseNil, worker.isAbleToSave)
     }
