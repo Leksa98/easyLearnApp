@@ -40,7 +40,7 @@ struct Definition: Codable {
 
 // MARK: - Example
 struct ExampleWordOfDay: Codable {
-    let url: String
+    let url: String?
     let title, text: String
     let id: Int
 }

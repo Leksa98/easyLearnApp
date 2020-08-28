@@ -15,10 +15,10 @@ protocol DefaultWordSetBusinessLogic {
 final class DefaultWordSetInteractor: DefaultWordSetBusinessLogic {
     
     var presenter: DefaultWordSetPresentationLogic?
+    var worker: DefaultWordSetsNetworkRequest?
     
     func fetchDefaultSet(request: DefaultWordSetModel.FetchDefaultSets.Request) {
-        let networkManager = NetworkManager()
-        networkManager.fetchDefaultWordSets { apiResponse, error in
+        worker?.fetchDefaultWordSets { apiResponse, error in
             if let error = error {
                 print(error)
             }

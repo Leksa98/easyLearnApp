@@ -18,6 +18,7 @@ final class WordOfDayConfigurator {
         
         viewController.interactor = interactor
         interactor.presenter = presenter
+        interactor.worker = WordOfDayParser()
         presenter.viewController = viewController
         interactor.fetchWordOfDay(request: WordOfDayModel.FetchWordOfDay.Request())
         

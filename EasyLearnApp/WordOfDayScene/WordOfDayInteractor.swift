@@ -13,11 +13,12 @@ protocol WordOfDayBusinessLogic {
 }
 
 final class WordOfDayInteractor: WordOfDayBusinessLogic {
+    
     var presenter: WordOfDayPresentationLogic?
+    var worker: WordOfDayParse?
     
     func fetchWordOfDay(request: WordOfDayModel.FetchWordOfDay.Request) {
-        let wordOfDayParser = WordOfDayParser()
-        wordOfDayParser.fetchWordOfDay { apiResponse, error in
+        worker?.fetchWordOfDay { apiResponse, error in
             if let error = error {
                 print(error)
             }

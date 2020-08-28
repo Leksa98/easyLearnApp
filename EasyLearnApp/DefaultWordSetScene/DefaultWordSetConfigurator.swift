@@ -20,6 +20,7 @@ final class DefaultWordSetConfigurator {
         viewController.router = router
         router.navigationController = viewController.navigationController
         interactor.presenter = presenter
+        interactor.worker = NetworkManager()
         presenter.viewController = viewController
     }
 }

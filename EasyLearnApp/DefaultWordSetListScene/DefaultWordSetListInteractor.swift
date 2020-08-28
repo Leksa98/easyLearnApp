@@ -18,7 +18,7 @@ final class DefaultWordSetListInteractor: DefaultWordSetListBusinessLogic {
     var worker: (DataStorageWordSetSave & DataStorageWordSetEdit)?
     
     func downloadWordSet(request: DefaultWordSetListModel.DownloadWordSet.Request) {
-        if (worker?.saveWordSet(name: request.name, emoji: request.emoji)) != nil {
+        if let isAbleToSave = worker?.saveWordSet(name: request.name, emoji: request.emoji), isAbleToSave {
             for word in request.words {
                 worker?.addWordtoSet(name: request.name, word: word.word, translation: word.translation)
             }

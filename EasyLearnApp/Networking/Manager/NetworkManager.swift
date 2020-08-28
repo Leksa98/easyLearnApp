@@ -13,6 +13,17 @@ public enum Result<String> {
     case failure(String)
 }
 
+protocol DefaultWordSetsNetworkRequest {
+    func fetchDefaultWordSets(completion: @escaping (_ defaultWordSet: DefaultWordSet?, _ error: String?) -> ())
+}
+
+protocol TranslateWordNetworkRequest {
+    func translateWord(word: String, completion: @escaping (_ translation: TranslationModel?, _ error: String?) -> ())
+}
+
+protocol WordOfDayNetworkRequest {
+    func fetchWordOfDay(completion: @escaping (_ defaultWordSet: WordOfDayModelNetwork?, _ error: String?) -> ())
+}
 
 /// Класс для взаимодействия с сетью
 final class NetworkManager {
@@ -51,6 +62,10 @@ final class NetworkManager {
         }
     }
     
+}
+
+// MARK: - TranslateWordNetworkRequest protocol
+extension NetworkManager: TranslateWordNetworkRequest {
     
     /// Запрос на перевод слова
     /// - Parameters:
@@ -83,7 +98,10 @@ final class NetworkManager {
             }
         }
     }
-    
+}
+
+// MARK: - DefaultWordSetsNetworkRequest protocol
+extension NetworkManager: DefaultWordSetsNetworkRequest {
     
     /// Запрос на получение дефолтных сетов
     /// - Parameter completion: принимает параметры: defaultWordSet - структура с ответом на запрос, error - ошибка
@@ -114,6 +132,10 @@ final class NetworkManager {
             }
         }
     }
+}
+
+// MARK: - WordOfDayNetworkRequest protocol
+extension NetworkManager: WordOfDayNetworkRequest {
     
     func fetchWordOfDay(completion: @escaping (_ defaultWordSet: WordOfDayModelNetwork?, _ error: String?) -> ()) {
         wordOfDayRouter.request(.fetchWordOfDay) { data, response, error in

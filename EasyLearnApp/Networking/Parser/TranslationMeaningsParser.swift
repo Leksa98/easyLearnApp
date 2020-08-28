@@ -8,12 +8,27 @@
 
 import Foundation
 
+protocol TranslationParse {
+    func getWordMeaning(word: String, completion: @escaping (_ translation: [String]?, _ error: String?) -> ())
+}
 
 /// Парсинг запроса на перевод слова
 final class TranslationMeaningsParser {
     
-    private let networkManager = NetworkManager()
+    private let networkManager: TranslateWordNetworkRequest = NetworkManager()
     
+    private func getTranslation(translation: TranslationModel) -> [String]? {
+        var meanings: [String]? = []
+        for def in translation.def {
+            for tr in def.tr {
+                meanings?.append(tr.text)
+            }
+        }
+        return meanings
+    }
+}
+
+extension TranslationMeaningsParser: TranslationParse {
     
     /// Получение вариантов перевода слова
     /// - Parameters:
@@ -29,15 +44,5 @@ final class TranslationMeaningsParser {
                 completion(self.getTranslation(translation: apiResponse), nil)
             }
         }
-    }
-    
-    private func getTranslation(translation: TranslationModel) -> [String]? {
-        var meanings: [String]? = []
-        for def in translation.def {
-            for tr in def.tr {
-                meanings?.append(tr.text)
-            }
-        }
-        return meanings
     }
 }

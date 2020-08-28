@@ -8,20 +8,13 @@
 
 import Foundation
 
+protocol WordOfDayParse {
+    func fetchWordOfDay(completion: @escaping (_ wordOfDay: WordOfDay?, _ error: String?) -> ())
+}
+
 final class WordOfDayParser {
     
-    private let networkManager = NetworkManager()
-    
-    func fetchWordOfDay(completion: @escaping (_ wordOfDay: WordOfDay?, _ error: String?) -> ()) {
-        networkManager.fetchWordOfDay { apiResponse, error in
-            if let error = error {
-                completion(nil, error)
-            }
-            if let apiResponse = apiResponse {
-                completion(self.parseWordOfDay(response: apiResponse), nil)
-            }
-        }
-    }
+    private let networkManager: WordOfDayNetworkRequest = NetworkManager()
     
     private func parseWordOfDay(response: WordOfDayModelNetwork) -> WordOfDay {
         var definitions: [WordDefinition] = []
@@ -33,5 +26,18 @@ final class WordOfDayParser {
             examples.append(example.text)
         }
         return WordOfDay(word: response.word, date: response.pdd, note: response.note, definition: definitions, example: examples)
+    }
+}
+
+extension WordOfDayParser: WordOfDayParse {
+    func fetchWordOfDay(completion: @escaping (_ wordOfDay: WordOfDay?, _ error: String?) -> ()) {
+        networkManager.fetchWordOfDay { apiResponse, error in
+            if let error = error {
+                completion(nil, error)
+            }
+            if let apiResponse = apiResponse {
+                completion(self.parseWordOfDay(response: apiResponse), nil)
+            }
+        }
     }
 }

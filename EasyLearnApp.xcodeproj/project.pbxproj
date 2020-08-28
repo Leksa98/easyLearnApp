@@ -51,6 +51,7 @@
 		A85A0A2B24BDA3C30044CFBA /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85A0A2A24BDA3C30044CFBA /* DataHandler.swift */; };
 		A86208E124F950A000FF77EB /* WordSetStatisticsSceneTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86208E024F950A000FF77EB /* WordSetStatisticsSceneTest.swift */; };
 		A86208E324F9522C00FF77EB /* AddSetSceneTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86208E224F9522C00FF77EB /* AddSetSceneTest.swift */; };
+		A86208E524F95D1C00FF77EB /* DefaultWordSetListSceneTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86208E424F95D1C00FF77EB /* DefaultWordSetListSceneTest.swift */; };
 		A867382324EA66F2006D66C5 /* FinishedExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A867382224EA66F2006D66C5 /* FinishedExerciseViewController.swift */; };
 		A867382B24EA67B3006D66C5 /* FinishedExerciseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A867382A24EA67B3006D66C5 /* FinishedExerciseRouter.swift */; };
 		A867382D24EA67F3006D66C5 /* FinishedExerciseConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A867382C24EA67F3006D66C5 /* FinishedExerciseConfigurator.swift */; };
@@ -233,6 +234,7 @@
 		A85A0A2A24BDA3C30044CFBA /* DataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
 		A86208E024F950A000FF77EB /* WordSetStatisticsSceneTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetStatisticsSceneTest.swift; sourceTree = "<group>"; };
 		A86208E224F9522C00FF77EB /* AddSetSceneTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSetSceneTest.swift; sourceTree = "<group>"; };
+		A86208E424F95D1C00FF77EB /* DefaultWordSetListSceneTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWordSetListSceneTest.swift; sourceTree = "<group>"; };
 		A867382224EA66F2006D66C5 /* FinishedExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedExerciseViewController.swift; sourceTree = "<group>"; };
 		A867382A24EA67B3006D66C5 /* FinishedExerciseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedExerciseRouter.swift; sourceTree = "<group>"; };
 		A867382C24EA67F3006D66C5 /* FinishedExerciseConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedExerciseConfigurator.swift; sourceTree = "<group>"; };
@@ -497,6 +499,7 @@
 				A8AD3FA524F94355001DE288 /* WordSetLearnSceneTest.swift */,
 				A86208E024F950A000FF77EB /* WordSetStatisticsSceneTest.swift */,
 				A86208E224F9522C00FF77EB /* AddSetSceneTest.swift */,
+				A86208E424F95D1C00FF77EB /* DefaultWordSetListSceneTest.swift */,
 			);
 			path = EasyLearnAppTests;
 			sourceTree = "<group>";
@@ -1080,6 +1083,7 @@
 				A86208E124F950A000FF77EB /* WordSetStatisticsSceneTest.swift in Sources */,
 				A86208E324F9522C00FF77EB /* AddSetSceneTest.swift in Sources */,
 				A8A736BE24C5F38900F7482E /* NetworkManagerTest.swift in Sources */,
+				A86208E524F95D1C00FF77EB /* DefaultWordSetListSceneTest.swift in Sources */,
 				A8F0D58D24C5E1F40004C609 /* TranslationMeaningsParserTests.swift in Sources */,
 				A81FF5DE24AA3D2A007068F9 /* EasyLearnAppTests.swift in Sources */,
 				A8AD3FA424F93FF1001DE288 /* WordSetCardsSceneTest.swift in Sources */,

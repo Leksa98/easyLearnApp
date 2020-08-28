@@ -1,5 +1,5 @@
 //
-//  AddSetSceneTest.swift
+//  DefaultWordSetListSceneTest.swift
 //  EasyLearnAppTests
 //
 //  Created by Alexandra Gertsenshtein on 28.08.2020.
@@ -9,19 +9,23 @@
 import XCTest
 @testable import EasyLearnApp
 
-final class AddSetPresentationLogicSpy: AddSetPresentationLogic {
+final class DefaultWordSetListPresentationLogicSpy: DefaultWordSetListPresentationLogic {
     
     private(set) var isCalledPrepareForPresent = false
     
-    var isAlreadyExist: Bool?
+    var isResponseNil: Bool?
     
-    func prepareForPresent(response: AddSetModel.SaveWordSet.Response) {
+    func prepareForPresent(response: DefaultWordSetListModel.DownloadWordSet.Response?) {
         isCalledPrepareForPresent = true
-        isAlreadyExist = response.isAlreadyExist
+        if response != nil {
+            isResponseNil = false
+        } else {
+            isResponseNil = true
+        }
     }
 }
 
-final class AddSetWorkingLogicSpy: DataStorageWordSetEdit, DataStorageWordSetSave {
+final class DefaultWordSetListWorkingLogicSpy: DataStorageWordSetEdit, DataStorageWordSetSave {
     
     private(set) var isCalledAddWordToSet = false
     private(set) var isCalledSaveWordSet = false
@@ -41,22 +45,22 @@ final class AddSetWorkingLogicSpy: DataStorageWordSetEdit, DataStorageWordSetSav
 }
 
 
-final class AddSetSceneTest: XCTestCase {
+final class DefaultWordSetListSceneTest: XCTestCase {
     
     // MARK: - Private Properties
     
-    private var sut: AddSetInteractor!
-    private var worker: AddSetWorkingLogicSpy!
-    private var presenter: AddSetPresentationLogicSpy!
+    private var sut: DefaultWordSetListInteractor!
+    private var worker: DefaultWordSetListWorkingLogicSpy!
+    private var presenter: DefaultWordSetListPresentationLogicSpy!
     
     // MARK: - Lifecycle
     
     override func setUp() {
         super.setUp()
         
-        let wordSetListInteractor = AddSetInteractor()
-        let wordSetListWorker = AddSetWorkingLogicSpy()
-        let wordSetListPresenter = AddSetPresentationLogicSpy()
+        let wordSetListInteractor = DefaultWordSetListInteractor()
+        let wordSetListWorker = DefaultWordSetListWorkingLogicSpy()
+        let wordSetListPresenter = DefaultWordSetListPresentationLogicSpy()
         
         wordSetListInteractor.worker = wordSetListWorker
         wordSetListInteractor.presenter = wordSetListPresenter
@@ -76,24 +80,24 @@ final class AddSetSceneTest: XCTestCase {
     
     // MARK: - Public Methods
     
-    func testSaveWordSet() {
+    func testFetchWordSet() {
         let words = [WordModel(word: "study", translation: "учиться"),
-                     WordModel(word: "book", translation: "книга")]
+        WordModel(word: "book", translation: "книга")]
         
-        let request = AddSetModel.SaveWordSet.Request(name: "name", emoji: "emoji", words: words)
+        let request = DefaultWordSetListModel.DownloadWordSet.Request(name: "name", emoji: "emoji", words: words)
         worker.isAbleToSave = true
-        sut.saveWordSetInCoreData(request: request)
+        sut.downloadWordSet(request: request)
         
         XCTAssertTrue(worker.isCalledSaveWordSet, "Not started worker.addWordtoSet(:)")
         XCTAssertTrue(worker.isCalledAddWordToSet, "Not started worker.saveWordSet(:)")
         XCTAssertTrue(presenter.isCalledPrepareForPresent, "Not started presenter.prepareForPresent(:)")
-        XCTAssertNotEqual(presenter.isAlreadyExist, worker.isAbleToSave)
+        XCTAssertNotEqual(presenter.isResponseNil, worker.isAbleToSave)
         
         worker.isAbleToSave = false
-        sut.saveWordSetInCoreData(request: request)
+        sut.downloadWordSet(request: request)
         XCTAssertTrue(worker.isCalledSaveWordSet, "Not started worker.addWordtoSet(:)")
         XCTAssertTrue(worker.isCalledAddWordToSet, "Not started worker.saveWordSet(:)")
         XCTAssertTrue(presenter.isCalledPrepareForPresent, "Not started presenter.prepareForPresent(:)")
-        XCTAssertNotEqual(presenter.isAlreadyExist, worker.isAbleToSave)
+        XCTAssertNotEqual(presenter.isResponseNil, worker.isAbleToSave)
     }
 }
