@@ -11,7 +11,7 @@ import XCTest
 
 class TranslationMeaningsParserTests: XCTestCase {
     
-    private var sut: TranslationMeaningsParser!
+    private var sut: TranslationParse!
     
     override func setUp() {
         sut = TranslationMeaningsParser()

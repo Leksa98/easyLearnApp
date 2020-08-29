@@ -56,6 +56,7 @@
 		A86208EB24FA37A400FF77EB /* WordOfDaySceneTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86208EA24FA37A400FF77EB /* WordOfDaySceneTest.swift */; };
 		A86208ED24FA3BDE00FF77EB /* AboutAppSceneTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86208EC24FA3BDE00FF77EB /* AboutAppSceneTest.swift */; };
 		A86208EF24FA3D0E00FF77EB /* ChooseLanguageSceneTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86208EE24FA3D0E00FF77EB /* ChooseLanguageSceneTest.swift */; };
+		A86208F124FA498200FF77EB /* WordOfDayParserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86208F024FA498200FF77EB /* WordOfDayParserTest.swift */; };
 		A867382324EA66F2006D66C5 /* FinishedExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A867382224EA66F2006D66C5 /* FinishedExerciseViewController.swift */; };
 		A867382B24EA67B3006D66C5 /* FinishedExerciseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A867382A24EA67B3006D66C5 /* FinishedExerciseRouter.swift */; };
 		A867382D24EA67F3006D66C5 /* FinishedExerciseConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A867382C24EA67F3006D66C5 /* FinishedExerciseConfigurator.swift */; };
@@ -243,6 +244,7 @@
 		A86208EA24FA37A400FF77EB /* WordOfDaySceneTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordOfDaySceneTest.swift; sourceTree = "<group>"; };
 		A86208EC24FA3BDE00FF77EB /* AboutAppSceneTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppSceneTest.swift; sourceTree = "<group>"; };
 		A86208EE24FA3D0E00FF77EB /* ChooseLanguageSceneTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseLanguageSceneTest.swift; sourceTree = "<group>"; };
+		A86208F024FA498200FF77EB /* WordOfDayParserTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordOfDayParserTest.swift; sourceTree = "<group>"; };
 		A867382224EA66F2006D66C5 /* FinishedExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedExerciseViewController.swift; sourceTree = "<group>"; };
 		A867382A24EA67B3006D66C5 /* FinishedExerciseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedExerciseRouter.swift; sourceTree = "<group>"; };
 		A867382C24EA67F3006D66C5 /* FinishedExerciseConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedExerciseConfigurator.swift; sourceTree = "<group>"; };
@@ -499,6 +501,7 @@
 			children = (
 				A81FF5DF24AA3D2A007068F9 /* Info.plist */,
 				A8A736BD24C5F38900F7482E /* NetworkManagerTest.swift */,
+				A86208F024FA498200FF77EB /* WordOfDayParserTest.swift */,
 				A8F0D58C24C5E1F40004C609 /* TranslationMeaningsParserTests.swift */,
 				A8574FE824F7D534005BAAB8 /* AllWordSetSceneTest.swift */,
 				A8AD3FA124F7EC34001DE288 /* WordSetListSceneTest.swift */,
@@ -1105,6 +1108,7 @@
 				A86208ED24FA3BDE00FF77EB /* AboutAppSceneTest.swift in Sources */,
 				A8574FE924F7D534005BAAB8 /* AllWordSetSceneTest.swift in Sources */,
 				A8AD3FA624F94355001DE288 /* WordSetLearnSceneTest.swift in Sources */,
+				A86208F124FA498200FF77EB /* WordOfDayParserTest.swift in Sources */,
 				A8AD3FA224F7EC34001DE288 /* WordSetListSceneTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

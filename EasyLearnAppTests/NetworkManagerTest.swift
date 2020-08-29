@@ -78,5 +78,36 @@ class NetworkManagerTest: XCTestCase {
         XCTAssertNotNil(result)
         userDefaults.set(prevLang, forKey: "lang")
     }
-
+    
+    func testDefaultWordSetRequest() {
+        var result: DefaultWordSet?
+        let expectation = self.expectation(description: "Request")
+        sut.fetchDefaultWordSets { apiResponse, error in
+            if error != nil {
+                result = nil
+            }
+            if let apiResponse = apiResponse {
+                result = apiResponse
+            }
+            expectation.fulfill()
+        }
+        waitForExpectations(timeout: 5, handler: nil)
+        XCTAssertNotNil(result)
+    }
+    
+    func testWordOfDayRequest() {
+        var result: WordOfDayModelNetwork?
+        let expectation = self.expectation(description: "Request")
+        sut.fetchWordOfDay { apiResponse, error in
+            if error != nil {
+                result = nil
+            }
+            if let apiResponse = apiResponse {
+                result = apiResponse
+            }
+            expectation.fulfill()
+        }
+        waitForExpectations(timeout: 5, handler: nil)
+        XCTAssertNotNil(result)
+    }
 }
