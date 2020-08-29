@@ -17,7 +17,6 @@
 		A81FF5C424AA3D27007068F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81FF5C324AA3D27007068F9 /* AppDelegate.swift */; };
 		A81FF5C824AA3D27007068F9 /* AddSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81FF5C724AA3D27007068F9 /* AddSetViewController.swift */; };
 		A81FF5CE24AA3D27007068F9 /* EasyLearnApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A81FF5CC24AA3D27007068F9 /* EasyLearnApp.xcdatamodeld */; };
-		A81FF5DE24AA3D2A007068F9 /* EasyLearnAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81FF5DD24AA3D2A007068F9 /* EasyLearnAppTests.swift */; };
 		A81FF5E924AA3D2A007068F9 /* EasyLearnAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81FF5E824AA3D2A007068F9 /* EasyLearnAppUITests.swift */; };
 		A81FF5F724AA429F007068F9 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81FF5F624AA429F007068F9 /* TabBarController.swift */; };
 		A82EEA7A24B3C01B00C35D90 /* WordSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82EEA7924B3C01B00C35D90 /* WordSetViewController.swift */; };
@@ -53,6 +52,10 @@
 		A86208E324F9522C00FF77EB /* AddSetSceneTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86208E224F9522C00FF77EB /* AddSetSceneTest.swift */; };
 		A86208E524F95D1C00FF77EB /* DefaultWordSetListSceneTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86208E424F95D1C00FF77EB /* DefaultWordSetListSceneTest.swift */; };
 		A86208E724F977BA00FF77EB /* AddWordSceneTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86208E624F977BA00FF77EB /* AddWordSceneTest.swift */; };
+		A86208E924FA31F600FF77EB /* DefaultWordSetSceneTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86208E824FA31F600FF77EB /* DefaultWordSetSceneTest.swift */; };
+		A86208EB24FA37A400FF77EB /* WordOfDaySceneTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86208EA24FA37A400FF77EB /* WordOfDaySceneTest.swift */; };
+		A86208ED24FA3BDE00FF77EB /* AboutAppSceneTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86208EC24FA3BDE00FF77EB /* AboutAppSceneTest.swift */; };
+		A86208EF24FA3D0E00FF77EB /* ChooseLanguageSceneTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86208EE24FA3D0E00FF77EB /* ChooseLanguageSceneTest.swift */; };
 		A867382324EA66F2006D66C5 /* FinishedExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A867382224EA66F2006D66C5 /* FinishedExerciseViewController.swift */; };
 		A867382B24EA67B3006D66C5 /* FinishedExerciseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A867382A24EA67B3006D66C5 /* FinishedExerciseRouter.swift */; };
 		A867382D24EA67F3006D66C5 /* FinishedExerciseConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A867382C24EA67F3006D66C5 /* FinishedExerciseConfigurator.swift */; };
@@ -198,7 +201,6 @@
 		A81FF5CD24AA3D27007068F9 /* EasyLearnApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EasyLearnApp.xcdatamodel; sourceTree = "<group>"; };
 		A81FF5D424AA3D2A007068F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A81FF5D924AA3D2A007068F9 /* EasyLearnAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EasyLearnAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A81FF5DD24AA3D2A007068F9 /* EasyLearnAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyLearnAppTests.swift; sourceTree = "<group>"; };
 		A81FF5DF24AA3D2A007068F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A81FF5E424AA3D2A007068F9 /* EasyLearnAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EasyLearnAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A81FF5E824AA3D2A007068F9 /* EasyLearnAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyLearnAppUITests.swift; sourceTree = "<group>"; };
@@ -237,6 +239,10 @@
 		A86208E224F9522C00FF77EB /* AddSetSceneTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSetSceneTest.swift; sourceTree = "<group>"; };
 		A86208E424F95D1C00FF77EB /* DefaultWordSetListSceneTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWordSetListSceneTest.swift; sourceTree = "<group>"; };
 		A86208E624F977BA00FF77EB /* AddWordSceneTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWordSceneTest.swift; sourceTree = "<group>"; };
+		A86208E824FA31F600FF77EB /* DefaultWordSetSceneTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWordSetSceneTest.swift; sourceTree = "<group>"; };
+		A86208EA24FA37A400FF77EB /* WordOfDaySceneTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordOfDaySceneTest.swift; sourceTree = "<group>"; };
+		A86208EC24FA3BDE00FF77EB /* AboutAppSceneTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppSceneTest.swift; sourceTree = "<group>"; };
+		A86208EE24FA3D0E00FF77EB /* ChooseLanguageSceneTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseLanguageSceneTest.swift; sourceTree = "<group>"; };
 		A867382224EA66F2006D66C5 /* FinishedExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedExerciseViewController.swift; sourceTree = "<group>"; };
 		A867382A24EA67B3006D66C5 /* FinishedExerciseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedExerciseRouter.swift; sourceTree = "<group>"; };
 		A867382C24EA67F3006D66C5 /* FinishedExerciseConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedExerciseConfigurator.swift; sourceTree = "<group>"; };
@@ -491,10 +497,9 @@
 		A81FF5DC24AA3D2A007068F9 /* EasyLearnAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				A81FF5DF24AA3D2A007068F9 /* Info.plist */,
 				A8A736BD24C5F38900F7482E /* NetworkManagerTest.swift */,
 				A8F0D58C24C5E1F40004C609 /* TranslationMeaningsParserTests.swift */,
-				A81FF5DD24AA3D2A007068F9 /* EasyLearnAppTests.swift */,
-				A81FF5DF24AA3D2A007068F9 /* Info.plist */,
 				A8574FE824F7D534005BAAB8 /* AllWordSetSceneTest.swift */,
 				A8AD3FA124F7EC34001DE288 /* WordSetListSceneTest.swift */,
 				A8AD3FA324F93FF1001DE288 /* WordSetCardsSceneTest.swift */,
@@ -503,6 +508,10 @@
 				A86208E224F9522C00FF77EB /* AddSetSceneTest.swift */,
 				A86208E424F95D1C00FF77EB /* DefaultWordSetListSceneTest.swift */,
 				A86208E624F977BA00FF77EB /* AddWordSceneTest.swift */,
+				A86208E824FA31F600FF77EB /* DefaultWordSetSceneTest.swift */,
+				A86208EA24FA37A400FF77EB /* WordOfDaySceneTest.swift */,
+				A86208EC24FA3BDE00FF77EB /* AboutAppSceneTest.swift */,
+				A86208EE24FA3D0E00FF77EB /* ChooseLanguageSceneTest.swift */,
 			);
 			path = EasyLearnAppTests;
 			sourceTree = "<group>";
@@ -1084,13 +1093,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				A86208E724F977BA00FF77EB /* AddWordSceneTest.swift in Sources */,
+				A86208EB24FA37A400FF77EB /* WordOfDaySceneTest.swift in Sources */,
 				A86208E124F950A000FF77EB /* WordSetStatisticsSceneTest.swift in Sources */,
 				A86208E324F9522C00FF77EB /* AddSetSceneTest.swift in Sources */,
 				A8A736BE24C5F38900F7482E /* NetworkManagerTest.swift in Sources */,
 				A86208E524F95D1C00FF77EB /* DefaultWordSetListSceneTest.swift in Sources */,
 				A8F0D58D24C5E1F40004C609 /* TranslationMeaningsParserTests.swift in Sources */,
-				A81FF5DE24AA3D2A007068F9 /* EasyLearnAppTests.swift in Sources */,
+				A86208EF24FA3D0E00FF77EB /* ChooseLanguageSceneTest.swift in Sources */,
+				A86208E924FA31F600FF77EB /* DefaultWordSetSceneTest.swift in Sources */,
 				A8AD3FA424F93FF1001DE288 /* WordSetCardsSceneTest.swift in Sources */,
+				A86208ED24FA3BDE00FF77EB /* AboutAppSceneTest.swift in Sources */,
 				A8574FE924F7D534005BAAB8 /* AllWordSetSceneTest.swift in Sources */,
 				A8AD3FA624F94355001DE288 /* WordSetLearnSceneTest.swift in Sources */,
 				A8AD3FA224F7EC34001DE288 /* WordSetListSceneTest.swift in Sources */,
