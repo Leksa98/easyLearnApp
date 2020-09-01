@@ -40,7 +40,7 @@ extension TranslateWordApi: EndPointType {
         case let .translate(word):
             let userDefaults = UserDefaults.standard
             let lang = (userDefaults.object(forKey: "lang") as? String) ?? "en"
-            return ["key":"dict.1.1.20200630T173620Z.1de60fec798b1c41.ad15bcbb0be94e7eab2543d4b8f4fec39069c902", "lang": "\(lang)-ru", "text":"\(word)"]
+            return ["key":"", "lang": "\(lang)-ru", "text":"\(word)"]
         }
     }
 }

@@ -44,6 +44,6 @@ extension DefaultWordSetModelApi: EndPointType {
     }
     
     var headers: HTTPHeaders? {
-        return ["Content-Type": "application/json", "secret-key": "$2b$10$7bE1bmE7omk6Hwu4VwoOWeGvmkHN9NzBBxqlBC3z/KsKioWd4Arc."]
+        return ["Content-Type": "application/json", "secret-key": ""]
     }
 }
