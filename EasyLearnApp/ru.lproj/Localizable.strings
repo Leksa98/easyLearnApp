@@ -1,0 +1,91 @@
+/* 
+  Localizable.strings
+  EasyLearnApp
+
+  Created by Alexandra Gertsenshtein on 31.08.2020.
+  Copyright © 2020 Alexandra Gertsenshtein. All rights reserved.
+*/
+
+"tabbar_sets" = "Сеты";
+"tabbar_new_set" = "Новый сет";
+"tabbar_settings" = "Настройки";
+"tabbar_word_of_day" = "Слово дня";
+
+"all_word_set_title" = "Мои сеты";
+"all_word_empty_view_title" = "Сеты";
+"all_word_empty_view_button" = "Добавить сет";
+"all_word_empty_view_label" = "У вас пока нет сетов. Все ваши сеты появятся здесь.";
+
+"word_set_list" = "Список";
+"word_set_cards" = "Карточки";
+"word_set_learn" = "Учить";
+"word_set_statistics" = "Статистика";
+
+"word_set_cards_next_button" = "Вперед";
+"word_set_cards_previous_button" = "Назад";
+"word_set_cards_done_button" = "Завершить";
+
+"word_set_learn_check_button" = "Проверить";
+"word_set_learn_help_button" = "Не знаю";
+
+"finished_exercise_learn_again_button" = "Учить еще";
+"finished_exercise_finish_button" = "Завершить тренировку";
+"finished_exercise_label" = "Поздравляем 🎉🎉🎉\nВы только что закончили упражнение!";
+
+"progress_bar_label" = "Текущий прогресс";
+"progress_well_known_section" = "Знаю хорошо🏆";
+"progress_in_progress_section" = "В процессе🚀";
+"progress_do_not_know_section" = "Не знаю‼️";
+
+"new_word_set_title" = "Добавить сет слов";
+"new_word_set_view_default_sets" = "Посмотреть сеты по умолчанию";
+"new_word_set_add_new_set" = "Добавить новый сет";
+
+"default_word_set_title" = "Cеты по умолчанию";
+"default_word_set_list_title" = "Список слов";
+"default_word_set_download_button" = "Скачать";
+"alert_success_title" = "Сохранено!";
+"default_word_set_alert_fail_title" = "Сохранен раньше!";
+"alert_success_message" = "сет успешно сохранен!";
+"default_word_set_alert_fail_message" = "Перейдите в ваши сеты, чтобы посмотреть скаченный сет!";
+
+"add_set_add_word_button" = "Добавить слово";
+"add_set_enter_title" = "Название";
+"add_set_enter_title_placeholder" = "Введите название сета";
+"add_set_enter_emoji" = "Эмодзи";
+"add_set_enter_emoji_placeholder" = "Введите эмодзи для сета";
+"add_set_title" = "Добавить новый сет";
+"add_set_save_button" = "Сохранить";
+"add_set_table_label" = "Добавленные слова";
+"add_set_alert_not_all_information_title" = "Не сохранено!";
+"add_set_alert_not_all_information_message" = "Вы ввели недостаточно информации!";
+"add_set_alert_fail_title" = "Неподходящее имя!";
+"add_set_alert_fail_message_start" = "Сет с именем";
+"add_set_alert_fail_message_end" = "уже существует!";
+"add_set_empty_view_title" = "Слова";
+"add_set_empty_view_message" = "У вас пока нет добавленных слов. Все ваши добавленные слова появятся здесь.";
+
+"add_word_add_button" = "Добавить";
+"add_word_searchbar_placeholder" = "Введите слово ";
+"add_word_empty_view_title" = "Ничего не найдено";
+"add_word_empty_view_message" = "Все переводы введенного вами слова появятся здесь.";
+
+"settings_title" = "Настройки";
+"settings_about_app_section" = "О приложении";
+"settings_language_to_study_section" = "Изучаемый язык";
+
+"app_name" = "EasyLearnApp";
+"app_description" = "Это приложение поможет вам запоминать иностранные слова. Учите английский, немецкий, французский, испанский и итальянский. \n\nСоздавайте свои собственные наборы слов или загрузите дефолтные наборы. Начинайте учить и отслеживайте свой прогресс. Вы можете продолжать учить слова, даже если вы не подключены к интернету. \n\nЗагляните в раздел \"Слово дня \", чтобы расширить свой словарный запас.";
+
+
+"english_language" = "Английский";
+"german_language" = "Немецкий";
+"french_language" = "Французский";
+"spanish_language" = "Испанский";
+"italien_language" = "Итальянский";
+
+"english_language_placeholder" = "на английском";
+"german_language_placeholder" = "на немецком";
+"french_language_placeholder" = "на французском";
+"spanish_language_placeholder" = "на испанском";
+"italien_language_placeholder" = "на итальянском";

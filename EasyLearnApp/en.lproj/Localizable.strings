@@ -83,3 +83,9 @@
 "french_language" = "French";
 "spanish_language" = "Spanish";
 "italien_language" = "Italian";
+
+"english_language_placeholder" = "English";
+"german_language_placeholder" = "German";
+"french_language_placeholder" = "French";
+"spanish_language_placeholder" = "Spanish";
+"italien_language_placeholder" = "Italian";

@@ -10,7 +10,7 @@ import UIKit
 
 extension UITextField {
     open override var textInputMode: UITextInputMode? {
-        if self.placeholder == "Enter set emoji" {
+        if self.placeholder == NSLocalizedString("add_set_enter_emoji_placeholder", comment: ""){
             return UITextInputMode.activeInputModes.filter { $0.primaryLanguage == "emoji" }.first ?? super.textInputMode
         }
         return UITextInputMode.activeInputModes.filter { $0.primaryLanguage == NSLocale.current.languageCode }.first ?? super.textInputMode

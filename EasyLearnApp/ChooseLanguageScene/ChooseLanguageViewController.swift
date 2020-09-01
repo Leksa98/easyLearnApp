@@ -94,7 +94,7 @@ extension ChooseLanguageViewController: UITableViewDelegate {
             let userDefaults = UserDefaults.standard
             userDefaults.set(cell.viewModel?.codeValue, forKey: "lang")
             userDefaults.set(cell.viewModel?.languageValue, forKey: "selectedLanguage")
-            if cell.viewModel?.languageValue != "English" {
+            if cell.viewModel?.languageValue != NSLocalizedString("english_language", comment: "") {
                 tabBarController?.tabBar.items?.first{ $0.title == NSLocalizedString("tabbar_word_of_day", comment: "") }?.isEnabled = false
             } else {
                 tabBarController?.tabBar.items?.first{ $0.title == NSLocalizedString("tabbar_word_of_day", comment: "") }?.isEnabled = true

@@ -22,7 +22,7 @@ final class AddSetPresenter: AddSetPresentationLogic {
             viewController?.showSavedAlert(viewModel: AddSetModel.SaveWordSet.ViewModel(alertTitleLabel: NSLocalizedString("alert_success_title", comment: ""), alertMessageLabel: "\(response.name) \(response.emoji) " + NSLocalizedString("alert_success_message", comment: "")))
         } else {
             viewController?.needToEmptyEnteredInfo = false
-            viewController?.showSavedAlert(viewModel: AddSetModel.SaveWordSet.ViewModel(alertTitleLabel: "Inappropriate name!", alertMessageLabel: NSLocalizedString("add_set_alert_fail_message_start", comment: "") + " \(response.name) " + NSLocalizedString("add_set_alert_fail_message_end", comment: "")))
+            viewController?.showSavedAlert(viewModel: AddSetModel.SaveWordSet.ViewModel(alertTitleLabel: NSLocalizedString("add_set_alert_fail_title", comment: ""), alertMessageLabel: NSLocalizedString("add_set_alert_fail_message_start", comment: "") + " \(response.name) " + NSLocalizedString("add_set_alert_fail_message_end", comment: "")))
         }
     }
 }

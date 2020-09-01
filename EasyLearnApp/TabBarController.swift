@@ -41,13 +41,13 @@ final class TabBarController: UITabBarController {
         
         let wordOfDayViewController = WordOfDayConfigurator.assembly()
         let wordOfDayNavigationController = UINavigationController(rootViewController: wordOfDayViewController)
-        wordOfDayNavigationController.tabBarItem = UITabBarItem(title: NSLocalizedString("Word of day", comment: ""), image: UIImage(named: "Calendar"), tag: 3)
+        wordOfDayNavigationController.tabBarItem = UITabBarItem(title: NSLocalizedString("tabbar_word_of_day", comment: ""), image: UIImage(named: "Calendar"), tag: 3)
         
         viewControllers = [wordSetsNavigationController, newWordSetNavigationController, wordOfDayNavigationController, settingsNavigationController]
         
-        let language = (UserDefaults.standard.object(forKey: "selectedLanguage") as? String) ?? "English"
-        if language != "English" {
-            tabBar.items?.first{ $0.title == "Word of day" }?.isEnabled = false
+        let language_code = (UserDefaults.standard.object(forKey: "lang") as? String) ?? "en"
+        if language_code != "en" {
+            tabBar.items?.first{ $0.title == NSLocalizedString("tabbar_word_of_day", comment: "") }?.isEnabled = false
         }
     }
 }
