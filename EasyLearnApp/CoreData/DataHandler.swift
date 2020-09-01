@@ -140,8 +140,19 @@ extension DataHandler: DataStorageAllWordSet, DataStorageWordSetEdit, DataStorag
             newWordSet.emoji = emoji
             newWordSet.progress = 0.0
             newWordSet.withWord = NSSet()
-            let language = (UserDefaults.standard.object(forKey: "selectedLanguage") as? String) ?? "English"
-            newWordSet.language = language
+            let language_code = (UserDefaults.standard.object(forKey: "lang") as? String) ?? "en"
+            switch language_code {
+            case "de":
+                newWordSet.language = "German"
+            case "fr":
+                newWordSet.language = "French"
+            case "es":
+                newWordSet.language = "Spanish"
+            case "it":
+                newWordSet.language = "Italian"
+            default:
+                newWordSet.language = "English"
+            }
             do {
                 try context.save()
                 print("WordSet with name \(String(describing: newWordSet.name)) added")
@@ -260,7 +271,20 @@ extension DataHandler: DataStorageAllWordSet, DataStorageWordSetEdit, DataStorag
     public func fetchAllWordSet() -> [WordSetModel]? {
         group.enter()
         let fetchRequest = NSFetchRequest<WordSet>(entityName: Keys.wordSet)
-        let language = (UserDefaults.standard.object(forKey: "selectedLanguage") as? String) ?? "English"
+        var language = ""
+        let language_code = (UserDefaults.standard.object(forKey: "lang") as? String) ?? "en"
+        switch language_code {
+        case "de":
+            language = "German"
+        case "fr":
+            language = "French"
+        case "es":
+            language = "Spanish"
+        case "it":
+            language = "Italian"
+        default:
+            language = "English"
+        }
         fetchRequest.predicate = NSPredicate(format: "language == %@", language)
         do {
             let sets = try context.fetch(fetchRequest)

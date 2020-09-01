@@ -12,7 +12,7 @@ extension UISearchBar {
     func setPlaceholderTextColorTo(color: UIColor) {
         if let textFieldInsideSearchBar = self.value(forKey: "searchField") as? UITextField {
             textFieldInsideSearchBar.textColor = color
-            textFieldInsideSearchBar.font = UIFont.sfProTextMedium(ofSize: 18) ?? UIFont.systemFont(ofSize: 18)
+            textFieldInsideSearchBar.font = UIFont.sfProTextMedium(ofSize: 15) ?? UIFont.systemFont(ofSize: 15)
             if let textFieldInsideSearchBarLabel = textFieldInsideSearchBar.value(forKey: "placeholderLabel") as? UILabel {
                 textFieldInsideSearchBarLabel.textColor = color
             }

@@ -45,7 +45,7 @@ final class AddWordViewController: UIViewController, AddWordDataStore {
     }
     private var tableView =  UITableView()
     private var searchBar = UISearchBar()
-    private var addButton = ButtonWithRoundCorners(title: "Add")
+    private var addButton = ButtonWithRoundCorners(title: NSLocalizedString("add_word_add_button", comment: ""))
     private var isKeyboardVisible = false
     var interactor: FetchWordTranslations?
     var router: AddWordRoutingLogic?
@@ -75,7 +75,18 @@ final class AddWordViewController: UIViewController, AddWordDataStore {
         searchBar.clipsToBounds = true
         searchBar.searchBarStyle = UISearchBar.Style.prominent
         let language = (UserDefaults.standard.object(forKey: "selectedLanguage") as? String) ?? "English"
-        searchBar.placeholder = "Type word in \(language)..."
+        switch language {
+        case NSLocalizedString("german_language", comment: ""):
+            searchBar.placeholder = NSLocalizedString("add_word_searchbar_placeholder", comment: "") + NSLocalizedString("german_language_placeholder", comment: "")
+        case NSLocalizedString("french_language", comment: ""):
+            searchBar.placeholder = NSLocalizedString("add_word_searchbar_placeholder", comment: "") + NSLocalizedString("french_language_placeholder", comment: "")
+        case NSLocalizedString("spanish_language", comment: ""):
+            searchBar.placeholder = NSLocalizedString("add_word_searchbar_placeholder", comment: "") + NSLocalizedString("spanish_language_placeholder", comment: "")
+        case NSLocalizedString("italien_language", comment: ""):
+            searchBar.placeholder = NSLocalizedString("add_word_searchbar_placeholder", comment: "") + NSLocalizedString("italien_language_placeholder", comment: "")
+        default:
+            searchBar.placeholder = NSLocalizedString("add_word_searchbar_placeholder", comment: "") + NSLocalizedString("english_language_placeholder", comment: "")
+        }
         searchBar.sizeToFit()
         searchBar.barTintColor = UIColor.blueSapphire
         searchBar.textField?.backgroundColor = .white
@@ -177,7 +188,7 @@ extension AddWordViewController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.setShowsCancelButton(true, animated: true)
     }
-
+    
     private func searchBarTextDidEndEditing(searchBar: UISearchBar) {
         searchBar.setShowsCancelButton(false, animated: true)
         searchBar.showsCancelButton = false

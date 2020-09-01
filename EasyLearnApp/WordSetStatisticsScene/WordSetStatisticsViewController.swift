@@ -21,7 +21,6 @@ final class WordSetStatisticsViewController: UIViewController, WordSetStatistics
     // MARK: - Constants
     
     enum Locals {
-        static let title = "Statistics"
         static let cellId = "WordSetStatusticsCellId"
         
         static let labelLeadingAnchor: CGFloat = 15
@@ -69,7 +68,7 @@ final class WordSetStatisticsViewController: UIViewController, WordSetStatistics
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        title = Locals.title
+        title = NSLocalizedString("word_set_statistics", comment: "")
         setUpProgressLabel()
         setUpProgressBar()
         configureTableView()
@@ -82,7 +81,7 @@ final class WordSetStatisticsViewController: UIViewController, WordSetStatistics
     
     private func setUpProgressLabel() {
         view.addSubview(currentProgressLabel)
-        currentProgressLabel.text = "Current progress"
+        currentProgressLabel.text = NSLocalizedString("progress_bar_label", comment: "")
         currentProgressLabel.font = UIFont.sfProTextHeavy(ofSize: Locals.progressLabelSize)
         currentProgressLabel.translatesAutoresizingMaskIntoConstraints = false
         if #available(iOS 11.0, *) {

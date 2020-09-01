@@ -24,7 +24,7 @@ final class SettingsViewController: UIViewController {
     // MARK: - Properties
     
     private let tableView = UITableView(frame: .zero, style: .grouped)
-    private let sections = [SettingsSection(cellName: ["About app"]), SettingsSection(cellName: ["Language to study"])]
+    private let sections = [SettingsSection(cellName: [NSLocalizedString("settings_about_app_section", comment: "")]), SettingsSection(cellName: [NSLocalizedString("settings_language_to_study_section", comment: "")])]
     var router: SettingsRouterLogic?
     
     // MARK: - Life cycle
@@ -32,7 +32,7 @@ final class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        title = "Settings"
+        title = NSLocalizedString("settings_title", comment: "")
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
         }
@@ -81,9 +81,9 @@ final class SettingsViewController: UIViewController {
 extension SettingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? SettingsTableViewCell {
-            if cell.viewModel == "Language to study" {
+            if cell.viewModel == NSLocalizedString("settings_language_to_study_section", comment: "") {
                 router?.routeToChooseLanguageScene()
-            } else if cell.viewModel == "About app" {
+            } else if cell.viewModel == NSLocalizedString("settings_about_app_section", comment: "") {
                 router?.routeToAboutAppScene()
             }
         }

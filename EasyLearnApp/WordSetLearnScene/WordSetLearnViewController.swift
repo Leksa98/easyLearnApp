@@ -37,8 +37,8 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
     // MARK: - Property
     
     private var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-    private var checkButton = ButtonWithRoundCorners(title: "Check")
-    private var helpButton = ButtonWithRoundCorners(title: "Don't know")
+    private var checkButton = ButtonWithRoundCorners(title: NSLocalizedString("word_set_learn_check_button", comment: ""))
+    private var helpButton = ButtonWithRoundCorners(title: NSLocalizedString("word_set_learn_help_button", comment: ""))
     private var buttonStackView = UIStackView()
     
     var wordsToLearn: [WordModel] = [] {
@@ -56,7 +56,7 @@ final class WordSetLearnViewController: UIViewController, WordSetLearnDataSource
         super.viewDidLoad()
         navigationItem.setHidesBackButton(true, animated: true)
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(dismissViewController))
-        title = "Learn"
+        title = NSLocalizedString("word_set_learn", comment: "")
         view.backgroundColor = .white
         configureCollectionView()
         configureButtonStackView()

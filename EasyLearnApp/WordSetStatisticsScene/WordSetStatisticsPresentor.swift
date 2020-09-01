@@ -15,9 +15,11 @@ protocol WordSetStatisticsPresentationLogic {
 final class WordSetStatisticsPresentor: WordSetStatisticsPresentationLogic {
     
     weak var viewController: WordSetStatisticsShow?
-    private var sections = [WordStatisticsSectionModel(name: "Know well🏆", words: []),
-                            WordStatisticsSectionModel(name: "In progress🚀", words: []),
-                            WordStatisticsSectionModel(name: "Don't know‼️", words: [])]
+    private var sections = [WordStatisticsSectionModel(name:
+        NSLocalizedString("progress_well_known_section", comment: ""), words: []),
+                            WordStatisticsSectionModel(name:
+                                NSLocalizedString("progress_in_progress_section", comment: ""), words: []),
+                            WordStatisticsSectionModel(name: NSLocalizedString("progress_do_not_know_section", comment: ""), words: [])]
     
     func prepareForPresent(response: WordSetStatisticsModel.FetchWordSet.Response) {
         var wordsForSection: [WordModel] = []

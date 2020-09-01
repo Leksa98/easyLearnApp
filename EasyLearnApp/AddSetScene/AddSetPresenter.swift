@@ -19,10 +19,10 @@ final class AddSetPresenter: AddSetPresentationLogic {
     func prepareForPresent(response: AddSetModel.SaveWordSet.Response) {
         if !response.isAlreadyExist {
             viewController?.needToEmptyEnteredInfo = true
-            viewController?.showSavedAlert(viewModel: AddSetModel.SaveWordSet.ViewModel(alertTitleLabel: "Saved", alertMessageLabel: "Set \(response.name) \(response.emoji) was saved!"))
+            viewController?.showSavedAlert(viewModel: AddSetModel.SaveWordSet.ViewModel(alertTitleLabel: NSLocalizedString("alert_success_title", comment: ""), alertMessageLabel: "\(response.name) \(response.emoji) " + NSLocalizedString("alert_success_message", comment: "")))
         } else {
             viewController?.needToEmptyEnteredInfo = false
-            viewController?.showSavedAlert(viewModel: AddSetModel.SaveWordSet.ViewModel(alertTitleLabel: "Inappropriate name!", alertMessageLabel: "Set with name \(response.name) already exists!"))
+            viewController?.showSavedAlert(viewModel: AddSetModel.SaveWordSet.ViewModel(alertTitleLabel: NSLocalizedString("add_set_alert_fail_title", comment: ""), alertMessageLabel: NSLocalizedString("add_set_alert_fail_message_start", comment: "") + " \(response.name) " + NSLocalizedString("add_set_alert_fail_message_end", comment: "")))
         }
     }
 }

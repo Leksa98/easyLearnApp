@@ -63,7 +63,7 @@ final class WordOfDayViewController: UIViewController {
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
         }
-        navigationItem.title = "Word of the day"
+        navigationItem.title = NSLocalizedString("tabbar_word_of_day", comment: "")
     }
     
     // MARK: - Setup UI elements

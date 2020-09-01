@@ -57,6 +57,7 @@
 		A86208ED24FA3BDE00FF77EB /* AboutAppSceneTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86208EC24FA3BDE00FF77EB /* AboutAppSceneTest.swift */; };
 		A86208EF24FA3D0E00FF77EB /* ChooseLanguageSceneTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86208EE24FA3D0E00FF77EB /* ChooseLanguageSceneTest.swift */; };
 		A86208F124FA498200FF77EB /* WordOfDayParserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86208F024FA498200FF77EB /* WordOfDayParserTest.swift */; };
+		A86208F924FE76C800FF77EB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A86208FB24FE76C800FF77EB /* Localizable.strings */; };
 		A867382324EA66F2006D66C5 /* FinishedExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A867382224EA66F2006D66C5 /* FinishedExerciseViewController.swift */; };
 		A867382B24EA67B3006D66C5 /* FinishedExerciseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A867382A24EA67B3006D66C5 /* FinishedExerciseRouter.swift */; };
 		A867382D24EA67F3006D66C5 /* FinishedExerciseConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A867382C24EA67F3006D66C5 /* FinishedExerciseConfigurator.swift */; };
@@ -245,6 +246,8 @@
 		A86208EC24FA3BDE00FF77EB /* AboutAppSceneTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppSceneTest.swift; sourceTree = "<group>"; };
 		A86208EE24FA3D0E00FF77EB /* ChooseLanguageSceneTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseLanguageSceneTest.swift; sourceTree = "<group>"; };
 		A86208F024FA498200FF77EB /* WordOfDayParserTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordOfDayParserTest.swift; sourceTree = "<group>"; };
+		A86208FA24FE76C800FF77EB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A86208FC24FE76E400FF77EB /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A867382224EA66F2006D66C5 /* FinishedExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedExerciseViewController.swift; sourceTree = "<group>"; };
 		A867382A24EA67B3006D66C5 /* FinishedExerciseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedExerciseRouter.swift; sourceTree = "<group>"; };
 		A867382C24EA67F3006D66C5 /* FinishedExerciseConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedExerciseConfigurator.swift; sourceTree = "<group>"; };
@@ -473,6 +476,7 @@
 				A8BF985F24E156BB00755F7E /* LaunchScreen.storyboard */,
 				A84B2D3B24AA5ECF0022F029 /* Assets.xcassets */,
 				A81FF5D424AA3D2A007068F9 /* Info.plist */,
+				A86208FB24FE76C800FF77EB /* Localizable.strings */,
 				A81FF5CC24AA3D27007068F9 /* EasyLearnApp.xcdatamodeld */,
 				A81FF5F624AA429F007068F9 /* TabBarController.swift */,
 				A8AA51DD24C03C9D0047B084 /* AllWordSetScene */,
@@ -900,6 +904,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = A81FF5B724AA3D27007068F9;
 			productRefGroup = A81FF5C124AA3D27007068F9 /* Products */;
@@ -928,6 +933,7 @@
 				A8B869B624E297E700B61803 /* SF-Pro-Text-Heavy.otf in Resources */,
 				A8B869B424E297E700B61803 /* SF-Pro-Text-RegularItalic.otf in Resources */,
 				A8B869B024E297E700B61803 /* SF-Pro-Text-Medium.otf in Resources */,
+				A86208F924FE76C800FF77EB /* Localizable.strings in Resources */,
 				A8B869B524E297E700B61803 /* SF-Pro-Text-LightItalic.otf in Resources */,
 				A8B869B724E297E700B61803 /* SF-Pro-Text-BoldItalic.otf in Resources */,
 				A8B869B224E297E700B61803 /* SF-Pro-Text-SemiboldItalic.otf in Resources */,
@@ -1135,6 +1141,18 @@
 			targetProxy = A81FF5E524AA3D2A007068F9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A86208FB24FE76C800FF77EB /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A86208FA24FE76C800FF77EB /* en */,
+				A86208FC24FE76E400FF77EB /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		A81FF5EB24AA3D2A007068F9 /* Debug */ = {

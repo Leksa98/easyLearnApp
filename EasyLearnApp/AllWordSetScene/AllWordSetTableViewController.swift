@@ -48,7 +48,7 @@ final class AllWordSetTableViewController: UITableViewController {
     
     private func configureTableView() {
         view.backgroundColor = .white
-        navigationItem.title = "My sets"
+        navigationItem.title = NSLocalizedString("all_word_set_title", comment: "")
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
         }

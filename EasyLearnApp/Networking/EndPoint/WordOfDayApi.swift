@@ -31,6 +31,6 @@ extension WordOfDayApi: EndPointType {
     }
     
     var headers: HTTPHeaders? {
-        return ["Content-Type": "application/json", "api_key": "689z41jj7m8wfk469w3qhghk9ixn3vaa52cz0qlmpg0jn61vx"]
+        return ["Content-Type": "application/json", "api_key": ""]
     }
 }

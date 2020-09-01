@@ -38,7 +38,7 @@ final class DefaultWordSetViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Default sets"
+        title = NSLocalizedString("default_word_set_title", comment: "")
         view.backgroundColor = .white
         tabBarController?.tabBar.isHidden = true
         configureTableView()

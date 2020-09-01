@@ -39,7 +39,7 @@ final class AboutAppViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        title = "About app"
+        title = NSLocalizedString("settings_about_app_section", comment: "")
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = false
         }
@@ -75,7 +75,7 @@ final class AboutAppViewController: UIViewController {
         descriptionLabel.font = UIFont.sfProTextMedium(ofSize: Locals.descriptionSize)
         appNameLabel.font = UIFont.sfProTextHeavy(ofSize: Locals.descriptionSize)
         appNameLabel.textColor = .black
-        appNameLabel.text = "EasyLearnApp"
+        appNameLabel.text = NSLocalizedString("EasyLearnApp", comment: "")
         descriptionLabel.textColor = .customDarkGray
         descriptionLabel.numberOfLines = Locals.numberOfLines
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
