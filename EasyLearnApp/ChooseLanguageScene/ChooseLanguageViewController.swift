@@ -37,7 +37,7 @@ final class ChooseLanguageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        title = "Language to study"
+        title = NSLocalizedString("settings_language_to_study_section", comment: "")
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = false
         }
@@ -95,9 +95,9 @@ extension ChooseLanguageViewController: UITableViewDelegate {
             userDefaults.set(cell.viewModel?.codeValue, forKey: "lang")
             userDefaults.set(cell.viewModel?.languageValue, forKey: "selectedLanguage")
             if cell.viewModel?.languageValue != "English" {
-                tabBarController?.tabBar.items?.first{ $0.title == "Word of day" }?.isEnabled = false
+                tabBarController?.tabBar.items?.first{ $0.title == NSLocalizedString("tabbar_word_of_day", comment: "") }?.isEnabled = false
             } else {
-                tabBarController?.tabBar.items?.first{ $0.title == "Word of day" }?.isEnabled = true
+                tabBarController?.tabBar.items?.first{ $0.title == NSLocalizedString("tabbar_word_of_day", comment: "") }?.isEnabled = true
             }
         }
     }

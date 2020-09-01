@@ -46,8 +46,8 @@ final class DefaultWordSetListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Word list"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Download", style: .plain, target: self, action: #selector(downloadButtonTapped))
+        title = NSLocalizedString("default_word_set_list_title", comment: "")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("default_word_set_download_button", comment: ""), style: .plain, target: self, action: #selector(downloadButtonTapped))
         view.backgroundColor = .white
         configureTableView()
     }

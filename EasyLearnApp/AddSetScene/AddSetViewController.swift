@@ -47,9 +47,9 @@ final class AddSetViewController: UIViewController {
     
     // MARK: - Properties
     
-    private var addWordButton = ButtonWithRoundCorners(title: "Add word")
-    private var nameView = EnterInfoView(label: "Set Title", textField: "Enter set title")
-    private var emojiView = EnterInfoView(label: "Set Emoji", textField: "Enter set emoji")
+    private var addWordButton = ButtonWithRoundCorners(title: NSLocalizedString("add_set_add_word_button", comment: ""))
+    private var nameView = EnterInfoView(label: NSLocalizedString("add_set_enter_title", comment: ""), textField: NSLocalizedString("add_set_enter_title_placeholder", comment: ""))
+    private var emojiView = EnterInfoView(label: NSLocalizedString("add_set_enter_emoji", comment: ""), textField: NSLocalizedString("add_set_enter_emoji_placeholder", comment: ""))
     private var tableView = UITableView()
     private var addedWords: [WordModel] = [] {
         didSet {
@@ -77,9 +77,9 @@ final class AddSetViewController: UIViewController {
     // MARK: - Setup UI elements
     
     private func configureView() {
-        title = "Add new set"
+        title = NSLocalizedString("add_set_title", comment: "")
         view.backgroundColor = UIColor.white
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveButtonTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("add_set_save_button", comment: ""), style: .done, target: self, action: #selector(saveButtonTapped))
         navigationItem.rightBarButtonItem?.tintColor = UIColor.blueSapphire
     }
     
@@ -138,7 +138,7 @@ final class AddSetViewController: UIViewController {
     private func configuteTableView() {
         view.addSubview(tableView)
         let tableLabel = UILabel()
-        tableLabel.text = "Added words"
+        tableLabel.text = NSLocalizedString("add_set_table_label", comment: "")
         tableLabel.font = UIFont.sfProTextHeavy(ofSize: Locals.tableLabelSize)
         view.addSubview(tableLabel)
         tableView.backgroundColor = UIColor.white
@@ -175,7 +175,7 @@ final class AddSetViewController: UIViewController {
             interactor?.saveWordSetInCoreData(request: AddSetModel.SaveWordSet.Request(name: setName, emoji: setEmoji, words: addedWords))
         } else {
             needToEmptyEnteredInfo = false
-            showSavedAlert(viewModel: AddSetModel.SaveWordSet.ViewModel(alertTitleLabel: "Not saved!", alertMessageLabel: "You entered not all information!"))
+            showSavedAlert(viewModel: AddSetModel.SaveWordSet.ViewModel(alertTitleLabel: NSLocalizedString("add_set_alert_not_all_information_title", comment: ""), alertMessageLabel: NSLocalizedString("add_set_alert_not_all_information_message", comment: "")))
         }
     }
 }

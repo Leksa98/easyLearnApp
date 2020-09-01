@@ -21,10 +21,10 @@ final class WordSetViewController: UIViewController {
     
     // MARK: - Properties
     
-    private let listButton = ButtonWithRoundCorners(title: "List")
-    private let cardsButton = ButtonWithRoundCorners(title: "Cards")
-    private let learnButton = ButtonWithRoundCorners(title: "Learn")
-    private let statisticsButton = ButtonWithRoundCorners(title: "Statistics")
+    private let listButton = ButtonWithRoundCorners(title: NSLocalizedString("word_set_list", comment: ""))
+    private let cardsButton = ButtonWithRoundCorners(title: NSLocalizedString("word_set_cards", comment: ""))
+    private let learnButton = ButtonWithRoundCorners(title: NSLocalizedString("word_set_learn", comment: ""))
+    private let statisticsButton = ButtonWithRoundCorners(title: NSLocalizedString("word_set_statistics", comment: ""))
     private let stackButton = UIStackView()
     var router: WordSetRouterLogic?
     var setName: String? {

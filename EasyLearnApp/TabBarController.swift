@@ -27,21 +27,21 @@ final class TabBarController: UITabBarController {
         let wordSetsViewController = AllWordSetTableViewController()
         let wordSetsNavigationController = UINavigationController(rootViewController: wordSetsViewController)
         AllWordSetTableConfigurator.assembly(viewController: wordSetsViewController)
-        wordSetsNavigationController.tabBarItem = UITabBarItem(title: "Sets", image: UIImage(named: "Home"), tag: 0)
+        wordSetsNavigationController.tabBarItem = UITabBarItem(title: NSLocalizedString("tabbar_sets", comment: ""), image: UIImage(named: "Home"), tag: 0)
         
         let newWordSetViewController = NewWordSetViewController()
         let newWordSetNavigationController = UINavigationController(rootViewController: newWordSetViewController)
         NewWordSetConfiguration.assembly(viewController: newWordSetViewController)
-        newWordSetNavigationController.tabBarItem = UITabBarItem(title: "New set", image: UIImage(named: "Plus"), tag: 1)
+        newWordSetNavigationController.tabBarItem = UITabBarItem(title: NSLocalizedString("tabbar_new_set", comment: ""), image: UIImage(named: "Plus"), tag: 1)
         
         let settingsViewController = SettingsViewController()
         let settingsNavigationController = UINavigationController(rootViewController: settingsViewController)
         SettingsConfigurator.assembly(viewController: settingsViewController)
-        settingsNavigationController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "Settings"), tag: 2)
+        settingsNavigationController.tabBarItem = UITabBarItem(title: NSLocalizedString("tabbar_settings", comment: ""), image: UIImage(named: "Settings"), tag: 2)
         
         let wordOfDayViewController = WordOfDayConfigurator.assembly()
         let wordOfDayNavigationController = UINavigationController(rootViewController: wordOfDayViewController)
-        wordOfDayNavigationController.tabBarItem = UITabBarItem(title: "Word of day", image: UIImage(named: "Calendar"), tag: 3)
+        wordOfDayNavigationController.tabBarItem = UITabBarItem(title: NSLocalizedString("Word of day", comment: ""), image: UIImage(named: "Calendar"), tag: 3)
         
         viewControllers = [wordSetsNavigationController, newWordSetNavigationController, wordOfDayNavigationController, settingsNavigationController]
         

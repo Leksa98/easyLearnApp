@@ -45,7 +45,7 @@ final class AddWordViewController: UIViewController, AddWordDataStore {
     }
     private var tableView =  UITableView()
     private var searchBar = UISearchBar()
-    private var addButton = ButtonWithRoundCorners(title: "Add")
+    private var addButton = ButtonWithRoundCorners(title: NSLocalizedString("add_word_add_button", comment: ""))
     private var isKeyboardVisible = false
     var interactor: FetchWordTranslations?
     var router: AddWordRoutingLogic?
@@ -75,7 +75,7 @@ final class AddWordViewController: UIViewController, AddWordDataStore {
         searchBar.clipsToBounds = true
         searchBar.searchBarStyle = UISearchBar.Style.prominent
         let language = (UserDefaults.standard.object(forKey: "selectedLanguage") as? String) ?? "English"
-        searchBar.placeholder = "Type word in \(language)..."
+        searchBar.placeholder = NSLocalizedString("add_word_searchbar_placeholder", comment: "") + " \(language)..."
         searchBar.sizeToFit()
         searchBar.barTintColor = UIColor.blueSapphire
         searchBar.textField?.backgroundColor = .white

@@ -32,7 +32,7 @@ final class AllWordSetEmptyView: UIView {
     private var titleLabel = UILabel()
     private var messageLabel = UILabel()
     private var image = UIImageView()
-    private var button = ButtonWithRoundCorners(title: "Add set")
+    private var button = ButtonWithRoundCorners(title: NSLocalizedString("all_word_empty_view_button", comment: ""))
     var tabBarController: UITabBarController?
     
     // MARK: - Init
@@ -40,11 +40,11 @@ final class AllWordSetEmptyView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        titleLabel.text = "Sets"
+        titleLabel.text = NSLocalizedString("all_word_empty_view_title", comment: "")
         titleLabel.textColor = .gray
         titleLabel.font = UIFont.sfProTextMedium(ofSize: Locals.titleLabelSize)
         
-        messageLabel.text = "You don't have any sets yet. All your sets will show up here."
+        messageLabel.text = NSLocalizedString("all_word_empty_view_label", comment: "")
         messageLabel.textColor = .gray
         messageLabel.numberOfLines = Locals.numberOfLines
         messageLabel.font = UIFont.sfProTextMedium(ofSize: Locals.messageLabelSize)

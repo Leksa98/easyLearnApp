@@ -20,8 +20,8 @@ final class NewWordSetViewController: UIViewController {
     
     // MARK: - Properties
     
-    private let defaultSetButton = ButtonWithRoundCorners(title: "View default sets")
-    private let addNewSetButton = ButtonWithRoundCorners(title: "Add new set")
+    private let defaultSetButton = ButtonWithRoundCorners(title: NSLocalizedString("new_word_set_view_default_sets", comment: ""))
+    private let addNewSetButton = ButtonWithRoundCorners(title: NSLocalizedString("new_word_set_add_new_set", comment: ""))
     private let buttonStackView = UIStackView()
     var router: NewWordSetRouterLogic?
     
@@ -32,7 +32,7 @@ final class NewWordSetViewController: UIViewController {
         
         view.backgroundColor = .white
         navigationController?.navigationBar.tintColor = UIColor.blueSapphire
-        navigationItem.title = "Add word set"
+        navigationItem.title = NSLocalizedString("new_word_set_title", comment: "")
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
         }

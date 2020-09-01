@@ -35,14 +35,14 @@ final class WordSetCardViewController: UIViewController {
     // MARK: - Property
     
     private var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-    private var nextCardButton = ButtonWithRoundCorners(title: "Next")
-    private var prevCardButton = ButtonWithRoundCorners(title: "Previous")
+    private var nextCardButton = ButtonWithRoundCorners(title: NSLocalizedString("word_set_cards_next_button", comment: ""))
+    private var prevCardButton = ButtonWithRoundCorners(title: NSLocalizedString("word_set_cards_previous_button", comment: ""))
     private var setName: String?
     private var wordSetArray: [WordModel] = [] {
         willSet {
             if newValue.count == 1 {
                 prevCardButton.isHidden = true
-                nextCardButton.setTitle("Done", for: .normal)
+                nextCardButton.setTitle(NSLocalizedString("word_set_cards_done_button", comment: ""), for: .normal)
                 UIView.animate(withDuration: Locals.animationDuration, delay: 0.0, options: [.repeat, .autoreverse, .allowUserInteraction], animations:  {
                     self.nextCardButton.backgroundColor = .customGreen
                     self.nextCardButton.removeTarget(self, action: #selector(self.nextCardButtonTapped), for: .touchUpInside)
@@ -66,7 +66,7 @@ final class WordSetCardViewController: UIViewController {
         super.viewDidLoad()
         navigationItem.setHidesBackButton(true, animated: true)
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(dismissViewController))
-        title = "Cards"
+        title = NSLocalizedString("word_set_cards", comment: "")
         view.backgroundColor = .white
         configureCollectionView()
         collectionView.delegate = self
@@ -142,7 +142,7 @@ final class WordSetCardViewController: UIViewController {
         
         if Int(collectionView.contentOffset.x + collectionView.frame.size.width) + Int(Locals.scrollingConstant) == scrollCollectionViewWidth {
             UIView.animate(withDuration: Locals.animationDuration, delay: 0.0, options: [.repeat, .autoreverse, .allowUserInteraction], animations:  {
-                self.nextCardButton.setTitle("Done", for: .normal)
+                self.nextCardButton.setTitle(NSLocalizedString("word_set_cards_done_button", comment: ""), for: .normal)
                 self.nextCardButton.backgroundColor = .customGreen
                 self.nextCardButton.removeTarget(self, action: #selector(self.nextCardButtonTapped), for: .touchUpInside)
                 self.nextCardButton.addTarget(self, action: #selector(self.dismissViewController), for: .touchUpInside)
@@ -157,10 +157,10 @@ final class WordSetCardViewController: UIViewController {
         if collectionView.contentOffset.x - (collectionView.frame.size.width + Locals.scrollingConstant) >= 0 {
             UIView.animate(withDuration: Locals.animationDuration) {
                 self.collectionView.contentOffset.x -= self.collectionView.frame.size.width + Locals.scrollingConstant
-                if self.nextCardButton.titleLabel?.text == "Done" {
+                if self.nextCardButton.titleLabel?.text == NSLocalizedString("word_set_cards_done_button", comment: "") {
                     self.nextCardButton.layer.removeAllAnimations()
                     self.nextCardButton.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-                    self.nextCardButton.setTitle("Next", for: .normal)
+                    self.nextCardButton.setTitle(NSLocalizedString("word_set_cards_next_button", comment: ""), for: .normal)
                     self.nextCardButton.backgroundColor = .blueSapphire
                     self.nextCardButton.removeTarget(self, action: #selector(self.dismissViewController), for: .touchUpInside)
                     self.nextCardButton.addTarget(self, action: #selector(self.nextCardButtonTapped), for: .touchUpInside)

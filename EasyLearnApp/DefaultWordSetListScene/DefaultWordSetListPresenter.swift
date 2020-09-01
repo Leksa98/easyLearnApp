@@ -18,9 +18,9 @@ final class DefaultWordSetListPresenter: DefaultWordSetListPresentationLogic {
     
     func prepareForPresent(response: DefaultWordSetListModel.DownloadWordSet.Response?) {
         if let response = response {
-            viewController?.showSaveAlert(viewModel: DefaultWordSetListModel.DownloadWordSet.ViewModel(alertTitleLabel: "Saved!", alertMessageLabel:"Set \(response.name) \(response.emoji) was saved!"))
+            viewController?.showSaveAlert(viewModel: DefaultWordSetListModel.DownloadWordSet.ViewModel(alertTitleLabel: NSLocalizedString("alert_success_title", comment: ""), alertMessageLabel:"\(response.name) \(response.emoji) " + NSLocalizedString("alert_success_message", comment: "")))
         } else {
-            viewController?.showSaveAlert(viewModel: DefaultWordSetListModel.DownloadWordSet.ViewModel(alertTitleLabel: "Set was saved before!", alertMessageLabel: "Go to your sets to find downloaded set!"))
+            viewController?.showSaveAlert(viewModel: DefaultWordSetListModel.DownloadWordSet.ViewModel(alertTitleLabel: NSLocalizedString("default_word_set_alert_fail_title", comment: ""), alertMessageLabel: NSLocalizedString("default_word_set_alert_fail_message", comment: "")))
         }
     }
 }

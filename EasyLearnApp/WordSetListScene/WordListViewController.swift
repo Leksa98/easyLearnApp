@@ -40,7 +40,7 @@ final class WordListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        title = "List"
+        title = NSLocalizedString("word_set_list", comment: "")
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
         configureTable()
     }

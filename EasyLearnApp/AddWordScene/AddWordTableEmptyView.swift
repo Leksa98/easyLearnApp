@@ -33,11 +33,11 @@ final class AddWordTableEmptyView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        titleLabel.text = "Nothing found"
+        titleLabel.text = NSLocalizedString("add_word_empty_view_title", comment: "")
         titleLabel.textColor = .gray
         titleLabel.font = UIFont.sfProTextMedium(ofSize: Locals.titleLabelSize)
         
-        messageLabel.text = "All translations of the word you typed will show up here."
+        messageLabel.text = NSLocalizedString("add_word_empty_view_message", comment: "")
         messageLabel.textColor = .gray
         messageLabel.numberOfLines = Locals.numberOfLines
         messageLabel.font = UIFont.sfProTextMedium(ofSize: Locals.messageLabelSize)

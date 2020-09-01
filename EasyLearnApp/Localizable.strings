@@ -1,0 +1,85 @@
+/* 
+  Localizable.strings
+  EasyLearnApp
+
+  Created by Alexandra Gertsenshtein on 31.08.2020.
+  Copyright © 2020 Alexandra Gertsenshtein. All rights reserved.
+*/
+
+"tabbar_sets" = "Sets";
+"tabbar_new_set" = "New set";
+"tabbar_settings" = "Settings";
+"tabbar_word_of_day" = "Word of day";
+
+"all_word_set_title" = "My sets";
+"all_word_empty_view_title" = "Sets";
+"all_word_empty_view_button" = "Add set";
+"all_word_empty_view_label" = "You don't have any sets yet. All your sets will show up here.";
+
+"word_set_list" = "List";
+"word_set_cards" = "Cards";
+"word_set_learn" = "Learn";
+"word_set_statistics" = "Statistics";
+
+"word_set_cards_next_button" = "Next";
+"word_set_cards_previous_button" = "Previous";
+"word_set_cards_done_button" = "Done";
+
+"word_set_learn_check_button" = "Check";
+"word_set_learn_help_button" = "Don't know";
+
+"finished_exercise_learn_again_button" = "Practice again";
+"finished_exercise_finish_button" = "Finish practice";
+"finished_exercise_label" = "Congratulations 🎉🎉🎉\nYou've just finished exercise!";
+
+"progress_bar_label" = "Current progress";
+"progress_well_known_section" = "Know well🏆";
+"progress_in_progress_section" = "In progress🚀";
+"progress_do_not_know_section" = "Don't know‼️";
+
+"new_word_set_title" = "Add word set";
+"new_word_set_view_default_sets" = "View default sets";
+"new_word_set_add_new_set" = "Add new set";
+
+"default_word_set_title" = "Default sets";
+"default_word_set_list_title" = "Word list";
+"default_word_set_download_button" = "Download";
+"alert_success_title" = "Saved!";
+"default_word_set_alert_fail_title" = "Set was saved before!";
+"alert_success_message" = "set was saved!";
+"default_word_set_alert_fail_message" = "Go to your sets to find downloaded set!";
+
+"add_set_add_word_button" = "Add word";
+"add_set_enter_title" = "Set Title";
+"add_set_enter_title_placeholder" = "Enter set title";
+"add_set_enter_emoji" = "Set Emoji";
+"add_set_enter_emoji_placeholder" = "Enter set emoji";
+"add_set_title" = "Add new set";
+"add_set_save_button" = "Save";
+"add_set_table_label" = "Added words";
+"add_set_alert_not_all_information_title" = "Not saved!";
+"add_set_alert_not_all_information_message" = "You entered not all information!";
+"add_set_alert_fail_title" = "Inappropriate name!";
+"add_set_alert_fail_message_start" = "Set with name";
+"add_set_alert_fail_message_end" = "already exists!";
+"add_set_empty_view_title" = "Words";
+"add_set_empty_view_message" = "You haven't added any words yet. All your added words will show up here.";
+
+"add_word_add_button" = "Add";
+"add_word_searchbar_placeholder" = "Type word in";
+"add_word_empty_view_title" = "Nothing found";
+"add_word_empty_view_message" = "All translations of the word you typed will show up here.";
+
+"settings_title" = "Settings";
+"settings_about_app_section" = "About app";
+"settings_language_to_study_section" = "Language to study";
+
+"app_name" = "EasyLearnApp";
+"app_description" = "This app is designed to help you memorize foreign words. Learn English, German, French, Spanish, and Italian languages. \n\nCreate your own word sets or download default ones. Start learning and track your progress. You can continue learning words even if you are not connected to the Internet. \n\nTake a look at the \"Word of day\" section to expand your vocabulary.";
+
+
+"english_language" = "English";
+"german_language" = "German";
+"french_language" = "French";
+"spanish_language" = "Spanish";
+"italien_language" = "Italian";

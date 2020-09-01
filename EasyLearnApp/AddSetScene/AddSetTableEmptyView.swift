@@ -34,11 +34,11 @@ final class AddSetTableEmptyView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        titleLabel.text = "Words"
+        titleLabel.text = NSLocalizedString("add_set_empty_view_title", comment: "")
         titleLabel.textColor = .gray
         titleLabel.font = UIFont.sfProTextMedium(ofSize: Locals.titleLabelSize)
         
-        messageLabel.text = "You haven't added any words yet. All your added words will show up here."
+        messageLabel.text = NSLocalizedString("add_set_empty_view_message", comment: "")
         messageLabel.textColor = .gray
         messageLabel.numberOfLines = Locals.numberOfLines
         messageLabel.font = UIFont.sfProTextMedium(ofSize: Locals.messageLabelSize)

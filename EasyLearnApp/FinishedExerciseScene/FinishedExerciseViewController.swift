@@ -23,8 +23,8 @@ final class FinishedExerciseViewController: UIViewController {
     
     // MARK: - Properties
     
-    private var learnAgainButton = ButtonWithRoundCorners(title: "Practice again")
-    private var finishButton = ButtonWithRoundCorners(title: "Finish practice")
+    private var learnAgainButton = ButtonWithRoundCorners(title: NSLocalizedString("finished_exercise_learn_again_button", comment: ""))
+    private var finishButton = ButtonWithRoundCorners(title: NSLocalizedString("finished_exercise_finish_button", comment: ""))
     private let buttonStackView = UIStackView()
     private var label = UILabel()
     var router: FinishedExerciseRouterLogic?
@@ -46,7 +46,7 @@ final class FinishedExerciseViewController: UIViewController {
     private func setUpLabel() {
         view.addSubview(label)
         label.numberOfLines = Locals.numberOfLines
-        label.text = "Congratulations 🎉🎉🎉\n" + "You've just finished exercise!"
+        label.text = NSLocalizedString("finished_exercise_label", comment: "")
         label.baselineAdjustment = .alignCenters
         label.font = UIFont.sfProTextHeavy(ofSize: Locals.labelSize)
         label.translatesAutoresizingMaskIntoConstraints = false
