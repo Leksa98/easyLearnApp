@@ -66,7 +66,7 @@
 "add_set_empty_view_message" = "You haven't added any words yet. All your added words will show up here.";
 
 "add_word_add_button" = "Add";
-"add_word_searchbar_placeholder" = "Type word in";
+"add_word_searchbar_placeholder" = "Type word in ";
 "add_word_empty_view_title" = "Nothing found";
 "add_word_empty_view_message" = "All translations of the word you typed will show up here.";
 
